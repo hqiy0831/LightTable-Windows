@@ -1,0 +1,8 @@
+  LightTable.Core -> C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\LightTable.Windows\Core\bin\Release\net10.0\LightTable.Core.dll
+  LightTable.Core.Tests -> C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\LightTable.Windows\Tests\bin\Release\net10.0\LightTable.Core.Tests.dll
+C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\LightTable.Windows\Tests\bin\Release\net10.0\LightTable.Core.Tests.dll (.NETCoreApp,Version=v10.0)的测试运行
+总共 1 个测试文件与指定模式相匹配。
+警告: 正在覆盖结果文件: C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\current\final-core.trx
+结果文件: C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\current\final-core.trx
+
+已通过! - 失败:     0，通过:    88，已跳过:     0，总计:    88，持续时间: 1 s - LightTable.Core.Tests.dll (net10.0)

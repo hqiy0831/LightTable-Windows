@@ -1,0 +1,524 @@
+[
+  {
+    "Path": ".gitignore",
+    "Bytes": 97,
+    "Lines": 0,
+    "SHA256": "48F1A58E691FBA02027ED499060DCFC73C5277C9450DFD1F03EC213B6389DF28"
+  },
+  {
+    "Path": "Assets/AppIcon.icns",
+    "Bytes": 1577618,
+    "Lines": 0,
+    "SHA256": "2C48B826CBBF3CE40EB40B96AC83FB7E145BF393D2D5CE372E53F22DB2F9A326"
+  },
+  {
+    "Path": "Assets/AppIcon.png",
+    "Bytes": 747600,
+    "Lines": 0,
+    "SHA256": "93C7A814953258764A61EE719EC56EE125962156316F35228B0E9CC96FE9BA94"
+  },
+  {
+    "Path": "Assets/README.md",
+    "Bytes": 643,
+    "Lines": 9,
+    "SHA256": "A0A25118D3435171532904838C8623265F510455840AE85279673F01CC759A32"
+  },
+  {
+    "Path": "CHANGELOG.md",
+    "Bytes": 3003,
+    "Lines": 42,
+    "SHA256": "7969A0C68069676DE191BCD0EC872A62CF735F4720BF840AB9AB89625098DB0C"
+  },
+  {
+    "Path": "Configuration/Updates.plist",
+    "Bytes": 811,
+    "Lines": 14,
+    "SHA256": "70FFFB0328C04E97D23789AA70B4BA46D294DE7C8137358AA34AE53E6A965D5C"
+  },
+  {
+    "Path": "LICENSE",
+    "Bytes": 1092,
+    "Lines": 21,
+    "SHA256": "3AF59E673FB50122F71F4202BB2205DCF6304AEA2AD174526FEF4034E93D7FA8"
+  },
+  {
+    "Path": "Package.resolved",
+    "Bytes": 317,
+    "Lines": 0,
+    "SHA256": "91041ACA5FB55C9A1E420CF10D0056E9A10374E201F91426C692A4443045C335"
+  },
+  {
+    "Path": "Package.swift",
+    "Bytes": 977,
+    "Lines": 18,
+    "SHA256": "02B3839F0602CD2BF0A91C95304C588B94AF7A4622C37587A6F38049C6E43434"
+  },
+  {
+    "Path": "README.md",
+    "Bytes": 7480,
+    "Lines": 126,
+    "SHA256": "D0EA88020671D222FBD1A820504CF0205E5A9ADD56753824BD4034EF69160849"
+  },
+  {
+    "Path": "Sources/LightTableApp/AlbumDrag.swift",
+    "Bytes": 904,
+    "Lines": 19,
+    "SHA256": "8B8A49AE7AE25389B47F54FB817E05C5A80B5DDD2C353882DB565BFEBEE5EA56"
+  },
+  {
+    "Path": "Sources/LightTableApp/AlbumSurface.swift",
+    "Bytes": 3529,
+    "Lines": 52,
+    "SHA256": "C7360052DA83BC3162FE51781581B1F0581377929307778ABC6BEC6E64312613"
+  },
+  {
+    "Path": "Sources/LightTableApp/AlbumViews.swift",
+    "Bytes": 21008,
+    "Lines": 379,
+    "SHA256": "72EEC801625C69EB99D1D9EFBB876CEA5268A2A85E5FE96F141C81EA2EBC0530"
+  },
+  {
+    "Path": "Sources/LightTableApp/AppUpdater.swift",
+    "Bytes": 4817,
+    "Lines": 119,
+    "SHA256": "82F3BC376A43CFADDBC2DD267EA4BDA8C38491547986B1CFA1103461D1C1027D"
+  },
+  {
+    "Path": "Sources/LightTableApp/BrightnessSlider.swift",
+    "Bytes": 2177,
+    "Lines": 61,
+    "SHA256": "E9CDF3ED1A5ED90A039BC2D35CDBCEA6BC22FE3F40399DA944AB66354CB32746"
+  },
+  {
+    "Path": "Sources/LightTableApp/CanvasNavigation.swift",
+    "Bytes": 2399,
+    "Lines": 51,
+    "SHA256": "788302107E12B1C3B965DBD565C0ECB64C4EBB29D2762AD5E549DCDE41338932"
+  },
+  {
+    "Path": "Sources/LightTableApp/CanvasSelection.swift",
+    "Bytes": 4764,
+    "Lines": 107,
+    "SHA256": "85841DAAD5F702FEB07DFFF896F72D13F3B2EDD6CA7C9F28CB82CD46C0344F96"
+  },
+  {
+    "Path": "Sources/LightTableApp/ContentView.swift",
+    "Bytes": 61304,
+    "Lines": 1108,
+    "SHA256": "5B2841FF3EE582EAEB09F7C2E60E77899EBFD4961DA92BC5507A4CBBD3C60D8A"
+  },
+  {
+    "Path": "Sources/LightTableApp/FeatureGuideState.swift",
+    "Bytes": 2838,
+    "Lines": 83,
+    "SHA256": "9C71520B2BE6E9E6DF046B8A052067E55D5BD8F80BD9B233206ACCD8F6AF825C"
+  },
+  {
+    "Path": "Sources/LightTableApp/FeatureGuideViews.swift",
+    "Bytes": 10987,
+    "Lines": 216,
+    "SHA256": "2E27C6C7D4DC45607BBFA7E52E61A33E9550F8CD5EDD959D1343E1D1B2276768"
+  },
+  {
+    "Path": "Sources/LightTableApp/FilmContactSurface.swift",
+    "Bytes": 3710,
+    "Lines": 79,
+    "SHA256": "6807705642986FE043AEE5F62BCBA616694BB86FEAC42E3BFF9FB601C28A2954"
+  },
+  {
+    "Path": "Sources/LightTableApp/FilmSleeve.swift",
+    "Bytes": 4874,
+    "Lines": 106,
+    "SHA256": "F9171D94E8929AC22CD577BBE80FBF01878188FFAFE59F5729CB162888E5D1EC"
+  },
+  {
+    "Path": "Sources/LightTableApp/LightTableApp.swift",
+    "Bytes": 3485,
+    "Lines": 53,
+    "SHA256": "00C8E56BCB386A7480831951BCA8302172DB829B31E25492000C0414E7D963A4"
+  },
+  {
+    "Path": "Sources/LightTableApp/LoupeExperience.swift",
+    "Bytes": 21328,
+    "Lines": 449,
+    "SHA256": "AB4D7B51927E56713FFC248FA24E0505F1DA7A066EC91E07EE2EA4F77CE9FFC1"
+  },
+  {
+    "Path": "Sources/LightTableApp/LoupeMagnificationControl.swift",
+    "Bytes": 2325,
+    "Lines": 49,
+    "SHA256": "8CCF38553AF0A405A4920A334B89CAC4E79744E7CE89C504D4485E1F4448F38B"
+  },
+  {
+    "Path": "Sources/LightTableApp/LoupeRaster.swift",
+    "Bytes": 4862,
+    "Lines": 106,
+    "SHA256": "6FCD0B484D66D2B948B9C4464CDAA74C8299D862EAE6796D36BA707F33A035E9"
+  },
+  {
+    "Path": "Sources/LightTableApp/LoupeRenderer.swift",
+    "Bytes": 11514,
+    "Lines": 201,
+    "SHA256": "FB0DEDE1EB4DF9648975633A7636D72D4097798DF79981E93AF3FD7AC1272D76"
+  },
+  {
+    "Path": "Sources/LightTableApp/OpticalDisplay.swift",
+    "Bytes": 10955,
+    "Lines": 232,
+    "SHA256": "79A2ACB0B39C0E67F88603F672F272AE4B5CCD3363DDAFFEFA1008515D74B76E"
+  },
+  {
+    "Path": "Sources/LightTableApp/PhotoDrag.swift",
+    "Bytes": 2220,
+    "Lines": 46,
+    "SHA256": "4B2ACAF718D63CCDC86CFCBFA00D65175555E60FB4D22527F6A7D9B5EE8136AA"
+  },
+  {
+    "Path": "Sources/LightTableApp/PhotoOptics.swift",
+    "Bytes": 7553,
+    "Lines": 137,
+    "SHA256": "61396666C4D853FA4C16A08A639580BEB782D3BC0949B14E36A3677DA5907A46"
+  },
+  {
+    "Path": "Sources/LightTableApp/PhotoStore.swift",
+    "Bytes": 26432,
+    "Lines": 477,
+    "SHA256": "811AA2F20F8F311CB9435E0D0015A50CB8344E8C661A2E4DE7CAA8C1E900AFBC"
+  },
+  {
+    "Path": "Sources/LightTableApp/Resources/ShutterArrivalRoom.wav",
+    "Bytes": 52856,
+    "Lines": 0,
+    "SHA256": "F252DA3604D7635E2E93EAF845597CF77973F475B42CC1131A67F9289545455A"
+  },
+  {
+    "Path": "Sources/LightTableApp/Resources/ShutterClick.wav",
+    "Bytes": 36582,
+    "Lines": 0,
+    "SHA256": "5534A1A4F544100B73A72EF31E8853543DBA20C66F1DB9186CFB147AE162AA25"
+  },
+  {
+    "Path": "Sources/LightTableApp/Resources/ShutterClickRoom.wav",
+    "Bytes": 71108,
+    "Lines": 0,
+    "SHA256": "FDFFFF5FD598BBE34319200891A60FEBB32D721A75868D38676312ACB7E5BD6D"
+  },
+  {
+    "Path": "Sources/LightTableApp/SleeveFlight.swift",
+    "Bytes": 2259,
+    "Lines": 57,
+    "SHA256": "FBE5210D1052BC2F4F48B2371E7C6908219DA6B1DDCB795A09391BB783EB822D"
+  },
+  {
+    "Path": "Sources/LightTableApp/SleeveMotion.swift",
+    "Bytes": 1199,
+    "Lines": 25,
+    "SHA256": "080619C5179FDDC2F63EC3DBA8FF79F5A14B7ABE76547DB1D68D454207826D8D"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowEntry.swift",
+    "Bytes": 10097,
+    "Lines": 245,
+    "SHA256": "164B2DB2D1A72E11675FB34505C19D78BBEE78853699EE1E5DE5A986236E0443"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowMechanicalSound.swift",
+    "Bytes": 3641,
+    "Lines": 94,
+    "SHA256": "710B545023ED04CBF3D8BAE9A217451B477E4545F1FED190B1E96D470D62AC27"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowMotion.swift",
+    "Bytes": 1394,
+    "Lines": 38,
+    "SHA256": "AB69FB14D30D710B67FF182FACC69C13041AD1468200B318E721ED07D9D49BDE"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowProjection.swift",
+    "Bytes": 13032,
+    "Lines": 273,
+    "SHA256": "1EDD428DCB0E7031201726E8AA1D0C40D4BCD064193B0F8638072551F7641823"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowView.swift",
+    "Bytes": 4558,
+    "Lines": 89,
+    "SHA256": "76D77C11148A5A46DEF222586AE2B4BA77FBF9104E8A7010193E3C8D9B466BF6"
+  },
+  {
+    "Path": "Sources/LightTableApp/SlideshowWindow.swift",
+    "Bytes": 9760,
+    "Lines": 232,
+    "SHA256": "8FDE2C9B9E0C93282E911487154C1064FA992C4E856BC1A7450CA609D7FFC68B"
+  },
+  {
+    "Path": "Sources/LightTableApp/StartupPreparationView.swift",
+    "Bytes": 5423,
+    "Lines": 97,
+    "SHA256": "F5F5E82F8C38DD89F635FABB9CAD378F4E8AFD90E9D45E2C2BA8F289FF734BE3"
+  },
+  {
+    "Path": "Sources/LightTableApp/TableModel.swift",
+    "Bytes": 31742,
+    "Lines": 650,
+    "SHA256": "57CA34D2DA2CE36953E7CFBAF49DE4AC524D50D95E2335192EAE13866E24B082"
+  },
+  {
+    "Path": "Sources/LightTableApp/UpdateConfiguration.swift",
+    "Bytes": 923,
+    "Lines": 21,
+    "SHA256": "E6FF508E3F114B1F34F5C96E43DA979A498879105BF5EBF5CBCB5575B55EEA1E"
+  },
+  {
+    "Path": "Sources/LightTableCore/AlbumPage.swift",
+    "Bytes": 5483,
+    "Lines": 100,
+    "SHA256": "9674641EC930B3C584F5DFAA3883B7F586DD2B993CC1B9A1E38AA9336521BE04"
+  },
+  {
+    "Path": "Sources/LightTableCore/LightResponse.swift",
+    "Bytes": 3866,
+    "Lines": 81,
+    "SHA256": "ABF286E636742559F2767ACE8AB51DF6BBDB60CD96BA925A193E67AA6A9D2500"
+  },
+  {
+    "Path": "Sources/LightTableCore/StartupPresentationProgress.swift",
+    "Bytes": 1104,
+    "Lines": 23,
+    "SHA256": "7063C0E191986D36C5A62CDA62D3F3F587D95FDA525E338136EF7BDF92985FEF"
+  },
+  {
+    "Path": "Sources/LightTableCore/TableLayout.swift",
+    "Bytes": 10777,
+    "Lines": 222,
+    "SHA256": "801AFFD6762240E2C62210456385B3096AD1194EDF56ADE1EFF0F4A114FEDFFD"
+  },
+  {
+    "Path": "THIRD_PARTY_NOTICES.md",
+    "Bytes": 2022,
+    "Lines": 29,
+    "SHA256": "0C933089194A8941A3BBF5A2509C70AE372ADA17842ADEB55885B49235ADAC44"
+  },
+  {
+    "Path": "Tests/AlbumChecks.swift",
+    "Bytes": 8876,
+    "Lines": 124,
+    "SHA256": "546E6AAC013147684A197A4AA5408FBB2D595D6AA888BE35C100B1614377CB68"
+  },
+  {
+    "Path": "Tests/CloseupChecks.swift",
+    "Bytes": 52185,
+    "Lines": 723,
+    "SHA256": "715C3AFCB1E96F43887AE959EC6D20A61AF5B18E7D9815BF85BC73EFDCD75F6B"
+  },
+  {
+    "Path": "Tests/DropChecks.swift",
+    "Bytes": 36120,
+    "Lines": 472,
+    "SHA256": "2E386E3B5116E377014751AF9D9962832AFF136305FA6BAB546E1D28AA70D732"
+  },
+  {
+    "Path": "Tests/FeatureGuideChecks.swift",
+    "Bytes": 3473,
+    "Lines": 59,
+    "SHA256": "D21F51D6A70C6CFC1DDAF0E512367C795EE26740B55916D78851D359DE56543F"
+  },
+  {
+    "Path": "Tests/LightChecks.swift",
+    "Bytes": 26953,
+    "Lines": 384,
+    "SHA256": "B1935F21268808C2A8C44376722ACE45A26BE17875BD6956109C2C07C42214C2"
+  },
+  {
+    "Path": "Tests/LightTableCoreTests/StartupPresentationProgressTests.swift",
+    "Bytes": 2856,
+    "Lines": 49,
+    "SHA256": "22D83057AB0795C1C18A8E647C51B941A7D50DB5DBDDCDE337C1B6822ADC9D2B"
+  },
+  {
+    "Path": "Tests/LightTableCoreTests/TableLayoutTests.swift",
+    "Bytes": 2948,
+    "Lines": 66,
+    "SHA256": "BBFE3C554F31F7D0C627EFE499ED0A4B8E7BB921EC84CDB6EF459BCD880C7FFE"
+  },
+  {
+    "Path": "Tests/LoupeChecks.swift",
+    "Bytes": 16665,
+    "Lines": 241,
+    "SHA256": "106FB0419300AFC17244FB0B2F88E8BD36DEFAEDE8CCEAD7FC8C2A0D8571F19C"
+  },
+  {
+    "Path": "Tests/OpticsChecks.swift",
+    "Bytes": 25395,
+    "Lines": 340,
+    "SHA256": "577DCE92BE5A7441C6D25005C6839C8C01679879084E727734EBB226F9FE9DF0"
+  },
+  {
+    "Path": "Tests/SleeveChecks.swift",
+    "Bytes": 2740,
+    "Lines": 45,
+    "SHA256": "CE569F953C058BEBF5B40B22FD3164102A3CE2828259B82BB5542DDD091E8B52"
+  },
+  {
+    "Path": "Tests/SlideshowChecks.swift",
+    "Bytes": 37638,
+    "Lines": 580,
+    "SHA256": "6A170C2E976C0472DF2EB156E16144A6AA54DBF1E33975C87B1EDA10AA31F949"
+  },
+  {
+    "Path": "Tests/SmokeChecks.swift",
+    "Bytes": 23145,
+    "Lines": 360,
+    "SHA256": "CF6E0824104A68F301A428504ECB3C6FEDFC651BE0EA1F426945C337E7ABD859"
+  },
+  {
+    "Path": "Tests/UpdateChecks.swift",
+    "Bytes": 4345,
+    "Lines": 61,
+    "SHA256": "423E2DA0AEFA2DD26273C573C100C6B2C0F3BA9A8D3F4B907B010FDB2A638999"
+  },
+  {
+    "Path": "VERSION",
+    "Bytes": 8,
+    "Lines": 1,
+    "SHA256": "3E02D8F29CCC54CF2CA64DAC1D6B625105D5DE95AB962B320BC82A6312EB5432"
+  },
+  {
+    "Path": "build_release.sh",
+    "Bytes": 142,
+    "Lines": 4,
+    "SHA256": "19376A2B23D05448A694E2E55437209846DB9582B2049C0A267F7FFF3A06F4A8"
+  },
+  {
+    "Path": "docs/RELEASING.md",
+    "Bytes": 4021,
+    "Lines": 49,
+    "SHA256": "0D8EB5705147CF026E40B96B8C41854316171A3E8267BC31620844B1AC41F3A2"
+  },
+  {
+    "Path": "docs/audio/快门咔嚓.md",
+    "Bytes": 1277,
+    "Lines": 15,
+    "SHA256": "40F80348107F2CBB04913E1592664DACD3D26B38C66137C70852A1ED89CDBA48"
+  },
+  {
+    "Path": "docs/releases/v0.1.69.md",
+    "Bytes": 662,
+    "Lines": 8,
+    "SHA256": "60EA7BE071B4CAE155088FEDE86720B8D27DDE46182970CACB8358BD42C12D2D"
+  },
+  {
+    "Path": "docs/releases/v0.1.70.md",
+    "Bytes": 784,
+    "Lines": 9,
+    "SHA256": "D7F306ABBD962F726F6C8BEC5B7B0DE587BBF7C6EB87FE5E37E0F0C41FCE77F2"
+  },
+  {
+    "Path": "docs/releases/v0.1.71.md",
+    "Bytes": 1146,
+    "Lines": 19,
+    "SHA256": "E4CC8C301837966A18D364DEB2F7DFF5C6BAB9ABE1ACCACBB9416E7D85041AF8"
+  },
+  {
+    "Path": "docs/releases/v0.1.72.md",
+    "Bytes": 3783,
+    "Lines": 53,
+    "SHA256": "2120D498A03F79E58009019AA447A53040F6966282C6AD2F91DED03F5C58E5DB"
+  },
+  {
+    "Path": "scripts/build-app.sh",
+    "Bytes": 2973,
+    "Lines": 64,
+    "SHA256": "351CA4B7DA769A86DD613CC7C9A3696FBD700D6BD25D5F406138A530F843FBA8"
+  },
+  {
+    "Path": "scripts/check-albums.sh",
+    "Bytes": 1062,
+    "Lines": 18,
+    "SHA256": "485F9834A2B4973ED11C77E5286953B462D80FF15D447471312FE7E822A87CDF"
+  },
+  {
+    "Path": "scripts/check-closeup.sh",
+    "Bytes": 1063,
+    "Lines": 19,
+    "SHA256": "A332A8E5DD8F3E6BCF62AD768D7431372E2CF0D884F99AE2691AA3D734C10D62"
+  },
+  {
+    "Path": "scripts/check-drops.sh",
+    "Bytes": 1036,
+    "Lines": 22,
+    "SHA256": "395AB98AFFE17FE18228E9E2C9B9A4DD95F0DF1EDD189318EE164B9CD3A59C53"
+  },
+  {
+    "Path": "scripts/check-feature-guide.sh",
+    "Bytes": 396,
+    "Lines": 8,
+    "SHA256": "FFB971586086D259139EE2F5E1A45050441CA0D5CEC5CF26294E9C127E2ABF48"
+  },
+  {
+    "Path": "scripts/check-light.sh",
+    "Bytes": 434,
+    "Lines": 10,
+    "SHA256": "F1B32B5C2A04C1E33223AD7AD2DDCE6B0659CAD20C0B59E67CECC2ECF89990FF"
+  },
+  {
+    "Path": "scripts/check-loupe.sh",
+    "Bytes": 812,
+    "Lines": 15,
+    "SHA256": "8BAA0B6459522789734DCD8554D164577E5A0A3CCB0777E277CB37D0F322C2FE"
+  },
+  {
+    "Path": "scripts/check-optics.sh",
+    "Bytes": 875,
+    "Lines": 15,
+    "SHA256": "6DBACDEF4B54FB04601230188C8C115BD60A69CCE8AF4C144907DB73BCCF6A21"
+  },
+  {
+    "Path": "scripts/check-sleeves.sh",
+    "Bytes": 376,
+    "Lines": 9,
+    "SHA256": "F7700F28DB6E1FF3E8F0E72A8BBF7729558AE64438FC920A8B3445DAF0870934"
+  },
+  {
+    "Path": "scripts/check-slideshow.sh",
+    "Bytes": 1234,
+    "Lines": 22,
+    "SHA256": "D9D17B0E9042B20D6F93BFE8E9E504DC71A7BCBC0C4CB9FE4BEECF1AE22EFEF6"
+  },
+  {
+    "Path": "scripts/check-update-bundle.py",
+    "Bytes": 6528,
+    "Lines": 106,
+    "SHA256": "805304419EFED18088F3BD19C4B1F98698816F7DBB9F1E2E97A1AFB11724AC6C"
+  },
+  {
+    "Path": "scripts/check-updates.sh",
+    "Bytes": 647,
+    "Lines": 13,
+    "SHA256": "317C41FBB7F774EF2FA6AC919D21F4518448CBE799EF6FDBF94F7040E6FB9207"
+  },
+  {
+    "Path": "scripts/check.sh",
+    "Bytes": 584,
+    "Lines": 16,
+    "SHA256": "B4FC82BA254AC16123A564ABC79CDBB7243F852E6B4DFDAEA9163A3BE07362BE"
+  },
+  {
+    "Path": "scripts/generate-app-icon.sh",
+    "Bytes": 748,
+    "Lines": 17,
+    "SHA256": "D82DCB85E467100015D962FF5A0F70C4987EBC1574FC9766A7AC950FA7841596"
+  },
+  {
+    "Path": "scripts/prepare-release.sh",
+    "Bytes": 2569,
+    "Lines": 53,
+    "SHA256": "7BFCA5E55AEE1D3B3C3D2614A33E621D8E6007AE0585F670439F2E4DAAEDA31E"
+  },
+  {
+    "Path": "scripts/prepare-shutter-audio.py",
+    "Bytes": 3274,
+    "Lines": 75,
+    "SHA256": "60060058C00B1CC3C6B943ADEABA38BCD43556B7C6BEE5EBFE3F2CA060F61C09"
+  }
+]

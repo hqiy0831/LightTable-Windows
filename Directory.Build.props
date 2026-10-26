@@ -1,0 +1,12 @@
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <Deterministic>true</Deterministic>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+    <Version>0.1.72.5</Version>
+    <Authors></Authors>
+    <Copyright>Copyright (c) 2026 fuyuan9972-svg</Copyright>
+  </PropertyGroup>
+</Project>

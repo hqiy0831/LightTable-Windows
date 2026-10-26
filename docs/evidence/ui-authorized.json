@@ -1,0 +1,27 @@
+{
+  "Date": "2026-10-26T00:52:07.7822787-04:00",
+  "Version": "0.1.72.2",
+  "Executable": "D:\\UserData\\Documents\\ChatGPT\\电子观片台\\dist\\Windows-x64\\LightTable.exe",
+  "ExecutableSha256": "336836e7ed5edab406b5e77a345844e9f94bc653a5c44de9939f73574132cd30",
+  "DataRoot": "D:\\UserData\\Documents\\ChatGPT\\电子观片台\\TestResults\\ui-authorized-20261026-004952",
+  "ActualSpaceDownUp": true,
+  "ActualSpaceTabChord": true,
+  "SpaceReleaseLeavesLampLit": true,
+  "FocusedButtonSpaceLeavesLampLit": true,
+  "CapsuleCoordinateClickEight": "Passed: selected eight label and moving thumb visually observed",
+  "CapsuleDragEightToOriginal": "Passed: intermediate thumb and original endpoint visually observed",
+  "LongPhysicalHold": "Not executed: supported press_key API sends short chord with no hold-duration parameter",
+  "AnimationDuration": "Covered separately by production DispatcherQueue/GPU integration tests",
+  "SliderZeroAttempt": "Input protection rejected before action; not recorded as executed",
+  "Interruption": "Other app occluded target and user input detected; no further desktop input issued",
+  "Trace": [
+    "2026-10-26T00:50:15.3795796-04:00 view-key down key=Space focus=ScrollViewer handled=True held=True loupe=True close=True lit=True eight=False",
+    "2026-10-26T00:50:15.3839407-04:00 view-key up key=Space focus=ScrollViewer handled=True held=False loupe=True close=False lit=True eight=False",
+    "2026-10-26T00:50:27.8633478-04:00 view-key down key=Space focus=ScrollViewer handled=True held=True loupe=True close=True lit=True eight=False",
+    "2026-10-26T00:50:27.8683764-04:00 view-key down key=Tab focus=ScrollViewer handled=True held=True loupe=True close=True lit=True eight=True",
+    "2026-10-26T00:50:27.8706714-04:00 view-key up key=Tab focus=ScrollViewer handled=True held=True loupe=True close=True lit=True eight=True",
+    "2026-10-26T00:50:27.8727632-04:00 view-key up key=Space focus=ScrollViewer handled=True held=False loupe=True close=False lit=True eight=True",
+    "2026-10-26T00:51:15.8271920-04:00 view-key down key=Space focus=Button handled=True held=True loupe=True close=False lit=True eight=True",
+    "2026-10-26T00:51:15.8325309-04:00 view-key up key=Space focus=Button handled=True held=False loupe=True close=False lit=True eight=True"
+  ]
+}

@@ -1,0 +1,8 @@
+Started real-photo benchmark count=10 pid=10080 data=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-10-20261026-023501
+count=10 imported=10 passed=True importMs=185.4 cpuDrawP95=2.07ms report=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-10-20261026-023501\logs\benchmark.json
+Started real-photo benchmark count=100 pid=21604 data=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-100-20261026-023510
+count=100 imported=100 passed=True importMs=923.9 cpuDrawP95=19.92ms report=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-100-20261026-023510\logs\benchmark.json
+Started real-photo benchmark count=500 pid=17176 data=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-500-20261026-023521
+count=500 imported=500 passed=True importMs=4,189.6 cpuDrawP95=60.62ms report=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-500-20261026-023521\logs\benchmark.json
+Started real-photo benchmark count=1000 pid=22400 data=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-1000-20261026-023553
+count=1000 imported=1000 passed=True importMs=8,847.5 cpuDrawP95=153.35ms report=C:\Users\Administrator\Desktop\LightTable-Agent-Handoff-20261026-013500\LightTable\TestResults\benchmark-1000-20261026-023553\logs\benchmark.json

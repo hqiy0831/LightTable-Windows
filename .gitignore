@@ -1,0 +1,9 @@
+.tools/
+**/bin/
+**/obj/
+dist/
+logs/
+.vs/
+.impeccable/
+*.user
+TestResults/

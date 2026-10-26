@@ -1,0 +1,9 @@
+LightTable for Windows 0.1.72.1
+
+This is an unsigned development build. Full feature equivalence with macOS LightTable v0.1.72 has not passed acceptance.
+
+The installer has no verified publisher signature. Do not treat a SHA256 checksum as publisher authentication.
+
+The application keeps original photo files read-only. Layouts and disposable caches are stored separately in %LOCALAPPDATA%\LightTable. Uninstalling this program retains that data.
+
+See KNOWN_ISSUES.md and PORTING_MATRIX.md in the installed docs folder.

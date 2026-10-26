@@ -1,0 +1,18 @@
+# 移植基线
+
+- 仓库：https://github.com/fuyuan9972-svg/LightTable
+- 版本：v0.1.72
+- Commit：`1a998cfce9096ac7b42e26aba67c922885fd43e2`
+- GitHub 正式发布日期：2026-10-25 18:29:15 UTC（纽约 2026-10-25 14:29:15）。CHANGELOG 使用原作者时区，标为 2026-10-26。
+- 审计时全部正式版本：v0.1.65、v0.1.70、v0.1.71、v0.1.72；无更新的正式版。HEAD 与此 tag 的 diff 为空。
+- 原 Swift 源码完整保留在 `upstream/`；Windows 代码独立放在 `LightTable.Windows/`。
+- 原技术：Swift 5.9、macOS 14、SwiftUI / AppKit / Core Image / Metal；Sparkle 固定 2.10.0。
+- 原图仅以来源路径引用。布局与缓存是派生数据，不写回原图。
+
+## 版本差异
+
+0.1.65 是首次公开版，静音；0.1.70 合并 0.1.66–69 的倍率滑块、Tab、声音、签名更新源及新图标；0.1.71 增加多选、框选、Delete、连续凑近变焦和功能指引；0.1.72 增加薄片接触材质、无蓝框拖动、分级台面预览、启动准备、Shift+Z 和逐次启动检查更新。本移植不混合不同版本。
+
+## 音频许可
+
+上游 THIRD_PARTY_NOTICES 和 docs/audio/快门咔嚓.md 明确：原快门录音及派生文件不是 MIT，未额外授予再分发权。源码参考保留，Windows 发行包不擅自复制这些 WAV。提供原创合成机械声和可选本地音效替换；音色等价验收仍需原录音的 Windows 再分发授权，不能标为完全一致。

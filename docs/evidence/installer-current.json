@@ -1,0 +1,11 @@
+{
+  "Date": "2026-10-26T00:49:12.8175289-04:00",
+  "Status": "Blocked",
+  "Passed": null,
+  "Reason": "Existing user Start Menu shortcut still present on final artifact check; installer not run, original preflight refusal preserved",
+  "PreservedTarget": "F:\\codex test\\LightTable\\LightTable.exe",
+  "InstallerSha256": "aea673a8cf894013f3c081dd2b4ad7b16c4ff759ef2fc9b6cc879039e77e80c4",
+  "SandboxExecutableAvailable": false,
+  "PreviousCheckpoint": "installer.json records earlier two-round success, not current installer",
+  "Log": "logs/test-installer-latest.log"
+}

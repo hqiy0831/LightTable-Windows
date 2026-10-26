@@ -1,0 +1,18 @@
+[
+  {
+    "Round": 1,
+    "Installed": true,
+    "StartMenu": true,
+    "Uninstalled": true,
+    "LayoutPreserved": true,
+    "Environment": "Current development host, not a clean VM"
+  },
+  {
+    "Round": 2,
+    "Installed": true,
+    "StartMenu": true,
+    "Uninstalled": true,
+    "LayoutPreserved": true,
+    "Environment": "Current development host, not a clean VM"
+  }
+]

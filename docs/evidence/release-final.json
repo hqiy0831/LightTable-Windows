@@ -1,0 +1,21 @@
+{
+  "Date": "2026-10-26T00:49:12.7937304-04:00",
+  "Version": "0.1.72.2",
+  "CorePassed": 73,
+  "CoreFailed": 0,
+  "NativeChecks": 20,
+  "NativePassed": true,
+  "ProcessExitCode": 0,
+  "CrashLogExists": false,
+  "PortableSha256": "a3139f8d9e812ad926c9234b95c16866d741e592a8d45c2618b44cb99f31d7f5",
+  "InstallerSha256": "aea673a8cf894013f3c081dd2b4ad7b16c4ff759ef2fc9b6cc879039e77e80c4",
+  "SourceFilesChecked": 78,
+  "SourceMismatches": 0,
+  "BinaryMismatches": 0,
+  "CoreEvidenceMatchesManifest": true,
+  "SetupAuthenticode": "NotSigned",
+  "RealKeyboardMouse": "Space down/up, Space+Tab chord, button-focus Space, capsule click and drag passed. Physical long hold remains unexecuted; duration and rendered frames checked by native integration.",
+  "InstallerRegression": "Not executed: existing user shortcut preserved",
+  "ExistingShortcutExists": true,
+  "Scope": "Current development host; not full port acceptance"
+}

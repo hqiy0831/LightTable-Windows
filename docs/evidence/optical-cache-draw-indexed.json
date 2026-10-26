@@ -1,0 +1,1406 @@
+[
+  {
+    "Phase": "Import",
+    "Seconds": 50808.2071571,
+    "CpuMs": 0.47470000572502613,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Import",
+    "Seconds": 50808.2311,
+    "CpuMs": 0.14250000094762072,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Import",
+    "Seconds": 50808.2502858,
+    "CpuMs": 0.2099999983329326,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Import",
+    "Seconds": 50808.2667912,
+    "CpuMs": 0.20229999790899456,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Import",
+    "Seconds": 50808.2834026,
+    "CpuMs": 0.16930000128922984,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50814.6136286,
+    "CpuMs": 337.195400003111,
+    "Flare": 0,
+    "Pending": 1000,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50815.2662634,
+    "CpuMs": 591.7389999958687,
+    "Flare": 0,
+    "Pending": 982,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50815.9239273,
+    "CpuMs": 288.5491999986698,
+    "Flare": 0,
+    "Pending": 863,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50816.2835677,
+    "CpuMs": 272.4266000004718,
+    "Flare": 0,
+    "Pending": 796,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50816.6229483,
+    "CpuMs": 279.18679999856977,
+    "Flare": 0,
+    "Pending": 737,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50816.971571,
+    "CpuMs": 259.9495999966166,
+    "Flare": 0,
+    "Pending": 678,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50817.3026984,
+    "CpuMs": 253.50649999745656,
+    "Flare": 0,
+    "Pending": 619,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50817.6376193,
+    "CpuMs": 264.2601999978069,
+    "Flare": 0,
+    "Pending": 567,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50817.9925521,
+    "CpuMs": 243.9239000013913,
+    "Flare": 0,
+    "Pending": 514,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50818.3152515,
+    "CpuMs": 266.6663000054541,
+    "Flare": 0,
+    "Pending": 463,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50818.6732888,
+    "CpuMs": 269.7630000038771,
+    "Flare": 0,
+    "Pending": 405,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50819.0281809,
+    "CpuMs": 276.1095999958343,
+    "Flare": 0,
+    "Pending": 350,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50819.3820702,
+    "CpuMs": 222.9291999974521,
+    "Flare": 0,
+    "Pending": 279,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50819.679062,
+    "CpuMs": 222.37889999814797,
+    "Flare": 0,
+    "Pending": 225,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50819.9820026,
+    "CpuMs": 227.33770000195364,
+    "Flare": 0,
+    "Pending": 171,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50820.2887959,
+    "CpuMs": 218.30610000324668,
+    "Flare": 0,
+    "Pending": 115,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50820.6191744,
+    "CpuMs": 245.47379999421537,
+    "Flare": 0,
+    "Pending": 60,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "FitAndGpuPreparation",
+    "Seconds": 50820.9437871,
+    "CpuMs": 102.38560000288999,
+    "Flare": 0,
+    "Pending": 4,
+    "CommandCached": false,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.1438417,
+    "CpuMs": 113.9742999948794,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.3419007,
+    "CpuMs": 52.08090000087395,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.4678477,
+    "CpuMs": 38.08900000149151,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.570406,
+    "CpuMs": 42.36200000013923,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.7013324,
+    "CpuMs": 42.75439999764785,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.8294001,
+    "CpuMs": 41.14029999618651,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50821.9473212,
+    "CpuMs": 34.54490000149235,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.0649627,
+    "CpuMs": 47.34610000014072,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.2074693,
+    "CpuMs": 40.254100000311155,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.3425071,
+    "CpuMs": 47.490400000242516,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.4805763,
+    "CpuMs": 43.6115000047721,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.6144039,
+    "CpuMs": 33.78540000267094,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.7139634,
+    "CpuMs": 31.63870000571478,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.8138523,
+    "CpuMs": 33.94069999922067,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.9078199,
+    "CpuMs": 32.92830000282265,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50822.9969927,
+    "CpuMs": 33.244700003706384,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.11753,
+    "CpuMs": 45.23739999422105,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.2476946,
+    "CpuMs": 39.329899998847395,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.3665212,
+    "CpuMs": 44.4257999988622,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.5058873,
+    "CpuMs": 42.961200000718236,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.6394624,
+    "CpuMs": 48.14049999549752,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.7662596,
+    "CpuMs": 42.02390000136802,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50823.9112689,
+    "CpuMs": 46.00429999845801,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.061779,
+    "CpuMs": 48.15999999846099,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.2222261,
+    "CpuMs": 55.29029999888735,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.3948907,
+    "CpuMs": 42.16620000079274,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.5215053,
+    "CpuMs": 42.470699998375494,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.6566119,
+    "CpuMs": 42.361200001323596,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.8002642,
+    "CpuMs": 44.31180000392487,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50824.9354773,
+    "CpuMs": 45.62679999799002,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.0692134,
+    "CpuMs": 49.496899999212474,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.2379186,
+    "CpuMs": 53.2147999983863,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.405606,
+    "CpuMs": 50.324299998464994,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.5568852,
+    "CpuMs": 43.8027999989572,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.6917885,
+    "CpuMs": 43.399000001954846,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.840329,
+    "CpuMs": 48.23890000261599,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50825.9752028,
+    "CpuMs": 37.87179999926593,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.1051959,
+    "CpuMs": 49.53939999541035,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.2597573,
+    "CpuMs": 46.470299996144604,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.3954694,
+    "CpuMs": 41.29980000288924,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.5284604,
+    "CpuMs": 46.39490000408841,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.6678201,
+    "CpuMs": 43.63579999335343,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.8041031,
+    "CpuMs": 43.322299999999814,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50826.9436799,
+    "CpuMs": 46.86849999416154,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.0693531,
+    "CpuMs": 42.76419999951031,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.1966003,
+    "CpuMs": 37.61530000338098,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.330092,
+    "CpuMs": 45.84340000292286,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.462548,
+    "CpuMs": 43.324699996446725,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.5951623,
+    "CpuMs": 39.33810000307858,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.7293829,
+    "CpuMs": 48.932500001683366,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50827.8760149,
+    "CpuMs": 44.98009999952046,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.0102561,
+    "CpuMs": 50.01569999876665,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.1799153,
+    "CpuMs": 49.40189999615541,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.3111937,
+    "CpuMs": 30.871200004185084,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.3965774,
+    "CpuMs": 34.65829999913694,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.5018127,
+    "CpuMs": 32.67960000084713,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.5987909,
+    "CpuMs": 34.18559999408899,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.7052465,
+    "CpuMs": 41.08819999964908,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.8224106,
+    "CpuMs": 41.48970000096597,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50828.9548632,
+    "CpuMs": 45.937399998365436,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.0836933,
+    "CpuMs": 37.11759999714559,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.2013062,
+    "CpuMs": 41.599500000302214,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.3370785,
+    "CpuMs": 48.2618999958504,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.5011122,
+    "CpuMs": 44.48430000047665,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.6530562,
+    "CpuMs": 60.188000003108755,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.8038915,
+    "CpuMs": 48.94059999787714,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50829.9436108,
+    "CpuMs": 43.266000000585336,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.0757627,
+    "CpuMs": 45.818999999028165,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.2073294,
+    "CpuMs": 45.659199997317046,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.3495291,
+    "CpuMs": 43.3130000019446,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.4811135,
+    "CpuMs": 43.394400003307965,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.5950012,
+    "CpuMs": 34.86929999780841,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.698973,
+    "CpuMs": 36.69620000437135,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.8047045,
+    "CpuMs": 41.221999999834225,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50830.9287621,
+    "CpuMs": 40.783300006296486,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.0511809,
+    "CpuMs": 39.68139999778941,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.1807161,
+    "CpuMs": 44.674999997369014,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.3061193,
+    "CpuMs": 47.0151999979862,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.4470712,
+    "CpuMs": 47.394000001077075,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.5958872,
+    "CpuMs": 46.484000005875714,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.7349636,
+    "CpuMs": 42.25649999716552,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.8457126,
+    "CpuMs": 32.518500003789086,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50831.9410594,
+    "CpuMs": 29.913400001532864,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.0455734,
+    "CpuMs": 37.74600000178907,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.1623502,
+    "CpuMs": 37.27899999648798,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.2687835,
+    "CpuMs": 40.27179999684449,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.3940797,
+    "CpuMs": 38.03599999810103,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.5081565,
+    "CpuMs": 44.214800000190735,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.6297364,
+    "CpuMs": 42.26539999945089,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.7681622,
+    "CpuMs": 43.119299996760674,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50832.882551,
+    "CpuMs": 41.24229999433737,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.0039228,
+    "CpuMs": 39.908099999593105,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.1298876,
+    "CpuMs": 44.66179999872111,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.2648357,
+    "CpuMs": 45.10209999716608,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.4063657,
+    "CpuMs": 46.40510000172071,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.5403103,
+    "CpuMs": 40.565900002548005,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.6559051,
+    "CpuMs": 44.989100002567284,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.7905213,
+    "CpuMs": 41.957000001275446,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50833.9166576,
+    "CpuMs": 45.790299998770934,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.0509125,
+    "CpuMs": 43.17779999837512,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.2141255,
+    "CpuMs": 64.07709999621147,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.3808532,
+    "CpuMs": 52.35250000259839,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.534986,
+    "CpuMs": 49.73400000017136,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.6831019,
+    "CpuMs": 48.46890000044368,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.8050313,
+    "CpuMs": 41.65150000335416,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50834.9322047,
+    "CpuMs": 40.59720000077505,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.0644385,
+    "CpuMs": 43.72660000080941,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.1813505,
+    "CpuMs": 38.833999999042135,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.3061379,
+    "CpuMs": 40.42489999847021,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.4245837,
+    "CpuMs": 32.402800003183074,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.5215036,
+    "CpuMs": 36.26000000076601,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.6467129,
+    "CpuMs": 43.50719999638386,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.7650623,
+    "CpuMs": 40.11779999564169,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.8749781,
+    "CpuMs": 34.229400000185706,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50835.9955735,
+    "CpuMs": 41.44860000087647,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50836.1064941,
+    "CpuMs": 38.01799999928335,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50836.234365,
+    "CpuMs": 44.17190000094706,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50836.3604985,
+    "CpuMs": 36.66240000165999,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50836.4999849,
+    "CpuMs": 46.731199996429496,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Pan",
+    "Seconds": 50836.6389993,
+    "CpuMs": 43.47300000517862,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50836.7714351,
+    "CpuMs": 81.35039999615401,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50836.957274,
+    "CpuMs": 228.94870000163792,
+    "Flare": 1,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50837.2265747,
+    "CpuMs": 152.34269999928074,
+    "Flare": 0.9909892154892319,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50837.4216567,
+    "CpuMs": 210.42830000078538,
+    "Flare": 0.929701463553211,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50837.711184,
+    "CpuMs": 263.98170000175014,
+    "Flare": 0.7105347418859552,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50838.0324363,
+    "CpuMs": 234.92529999930412,
+    "Flare": 0.3698251029064613,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50838.342624,
+    "CpuMs": 217.73820000089472,
+    "Flare": 0.10278794711408779,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "Ignition",
+    "Seconds": 50838.6095416,
+    "CpuMs": 245.91230000078212,
+    "Flare": 0.007205791420157759,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "CloseViewing",
+    "Seconds": 50838.9621911,
+    "CpuMs": 606.7852999985917,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": true
+  },
+  {
+    "Phase": "CloseViewing",
+    "Seconds": 50839.7683214,
+    "CpuMs": 31.502899997576606,
+    "Flare": 0,
+    "Pending": 20,
+    "CommandCached": true,
+    "Close": true
+  },
+  {
+    "Phase": "CloseViewing",
+    "Seconds": 50839.9654953,
+    "CpuMs": 146.8756000031135,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "CloseViewing",
+    "Seconds": 50840.3336598,
+    "CpuMs": 48.584399999526795,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  },
+  {
+    "Phase": "WarmThumbnails",
+    "Seconds": 50840.5860151,
+    "CpuMs": 51.70179999549873,
+    "Flare": 0,
+    "Pending": 0,
+    "CommandCached": true,
+    "Close": false
+  }
+]

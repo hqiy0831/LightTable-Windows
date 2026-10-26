@@ -1,0 +1,11 @@
+{
+  "Date": "2026-10-26T00:45:55.0323327-04:00",
+  "ArchiveSha256": "a3139f8d9e812ad926c9234b95c16866d741e592a8d45c2618b44cb99f31d7f5",
+  "ExitCode": 0,
+  "Checks": 20,
+  "Passed": true,
+  "LocalRuntime": true,
+  "ApplicationPri": true,
+  "Environment": "Current development host, not clean Windows",
+  "Report": "D:\\UserData\\Documents\\ChatGPT\\电子观片台\\TestResults\\portable-20261026-004546-6f2524\\isolated-data\\logs\\integration.json"
+}

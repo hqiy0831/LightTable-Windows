@@ -1,0 +1,63 @@
+{
+  "Version": "0.1.72.5",
+  "Stage": "Unsigned development candidate; full port acceptance incomplete",
+  "CoreTests": 88,
+  "Portable": {
+    "Date": "2026-10-26T02:54:03.9046099-04:00",
+    "ArchiveSha256": "1cc06b5d4858b9700de1df4eb7666f805bff22fbe9d4c0ddc41a92b99b2e906a",
+    "ExitCode": 0,
+    "Checks": 25,
+    "Passed": true,
+    "LocalRuntime": true,
+    "ApplicationPri": true,
+    "Environment": "Current development host, not clean Windows",
+    "Report": "C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\TestResults\\portable-20261026-025347-7712db\\isolated-data\\logs\\integration.json"
+  },
+  "NativeChecks": 25,
+  "NativePassed": true,
+  "InstallerSandbox": {
+    "Passed": true,
+    "Rounds": [
+      {
+        "Uninstalled": true,
+        "Round": 1,
+        "ExitCode": 0,
+        "LayoutPreserved": true,
+        "ExistingProductionUnchanged": true,
+        "Checks": 25,
+        "Installed": true
+      },
+      {
+        "Uninstalled": true,
+        "Round": 2,
+        "ExitCode": 0,
+        "LayoutPreserved": true,
+        "ExistingProductionUnchanged": true,
+        "Checks": 25,
+        "Installed": true
+      }
+    ],
+    "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app"
+  },
+  "SourceMismatches": [],
+  "BinaryMismatches": [],
+  "Artifacts": {
+    "LightTable-Windows-Portable-x64.zip": {
+      "Bytes": 97603492,
+      "Sha256": "1cc06b5d4858b9700de1df4eb7666f805bff22fbe9d4c0ddc41a92b99b2e906a"
+    },
+    "LightTable-Windows-Setup-x64.exe": {
+      "Bytes": 65925452,
+      "Sha256": "3de30acd6d4119c6f7c5948edfbaae5d442f83b238a868a1b05797fd0cd54940"
+    }
+  },
+  "Unfinished": [
+    "Display P3/FP16 input-working-display chain",
+    "1000-photo loading and ignition performance; no 60FPS claim",
+    "Full original-semantics audit",
+    "Full UI/physical long-Space/touch/DPI/multimonitor and driver-loss tests",
+    "Clean Windows and ordinary installer upgrade acceptance",
+    "Long-term reliability, source-audio redistribution and release signing"
+  ],
+  "ValidationDate": "2026-10-26 America/New_York"
+}

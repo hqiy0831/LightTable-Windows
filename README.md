@@ -1,2 +1,107 @@
-# LightTable-Windows
-电子观片台 Windows 原生移植：灯箱、平滑 1×/2×/4×/8× 放大观察、相册与幻灯片。WinUI 3 / Win2D；0.1.72.5 开发预览版，附中文使用说明。
+# LightTable for Windows · 电子观片台
+
+Windows 原生观片台：将照片像胶片一样放在灯箱上，移动、缩放、旋转，使用透光效果和放大镜观察，也可整理相册页和播放幻灯片。
+
+基于 [fuyuan9972-svg/LightTable](https://github.com/fuyuan9972-svg/LightTable) 的 macOS v0.1.72 移植，使用 WinUI 3 / Win2D / .NET 10。当前版本 **0.1.72.5，未签名开发预览版**。完整功能、视觉等价及最终验收仍在进行中。
+
+## 下载与启动
+
+从本仓库右侧 **Releases** 下载 Windows x64 附件。GitHub 自动生成的「Source code」只含源码，不能直接运行。
+
+| 文件 | 用途 |
+| --- | --- |
+| `LightTable-Windows-Setup-x64.exe` | 当前用户安装，创建开始菜单快捷方式 |
+| `LightTable-Windows-Portable-x64.zip` | 无需安装，解压后运行 |
+| `SHA256SUMS-Windows.txt` | 下载完整性校验 |
+
+主要目标为 **Windows 11 x64 23H2 或更新版本**。当前测试在开发机完成，尚未完成干净 Windows 验收；Windows 10 和 ARM64 未作运行保证。
+
+1. 下载安装包，或将便携 ZIP **完整解压**到可写文件夹。
+2. 安装后从新快捷方式启动；便携版运行解压目录里的 `LightTable.exe`。
+3. 保留同目录所有 DLL、PRI 和运行时文件，不要单独移动 EXE。无需安装 Visual Studio 或 .NET SDK。
+4. 若曾使用旧版，确认启动路径指向新版本，并在「帮助」中核对版本号。
+
+本版本尚未代码签名，系统可能显示未知发布者。SHA256 只能校验文件完整性，不能证明发布者身份。
+
+## 第一次使用
+
+1. 用「选择文件夹」读取图库，或用「添加照片」追加文件；也支持把文件/文件夹拖入底栏。
+2. 从底栏拖照片到台面，或用「一键平铺」摆放全部照片。
+3. 开灯观察透光效果；亮度可调 0–160%，双击亮度恢复 100%。
+4. 拖动照片移动，选中后拖右下角缩放，按住 Alt 拖动旋转。右键菜单可摆正或移出台面。
+5. 滚轮平移台面，Ctrl+滚轮缩放。单击选中照片后，平移台面不会把该照片额外拖走。
+
+选择文件夹会替换底栏图库；「添加照片」会追加。移出台面只改变布局，不修改、删除或重压缩原照片。
+
+JPEG、PNG、TIFF、BMP 已进行有限解码检查。HEIC、WebP 和 RAW 依赖系统解码器且仍需逐格式验证，不保证所有相机格式。
+
+## 放大观察
+
+按 `V` 进入普通 **1.5× 放大镜**。按住 `Space` 凑近，松开返回；松开 Space 保持原来的灯开关状态。
+
+工具栏的单个胶囊控件提供 **1× / 2× / 4× / 8×**：点击档位、拖动滑块或按 `Tab` 循环切换。选中滑块和实际倍率均平滑过渡。这四档是凑近观察相对台面的倍率；普通小放大镜仍是 1.5×。
+
+高清预览最长边 2200px，8× 不代表已完整解码原图像素。在「观片 → 减少动态效果」可调整动画。
+
+## 常用快捷键
+
+| 快捷键 / 操作 | 功能 |
+| --- | --- |
+| Ctrl+O / Ctrl+Shift+O | 选择文件夹 / 添加照片 |
+| Ctrl+L | 灯箱开关 |
+| A / V | 指针 / 普通放大镜 |
+| 按住 Space | 凑近观察，松开返回 |
+| Tab | 凑近倍率 1× → 2× → 4× → 8× |
+| Ctrl+单击 / Shift+拖动 | 多选 / 框选 |
+| Alt+拖动照片 | 旋转 |
+| Ctrl+滚轮 | 缩放台面 |
+| Shift+Z | 恢复默认尺寸并整理全局 |
+| Delete | 所选项目移出台面 |
+| 方向键 / Esc | 幻灯换片 / 退出 |
+
+## 相册与幻灯片
+
+相册中可新建页、添加 135/120 袋格，点右侧照片装入。同规格袋格可拖动交换，右键可清空照片或移除袋格；整页可放上灯箱。
+
+幻灯片在独立全屏窗口随机播放，方向键换片，Esc 或「返回观片台」退出。当前幻灯片真实键鼠操作尚未完成全部验收。Windows 默认机械音效为本项目合成，上游原录音未随包分发。
+
+## 数据保存与迁移
+
+布局自动保存到 `%LOCALAPPDATA%\LightTable\layouts\table.json`，保留 `.bak`。便携版默认也使用这个数据目录。卸载保留布局和配置。
+
+原图仍从原位置读取，请不要移动或删除；缓存不能替代原图。更新或跨电脑迁移前，建议备份 `layouts`，并保留照片与路径对应关系。
+
+Mac 版布局可用「文件 → 导入 Mac 版布局」迁移，详见 [迁移说明](docs/MAC_MIGRATION.md)。预览后确认导入会替换当前布局，并保存独立备份。
+
+当前自动安装更新已禁用。请从本仓库 Releases 手动获取 Windows 版本；应用内的上游检查不能保证指向本移植版发行。
+
+## 本版验证与限制
+
+0.1.72.5 已完成核心测试 **88/88**、最终便携包原生检查 **25/25**、独立 AppId 安装沙盒两轮安装/卸载/重装。安装沙盒保护了已有生产安装，**不等于**普通安装覆盖升级或干净系统验收。实测记录见 [检查点](docs/CHECKPOINT_0.1.72.5.zh-CN.md)。
+
+目前仍有这些限制：
+
+- 色彩链路为 sRGB BGRA8，完整 Display P3 / FP16 链路尚未实现。
+- 大图库冷加载、点灯及高清观察仍慢；1000 张测试未达到 60 FPS。
+- 多屏、完整触摸交互、全部格式与异常边界、长期稳定性及 macOS 视觉等价尚未完成验收。
+- 正式签名和部分第三方二进制许可的精确审计尚未闭合。
+
+请参阅 [已知问题](docs/KNOWN_ISSUES.md)、[色彩链路](docs/COLOR_PIPELINE.md) 和 [本版发布说明](docs/RELEASE_NOTES_0.1.72.5.zh-CN.md)。问题反馈请提供版本、系统、复现步骤和必要的日志；不要公开上传原始私人照片或含个人路径的完整日志。
+
+## 从源码构建
+
+在 Windows x64 安装 .NET SDK 10.0.403，克隆时包含上游子模块：
+
+```powershell
+git clone --recurse-submodules https://github.com/hqiy0831/LightTable-Windows.git
+cd LightTable-Windows
+dotnet restore LightTable.Windows.sln
+dotnet build LightTable.Windows/App/LightTable.Windows.csproj -c Release
+dotnet test LightTable.Windows/Tests/LightTable.Core.Tests.csproj -c Release
+```
+
+打包、依赖和安装验收详见 [构建说明](docs/BUILD_AND_RELEASE.md)。完整移植目标保存在 [原始请求](docs/handoff/ORIGINAL_REQUEST.zh-CN.txt) 和 [功能矩阵](docs/PORTING_MATRIX.md)。
+
+## 许可与致谢
+
+保留上游版权 Copyright (c) 2026 fuyuan9972-svg，项目代码按 [MIT](LICENSE) 提供。第三方组件及素材有各自许可，详见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。此 Windows 移植版与上游项目的发行分别管理。

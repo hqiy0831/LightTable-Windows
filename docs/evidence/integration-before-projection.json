@@ -1,0 +1,65 @@
+{
+  "Date": "2026-10-25T19:45:36.2584912-04:00",
+  "Scope": "\u751F\u4EA7\u7C7B\u96C6\u6210\u68C0\u67E5\uFF1B\u4E0D\u66FF\u4EE3\u8F93\u5165\u81EA\u52A8\u5316\u3001\u539F\u7248\u89C6\u89C9\u548C\u591A\u5C4F\u9A8C\u6536",
+  "Results": [
+    {
+      "Name": "WIC-JPEG-and-content-dedup",
+      "Passed": true,
+      "Evidence": "3 \u5F20 JPEG\uFF0C\u91CD\u590D\u8DEF\u5F84\u4E0E\u76F8\u540C\u5185\u5BB9\u526F\u672C\u5747\u8DF3\u8FC7",
+      "Milliseconds": 106.5487
+    },
+    {
+      "Name": "WIC-common-codecs-roundtrip",
+      "Passed": true,
+      "Evidence": "PNG/BMP/TIFF \u9996\u5E2716\u00D712\u3001BGRA8\u4E0D\u900F\u660E\u50CF\u7D20\u9010\u5B57\u8282\u76F8\u540C",
+      "Milliseconds": 44.2726
+    },
+    {
+      "Name": "Missing-corrupt-and-request-coalescing",
+      "Passed": true,
+      "Evidence": "\u7F3A\u5931/\u635F\u574F\u62D2\u7EDD\uFF1B20\u5E76\u53D1\u8BF7\u6C42\u4EA7\u751F 1 \u6B21\u89E3\u7801\uFF0C\u5171\u4EAB\u540C\u4E00\u7ED3\u679C",
+      "Milliseconds": 12.935
+    },
+    {
+      "Name": "Disk-cache-corruption-regeneration",
+      "Passed": true,
+      "Evidence": "\u4EC5\u4FEE\u6539\u9694\u79BBcache\u6587\u4EF6\uFF1B\u635F\u574F\u540E\u91CD\u89E3\u7801\uFF0C\u4E0E\u539F\u9884\u89C8\u76F8\u540C\uFF1B\u65B0\u5B9E\u4F8B\u547D\u4E2D\u78C1\u76D8",
+      "Milliseconds": 22.6816
+    },
+    {
+      "Name": "GPU-lighting-and-snapshots",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9EDirect2D\u9759\u6001\u5C42\uFF0C\u7247\u5185\u5E73\u5747\u6697\u6001=1.997\uFF0C\u4EAE\u6001=41.624\uFF1BGPU\u4F30\u7B97 48040960 bytes\u3002\u6B64\u8BFB\u56DE\u4E0D\u8BC1\u660E\u6574\u5957UI\u3002",
+      "Milliseconds": 135.1317
+    },
+    {
+      "Name": "GPU-command-cache-camera-equivalence",
+      "Passed": true,
+      "Evidence": "\u76F8\u673A\u951A\u70B9\u7F29\u653E\u002B\u5E73\u79FB\u540E\uFF0C\u547D\u4EE4\u5217\u8868\u590D\u7528\u548C\u76F4\u63A5GPU\u6E32\u67D3\u6BCF\u5B57\u8282\u5E73\u5747\u5DEE=0.00020/255",
+      "Milliseconds": 23.9184
+    },
+    {
+      "Name": "GPU-loupe-shader-and-close-views",
+      "Passed": true,
+      "Evidence": "\u539F\u72480.90/0.97\u5F84\u5411lip HLSL\u5B9E\u9645\u8FD0\u884C\uFF0C\u666E\u901A\u955C\u900F\u660E\u8FB9\u754C\u3001\u539F\u500D\u7387\u4E0E8\u00D7\u4E2D\u5FC3\u6709\u6548\uFF1B4\u5F20GPU\u5FEB\u7167\u5DF2\u4FDD\u5B58\u3002\u672A\u66FF\u4EE3Space\u6309\u952E\u9A8C\u6536\u3002",
+      "Milliseconds": 128.7286
+    },
+    {
+      "Name": "Albums-order-and-layout-recovery",
+      "Passed": true,
+      "Evidence": "\u76F8\u518C20\u683C\u3001\u7167\u7247\u65CB\u8F6C/\u6BD4\u4F8B\u3001\u76F8\u673A\u3001\u6DF7\u5408\u5C42\u7EA7\u4FDD\u5B58\u4E0E\u65B0Store\u6062\u590D\u9010\u5B57\u8282JSON\u4E00\u81F4\uFF1B\u79FB\u51FA\u4FDD\u7559\u5185\u5BB9",
+      "Milliseconds": 70.357
+    },
+    {
+      "Name": "Original-photo-immutability",
+      "Passed": true,
+      "Evidence": "3 \u5F20\u539F\u59CBJPEG\u54C8\u5E0C\u4E0E\u64CD\u4F5C\u524D\u4E00\u81F4",
+      "Milliseconds": 0.6059
+    }
+  ],
+  "Passed": true,
+  "MemoryBytes": 15232048,
+  "MemoryHits": 3,
+  "DiskHits": 0,
+  "DecodeCount": 17
+}

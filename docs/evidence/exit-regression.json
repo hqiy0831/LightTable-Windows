@@ -1,0 +1,8 @@
+{
+  "Passed": true,
+  "Checks": 20,
+  "ExitCode": 0,
+  "CrashLogExists": false,
+  "Report": "TestResults/exit-regression-20261026-003848/logs/integration.json",
+  "Scope": "Source build after CustomDevice ownership and terminal animation frame fix"
+}

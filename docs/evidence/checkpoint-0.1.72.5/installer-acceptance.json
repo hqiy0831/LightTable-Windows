@@ -1,0 +1,26 @@
+{
+  "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app",
+  "InstallerSha256": "9CEA4A748069BF4058FF169A1ABBDFCB3184F6B050B8127DA21D79B69A7EDD09",
+  "Passed": true,
+  "ProductionState": "{\"Registration\":\"{\\\"Inno Setup: Setup Version\\\":\\\"7.1.0\\\",\\\"Inno Setup: App Path\\\":\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\LightTable\\\",\\\"InstallLocation\\\":\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\LightTable\\\\\\\\\\\",\\\"Inno Setup: Icon Group\\\":\\\"LightTable\\\",\\\"Inno Setup: User\\\":\\\"Administrator\\\",\\\"Inno Setup: Selected Tasks\\\":\\\"desktopicon\\\",\\\"Inno Setup: Deselected Tasks\\\":\\\"\\\",\\\"Inno Setup: Language\\\":\\\"default\\\",\\\"DisplayName\\\":\\\"LightTable for Windows 0.1.72.1 (Unsigned development build)\\\",\\\"DisplayIcon\\\":\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\LightTable\\\\\\\\LightTable.exe\\\",\\\"UninstallString\\\":\\\"\\\\\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\LightTable\\\\\\\\unins000.exe\\\\\\\"\\\",\\\"QuietUninstallString\\\":\\\"\\\\\\\"C:\\\\\\\\Users\\\\\\\\Administrator\\\\\\\\AppData\\\\\\\\Local\\\\\\\\Programs\\\\\\\\LightTable\\\\\\\\unins000.exe\\\\\\\" /SILENT\\\",\\\"DisplayVersion\\\":\\\"0.1.72.1\\\",\\\"NoModify\\\":1,\\\"NoRepair\\\":1,\\\"InstallDate\\\":\\\"20261025\\\",\\\"MajorVersion\\\":0,\\\"MinorVersion\\\":1,\\\"VersionMajor\\\":0,\\\"VersionMinor\\\":1,\\\"EstimatedSize\\\":244034}\",\"ShortcutSha256\":\"49505C7B550CD3F961B35CE6C29821916EEC05DDE4A3FFCE67789DD4D81595D8\"}",
+  "Rounds": [
+    {
+      "Uninstalled": true,
+      "Round": 1,
+      "ExitCode": 0,
+      "LayoutPreserved": true,
+      "ExistingProductionUnchanged": true,
+      "Checks": 25,
+      "Installed": true
+    },
+    {
+      "Uninstalled": true,
+      "Round": 2,
+      "ExitCode": 0,
+      "LayoutPreserved": true,
+      "ExistingProductionUnchanged": true,
+      "Checks": 25,
+      "Installed": true
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "Layers": 5,
+  "Width": 384,
+  "Height": 384,
+  "ColdMs": 53.6589,
+  "HotMs": 12.5233,
+  "ColdUiTimerTicks": 3,
+  "HotSourceDecodes": 0,
+  "HotSourceDiskHits": 0,
+  "HotOpticalBuilds": 0,
+  "HotDiskHits": 1,
+  "SourcePreviewRemoved": true,
+  "LockedSourceHotHit": true,
+  "CorruptionRebuilt": true,
+  "MetadataInvalidates": true,
+  "Deltas": [
+    {
+      "Lit": false,
+      "Brightness": 1,
+      "Flare": 0,
+      "MaxByteDelta": 0
+    },
+    {
+      "Lit": true,
+      "Brightness": 0,
+      "Flare": 0,
+      "MaxByteDelta": 0
+    },
+    {
+      "Lit": true,
+      "Brightness": 1,
+      "Flare": 0,
+      "MaxByteDelta": 0
+    },
+    {
+      "Lit": true,
+      "Brightness": 1,
+      "Flare": 1,
+      "MaxByteDelta": 0
+    },
+    {
+      "Lit": true,
+      "Brightness": 1.6,
+      "Flare": 0,
+      "MaxByteDelta": 0
+    },
+    {
+      "Lit": true,
+      "Brightness": 1.6,
+      "Flare": 1,
+      "MaxByteDelta": 0
+    }
+  ]
+}

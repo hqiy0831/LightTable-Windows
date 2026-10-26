@@ -1,0 +1,5 @@
+{
+  "CommandLine": "\"C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\bin\\Release\\net10.0-windows10.0.19041.0\\win-x64\\LightTable.exe\" --data-root \"C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\TestResults\\benchmark-100-20261026-022638\" --benchmark-photos \"C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\TestResults\\real-photos-nasa\" --benchmark-count 100",
+  "Pid": 22488,
+  "Reason": "Raster-cache lifetime defect found during stress run; aborted for repair, not a passing run"
+}

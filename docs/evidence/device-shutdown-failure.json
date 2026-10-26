@@ -1,0 +1,9 @@
+{
+  "Passed": false,
+  "ReportedChecksPassed": true,
+  "ExitCode": -1073741189,
+  "ExitHex": "C000027B",
+  "Error": "ObjectDisposedException after diagnostics Window.Closed",
+  "Scope": "CustomDevice disposed before Win2D controls completed unload",
+  "Report": "TestResults/portable-20261026-003042-30419c/isolated-data/logs/integration.json"
+}

@@ -1,0 +1,21 @@
+{
+  "Date": "2026-10-26T01:29:54.0257414-04:00",
+  "Version": "0.1.72.3",
+  "Passed": true,
+  "Count": 1000,
+  "Bucket": 256,
+  "RasterLimit": 64,
+  "ColdMs": 13980.5385,
+  "HotMs": 1938.3231,
+  "HotSourceDecodeCount": 0,
+  "HotSourceDiskHits": 0,
+  "HotOpticalBuildCount": 0,
+  "HotOpticalDiskHits": 1000,
+  "FiveGpuLayerHashesEqual": true,
+  "ColdProcessExit": 0,
+  "HotProcessExit": 0,
+  "SourcePreviewsRemoved": true,
+  "DataRoot": "D:\\UserData\\Documents\\ChatGPT\\电子观片台\\TestResults\\optical-process-20261026-012935-d1a42b",
+  "AppSha256": "6ad567837c32549e704c3bd25704756537789d93d1130746163ff5fea25e793d",
+  "Scope": "Two independent native app processes using production optical factory; not full startup or presentation FPS"
+}

@@ -1,0 +1,283 @@
+{
+  "Cases": [
+    {
+      "Brightness": 0,
+      "Time": 0,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0,
+      "Time": 0.04,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0,
+      "Time": 0.12,
+      "Maximum": 1,
+      "Mean": 0.008382161458333334
+    },
+    {
+      "Brightness": 0,
+      "Time": 0.16,
+      "Maximum": 1,
+      "Mean": 0.008056640625
+    },
+    {
+      "Brightness": 0,
+      "Time": 0.28,
+      "Maximum": 1,
+      "Mean": 0.008056640625
+    },
+    {
+      "Brightness": 0,
+      "Time": 0.6,
+      "Maximum": 1,
+      "Mean": 0.0142822265625
+    },
+    {
+      "Brightness": 0,
+      "Time": 1.1,
+      "Maximum": 1,
+      "Mean": 0.007161458333333333
+    },
+    {
+      "Brightness": 0,
+      "Time": 1.6,
+      "Maximum": 1,
+      "Mean": 0.011922200520833334
+    },
+    {
+      "Brightness": 0,
+      "Time": 2,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0.04,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0.12,
+      "Maximum": 1,
+      "Mean": 0.008382161458333334
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0.16,
+      "Maximum": 1,
+      "Mean": 0.008056640625
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0.28,
+      "Maximum": 1,
+      "Mean": 0.008056640625
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 0.6,
+      "Maximum": 1,
+      "Mean": 0.0142822265625
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 1.1,
+      "Maximum": 1,
+      "Mean": 0.007161458333333333
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 1.6,
+      "Maximum": 1,
+      "Mean": 0.011922200520833334
+    },
+    {
+      "Brightness": 0.1,
+      "Time": 2,
+      "Maximum": 1,
+      "Mean": 0.0078125
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0.04,
+      "Maximum": 1,
+      "Mean": 0.039754231770833336
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0.12,
+      "Maximum": 1,
+      "Mean": 0.011149088541666666
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0.16,
+      "Maximum": 1,
+      "Mean": 0.015218098958333334
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0.28,
+      "Maximum": 1,
+      "Mean": 0.015218098958333334
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 0.6,
+      "Maximum": 1,
+      "Mean": 0.0709228515625
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 1.1,
+      "Maximum": 1,
+      "Mean": 0.0179443359375
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 1.6,
+      "Maximum": 1,
+      "Mean": 0.013427734375
+    },
+    {
+      "Brightness": 0.5,
+      "Time": 2,
+      "Maximum": 1,
+      "Mean": 0.0169677734375
+    },
+    {
+      "Brightness": 1,
+      "Time": 0,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 1,
+      "Time": 0.04,
+      "Maximum": 1,
+      "Mean": 0.0196533203125
+    },
+    {
+      "Brightness": 1,
+      "Time": 0.12,
+      "Maximum": 1,
+      "Mean": 0.0203857421875
+    },
+    {
+      "Brightness": 1,
+      "Time": 0.16,
+      "Maximum": 1,
+      "Mean": 0.011027018229166666
+    },
+    {
+      "Brightness": 1,
+      "Time": 0.28,
+      "Maximum": 1,
+      "Mean": 0.011027018229166666
+    },
+    {
+      "Brightness": 1,
+      "Time": 0.6,
+      "Maximum": 1,
+      "Mean": 0.020222981770833332
+    },
+    {
+      "Brightness": 1,
+      "Time": 1.1,
+      "Maximum": 1,
+      "Mean": 0.019856770833333332
+    },
+    {
+      "Brightness": 1,
+      "Time": 1.6,
+      "Maximum": 1,
+      "Mean": 0.020426432291666668
+    },
+    {
+      "Brightness": 1,
+      "Time": 2,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0,
+      "Maximum": 0,
+      "Mean": 0
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0.04,
+      "Maximum": 1,
+      "Mean": 0.049560546875
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0.12,
+      "Maximum": 1,
+      "Mean": 0.1201171875
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0.16,
+      "Maximum": 1,
+      "Mean": 0.1226806640625
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0.28,
+      "Maximum": 1,
+      "Mean": 0.1226806640625
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 0.6,
+      "Maximum": 1,
+      "Mean": 0.12642415364583334
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 1.1,
+      "Maximum": 1,
+      "Mean": 0.12398274739583333
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 1.6,
+      "Maximum": 1,
+      "Mean": 0.12569173177083334
+    },
+    {
+      "Brightness": 1.6,
+      "Time": 2,
+      "Maximum": 0,
+      "Mean": 0
+    }
+  ],
+  "Maximum": 1,
+  "Mean": 0.02750831886574074,
+  "AlphaLevels": [
+    0,
+    64,
+    128,
+    255
+  ],
+  "Scope": "\u4E24\u6761\u5B9E\u9645GPU\u8DEF\u5F84\u540C\u56FE\u50CF\u3001\u540C\u5C3A\u5BF8\u3001\u540C\u8BBE\u5907\uFF1B45\u4E2A\u4EAE\u5EA6/\u70B9\u706F\u72B6\u6001\uFF0C\u4E0D\u8BC1\u660E\u5B8C\u6574P3\u8F93\u51FA"
+}

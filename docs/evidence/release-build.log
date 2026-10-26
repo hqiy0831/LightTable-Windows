@@ -1,0 +1,708 @@
+  正在确定要还原的项目…
+  所有项目均是最新的，无法还原。
+  LightTable.Core -> D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\Core\bin\Release\net10.0\LightTable.Core.dll
+  LightTable.Core.Tests -> D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\Tests\bin\Release\net10.0\LightTable.Core.Tests.dll
+D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\Tests\bin\Release\net10.0\LightTable.Core.Tests.dll (.NETCoreApp,Version=v10.0)的测试运行
+总共 1 个测试文件与指定模式相匹配。
+警告: 正在覆盖结果文件: D:\UserData\Documents\ChatGPT\电子观片台\TestResults\release-core.trx
+结果文件: D:\UserData\Documents\ChatGPT\电子观片台\TestResults\release-core.trx
+
+已通过! - 失败:     0，通过:    73，已跳过:     0，总计:    73，持续时间: 1 s - LightTable.Core.Tests.dll (net10.0)
+  正在确定要还原的项目…
+  已还原 D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\Core\LightTable.Core.csproj (用时 425 毫秒)。
+  已还原 D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\App\LightTable.Windows.csproj (用时 468 毫秒)。
+  LightTable.Core -> D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\Core\bin\Release\net10.0\LightTable.Core.dll
+  LightTable.Windows -> D:\UserData\Documents\ChatGPT\电子观片台\LightTable.Windows\App\bin\Release\net10.0-windows10.0.19041.0\win-x64\LightTable.dll
+  LightTable.Windows -> D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\
+Exported notices for 17 application/build packages plus installed runtime packs
+Inno Setup 7 Command-Line Compiler
+Copyright (C) 1997-2026 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.
+Portions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.
+https://www.innosetup.com
+
+Compiler engine version: Inno Setup 7.1.0
+Non-commercial use only
+
+Preprocessing
+   Reading file: C:\Users\Administrator\AppData\Local\Programs\Inno Setup 7\ISPPBuiltins.iss
+Parsing [Setup] section, line 8
+Parsing [Setup] section, line 9
+Parsing [Setup] section, line 10
+Parsing [Setup] section, line 11
+Parsing [Setup] section, line 12
+Parsing [Setup] section, line 13
+Parsing [Setup] section, line 14
+Parsing [Setup] section, line 15
+Parsing [Setup] section, line 16
+Parsing [Setup] section, line 17
+Parsing [Setup] section, line 18
+Parsing [Setup] section, line 19
+Parsing [Setup] section, line 20
+Parsing [Setup] section, line 21
+Parsing [Setup] section, line 22
+Parsing [Setup] section, line 23
+Parsing [Setup] section, line 24
+Parsing [Setup] section, line 25
+Parsing [Setup] section, line 26
+Parsing [Setup] section, line 27
+Parsing [Setup] section, line 28
+Parsing [Setup] section, line 29
+Parsing [Setup] section, line 30
+Parsing [Setup] section, line 31
+Parsing [Setup] section, line 32
+Parsing [Setup] section, line 33
+Reading file (LicenseFile)
+Reading file (InfoBeforeFile)
+Reading file (WizardImageFile)
+Reading file (WizardSmallImageFile)
+Preparing Setup program executable
+   Verification successful
+   Updating icons (Setup.e32)
+   Updating version info (Setup.e32)
+Determining language code pages
+   Reading file: C:\Users\Administrator\AppData\Local\Programs\Inno Setup 7\Default.isl
+   Messages in script file
+Reading default messages from Default.isl
+Parsing [LangOptions], [Messages], and [CustomMessages] sections
+   Reading file: C:\Users\Administrator\AppData\Local\Programs\Inno Setup 7\Default.isl
+   Messages in script file
+Reading [Code] section
+Parsing [Tasks] section, line 35
+Parsing [Icons] section, line 39
+Parsing [Icons] section, line 40
+Parsing [Run] section, line 42
+Parsing [Files] section, line 37
+Deleting LightTable-Windows-Setup-x64.exe from output directory
+Creating setup files
+   Verification successful
+   Updating icons (Setup.exe)
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\App.xbf
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\build-manifest.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\clretwrc.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\clrgc.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\clrgcexp.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\clrjit.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\coreclr.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\CoreMessagingXP.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\createdump.exe
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\dcompi.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\DirectML.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\dwmcorei.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\DwmSceneI.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\DWriteCore.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hostfxr.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hostpolicy.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LICENSE
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.Core.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.Core.pdb
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.deps.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.exe
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.pdb
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.pri
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\LightTable.runtimeconfig.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\marshal.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Asg.SemanticIndex.AiFabric.Compatibility.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.CSharp.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.DiaSymReader.Native.amd64.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.DirectManipulation.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Foundation.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Canvas.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Canvas.Interop.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Display.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Imaging.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Imaging.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Imaging.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.ImagingInternal.ImageObjectRemover.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.ImagingInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.Internal.Imaging.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Graphics.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.InputStateManager.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.InteractiveExperiences.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Internal.FrameworkUdk.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.ML.OnnxRuntime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Security.Authentication.OAuth.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Security.Authentication.OAuth.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Composition.OSSupport.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Designer.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Input.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.pri
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Text.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Windowing.Core.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Windowing.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml.Controls.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml.Controls.pri
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.ui.xaml.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml.Internal.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml.Phone.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.ui.xaml.resources.19h1.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.ui.xaml.resources.common.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.VisualBasic.Core.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.VisualBasic.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Web.WebView2.Core.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Web.WebView2.Core.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Win32.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Win32.Registry.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.AICapabilities.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.ContentModerationInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.ContentSafety.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.ContentSafety.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.ContentSafety.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Foundation.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Foundation.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.FoundationInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.GenerativeInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Imaging.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Imaging.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Imaging.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.MachineLearning.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.MachineLearning.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Search.Experimental.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Text.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Text.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Text.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Video.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Video.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.Video.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AI.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Background.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Background.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.DynamicDependency.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Resources.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Resources.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.Resources.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppLifecycle.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppLifecycle.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppNotifications.Builder.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppNotifications.Builder.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppNotifications.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.AppNotifications.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.BadgeNotifications.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.BadgeNotifications.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Foundation.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Foundation.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Globalization.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.ImageCreationInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Internal.AI.ContentModeration.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Internal.AI.Generative.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Internal.ImageCreation.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Internal.SemanticSearch.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Internal.Vision.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Management.Deployment.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Management.Deployment.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Media.Capture.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Media.Capture.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Private.Workloads.SessionManager.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.PrivateCommon.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.PushNotifications.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.PushNotifications.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.SDK.NET.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Search.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Search.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Search.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Security.AccessControl.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Security.AccessControl.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.SemanticSearch.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.SemanticSearchInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Storage.Pickers.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Storage.Pickers.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Storage.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Storage.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.System.Power.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.System.Power.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.System.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.System.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Vision.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.VisionInternal.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Widgets.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Widgets.Projection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Widgets.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Workloads.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Workloads.pri
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Workloads.Resources.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Workloads.Resources_ec.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.Windows.Workloads.winmd
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.WindowsAppRuntime.Bootstrap.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.WindowsAppRuntime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.WindowsAppRuntime.pri
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.WinUI.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\MRM.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mscordaccore.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mscordaccore_amd64_amd64_10.0.1426.52326.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mscordbi.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mscorlib.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mscorrc.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\msquic.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\netstandard.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\NPUDetect.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\onnxruntime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\PerceptiveStreaming.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\PushNotificationsLongRunningTask.ProxyStub.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\README-Windows.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\RestartAgent.exe
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\SessionHandleIPCProxyStub.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.AppContext.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Buffers.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Collections.Concurrent.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Collections.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Collections.Immutable.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Collections.NonGeneric.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Collections.Specialized.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.Annotations.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.DataAnnotations.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.EventBasedAsync.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ComponentModel.TypeConverter.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Configuration.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Console.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Core.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Data.Common.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Data.DataSetExtensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Data.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.Contracts.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.Debug.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.DiagnosticSource.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.FileVersionInfo.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.Process.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.StackTrace.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.TextWriterTraceListener.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.Tools.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.TraceSource.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Diagnostics.Tracing.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Drawing.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Drawing.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Dynamic.Runtime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Formats.Asn1.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Formats.Tar.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Globalization.Calendars.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Globalization.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Globalization.Extensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Compression.Brotli.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Compression.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Compression.FileSystem.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Compression.Native.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Compression.ZipFile.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.FileSystem.AccessControl.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.FileSystem.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.FileSystem.DriveInfo.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.FileSystem.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.FileSystem.Watcher.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.IsolatedStorage.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.MemoryMappedFiles.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Pipelines.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Pipes.AccessControl.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.Pipes.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.IO.UnmanagedMemoryStream.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Linq.AsyncEnumerable.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Linq.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Linq.Expressions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Linq.Parallel.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Linq.Queryable.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Memory.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Http.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Http.Json.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.HttpListener.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Mail.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.NameResolution.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.NetworkInformation.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Ping.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Quic.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Requests.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Security.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.ServerSentEvents.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.ServicePoint.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.Sockets.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.WebClient.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.WebHeaderCollection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.WebProxy.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.WebSockets.Client.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Net.WebSockets.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Numerics.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Numerics.Tensors.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Numerics.Vectors.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ObjectModel.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Private.CoreLib.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Private.DataContractSerialization.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Private.Uri.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Private.Xml.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Private.Xml.Linq.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.DispatchProxy.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Emit.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Emit.ILGeneration.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Emit.Lightweight.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Extensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Metadata.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Reflection.TypeExtensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Resources.Reader.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Resources.ResourceManager.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Resources.Writer.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.CompilerServices.Unsafe.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.CompilerServices.VisualC.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Extensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Handles.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.InteropServices.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.InteropServices.JavaScript.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.InteropServices.RuntimeInformation.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Intrinsics.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Loader.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Numerics.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Serialization.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Serialization.Formatters.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Serialization.Json.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Serialization.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Runtime.Serialization.Xml.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.AccessControl.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Claims.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.Algorithms.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.Cng.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.Csp.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.Encoding.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.OpenSsl.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.Primitives.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Cryptography.X509Certificates.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Principal.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.Principal.Windows.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Security.SecureString.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ServiceModel.Web.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ServiceProcess.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.Encoding.CodePages.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.Encoding.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.Encoding.Extensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.Encodings.Web.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.Json.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Text.RegularExpressions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.AccessControl.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Channels.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Overlapped.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Tasks.Dataflow.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Tasks.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Tasks.Extensions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Tasks.Parallel.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Thread.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.ThreadPool.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Threading.Timer.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Transactions.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Transactions.Local.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.ValueTuple.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Web.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Web.HttpUtility.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Windows.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.Linq.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.ReaderWriter.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.Serialization.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.XDocument.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.XmlDocument.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.XmlSerializer.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.XPath.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\System.Xml.XPath.XDocument.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\THIRD_PARTY_NOTICES.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\UPSTREAM_THIRD_PARTY_NOTICES.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\WebView2Loader.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\WindowsBase.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\WinRT.Runtime.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\WinUIEdit.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.365.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.j32.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.lnl.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.qnn.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\workloads.stx.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\wuceffectsi.dll
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\af-ZA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\af-ZA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\am-ET\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\am-ET\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ar-SA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ar-SA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\as-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\as-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\az-Latn-AZ\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\az-Latn-AZ\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bg-BG\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bg-BG\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bn-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bn-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bs-Latn-BA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\bs-Latn-BA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ca-ES\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ca-ES\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ca-Es-VALENCIA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ca-Es-VALENCIA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\cs-CZ\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\cs-CZ\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\cy-GB\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\cy-GB\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\da-DK\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\da-DK\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\de-DE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\de-DE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\ARCHITECTURE.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\BASELINE.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\BUILD_AND_RELEASE.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\DELIVERY_REPORT.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\FEATURE_COMPARISON.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\KNOWN_ISSUES.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\MAC_MIGRATION.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\PERFORMANCE_REPORT.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\PORTING_MATRIX.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\PROGRESS.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\SOURCE_INVENTORY.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\SOURCE_SYMBOLS.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\TEST_REPORT.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\USER_BUGFIX_REPORT.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\archive\DELIVERY_0.1.72.1.md
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\benchmarks-before-optimization.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\benchmarks.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\build.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\core.trx
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\device-build.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\device-core.trx
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\device-integration.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\device-shutdown-failure.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\exit-regression.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\install-round-1.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\installer-current-preflight.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\installer-current.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\installer.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\integration-before-projection.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\integration.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\magnification-capsule.png
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\portable-before-projection.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\portable-integration.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\portable.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\release-build.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\solution-build.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\uninstall-round-1.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\user-bug-build.log
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\user-bug-core.trx
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\docs\evidence\user-bug-integration.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\el-GR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\el-GR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\en-GB\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\en-GB\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\en-us\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\en-us\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\es-ES\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\es-ES\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\es-MX\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\es-MX\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\et-EE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\et-EE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\eu-ES\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\eu-ES\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fa-IR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fa-IR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fi-FI\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fi-FI\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fil-PH\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fil-PH\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fr-CA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fr-CA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fr-FR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\fr-FR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ga-IE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ga-IE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gd-gb\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gd-gb\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gl-ES\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gl-ES\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gu-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\gu-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\he-IL\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\he-IL\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hi-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hi-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hr-HR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hr-HR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hu-HU\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hu-HU\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hy-AM\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\hy-AM\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\id-ID\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\id-ID\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\is-IS\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\is-IS\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\it-IT\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\it-IT\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ja-JP\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ja-JP\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ka-GE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ka-GE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kk-KZ\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kk-KZ\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\km-KH\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\km-KH\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kn-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kn-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ko-KR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ko-KR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kok-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\kok-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lb-LU\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lb-LU\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\NuGet-licenses.json
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Graphics.Win2D-1.4.0\LICENSE-SOURCE-NOTE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Graphics.Win2D-1.4.0\microsoft.graphics.win2d.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Graphics.Win2D-1.4.0\Win2D-SOURCE-LICENSE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.NETCore.App.Runtime.win-x64-10.0.14\LICENSE.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.NETCore.App.Runtime.win-x64-10.0.14\THIRD-PARTY-NOTICES.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.NETCore.App.Runtime.win-x64-8.0.31\LICENSE.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.NETCore.App.Runtime.win-x64-8.0.31\THIRD-PARTY-NOTICES.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Web.WebView2-1.0.3719.77\LICENSE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Web.WebView2-1.0.3719.77\microsoft.web.webview2.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Web.WebView2-1.0.3719.77\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.AI.MachineLearning-2.1.74\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.AI.MachineLearning-2.1.74\microsoft.windows.ai.machinelearning.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.AI.MachineLearning-2.1.74\ThirdPartyNotices.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.SDK.BuildTools-10.0.26100.4654\microsoft.windows.sdk.buildtools.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.SDK.BuildTools.MSIX-1.7.251221100\microsoft.windows.sdk.buildtools.msix.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.SDK.BuildTools.MSIX-1.7.251221100\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.Windows.SDK.BuildTools.MSIX-1.7.251221100\sdk_license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK-2.5.1\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK-2.5.1\microsoft.windowsappsdk.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK-2.5.1\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.AI-2.5.5\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.AI-2.5.5\microsoft.windowsappsdk.ai.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Base-2.0.4\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Base-2.0.4\microsoft.windowsappsdk.base.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Base-2.0.4\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.DWrite-2.1.0\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.DWrite-2.1.0\microsoft.windowsappsdk.dwrite.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Foundation-2.3.12\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Foundation-2.3.12\microsoft.windowsappsdk.foundation.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.InteractiveExperiences-2.1.9\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.InteractiveExperiences-2.1.9\microsoft.windowsappsdk.interactiveexperiences.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.ML-2.1.94\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.ML-2.1.94\microsoft.windowsappsdk.ml.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Runtime-2.5.1\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Runtime-2.5.1\microsoft.windowsappsdk.runtime.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Runtime-2.5.1\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Search-2.5.5\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Search-2.5.5\microsoft.windowsappsdk.search.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Widgets-2.0.5\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.Widgets-2.0.5\microsoft.windowsappsdk.widgets.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.WinUI-2.3.9\license.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.WinUI-2.3.9\microsoft.windowsappsdk.winui.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsAppSDK.WinUI-2.3.9\NOTICE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsDesktop.App.Runtime.win-x64-10.0.14\LICENSE
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\Microsoft.WindowsDesktop.App.Runtime.win-x64-8.0.31\LICENSE
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\System.Numerics.Tensors-9.0.0\LICENSE.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\System.Numerics.Tensors-9.0.0\system.numerics.tensors.nuspec
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\licenses\System.Numerics.Tensors-9.0.0\THIRD-PARTY-NOTICES.TXT
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lo-LA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lo-LA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lt-LT\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lt-LT\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lv-LV\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\lv-LV\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mi-NZ\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mi-NZ\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml\Assets\map.html
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Microsoft.UI.Xaml\Assets\NoiseAsset_256x256_PNG.png
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mk-MK\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mk-MK\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ml-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ml-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mr-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mr-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ms-MY\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ms-MY\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mt-MT\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\mt-MT\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nb-NO\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nb-NO\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ne-NP\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ne-NP\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nl-NL\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nl-NL\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nn-NO\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\nn-NO\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\or-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\or-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pa-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pa-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pl-PL\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pl-PL\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pt-BR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pt-BR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pt-PT\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\pt-PT\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\quz-PE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\quz-PE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Resources\AppIcon.ico
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Resources\FusedOptical.bin
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Resources\LoupeEdge.bin
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Resources\Win2D-LICENSE-COMMIT.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\Resources\Win2D-SOURCE-LICENSE.txt
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ro-RO\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ro-RO\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ru-RU\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ru-RU\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sk-SK\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sk-SK\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sl-SI\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sl-SI\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sq-AL\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sq-AL\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Cyrl-BA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Cyrl-BA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Cyrl-RS\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Cyrl-RS\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Latn-RS\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sr-Latn-RS\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sv-SE\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\sv-SE\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ta-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ta-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\te-IN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\te-IN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\th-TH\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\th-TH\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\tr-TR\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\tr-TR\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\tt-RU\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\tt-RU\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ug-CN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ug-CN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\uk-UA\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\uk-UA\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ur-PK\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\ur-PK\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\uz-Latn-UZ\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\uz-Latn-UZ\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\vi-VN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\vi-VN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\zh-CN\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\zh-CN\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\zh-TW\Microsoft.ui.xaml.dll.mui
+   Compressing: \\?\D:\UserData\Documents\ChatGPT\电子观片台\dist\Windows-x64\zh-TW\Microsoft.UI.Xaml.Phone.dll.mui
+   Compressing Setup program executable
+   Updating version info (Setup.exe)
+   Updating manifest (Setup.exe)
+
+
+Successful compile (44.250 sec). Resulting Setup program filename is:
+D:\UserData\Documents\ChatGPT\电子观片台\dist\LightTable-Windows-Setup-x64.exe

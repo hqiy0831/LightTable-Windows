@@ -1,0 +1,11 @@
+*.cs text eol=lf
+*.csproj text eol=lf
+*.md text eol=lf
+*.ps1 text eol=lf
+*.xaml text eol=lf
+*.hlsl text eol=lf
+*.json text eol=lf
+*.ico binary
+*.bin binary
+# Preserve the imported upstream license byte content, including whitespace.
+LightTable.Windows/Resources/Win2D-SOURCE-LICENSE.txt -whitespace

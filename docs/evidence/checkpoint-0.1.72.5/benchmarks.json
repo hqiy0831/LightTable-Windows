@@ -1,0 +1,296 @@
+[
+  {
+    "Date": "2026-10-26T02:35:09.7673188-04:00",
+    "Version": "0.1.72.5",
+    "Requested": 10,
+    "Imported": 10,
+    "Passed": true,
+    "Failure": null,
+    "Timings": {
+      "ImportAndThumbnailsMs": 185.4173,
+      "FitAndGpuPreparationMs": 411.8317,
+      "Pan120StepsWallMs": 3454.045,
+      "WarmThumbnailRequestsMs": 0.4636
+    },
+    "DrawCallbackCpuMs": {
+      "Count": 240,
+      "P50": 0.11170000288984738,
+      "P95": 2.0708999982161913,
+      "P99": 9.533399999781977,
+      "Max": 22.984400002314942
+    },
+    "Notice": "DrawCallback是CPU回调耗时，不包含完整GPU呈现，不能作为60FPS证据；当前不包含完整UI输入或长期稳定性验收。",
+    "MemoryBytes": 10418480,
+    "GpuTextureEstimate": 45151040,
+    "MemoryHits": 26,
+    "DiskHits": 0,
+    "DecodeCount": 26,
+    "OpticalCache": {
+      "BuildCount": 22,
+      "DiskHits": 0,
+      "CorruptReads": 0,
+      "WriteFailures": 0,
+      "Bytes": 8441828,
+      "Entries": 22
+    },
+    "CacheBytes": 10361633,
+    "MemoryPeakMiB": 191.18359375,
+    "Phases": {
+      "CloseViewing": {
+        "Count": 38,
+        "P50": 0.06600000051548705,
+        "P95": 2.5716000018292107
+      },
+      "FitAndGpuPreparation": {
+        "Count": 9,
+        "P50": 1.3264000008348376,
+        "P95": 9.533399999781977
+      },
+      "Ignition": {
+        "Count": 71,
+        "P50": 0.31690000105299987,
+        "P95": 0.7033000001683831
+      },
+      "Import": {
+        "Count": 2,
+        "P50": 0.3111500009254087,
+        "P95": 0.21270000070217066
+      },
+      "Pan": {
+        "Count": 119,
+        "P50": 0.07209999967017211,
+        "P95": 0.14759999976377003
+      }
+    },
+    "Report": "TestResults\\benchmark-10-20261026-023501\\logs\\benchmark.json",
+    "Process": {
+      "ExitCode": 0,
+      "CrashLog": false,
+      "AppDllSha256": "CDBA7185A969CAC978C877802C0C6EAF333B46596D5F672FC41C8C897001E89F",
+      "FusedLampSha256": "6F223938733FDE2483578B838F6D820B4A6402FEA52787198492C50ABD4B9CA3"
+    }
+  },
+  {
+    "Date": "2026-10-26T02:35:20.7606736-04:00",
+    "Version": "0.1.72.5",
+    "Requested": 100,
+    "Imported": 100,
+    "Passed": true,
+    "Failure": null,
+    "Timings": {
+      "ImportAndThumbnailsMs": 923.9422,
+      "FitAndGpuPreparationMs": 1927.542,
+      "Pan120StepsWallMs": 3567.6469,
+      "WarmThumbnailRequestsMs": 4.7526
+    },
+    "DrawCallbackCpuMs": {
+      "Count": 285,
+      "P50": 0.5326999998942483,
+      "P95": 19.91730000008829,
+      "P99": 36.21309999653022,
+      "Max": 47.7826999995159
+    },
+    "Notice": "DrawCallback是CPU回调耗时，不包含完整GPU呈现，不能作为60FPS证据；当前不包含完整UI输入或长期稳定性验收。",
+    "MemoryBytes": 78668496,
+    "GpuTextureEstimate": 12988160,
+    "MemoryHits": 149,
+    "DiskHits": 0,
+    "DecodeCount": 240,
+    "OpticalCache": {
+      "BuildCount": 154,
+      "DiskHits": 0,
+      "CorruptReads": 0,
+      "WriteFailures": 0,
+      "Bytes": 4351047,
+      "Entries": 154
+    },
+    "CacheBytes": 31050886,
+    "MemoryPeakMiB": 234.25390625,
+    "Phases": {
+      "CloseViewing": {
+        "Count": 34,
+        "P50": 2.1597499999188585,
+        "P95": 32.82240000044112
+      },
+      "FitAndGpuPreparation": {
+        "Count": 58,
+        "P50": 1.1889999987033661,
+        "P95": 21.060100003523985
+      },
+      "Ignition": {
+        "Count": 68,
+        "P50": 11.947850000069593,
+        "P95": 15.00300000043353
+      },
+      "Import": {
+        "Count": 4,
+        "P50": 0.2838500004145317,
+        "P95": 0.31820000003790483
+      },
+      "Pan": {
+        "Count": 120,
+        "P50": 0.16695000158506446,
+        "P95": 0.4198000024189241
+      }
+    },
+    "Report": "TestResults\\benchmark-100-20261026-023510\\logs\\benchmark.json",
+    "Process": {
+      "ExitCode": 0,
+      "CrashLog": false,
+      "AppDllSha256": "CDBA7185A969CAC978C877802C0C6EAF333B46596D5F672FC41C8C897001E89F",
+      "FusedLampSha256": "6F223938733FDE2483578B838F6D820B4A6402FEA52787198492C50ABD4B9CA3"
+    }
+  },
+  {
+    "Date": "2026-10-26T02:35:53.0193678-04:00",
+    "Version": "0.1.72.5",
+    "Requested": 500,
+    "Imported": 500,
+    "Passed": true,
+    "Failure": null,
+    "Timings": {
+      "ImportAndThumbnailsMs": 4189.6313,
+      "FitAndGpuPreparationMs": 12495.8875,
+      "Pan120StepsWallMs": 3608.0863,
+      "WarmThumbnailRequestsMs": 7273.0107
+    },
+    "DrawCallbackCpuMs": {
+      "Count": 447,
+      "P50": 6.739299999026116,
+      "P95": 60.62010000096052,
+      "P99": 71.94349999917904,
+      "Max": 141.7580999986967
+    },
+    "Notice": "DrawCallback是CPU回调耗时，不包含完整GPU呈现，不能作为60FPS证据；当前不包含完整UI输入或长期稳定性验收。",
+    "MemoryBytes": 167027200,
+    "GpuTextureEstimate": 41294720,
+    "MemoryHits": 66,
+    "DiskHits": 473,
+    "DecodeCount": 1204,
+    "OpticalCache": {
+      "BuildCount": 710,
+      "DiskHits": 0,
+      "CorruptReads": 0,
+      "WriteFailures": 0,
+      "Bytes": 17429488,
+      "Entries": 710
+    },
+    "CacheBytes": 187734249,
+    "MemoryPeakMiB": 564.625,
+    "Phases": {
+      "CloseViewing": {
+        "Count": 11,
+        "P50": 38.48929999730899,
+        "P95": 64.84989999808022
+      },
+      "FitAndGpuPreparation": {
+        "Count": 216,
+        "P50": 11.231999998926767,
+        "P95": 55.84169999929145
+      },
+      "Ignition": {
+        "Count": 26,
+        "P50": 60.078149999753805,
+        "P95": 72.56559999950696
+      },
+      "Import": {
+        "Count": 3,
+        "P50": 0.369099998351885,
+        "P95": 0.369099998351885
+      },
+      "Pan": {
+        "Count": 119,
+        "P50": 0.48610000158078037,
+        "P95": 1.42529999720864
+      },
+      "WarmThumbnails": {
+        "Count": 71,
+        "P50": 39.148799998656614,
+        "P95": 59.655900000507245
+      }
+    },
+    "Report": "TestResults\\benchmark-500-20261026-023521\\logs\\benchmark.json",
+    "Process": {
+      "ExitCode": 0,
+      "CrashLog": false,
+      "AppDllSha256": "CDBA7185A969CAC978C877802C0C6EAF333B46596D5F672FC41C8C897001E89F",
+      "FusedLampSha256": "6F223938733FDE2483578B838F6D820B4A6402FEA52787198492C50ABD4B9CA3"
+    }
+  },
+  {
+    "Date": "2026-10-26T02:37:36.4192931-04:00",
+    "Version": "0.1.72.5",
+    "Requested": 1000,
+    "Imported": 1000,
+    "Passed": true,
+    "Failure": null,
+    "Timings": {
+      "ImportAndThumbnailsMs": 8847.488,
+      "FitAndGpuPreparationMs": 48982.8733,
+      "Pan120StepsWallMs": 3591.5725,
+      "WarmThumbnailRequestsMs": 36065.0438
+    },
+    "DrawCallbackCpuMs": {
+      "Count": 508,
+      "P50": 65.15709999803221,
+      "P95": 153.35029999914696,
+      "P99": 217.9396000028646,
+      "Max": 465.0400999998965
+    },
+    "Notice": "DrawCallback是CPU回调耗时，不包含完整GPU呈现，不能作为60FPS证据；当前不包含完整UI输入或长期稳定性验收。",
+    "MemoryBytes": 167706000,
+    "GpuTextureEstimate": 77142016,
+    "MemoryHits": 33,
+    "DiskHits": 0,
+    "DecodeCount": 3395,
+    "OpticalCache": {
+      "BuildCount": 1395,
+      "DiskHits": 0,
+      "CorruptReads": 0,
+      "WriteFailures": 0,
+      "Bytes": 34684947,
+      "Entries": 1395
+    },
+    "CacheBytes": 311765613,
+    "MemoryPeakMiB": 672.69140625,
+    "Phases": {
+      "CloseViewing": {
+        "Count": 7,
+        "P50": 112.57649999970454,
+        "P95": 123.15180000223336
+      },
+      "FitAndGpuPreparation": {
+        "Count": 292,
+        "P50": 74.31720000022324,
+        "P95": 146.5505000014673
+      },
+      "Ignition": {
+        "Count": 7,
+        "P50": 318.74450000032084,
+        "P95": 331.3506000013149
+      },
+      "Import": {
+        "Count": 2,
+        "P50": 0.27754999973694794,
+        "P95": 0.20489999951678328
+      },
+      "Pan": {
+        "Count": 120,
+        "P50": 1.0929500003840076,
+        "P95": 4.212299998471281
+      },
+      "WarmThumbnails": {
+        "Count": 79,
+        "P50": 126.09140000131447,
+        "P95": 168.6007000025711
+      }
+    },
+    "Report": "TestResults\\benchmark-1000-20261026-023553\\logs\\benchmark.json",
+    "Process": {
+      "ExitCode": 0,
+      "CrashLog": false,
+      "AppDllSha256": "CDBA7185A969CAC978C877802C0C6EAF333B46596D5F672FC41C8C897001E89F",
+      "FusedLampSha256": "6F223938733FDE2483578B838F6D820B4A6402FEA52787198492C50ABD4B9CA3"
+    }
+  }
+]
