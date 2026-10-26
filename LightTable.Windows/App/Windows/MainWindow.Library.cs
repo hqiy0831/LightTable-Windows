@@ -23,12 +23,18 @@ sealed partial class MainWindow
         {
             if(updatingCollections||session.Busy||collectionPicker.SelectedItem is not PhotoCollection collection)return;
             if(trayScroller!=null)trayOffsets[session.Document.EnsureCollection().Id]=trayScroller.HorizontalOffset;
-            CancelTrayFlight();session.Document.ActiveCollectionId=collection.Id;session.LibraryChanged();
+            ResetWorkspaceInteraction();session.SwitchCollection(collection.Id);renderer.DocumentChanged();status.Text=collection.SourceLabel;
         };
-        bar.Children.Add(Btn("＋ 新建栏目",()=>{if(session.Busy)return;if(trayScroller!=null)trayOffsets[session.Document.EnsureCollection().Id]=trayScroller.HorizontalOffset;CancelTrayFlight();session.Document.AddCollection();session.LibraryChanged();},"新栏目为空白，单独添加照片"));
+        bar.Children.Add(Btn("＋ 新建栏目",()=>{if(session.Busy)return;if(trayScroller!=null)trayOffsets[session.Document.EnsureCollection().Id]=trayScroller.HorizontalOffset;ResetWorkspaceInteraction();session.NewCollection();renderer.DocumentChanged();status.Text="新栏目为空，请添加照片";},"新栏目与台面均为空白，单独添加照片"));
         bar.Children.Add(Btn("重命名",async()=>await RenameCollection()));
         removeLibrary.Click+=(_,_)=>RemoveLibrarySelection();ToolTipService.SetToolTip(removeLibrary,"从当前栏目移除所选照片；保留台面、其他栏目和源文件");bar.Children.Add(removeLibrary);
         return bar;
+    }
+    void ResetWorkspaceInteraction()
+    {
+        // A returning/landing animation from another column must never appear
+        // or complete a placement in this workspace.
+        renderer.Flight=null;pullingItem=null;pullStart=pullPointer=null;finishingFlight=false;tray.ReleasePointerCaptures();CancelGesture();renderer.PointerInside=false;
     }
     Grid BuildTrayNavigation()
     {

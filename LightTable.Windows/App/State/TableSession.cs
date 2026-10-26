@@ -30,6 +30,10 @@ sealed class TableSession
     public bool Busy {get;set;}
     public long LibraryRevision {get;private set;}
     public void LibraryChanged(){LibraryRevision++;Notify();}
+    public void SwitchCollection(Guid id)
+    {Document.SwitchCollection(id);Selection.Clear();ShowSelection=false;CloseViewing=false;LibraryChanged();}
+    public void NewCollection()
+    {Document.AddCollection();Selection.Clear();ShowSelection=false;CloseViewing=false;LibraryChanged();}
     public bool ReduceMotion {get;set;}
     public string? StartupWarning {get;}
     public event Action? Changed;

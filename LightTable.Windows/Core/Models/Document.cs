@@ -116,12 +116,24 @@ public sealed class PhotoCollection
     public string Name { get; set; } = "栏目一";
     public List<string> Paths { get; set; } = [];
     public string SourceLabel { get; set; } = "你的照片";
+    public CollectionTable? Table { get; set; }
 }
-public sealed partial class TableDocument
+public sealed class CollectionTable
 {
-    public const int CurrentSchema = 2;
+    public List<Slide> Slides { get; set; } = [];
+    public List<AlbumPage> Albums { get; set; } = [];
+    public List<Guid> TableOrder { get; set; } = [];
+    public Viewport Viewport { get; set; } = new();
+    public double WorldWidth { get; set; } = 1180;
+    public double WorldHeight { get; set; } = 550;
+    public double FitScale { get; set; } = 1;
+}
+public sealed partial class TableDocument : IJsonOnSerializing
+{
+    public const int CurrentSchema = 3;
     public int SchemaVersion { get; set; } = CurrentSchema;
     public List<Photo> Photos { get; set; } = [];
+    void IJsonOnSerializing.OnSerializing()=>SaveActiveCollection();
     public List<PhotoCollection> Collections { get; set; } = [];
     public Guid ActiveCollectionId { get; set; }
     public List<Slide> Slides { get; set; } = [];
@@ -158,13 +170,17 @@ public sealed partial class TableDocument
     [JsonIgnore] public IEnumerable<string> PlacedPaths => Slides.Select(s=>s.Path).Concat(Albums.Where(a=>a.Position!=null).SelectMany(a=>a.Pockets).Select(p=>p.Path).OfType<string>()).Distinct(StringComparer.OrdinalIgnoreCase);
     public void Sanitize()
     {
+        Photos=(Photos??[]).Where(p=>IsLocal(p.Path)).DistinctBy(p=>p.Path,StringComparer.OrdinalIgnoreCase).ToList();
+        foreach(var p in Photos)p.Aspect=Math.Clamp(Geometry.Finite(p.Aspect,1.5),.001,1000);
+        SanitizeTable();NormalizeCollections();SchemaVersion=CurrentSchema;
+    }
+    void SanitizeTable()
+    {
         WorldWidth=Math.Clamp(Geometry.Finite(WorldWidth,1180),1,100000);
         WorldHeight=Math.Clamp(Geometry.Finite(WorldHeight,550),1,100000);
         FitScale=Math.Clamp(Geometry.Finite(FitScale,1),.001,8);
         Viewport ??= new();Viewport.Scale=Math.Clamp(Geometry.Finite(Viewport.Scale,1),.05,8);
         Viewport.OffsetX=Geometry.Finite(Viewport.OffsetX,0);Viewport.OffsetY=Geometry.Finite(Viewport.OffsetY,0);
-        Photos=(Photos??[]).Where(p=>IsLocal(p.Path)).DistinctBy(p=>p.Path,StringComparer.OrdinalIgnoreCase).ToList();
-        foreach(var p in Photos) p.Aspect=Math.Clamp(Geometry.Finite(p.Aspect,1.5),.001,1000);
         Slides=(Slides??[]).Where(s=>IsLocal(s.Path)).DistinctBy(s=>s.Id).DistinctBy(s=>s.Path,StringComparer.OrdinalIgnoreCase).ToList();
         foreach(var s in Slides) s.Sanitize();
         Albums=(Albums??[]).DistinctBy(a=>a.Id).Where(a=>!Slides.Any(s=>s.Id==a.Id)).ToList();
@@ -178,7 +194,6 @@ public sealed partial class TableDocument
         }
         TableOrder??=[];TableOrder=TableIds.ToList();
         foreach(var path in PlacedPaths) if(!Photos.Any(p=>StringComparer.OrdinalIgnoreCase.Equals(p.Path,path)))Photos.Add(new Photo{Path=path});
-        NormalizeCollections();SchemaVersion=CurrentSchema;
     }
     public static bool IsLocal(string? path) => !string.IsNullOrWhiteSpace(path) && System.IO.Path.IsPathFullyQualified(path) && !path.Contains("://",StringComparison.Ordinal);
 }

@@ -8,6 +8,27 @@ namespace LightTable.Windows;
 
 sealed partial class MainWindow
 {
+    async Task<string> CheckIndependentWorkspace()
+    {
+        var doc=session.Document;doc.SaveActiveCollection();var first=doc.EnsureCollection();var ids=doc.TableIds.ToArray();var oldSelection=session.Selection.ToArray();var originalCollections=doc.Collections.Select(c=>c.Id).ToHashSet();
+        try
+        {
+            session.NewCollection();renderer.DocumentChanged();var second=doc.EnsureCollection();
+            if(doc.ActivePhotos.Count!=0||doc.Slides.Count!=0||doc.Albums.Count!=0)throw new InvalidOperationException("新栏目不是完整空白工作区");
+            using(var empty=renderer.RenderSnapshot(true,0,true))if(empty.GetPixelColors().Distinct().Count()!=1)throw new InvalidOperationException("新栏目残留上一个台面缓存像素");
+            var photo=doc.Photos[0];doc.SetCollectionPhotos(second,[photo],false);session.Place(photo.Path,new(session.Width/2,session.Height/2));await renderer.PrepareVisibleTable();
+            if(doc.Slides.Count!=1)throw new InvalidOperationException("第二栏目没有独立散片");var secondId=doc.Slides[0].Id;session.Flush();
+            var restored=new DocumentStore(session.Storage.Root).Load(out var warning);if(warning!=null||restored.ActiveCollectionId!=second.Id||restored.Slides.Single().Id!=secondId)throw new InvalidOperationException("活动栏目存取失败");
+            restored.SwitchCollection(first.Id);if(!restored.TableIds.SequenceEqual(ids))throw new InvalidOperationException("非活动栏目未独立保存");
+            session.SwitchCollection(first.Id);renderer.DocumentChanged();if(!doc.TableIds.SequenceEqual(ids))throw new InvalidOperationException("切回第一栏目未恢复原摆放");
+            session.SwitchCollection(second.Id);renderer.DocumentChanged();if(doc.Slides.Single().Id!=secondId)throw new InvalidOperationException("切回第二栏目未恢复对应散片");
+            return "生产Session新建/切换：第二栏目完整空白且GPU无旧台面残影；独立装入一张散片，原子保存/新Store恢复及往返切换均保留各自项目。";
+        }
+        finally
+        {
+            session.SwitchCollection(first.Id);doc.Collections.RemoveAll(c=>!originalCollections.Contains(c.Id));session.Selection.Clear();session.Selection.UnionWith(oldSelection);session.LibraryChanged();renderer.DocumentChanged();
+        }
+    }
     async Task<string> CheckMetadataImport(string[] originals)
     {
         var images=new ImageStore(new DocumentStore(Path.Combine(session.Storage.Root,"metadata-check")));

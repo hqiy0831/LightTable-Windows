@@ -125,6 +125,7 @@ sealed partial class MainWindow
                 return "原版0.90/0.97径向lip HLSL实际运行，普通镜透明边界、1×与8×中心有效；4张GPU快照已保存。未替代Space按键验收。";
             });
             await Check("GPU-ordinary-and-close-actual-1-2-4-8-sampling",()=>CheckActualLoupeSampling());
+            await Check("Independent-workspaces-GPU-and-persistence",()=>CheckIndependentWorkspace());
             await Check("GPU-projector-optics-cache-and-composite",async()=>
             {
                 var before=JsonSerializer.Serialize(session.Document,DocumentStore.JsonOptions);

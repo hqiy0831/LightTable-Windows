@@ -1,0 +1,12 @@
+{
+  "Schema": 3,
+  "NewColumn3Slides": 0,
+  "Column2Photos": 1,
+  "NewColumn3Photos": 0,
+  "Column1Slides": 17,
+  "Column1Photos": 17,
+  "Column2Slides": 1,
+  "Scope": "Actual dropdown switching showed column 2 empty of old slides, Fit placed only its PIA00123; switching back restored original 17 slides. Persisted layout also verified.",
+  "ActualUiSwitchVerified": true,
+  "Version": "0.1.72.6"
+}

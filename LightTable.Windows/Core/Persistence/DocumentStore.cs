@@ -44,6 +44,7 @@ public sealed class DocumentStore
     }
     public void Save(TableDocument doc)
     {
+        doc.SaveActiveCollection();
         var bytes=JsonSerializer.SerializeToUtf8Bytes(doc,JsonOptions);
         _=JsonSerializer.Deserialize<TableDocument>(bytes,JsonOptions)??throw new InvalidDataException("布局序列化失败");
         var temp=DocumentPath+"."+Guid.NewGuid().ToString("N")+".tmp";
