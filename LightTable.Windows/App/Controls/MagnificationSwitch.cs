@@ -21,7 +21,7 @@ sealed class MagnificationSwitch : Grid
     public MagnificationSwitch()
     {
         Width=SegmentWidth*LoupePowers.Count+4;Height=34;CornerRadius=new(17);Background=Brush(231);BorderBrush=Brush(194);BorderThickness=new(.5);
-        var thumb=new Border{Width=SegmentWidth,Height=30,CornerRadius=new(15),Background=Brush(250),HorizontalAlignment=HorizontalAlignment.Left,VerticalAlignment=VerticalAlignment.Center,Margin=new(2,0,0,0),RenderTransform=position,IsHitTestVisible=false};Children.Add(thumb);
+        var thumb=new Border{Width=SegmentWidth,Height=30,CornerRadius=new(15),Background=Brush(24),HorizontalAlignment=HorizontalAlignment.Left,VerticalAlignment=VerticalAlignment.Center,Margin=new(2,0,0,0),RenderTransform=position,IsHitTestVisible=false};Children.Add(thumb);
         var labels=new Grid{Margin=new(2,0,2,0)};
         foreach(var power in Enum.GetValues<LoupePower>())
         {
@@ -34,7 +34,7 @@ sealed class MagnificationSwitch : Grid
         // One hit surface owns the complete drag. Child Buttons otherwise
         // capture/release independently and can swallow movement across segments.
         Children.Add(new Border{Background=new SolidColorBrush(Colors.Transparent)});
-        AutomationProperties.SetName(this,"放大镜倍率");ToolTipService.SetToolTip(this,"凑近倍率 1× / 2× / 4× / 8× · Tab 循环，也可点击或横向拖动");
+        AutomationProperties.SetName(this,"放大镜倍率");ToolTipService.SetToolTip(this,"倍率 1× / 2× / 4× / 8× · Tab 循环，也可点击或横向拖动");
         AddHandler(PointerPressedEvent,new PointerEventHandler((_,e)=>
         {
             var p=e.GetCurrentPoint(this);if(!p.Properties.IsLeftButtonPressed||pointerId!=null)return;
@@ -62,7 +62,7 @@ sealed class MagnificationSwitch : Grid
         Power=LoupePowers.Validate(value);clock.Target((int)Power,Rendering.TableRenderer.Seconds,animate?LoupeGeometry.FocalDuration:0);
         for(int i=0;i<buttons.Length;i++)
         {
-            bool selected=i==(int)Power;buttons[i].Foreground=Brush(selected?(byte)24:(byte)92);
+            bool selected=i==(int)Power;buttons[i].Foreground=Brush(selected?(byte)255:(byte)92);
             buttons[i].FontWeight=selected?Microsoft.UI.Text.FontWeights.SemiBold:Microsoft.UI.Text.FontWeights.Normal;
             AutomationProperties.SetItemStatus(buttons[i],selected?"已选中":"未选中");
         }

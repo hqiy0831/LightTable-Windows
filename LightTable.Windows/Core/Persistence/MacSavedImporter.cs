@@ -57,6 +57,20 @@ public static class MacSavedImporter
             document.Albums.Add(page);
         }
         if(root.TryGetProperty("tableOrder",out var order)&&order.ValueKind==JsonValueKind.Array)document.TableOrder=order.EnumerateArray().Select(p=>p.GetGuid()).ToList();
+        if(root.TryGetProperty("trays",out var trays)&&trays.ValueKind==JsonValueKind.Array&&trays.GetArrayLength()>0)
+        {
+            var ids=new HashSet<Guid>();
+            foreach(var tray in trays.EnumerateArray())
+            {
+                var id=tray.GetProperty("id").GetGuid();if(!ids.Add(id)){id=Guid.NewGuid();ids.Add(id);}
+                var name=tray.GetProperty("name").GetString()??"未命名栏目";
+                document.Collections.Add(new(){Id=id,Name=name,SourceLabel=name,Paths=tray.GetProperty("urls").EnumerateArray().Select(u=>Resolve(u.GetString()!)).Distinct(StringComparer.OrdinalIgnoreCase).ToList()});
+            }
+            document.ActiveCollectionId=root.TryGetProperty("activeTrayID",out var active)&&active.ValueKind==JsonValueKind.String&&active.TryGetGuid(out var selected)?selected:document.Collections[0].Id;
+            // Upstream uses a shared stage; Windows partitions it by membership
+            // to preserve the user's explicitly requested independent workspaces.
+            document.SchemaVersion=2;
+        }
         document.Sanitize();
         return new(document,document.Photos.Select(p=>p.Path).Where(p=>!File.Exists(p)).ToArray(),aliases.Count);
     }
@@ -77,6 +91,8 @@ public static class MacSavedImporter
     static IEnumerable<string> Urls(JsonElement root)
     {
         foreach(var url in root.GetProperty("urls").EnumerateArray())yield return url.GetString()??throw new InvalidDataException("照片URL为空。");
+        if(root.TryGetProperty("trays",out var trays)&&trays.ValueKind==JsonValueKind.Array)
+        foreach(var tray in trays.EnumerateArray())foreach(var url in tray.GetProperty("urls").EnumerateArray())yield return url.GetString()??throw new InvalidDataException("栏目照片URL为空。");
         foreach(var slide in root.GetProperty("layout").GetProperty("slides").EnumerateArray())yield return slide.GetProperty("url").GetString()??throw new InvalidDataException("散片URL为空。");
         if(root.TryGetProperty("albums",out var albums)&&albums.ValueKind==JsonValueKind.Array)
         foreach(var page in albums.EnumerateArray())foreach(var pocket in page.GetProperty("pockets").EnumerateArray())

@@ -17,7 +17,8 @@ public static class LightResponse
     public static double Level(double b)=>Math.Sqrt(Math.Min(1,Power(b)));
     public static double BrightnessMix(double b)=>Math.Clamp((Power(b)-1)/.6,0,1);
     public static double GlowMix(double f,double b)=>Math.Clamp(Geometry.Finite(f,0),0,1)*Math.Sqrt(Math.Min(1,Power(b)));
-    public static double Exposure(double f,double b)=>.60*GlowMix(f,b);
+    public static double Exposure(double f,double b)=>.80*GlowMix(f,b);
+    public static readonly (double R,double G,double B) UnlitPanel=(.84,.81,.70);
     public static double PanelWhite(double b,double f)
     {
         var p=Power(b);var steady=p<=1?.32+(.90-.32)*Math.Sqrt(p):.90+(p-1)*.08;

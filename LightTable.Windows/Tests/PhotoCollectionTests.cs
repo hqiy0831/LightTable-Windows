@@ -23,12 +23,12 @@ public sealed class PhotoCollectionTests
         Assert.Equal(second.Id,restored.ActiveCollectionId);Assert.Equal("第二组",restored.EnsureCollection().Name);Assert.Equal(2,restored.ActivePhotos.Count);
         restored.SwitchCollection(first.Id);Assert.Single(restored.ActivePhotos);
     }
-    [Fact] public void RemovingMembershipPreservesOtherColumnsPlacedPhotoAndOriginalBytes()
+    [Fact] public void DeletingPhotoPreservesOtherColumnsAndOriginalBytes()
     {
         var path=Path.GetTempFileName();try
         {
             File.WriteAllBytes(path,[1,7,4,9]);var p=new Photo{Path=path};var doc=new TableDocument{Photos=[p],Slides=[new(){Path=path}]};var first=doc.EnsureCollection();var second=doc.AddCollection();doc.SetCollectionPhotos(second,[p],false);
-            doc.Place(path,new(200,100));Assert.Equal(1,doc.RemoveFromCollection([path]));Assert.Empty(doc.ActivePhotos);Assert.Single(first.Paths);Assert.Single(doc.Slides);Assert.Equal(new byte[]{1,7,4,9},File.ReadAllBytes(path));
+            doc.Place(path,new(200,100));Assert.Equal(1,doc.RemoveFromCollection([path]));Assert.Empty(doc.ActivePhotos);Assert.Single(first.Paths);Assert.Empty(doc.Slides);Assert.Equal(new byte[]{1,7,4,9},File.ReadAllBytes(path));
             doc.Sanitize();Assert.Empty(doc.ActivePhotos);Assert.Single(doc.Photos);
         }
         finally{File.Delete(path);}

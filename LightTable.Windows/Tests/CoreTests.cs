@@ -123,13 +123,13 @@ public sealed class PersistenceTests
 }
 public sealed class UpdateTests
 {
-    static string Feed(string name,string url="https://github.com/fuyuan9972-svg/LightTable/releases/download/v0.1.73/LightTable-Windows-Setup-x64.exe")=>JsonSerializer.Serialize(new[]{new{draft=false,prerelease=false,tag_name="v0.1.73",body="Full notes",html_url="https://github.com/fuyuan9972-svg/LightTable/releases/tag/v0.1.73",assets=new[]{new{name,browser_download_url=url}}}});
+    static string Feed(string name,string url="https://github.com/hqiy0831/LightTable-Windows/releases/download/v0.1.73/LightTable-Windows-Setup-x64.exe")=>JsonSerializer.Serialize(new[]{new{draft=false,prerelease=false,tag_name="v0.1.73",body="Full notes",html_url="https://github.com/hqiy0831/LightTable-Windows/releases/tag/v0.1.73",assets=new[]{new{name,browser_download_url=url}}}});
     [Fact] public void MacArmPackagesNeverSelected()=>Assert.Null(ReleasePolicy.Find(Feed("LightTable-v0.1.73-macOS-arm64.zip"),new(0,1,72,1)));
     [Fact] public void OnlyNewerWindowsX64HttpsInstallerIsAccepted()
     {
         Assert.NotNull(ReleasePolicy.Find(Feed("LightTable-Windows-Setup-x64.exe"),new(0,1,72,1)));
         Assert.Null(ReleasePolicy.Find(Feed("LightTable-Windows-Setup-x64.exe"),new(0,1,74)));
-        Assert.Null(ReleasePolicy.Find(Feed("LightTable-Windows-Setup-x64.exe","http://github.com/fuyuan9972-svg/LightTable/test"),new(0,1,72)));
+        Assert.Null(ReleasePolicy.Find(Feed("LightTable-Windows-Setup-x64.exe","http://github.com/hqiy0831/LightTable-Windows/test"),new(0,1,72)));
         Assert.Null(ReleasePolicy.Find(Feed("LightTable-Windows-Setup-x64.exe","https://evil.test/fake.exe"),new(0,1,72)));
     }
 }
@@ -155,7 +155,7 @@ public sealed class LoupePoseTests
     }
     [Fact] public void EdgeWarpLeavesCentreStraightAndIsMonotonic()
     {
-        Assert.Equal(0,LoupePose.EdgeInset(.89,130,1));Assert.Equal(.006*130,LoupePose.EdgeInset(1,130,1),8);
+        Assert.Equal(0,LoupePose.EdgeInset(.74,130,1));Assert.Equal(.032*130,LoupePose.EdgeInset(1,130,1),8);
         double prior=-1;
         for(int i=0;i<=1000;i++){var r=i/1000d;var mapped=r-LoupePose.EdgeInset(r,130,1)/130;Assert.True(mapped>=prior);prior=mapped;}
         Assert.Equal(0,LoupePose.EdgeInset(1,130,0));

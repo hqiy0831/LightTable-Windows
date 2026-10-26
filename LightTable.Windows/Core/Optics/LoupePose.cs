@@ -14,7 +14,7 @@ public readonly record struct LoupePose(double Diameter,double Magnification,dou
         // Space changes aperture/position, never silently replaces the power with 1.5x.
         return new(LoupeGeometry.Diameter*(1+(finalAperture-1)*aperture),target,Geometry.Quintic((p-.12)/.78),aperture);
     }
-    public static double EdgeInset(double normalizedRadius,double radius,double strength)=>radius*(.0045*Geometry.Smooth((normalizedRadius-.90)/.10)+.0015*Geometry.Smooth((normalizedRadius-.97)/.03))*Math.Clamp(strength,0,1);
+    public static double EdgeInset(double normalizedRadius,double radius,double strength)=>radius*(.028*Geometry.Smooth((normalizedRadius-.75)/.25)+.004*Geometry.Smooth((normalizedRadius-.94)/.06))*Math.Clamp(strength,0,1);
 }
 
 // An interruptible clock preserves the current value on a fast Space reversal.

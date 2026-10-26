@@ -1,3 +1,5 @@
+> 当前：Windows 0.1.75.1 / 上游 v0.1.75。请先读 [最新检查点](CHECKPOINT_0.1.75.1.zh-CN.md) 与 [上游同步](UPSTREAM_SYNC_0.1.75.zh-CN.md)；下文为历史记录，不代表最终包的验证状态。
+
 # macOS / Windows 对照
 
 基线 v0.1.72。当前完整功能等价：**否，开发和验收仍在进行**。逐项状态见 PORTING_MATRIX，不以本页概述代替验收。

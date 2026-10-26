@@ -34,6 +34,8 @@ sealed class TableSession
     {Document.SwitchCollection(id);Selection.Clear();ShowSelection=false;CloseViewing=false;LibraryChanged();}
     public void NewCollection()
     {Document.AddCollection();Selection.Clear();ShowSelection=false;CloseViewing=false;LibraryChanged();}
+    public void DeleteCollection(Guid id)
+    {Document.DeleteCollection(id);Selection.Clear();ShowSelection=false;CloseViewing=false;LibraryChanged();}
     public bool ReduceMotion {get;set;}
     public string? StartupWarning {get;}
     public event Action? Changed;
@@ -60,7 +62,7 @@ sealed class TableSession
         if(!Selection.Add(id)&&extend)Selection.Remove(id);
         ShowSelection=indicator;Document.BringToFront(id);Notify();
     }
-    public void RemoveSelection(){Document.Remove(Selection);Selection.Clear();ShowSelection=false;Notify();}
+    public void RemoveSelection(){Document.ReturnToCollection(Selection);Selection.Clear();ShowSelection=false;Notify();}
     public void Clear(){Document.Slides.Clear();foreach(var a in Document.Albums)a.Position=null;Document.TableOrder.Clear();Selection.Clear();Document.Viewport=new();Document.FitScale=1;Notify();}
     public void Fit(bool replace=false){Geometry.Fit(Document,Width,Height,replace);Selection.Clear();Notify();}
     public void Place(string path,PointD screen)
@@ -82,11 +84,12 @@ sealed class TableSession
         if(Busy)return null;Busy=true;Notify(false);
         try
         {
-            var collection=Document.EnsureCollection();var input=paths.ToList();var result=await new PhotoImporter(Images).ImportAsync(input,replace?[]:Document.ActivePhotos,progress,catalog:Document.Photos);
+            var collection=Document.EnsureCollection();var wasEmpty=collection.Paths.Count==0;var input=paths.ToList();var result=await new PhotoImporter(Images).ImportAsync(input,replace?[]:Document.ActivePhotos,progress,catalog:Document.Photos);
             if(result.Photos.Count>0)
             {
                 Document.SetCollectionPhotos(collection,result.Photos,replace);
                 if(replace){collection.SourceLabel=System.IO.Path.GetFileName(input[0]);Document.SourceLabel=collection.SourceLabel;}
+                if(wasEmpty&&input.Count==1&&Directory.Exists(input[0])){collection.SourceLabel=System.IO.Path.GetFileName(System.IO.Path.TrimEndingDirectorySeparator(input[0]));Document.SourceLabel=collection.SourceLabel;}
                 LibraryRevision++;
                 Notify();
             }

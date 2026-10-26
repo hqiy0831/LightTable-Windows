@@ -15,16 +15,16 @@ sealed partial class MainWindow
         var bar=new MenuBar{RequestedTheme=ElementTheme.Dark,Background=new SolidColorBrush(Color(6))};
         MenuBarItem Menu(string title){var m=new MenuBarItem{Title=title};bar.Items.Add(m);return m;}
         void Item(MenuBarItem menu,string title,Action action){var item=new MenuFlyoutItem{Text=title};item.Click+=(_,_)=>{if(startup.Visibility!=Visibility.Visible&&!session.Busy&&collectionCancellation==null)action();};menu.Items.Add(item);}
-        var file=Menu("文件");Item(file,"选择照片文件夹…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());Item(file,"重试照片读取",()=>{renderer.RetryFailures();board.Invalidate();_=WarmRestoredVisible();});
+        var file=Menu("文件");Item(file,"从文件夹追加照片…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());Item(file,"重试照片读取",()=>{renderer.RetryFailures();board.Invalidate();_=WarmRestoredVisible();});
         Item(file,"打开数据目录",()=>System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(session.Storage.Root){UseShellExecute=true}));
         Item(file,"导入 Mac 版布局…",async()=>await ImportMacLayout());
         var view=Menu("观片");Item(view,"开灯 / 关灯     Ctrl+L",()=>session.ToggleLight(Rendering.TableRenderer.Seconds));Item(view,"普通指针     A",()=>{session.Loupe=false;session.CloseViewing=false;session.Notify(false);});Item(view,"放大镜     V",()=>{session.Loupe=true;session.Notify(false);});
-        Item(view,"整理全局     Shift+Z",()=>session.Fit());Item(view,"一键平铺",()=>session.Fit(true));Item(view,"清空台面",()=>session.Clear());Item(view,"移出所选     Delete",()=>session.RemoveSelection());Item(view,"胶片相册…",async()=>await ShowAlbums());Item(view,"全屏幻灯",()=>StartSlideshow());
+        Item(view,"整理全局     Shift+Z",()=>session.Fit());Item(view,"一键平铺",()=>session.Fit(true));Item(view,"清空台面",()=>session.Clear());Item(view,"收回所选到底栏     Delete",()=>session.RemoveSelection());Item(view,"胶片相册…",async()=>await ShowAlbums());Item(view,"全屏幻灯",()=>StartSlideshow());
         var reduceMotion=new ToggleMenuFlyoutItem{Text="减少动态效果",IsChecked=session.ReduceMotion};reduceMotion.Click+=(_,_)=>{session.ReduceMotion=reduceMotion.IsChecked;var options=ReadOptions();options.ReduceMotion=session.ReduceMotion;WriteOptions(options);session.Notify(false);};view.Items.Add(reduceMotion);
-        var help=Menu("帮助");Item(help,"本次更新与使用指引…",async()=>await ShowGuide(true));Item(help,"快捷键…",async()=>await ShowMessage("使用观片台","Ctrl+O 选择文件夹（替换图库，保留台面）\nCtrl+Shift+O 添加照片\nCtrl+L 开灯 / 关灯\nA 指针 · V 放大镜 · Tab 切换1× → 2× → 4× → 8×\n按住 Space 凑近，松开恢复\nShift+Z 整理全局\nCtrl+单击 多选 · Shift+拖动 框选\nDelete 移出台面\nCtrl+滚轮 缩放视野 · 滚轮 平移\nAlt+拖动 旋转胶片 · 右下角拖动 缩放胶片\n右键 胶片旋转、缩放、摆正或移出\n幻灯方向键换片，Esc 退出\n\n删除台面项目只改变布局，原照片保持原样。"));
+        var help=Menu("帮助");Item(help,"本次更新与使用指引…",async()=>await ShowGuide(true));Item(help,"快捷键…",async()=>await ShowMessage("使用观片台","Ctrl+O 从文件夹追加到当前栏目\nCtrl+Shift+O 添加照片\nCtrl+L 开灯 / 关灯\nA 指针 · V 放大镜 · Tab 切换1× → 2× → 4× → 8×\n按住 Space 凑近，松开恢复\nShift+Z 整理全局\nCtrl+单击 多选 · Shift+拖动 框选\nDelete 台面收回底栏 / 底栏删除照片\nCtrl+滚轮 缩放视野 · 滚轮 平移\nAlt+拖动 旋转胶片 · 右下角拖动 缩放胶片\n右键 胶片旋转、缩放、摆正或移出\n幻灯方向键换片，Esc 退出\n\n收回和删除不改动磁盘原图；栏目台面保持独立。"));
         Item(help,"检查更新…",async()=>await CheckUpdates(true));
         var periodic=new ToggleMenuFlyoutItem{Text="运行期间自动检查更新",IsChecked=ReadOptions().PeriodicChecks};periodic.Click+=(_,_)=>{var o=ReadOptions();o.PeriodicChecks=periodic.IsChecked;WriteOptions(o);};help.Items.Add(periodic);
-        Item(help,"关于观片台",async()=>await ShowMessage($"LightTable for Windows {BuildInfo.Version}","基于 LightTable v0.1.72 的 Windows 原生移植开发构建。\nWinUI 3 · Win2D / Direct2D · .NET 10\n\n尚在移植与验收中，完整等价尚未通过。\nCopyright (c) 2026 fuyuan9972-svg\nMIT 许可和第三方说明随程序提供。\n\n当前构建未签名。默认机械声为原创合成声，原版录音须另行取得授权。"));
+        Item(help,"关于观片台",async()=>await ShowMessage($"LightTable for Windows {BuildInfo.Version}","原作者：抖音 @怕蛇LightTable\n原项目：github.com/fuyuan9972-svg/LightTable\n\n基于 LightTable v0.1.75 的 Windows 原生移植开发构建。\nWinUI 3 · Win2D / Direct2D · .NET 10\n\n尚在移植与验收中，完整等价尚未通过。\nCopyright (c) 2026 fuyuan9972-svg\nMIT 许可和第三方说明随程序提供。\n\n当前构建未签名。默认机械声为原创合成声，原版录音须另行取得授权。"));
         return bar;
     }
     async Task PrepareStartup(bool afterStartup=true)
@@ -53,22 +53,22 @@ sealed partial class MainWindow
         dialogOpen=true;session.CloseViewing=false;
         try
         {
-            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="无边框胶片、薄侧沿与接触阴影。\n\n从底栏拖片到台面，自由摆放；开灯后，透射光短暂过曝，再自然回落。\n\n重启时先恢复台面，高清照片按需载入，按 Shift+Z 整理全局。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
+            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="新版支持独立栏目和可调上下分隔线。\n\n同步上游 v0.1.75：取片隐藏、Delete 收回、单张/整栏删除、透明镜缘、固定微翘与 +0.8EV 点灯过曝。\n\n原图只读，普通/凑近四档倍率均实际生效。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
             options.GuideVersion=BuildInfo.Version;WriteOptions(options);
             var result=await dialog.ShowAsync();
             if(result==ContentDialogResult.Secondary)
             {
-                var steps=new[]{("拖动胶片","选择文件夹或添加照片。拖动底栏胶片到灯箱，拖动散片移动；在胶片上右键旋转和缩放。"),("整理全局","Shift+Z 恢复散片默认尺寸并整理台面；一键平铺则将图库全部照片重新放上台面。Ctrl 点选和 Shift 框选后可批量移出。"),("凑近观察","V 切换放大镜，按住空格凑近。Tab、点击或拖动倍率控件可切换1×、2×、4×、8×。松开空格回到小镜，保留所选倍率。高清预览最长边 2200px。")};
+                var steps=new[]{("导入与独立栏目","选择文件夹会追加到当前栏目。点＋新建空白栏目；每栏拥有自己的照片、台面、相册和视角。"),("取片与收回","从底栏拖片到台面后，该照片在底栏隐藏。选中台面照片按 Delete 或右键收回，恢复到底栏原顺序；支持 Ctrl 多选。"),("删除照片或栏目","点选底栏照片后按 Delete 删除该张，同时移除当前台面对应散片，相册和原图保留。右键栏目或用⋯菜单删除整栏，其他栏目独立保留。"),("普通放大镜","V 开启放大镜。中心75%保持直线采样，外围有轻微曲率与透明反光。普通镜片也使用所选1×/2×/4×/8×。"),("凑近与倍率","按住 Space 凑近，松开返回并保留灯开关和倍率。Tab、点击或横向拖动胶囊切换四档。高清预览最长边2200px。"),("调整照片区","按住两区之间横线的中央抓手上下拖动，调整照片区与底栏高度；缩略图同步缩放。上下键微调，Home或⋯菜单恢复默认，重启保留尺寸。")};
                 for(int i=0;i<steps.Length;i++)
                 {
-                    var step=new ContentDialog{XamlRoot=root.XamlRoot,Title=steps[i].Item1,Content=new TextBlock{Text=steps[i].Item2,TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText=i==2?"开始观片":"下一步",SecondaryButtonText=i>0?"上一步":"",CloseButtonText="跳过"};
+                    var step=new ContentDialog{XamlRoot=root.XamlRoot,Title=steps[i].Item1,Content=new TextBlock{Text=steps[i].Item2,TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText=i==steps.Length-1?"开始观片":"下一步",SecondaryButtonText=i>0?"上一步":"",CloseButtonText="跳过"};
                     var selected=await step.ShowAsync();if(selected==ContentDialogResult.None)break;if(selected==ContentDialogResult.Secondary)i-=2;
                 }
             }
         }
         finally{dialogOpen=false;board.Focus(FocusState.Programmatic);}
     }
-    sealed class UserOptions{public string GuideVersion{get;set;}="";public bool PeriodicChecks{get;set;}=true;public bool ReduceMotion{get;set;}}
+    sealed class UserOptions{public string GuideVersion{get;set;}="";public bool PeriodicChecks{get;set;}=true;public bool ReduceMotion{get;set;}public double TrayHeight{get;set;}=PanelSizing.DefaultTrayHeight;}
     UserOptions ReadOptions(){try{return JsonSerializer.Deserialize<UserOptions>(File.ReadAllText(System.IO.Path.Combine(session.Storage.Root,"config","settings.json")))??new();}catch{return new();}}
     void WriteOptions(UserOptions options)
     {

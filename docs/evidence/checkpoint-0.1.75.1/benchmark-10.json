@@ -1,0 +1,444 @@
+{
+  "Date": "2026-10-26T12:20:52.6574635-04:00",
+  "Version": "0.1.75.1",
+  "Requested": 10,
+  "Imported": 10,
+  "Passed": true,
+  "Failure": null,
+  "Timings": {
+    "ImportAndThumbnailsMs": 104.2973,
+    "FitAndGpuPreparationMs": 241.7513,
+    "Pan120StepsWallMs": 3636.7097,
+    "WarmThumbnailRequestsMs": 49.033
+  },
+  "DrawCallbackCpuMs": {
+    "Count": 247,
+    "P50": 0.10820000170497224,
+    "P95": 1.1885000058100559,
+    "P99": 11.795799997344147,
+    "Max": 15.730799997982103
+  },
+  "Notice": "DrawCallback\u662FCPU\u56DE\u8C03\u8017\u65F6\uFF0C\u4E0D\u5305\u542B\u5B8C\u6574GPU\u5448\u73B0\uFF0C\u4E0D\u80FD\u4F5C\u4E3A60FPS\u8BC1\u636E\uFF1B\u5F53\u524D\u4E0D\u5305\u542B\u5B8C\u6574UI\u8F93\u5165\u6216\u957F\u671F\u7A33\u5B9A\u6027\u9A8C\u6536\u3002",
+  "MemoryBytes": 11509040,
+  "GpuTextureEstimate": 46568832,
+  "MemoryHits": 6,
+  "DiskHits": 0,
+  "DecodeCount": 27,
+  "OpticalCache": {
+    "BuildCount": 23,
+    "DiskHits": 0,
+    "CorruptReads": 0,
+    "WriteFailures": 0,
+    "Bytes": 8754837,
+    "Entries": 23
+  },
+  "CacheBytes": 10716525,
+  "Samples": [
+    {
+      "Seconds": 62253.5260458,
+      "WorkingSet": 146817024,
+      "PrivateBytes": 58884096,
+      "CpuMilliseconds": 625,
+      "CpuCache": 0,
+      "GpuTextureEstimate": 110592,
+      "Io": {
+        "ReadBytes": 452403,
+        "WriteBytes": 1490,
+        "ReadOperations": 501,
+        "WriteOperations": 42
+      }
+    },
+    {
+      "Seconds": 62253.7815386,
+      "WorkingSet": 177995776,
+      "PrivateBytes": 89378816,
+      "CpuMilliseconds": 671.875,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1955459,
+        "ReadOperations": 560,
+        "WriteOperations": 194
+      }
+    },
+    {
+      "Seconds": 62254.0463467,
+      "WorkingSet": 181133312,
+      "PrivateBytes": 89505792,
+      "CpuMilliseconds": 750,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62254.3105992,
+      "WorkingSet": 182206464,
+      "PrivateBytes": 89686016,
+      "CpuMilliseconds": 765.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62254.5707581,
+      "WorkingSet": 182460416,
+      "PrivateBytes": 89694208,
+      "CpuMilliseconds": 796.875,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62254.8365975,
+      "WorkingSet": 182779904,
+      "PrivateBytes": 89829376,
+      "CpuMilliseconds": 843.75,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62255.1019939,
+      "WorkingSet": 183312384,
+      "PrivateBytes": 89964544,
+      "CpuMilliseconds": 859.375,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62255.3654576,
+      "WorkingSet": 183472128,
+      "PrivateBytes": 89964544,
+      "CpuMilliseconds": 890.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969622,
+        "ReadOperations": 560,
+        "WriteOperations": 195
+      }
+    },
+    {
+      "Seconds": 62255.6302763,
+      "WorkingSet": 183996416,
+      "PrivateBytes": 90165248,
+      "CpuMilliseconds": 890.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62255.89397,
+      "WorkingSet": 184180736,
+      "PrivateBytes": 90247168,
+      "CpuMilliseconds": 906.25,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62256.1592437,
+      "WorkingSet": 184627200,
+      "PrivateBytes": 90316800,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62256.421021,
+      "WorkingSet": 184709120,
+      "PrivateBytes": 90390528,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62256.6858727,
+      "WorkingSet": 184770560,
+      "PrivateBytes": 90415104,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62256.9492078,
+      "WorkingSet": 184836096,
+      "PrivateBytes": 90480640,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62257.2137676,
+      "WorkingSet": 184905728,
+      "PrivateBytes": 90550272,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969871,
+        "ReadOperations": 560,
+        "WriteOperations": 196
+      }
+    },
+    {
+      "Seconds": 62257.4771162,
+      "WorkingSet": 188055552,
+      "PrivateBytes": 93085696,
+      "CpuMilliseconds": 1015.625,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1969883,
+        "ReadOperations": 560,
+        "WriteOperations": 199
+      }
+    },
+    {
+      "Seconds": 62257.7415889,
+      "WorkingSet": 188313600,
+      "PrivateBytes": 93290496,
+      "CpuMilliseconds": 1031.25,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62258.0070944,
+      "WorkingSet": 188784640,
+      "PrivateBytes": 93433856,
+      "CpuMilliseconds": 1031.25,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62258.2719548,
+      "WorkingSet": 189165568,
+      "PrivateBytes": 93638656,
+      "CpuMilliseconds": 1093.75,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62258.5372166,
+      "WorkingSet": 189509632,
+      "PrivateBytes": 93843456,
+      "CpuMilliseconds": 1093.75,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62258.8026662,
+      "WorkingSet": 189759488,
+      "PrivateBytes": 94048256,
+      "CpuMilliseconds": 1109.375,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62259.0534596,
+      "WorkingSet": 190603264,
+      "PrivateBytes": 94879744,
+      "CpuMilliseconds": 1109.375,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62259.3182489,
+      "WorkingSet": 190840832,
+      "PrivateBytes": 95182848,
+      "CpuMilliseconds": 1109.375,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62259.581023,
+      "WorkingSet": 190889984,
+      "PrivateBytes": 95186944,
+      "CpuMilliseconds": 1109.375,
+      "CpuCache": 1873920,
+      "GpuTextureEstimate": 10974592,
+      "Io": {
+        "ReadBytes": 627508,
+        "WriteBytes": 1970175,
+        "ReadOperations": 560,
+        "WriteOperations": 200
+      }
+    },
+    {
+      "Seconds": 62259.8510793,
+      "WorkingSet": 219471872,
+      "PrivateBytes": 123707392,
+      "CpuMilliseconds": 1125,
+      "CpuCache": 7741440,
+      "GpuTextureEstimate": 15664512,
+      "Io": {
+        "ReadBytes": 729595,
+        "WriteBytes": 4052845,
+        "ReadOperations": 601,
+        "WriteOperations": 294
+      }
+    },
+    {
+      "Seconds": 62260.1111282,
+      "WorkingSet": 228937728,
+      "PrivateBytes": 132763648,
+      "CpuMilliseconds": 1171.875,
+      "CpuCache": 10124800,
+      "GpuTextureEstimate": 17569152,
+      "Io": {
+        "ReadBytes": 750000,
+        "WriteBytes": 4270433,
+        "ReadOperations": 609,
+        "WriteOperations": 318
+      }
+    },
+    {
+      "Seconds": 62260.3620737,
+      "WorkingSet": 272633856,
+      "PrivateBytes": 181571584,
+      "CpuMilliseconds": 1203.125,
+      "CpuCache": 10124800,
+      "GpuTextureEstimate": 20498432,
+      "Io": {
+        "ReadBytes": 750000,
+        "WriteBytes": 6383245,
+        "ReadOperations": 609,
+        "WriteOperations": 376
+      }
+    },
+    {
+      "Seconds": 62260.6272583,
+      "WorkingSet": 284913664,
+      "PrivateBytes": 188588032,
+      "CpuMilliseconds": 1328.125,
+      "CpuCache": 10124800,
+      "GpuTextureEstimate": 46568832,
+      "Io": {
+        "ReadBytes": 750000,
+        "WriteBytes": 10423129,
+        "ReadOperations": 609,
+        "WriteOperations": 465
+      }
+    },
+    {
+      "Seconds": 62260.8921303,
+      "WorkingSet": 286539776,
+      "PrivateBytes": 189968384,
+      "CpuMilliseconds": 1468.75,
+      "CpuCache": 10995120,
+      "GpuTextureEstimate": 46568832,
+      "Io": {
+        "ReadBytes": 866996,
+        "WriteBytes": 10600351,
+        "ReadOperations": 654,
+        "WriteOperations": 489
+      }
+    }
+  ]
+}

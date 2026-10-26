@@ -16,6 +16,9 @@ public sealed partial class TableDocument
     {
         get{var index=Photos.ToDictionary(p=>p.Path,StringComparer.OrdinalIgnoreCase);return EnsureCollection().Paths.Where(index.ContainsKey).Select(p=>index[p]).ToArray();}
     }
+    [System.Text.Json.Serialization.JsonIgnore]
+    public IReadOnlyList<Photo> AvailablePhotos
+    {get{var placed=Slides.Select(s=>s.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);return ActivePhotos.Where(p=>!placed.Contains(p.Path)).ToArray();}}
     public PhotoCollection AddCollection(string? name=null)
     {
         EnsureCollection();var collection=new PhotoCollection{Name=string.IsNullOrWhiteSpace(name)?$"栏目 {Collections.Count+1}":name.Trim(),Table=new()};
@@ -47,8 +50,36 @@ public sealed partial class TableDocument
     public int RemoveFromCollection(IEnumerable<string> paths)
     {
         var removed=paths.ToHashSet(StringComparer.OrdinalIgnoreCase);
-        // Membership only: placed slides, album pockets, other columns and source files survive.
-        return EnsureCollection().Paths.RemoveAll(removed.Contains);
+        var count=EnsureCollection().Paths.RemoveAll(removed.Contains);
+        // Upstream 0.1.74 removes matching loose films, while albums, other
+        // workspaces and disk originals retain their own references.
+        var ids=Slides.Where(s=>removed.Contains(s.Path)).Select(s=>s.Id).ToHashSet();
+        Slides.RemoveAll(s=>ids.Contains(s.Id));TableOrder.RemoveAll(ids.Contains);PruneCatalog();return count;
+    }
+    public void ReturnToCollection(IEnumerable<Guid> ids)
+    {
+        var set=ids.ToHashSet();var collection=EnsureCollection();var paths=collection.Paths.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        foreach(var slide in Slides.Where(s=>set.Contains(s.Id)))if(paths.Add(slide.Path))collection.Paths.Add(slide.Path);
+        Remove(set);
+    }
+    public void DeleteCollection(Guid id)
+    {
+        var index=Collections.FindIndex(c=>c.Id==id);if(index<0)return;
+        SaveActiveCollection();var wasActive=ActiveCollectionId==id;Collections.RemoveAt(index);
+        if(Collections.Count==0)Collections.Add(new(){Name="栏目一",Table=new()});
+        if(wasActive){var next=Collections[Math.Min(index,Collections.Count-1)];ActiveCollectionId=next.Id;ApplyTable(next.Table??=new());SourceLabel=next.SourceLabel;}
+        PruneCatalog();
+    }
+    void PruneCatalog()
+    {
+        SaveActiveCollection();var retained=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach(var collection in Collections)
+        {
+            retained.UnionWith(collection.Paths);
+            if(collection.Table is not {} table)continue;
+            retained.UnionWith(table.Slides.Select(s=>s.Path));retained.UnionWith(table.Albums.SelectMany(a=>a.Pockets).Select(p=>p.Path).OfType<string>());
+        }
+        Photos.RemoveAll(p=>!retained.Contains(p.Path));
     }
     void NormalizeCollections()
     {

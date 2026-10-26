@@ -126,6 +126,8 @@ sealed partial class MainWindow
             });
             await Check("GPU-ordinary-and-close-actual-1-2-4-8-sampling",()=>CheckActualLoupeSampling());
             await Check("Independent-workspaces-GPU-and-persistence",()=>CheckIndependentWorkspace());
+            await Check("Panel-resize-layout-and-settings",()=>CheckPanelSizingAndSettings());
+            await Check("Bounded-live-canvas-draw-recovery",()=>CheckBoundedDrawRecovery());
             await Check("GPU-projector-optics-cache-and-composite",async()=>
             {
                 var before=JsonSerializer.Serialize(session.Document,DocumentStore.JsonOptions);
@@ -223,10 +225,10 @@ sealed partial class MainWindow
                 Require(trayItem.Thumbnail is Microsoft.UI.Xaml.Media.Imaging.WriteableBitmap {PixelWidth:138,PixelHeight:132},"相册底栏没有真实GPU缩略图");
                 await Task.Delay(32);if(tray.ContainerFromItem(trayItem) is FrameworkElement container&&FindTrayImage(container) is {} image)
                 {
-                    // XAML layout rounds edges to physical pixels. At 125%,
-                    // 69×66 DIPs is rendered as 68.8×65.6 DIPs on this machine.
+                    // The resizable tray scales the 69x66 album frame. XAML
+                    // still rounds its final edges to physical pixels.
                     var tolerance=1/root.XamlRoot.RasterizationScale+.0001;
-                    Require(image.Width==69&&image.Height==66&&Math.Abs(image.ActualWidth-69)<=tolerance&&Math.Abs(image.ActualHeight-66)<=tolerance,$"相册底栏图像布局尺寸错误：actual={image.ActualWidth}×{image.ActualHeight}, requested={image.Width}×{image.Height}, dpi={root.XamlRoot.RasterizationScale}");
+                    Require(Math.Abs(image.Width-trayItem.ImageWidth)<.01&&Math.Abs(image.Height-trayItem.ImageHeight)<.01&&Math.Abs(image.ActualWidth-image.Width)<=tolerance&&Math.Abs(image.ActualHeight-image.Height)<=tolerance,$"相册底栏图像布局尺寸错误：actual={image.ActualWidth}×{image.ActualHeight}, requested={image.Width}×{image.Height}, dpi={root.XamlRoot.RasterizationScale}");
                     session.Storage.Log($"相册缩略图布局 actual={image.ActualWidth}×{image.ActualHeight}, dpi={root.XamlRoot.RasterizationScale}, tolerance={tolerance}");
                 }
                 var slide=session.Document.Slides[0];session.Select(slide.Id);session.TransformSelection(1.12,15);session.Document.Viewport.Zoom(1.7,new(400,250));session.Flush();

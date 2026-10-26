@@ -8,6 +8,36 @@ namespace LightTable.Windows;
 
 sealed partial class MainWindow
 {
+    async Task<string> CheckBoundedDrawRecovery()
+    {
+        var until=System.Diagnostics.Stopwatch.StartNew();while(renderer.ResourcesPending&&until.Elapsed.TotalSeconds<3)await Task.Delay(16);await Task.Delay(180);
+        try
+        {
+            var calls=0;var before=renderer.ScheduledDrawRetries;
+            renderer.DiagnosticDrawFailure=()=>calls++==0?new InvalidOperationException("injected transient draw failure"):null;
+            renderer.DocumentChanged();board.Invalidate();await Task.Delay(220);
+            if(calls<2||renderer.ScheduledDrawRetries<=before)throw new InvalidOperationException("瞬时画面故障没有自动重绘恢复");
+            before=renderer.ScheduledDrawRetries;renderer.DiagnosticDrawFailure=()=>new InvalidOperationException("injected persistent draw failure");renderer.DocumentChanged();board.Invalidate();await Task.Delay(500);
+            var retries=renderer.ScheduledDrawRetries-before;if(retries!=3)throw new InvalidOperationException($"持续故障重试没有限制为3次：{retries}");
+            var frames=renderer.FrameTimes.Count;renderer.DiagnosticDrawFailure=null;renderer.DocumentChanged();board.Invalidate();await Task.Delay(150);
+            if(renderer.FrameTimes.Count<=frames)throw new InvalidOperationException("新输入没有恢复正常画面");
+            return $"生产Canvas.Draw注入：瞬时故障后自动重绘；持续故障仅{retries}次延后重试，新输入恢复正常。非真实驱动故障验收。";
+        }
+        finally{renderer.DiagnosticDrawFailure=null;renderer.DocumentChanged();}
+    }
+    async Task<string> CheckPanelSizingAndSettings()
+    {
+        var original=requestedTrayHeight;var beforeBoard=board.ActualHeight;var beforeTray=tray.ActualHeight;
+        try
+        {
+            ApplyTrayHeight(300);await Task.Delay(80);var expanded=tray.ActualHeight;var photoHeight=board.ActualHeight;
+            if(expanded<beforeTray+50||photoHeight>beforeBoard-50)throw new InvalidOperationException("上下两个区域没有随分隔条反向调整");
+            SaveTrayHeight();if(Math.Abs(ReadOptions().TrayHeight-requestedTrayHeight)>.01)throw new InvalidOperationException("分隔条高度没有保存");
+            ApplyTrayHeight(-10000);await Task.Delay(50);if(tray.ActualHeight<=30||board.ActualHeight<=80)throw new InvalidOperationException("分隔条越界导致区域不可用");
+            return $"生产行高/真实XAML布局：底栏 {beforeTray:F1}→{expanded:F1}，照片区 {beforeBoard:F1}→{photoHeight:F1}；边界与设置往返通过。此项不冒充物理拖动。";
+        }
+        finally{ApplyTrayHeight(original);SaveTrayHeight();await Task.Delay(80);}
+    }
     async Task<string> CheckIndependentWorkspace()
     {
         var doc=session.Document;doc.SaveActiveCollection();var first=doc.EnsureCollection();var ids=doc.TableIds.ToArray();var oldSelection=session.Selection.ToArray();var originalCollections=doc.Collections.Select(c=>c.Id).ToHashSet();
@@ -17,7 +47,9 @@ sealed partial class MainWindow
             if(doc.ActivePhotos.Count!=0||doc.Slides.Count!=0||doc.Albums.Count!=0)throw new InvalidOperationException("新栏目不是完整空白工作区");
             using(var empty=renderer.RenderSnapshot(true,0,true))if(empty.GetPixelColors().Distinct().Count()!=1)throw new InvalidOperationException("新栏目残留上一个台面缓存像素");
             var photo=doc.Photos[0];doc.SetCollectionPhotos(second,[photo],false);session.Place(photo.Path,new(session.Width/2,session.Height/2));await renderer.PrepareVisibleTable();
-            if(doc.Slides.Count!=1)throw new InvalidOperationException("第二栏目没有独立散片");var secondId=doc.Slides[0].Id;session.Flush();
+            if(doc.Slides.Count!=1||doc.AvailablePhotos.Count!=0||trayItems.Any(i=>i.AlbumId==null))throw new InvalidOperationException("取出台面后底栏没有隐藏该片");
+            session.RemoveSelection();if(doc.AvailablePhotos.Count!=1||trayItems.Count(i=>i.AlbumId==null)!=1)throw new InvalidOperationException("收回没有恢复原栏目成员");
+            session.Place(photo.Path,new(session.Width/2,session.Height/2));await renderer.PrepareVisibleTable();var secondId=doc.Slides[0].Id;session.Flush();
             var restored=new DocumentStore(session.Storage.Root).Load(out var warning);if(warning!=null||restored.ActiveCollectionId!=second.Id||restored.Slides.Single().Id!=secondId)throw new InvalidOperationException("活动栏目存取失败");
             restored.SwitchCollection(first.Id);if(!restored.TableIds.SequenceEqual(ids))throw new InvalidOperationException("非活动栏目未独立保存");
             session.SwitchCollection(first.Id);renderer.DocumentChanged();if(!doc.TableIds.SequenceEqual(ids))throw new InvalidOperationException("切回第一栏目未恢复原摆放");

@@ -1,5 +1,9 @@
 # 移植基线
 
+当前上游基线为 **v0.1.75 / 827ca13d947e4472675bbe409837c0188a9385d9**。从 v0.1.72 到 v0.1.75 的三个更新已审计并移植到 Windows 0.1.75.1；上游源码未修改。更新映射与用户要求的差异见 [同步记录](UPSTREAM_SYNC_0.1.75.zh-CN.md)。
+
+## 初始基线（历史）
+
 - 仓库：https://github.com/fuyuan9972-svg/LightTable
 - 版本：v0.1.72
 - Commit：`1a998cfce9096ac7b42e26aba67c922885fd43e2`

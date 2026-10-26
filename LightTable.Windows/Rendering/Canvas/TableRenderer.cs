@@ -9,6 +9,7 @@ using Microsoft.Graphics.Canvas.Text;
 using Microsoft.Graphics.Canvas.UI.Xaml;
 using Microsoft.Graphics.Canvas.UI;
 using Microsoft.UI;
+using Microsoft.UI.Xaml;
 using global::Windows.Foundation;
 using global::Windows.UI;
 
@@ -49,12 +50,15 @@ sealed class TableRenderer : IDisposable
     readonly Dictionary<string,string> failed=[];
     readonly Dictionary<string,double> rasterFootprints=new(StringComparer.OrdinalIgnoreCase);
     readonly Dictionary<string,double> aspectIndex=new(StringComparer.OrdinalIgnoreCase);
+    readonly Dictionary<Guid,Slide> slidesById=[];
+    readonly Dictionary<Guid,AlbumPage> albumsById=[];
     readonly HashSet<string> albumPaths=new(StringComparer.OrdinalIgnoreCase);
     readonly Dictionary<string,(string Key,OpticalPhoto Photo)> bestAvailable=new(StringComparer.OrdinalIgnoreCase);
     long indexedRevision=-1;
     readonly CanvasTextFormat loadingFormat=new(){FontSize=11,HorizontalAlignment=CanvasHorizontalAlignment.Center,VerticalAlignment=CanvasVerticalAlignment.Center};
     OpticalTables? tables;
     AlbumMembranes? membranes;
+    FilmContactSurface? contactSurface;
     public long ResourcesRevision=>resourcesRevision;
     public long CachedResourcesRevision=>sceneCacheResourcesRevision;
     public bool ResourcesPending=>pending.Count>0;
@@ -63,6 +67,30 @@ sealed class TableRenderer : IDisposable
     readonly ResourceEpoch epoch=new();
     CanvasDevice? resourceDevice;
     bool disposed;
+    readonly OpticalRetryBudget tableRetry=new(),lensRetry=new();
+    readonly Dictionary<CanvasControl,Microsoft.UI.Dispatching.DispatcherQueueTimer> drawRetryTimers=[];
+    readonly Dictionary<CanvasControl,long> exhaustedDrawRevisions=[];
+    internal Func<Exception?>? DiagnosticDrawFailure {get;set;}
+    public long ScheduledDrawRetries {get;private set;}
+    public long SuccessfulDraws {get;private set;}
+    void BeginDisplayInput()
+    {
+        tableRetry.BeginInput();lensRetry.BeginInput();foreach(var timer in drawRetryTimers.Values)timer.Stop();drawRetryTimers.Clear();
+    }
+    void InputSizeChanged(object sender,SizeChangedEventArgs args)=>BeginDisplayInput();
+    void DrawSucceeded(CanvasControl surface,OpticalRetryBudget budget)
+    {budget.Succeeded();SuccessfulDraws++;if(drawRetryTimers.Remove(surface,out var timer))timer.Stop();}
+    void RetryDraw(CanvasControl surface,OpticalRetryBudget budget,Exception error)
+    {
+        if(disposed||drawRetryTimers.ContainsKey(surface))return;
+        if(HandleDeviceError(error))return;
+        if(budget.NextDelay() is not {} delay)
+        {
+            if(!exhaustedDrawRevisions.TryGetValue(surface,out var previous)||previous!=budget.Revision){exhaustedDrawRevisions[surface]=budget.Revision;session.Storage.Log($"画面重试已达上限：{error.Message}");}return;
+        }
+        var revision=budget.Revision;var deviceGeneration=generation;var timer=surface.DispatcherQueue.CreateTimer();timer.IsRepeating=false;timer.Interval=delay;drawRetryTimers[surface]=timer;ScheduledDrawRetries++;
+        timer.Tick+=(_,_)=>{drawRetryTimers.Remove(surface);if(!disposed&&budget.Revision==revision&&generation==deviceGeneration&&surface.Visibility==Visibility.Visible&&surface.ActualWidth>0&&surface.ActualHeight>0)surface.Invalidate();};timer.Start();
+    }
     public Task DeviceReady=>WaitForDevice();
     public long DeviceGeneration=>epoch.Version;
     internal Func<string,int,Task>? BeforeUpload {get;set;}
@@ -72,11 +100,12 @@ sealed class TableRenderer : IDisposable
     public Color PanelColor=>Panel(session.Lamp.Sample(Seconds,session.ReduceMotion));
     public event Action? ResourceReady;
     public static double Seconds=>Stopwatch.GetTimestamp()/(double)Stopwatch.Frequency;
-    public PointD Pointer {get;set;}=new(300,250);
+    PointD pointer=new(300,250);
+    public PointD Pointer {get=>pointer;set{if(pointer==value)return;pointer=value;BeginDisplayInput();}}
     public bool PointerInside {get;set;}
     public RectD? Marquee {get;set;}
     double closeBlend,focalBlend,lastFrame=Seconds;
-    public long GpuBytes=>gpu.Values.Sum(v=>v.Photo.Cost)+SceneRasterBytes;
+    public long GpuBytes=>gpu.Values.Sum(v=>v.Photo.Cost)+SceneRasterBytes+(contactSurface?.TextureBytes??0);
     public List<double> FrameTimes {get;}=[];
     public string? PerformancePhase {get;set;}
     public sealed record DrawSample(string Phase,double Seconds,double CpuMs,double Flare,int Pending,bool CommandCached,bool Close,bool RasterCached);
@@ -100,15 +129,15 @@ sealed class TableRenderer : IDisposable
         this.session=session;this.canvas=canvas;this.lensCanvas=lensCanvas;
         canvas.CreateResources+=CreateResources;
         canvas.Draw+=Draw;
-        lensCanvas.Draw+=DrawLens;
+        lensCanvas.Draw+=DrawLens;session.Changed+=BeginDisplayInput;canvas.SizeChanged+=InputSizeChanged;lensCanvas.SizeChanged+=InputSizeChanged;
     }
     void CreateResources(CanvasControl sender,CanvasCreateResourcesEventArgs args)
     {
-        if(disposed)return;
+        if(disposed)return;BeginDisplayInput();
         if(args.Reason==CanvasCreateResourcesReason.DpiChanged&&ReferenceEquals(resourceDevice,sender.Device)&&tables!=null)
         {lensTarget?.Dispose();lensTarget=null;ClearSceneCache();lastScale=-1;canvas.Invalidate();lensCanvas.Invalidate();return;}
         epoch.Begin();ClearDeviceResources();resourceDevice=sender.Device;resourceDevice.DeviceLost+=DeviceLost;
-        tables=new(resourceDevice);membranes=new(resourceDevice);
+        tables=new(resourceDevice);membranes=new(resourceDevice);contactSurface=new(resourceDevice);
         lensShader=new PixelShaderEffect(File.ReadAllBytes(System.IO.Path.Combine(AppContext.BaseDirectory,"Resources","LoupeEdge.bin"))){Source1Mapping=SamplerCoordinateMapping.Offset,Source1Interpolation=CanvasImageInterpolation.Linear};
         epoch.Complete(generation);ResourceReady?.Invoke();canvas.Invalidate();lensCanvas.Invalidate();
     }
@@ -117,7 +146,7 @@ sealed class TableRenderer : IDisposable
     void ClearDeviceResources()
     {
         if(resourceDevice!=null)resourceDevice.DeviceLost-=DeviceLost;resourceDevice=null;resourcesRevision++;
-        ClearSceneCache();foreach(var entry in gpu.Values)entry.Photo.Dispose();gpu.Clear();pending.Clear();failed.Clear();tables?.Dispose();tables=null;membranes?.Dispose();membranes=null;lensTarget?.Dispose();lensTarget=null;lensShader?.Dispose();lensShader=null;
+        ClearSceneCache();foreach(var entry in gpu.Values)entry.Photo.Dispose();gpu.Clear();pending.Clear();failed.Clear();tables?.Dispose();tables=null;membranes?.Dispose();membranes=null;contactSurface?.Dispose();contactSurface=null;lensTarget?.Dispose();lensTarget=null;lensShader?.Dispose();lensShader=null;
     }
     async Task WaitForDevice()
     {
@@ -155,7 +184,7 @@ sealed class TableRenderer : IDisposable
     }
     void RefreshRasterFootprints()
     {
-        rasterFootprints.Clear();aspectIndex.Clear();albumPaths.Clear();var dpi=canvas.Dpi/96d;
+        rasterFootprints.Clear();aspectIndex.Clear();albumPaths.Clear();slidesById.Clear();albumsById.Clear();foreach(var slide in session.Document.Slides)slidesById.TryAdd(slide.Id,slide);foreach(var album in session.Document.Albums)albumsById.TryAdd(album.Id,album);var dpi=canvas.Dpi/96d;
         foreach(var photo in session.Document.Photos)aspectIndex.TryAdd(photo.Path,photo.Aspect);
         foreach(var slide in session.Document.Slides)
         {
@@ -218,8 +247,8 @@ sealed class TableRenderer : IDisposable
         }
         throw new ObjectDisposedException(nameof(TableRenderer));
     }
-    public void RetryFailures()=>failed.Clear();
-    public void DocumentChanged(){ClearSceneCache();resourcesRevision++;failed.Clear();canvas.Invalidate();lensCanvas.Invalidate();}
+    public void RetryFailures(){BeginDisplayInput();failed.Clear();}
+    public void DocumentChanged(){BeginDisplayInput();ClearSceneCache();resourcesRevision++;failed.Clear();canvas.Invalidate();lensCanvas.Invalidate();}
     public async Task PrepareVisibleTable()
     {
         await DeviceReady;
@@ -252,6 +281,12 @@ sealed class TableRenderer : IDisposable
         DrawAlbum(ds,album,LightResponse.Sample(10,true),false,new Placement(new(width/2,height/2),620*scale,690*scale,0),true);
     }
     void Draw(CanvasControl sender,CanvasDrawEventArgs args)
+    {
+        if(disposed)return;
+        try{if(DiagnosticDrawFailure?.Invoke() is {} failure)throw failure;DrawCore(sender,args);DrawSucceeded(sender,tableRetry);}
+        catch(Exception error){RetryDraw(sender,tableRetry,error);}
+    }
+    void DrawCore(CanvasControl sender,CanvasDrawEventArgs args)
     {
         if(disposed)return;
         var begin=Seconds;frame++;drewCachedScene=drewRasterScene=false;
@@ -348,7 +383,7 @@ sealed class TableRenderer : IDisposable
     }
     void Scene(CanvasDrawingSession ds,LightSample sample,bool hd,bool all=false)
     {
-        var slides=session.Document.Slides.ToDictionary(s=>s.Id);var albums=session.Document.Albums.ToDictionary(a=>a.Id);
+        var slides=slidesById;var albums=albumsById;
         foreach(var id in session.Document.TableIds)
         {
             if(slides.TryGetValue(id,out var slide))
@@ -359,19 +394,18 @@ sealed class TableRenderer : IDisposable
                 if(hd&&loupeSourceRegion is {} region&&!p.Intersects(region))continue;
                 var bucket=hd?2200:Geometry.PreviewBucket(p.Width,p.Height,canvas.Dpi/96d);
                 var photo=Get(slide.Path,bucket,hd);
-                DrawFilm(ds,photo,p,sample,!hd&&session.ShowSelection&&session.Selection.Contains(id)&&!session.Loupe);
+                DrawFilm(ds,photo,p,sample,!hd&&session.ShowSelection&&session.Selection.Contains(id)&&!session.Loupe,id);
             }
             else if(albums.TryGetValue(id,out var album))DrawAlbum(ds,album,sample,hd);
         }
     }
-    void DrawFilm(CanvasDrawingSession ds,OpticalPhoto? photo,Placement p,LightSample sample,bool selected)
+    void DrawFilm(CanvasDrawingSession ds,OpticalPhoto? photo,Placement p,LightSample sample,bool selected,Guid filmId=default)
     {
         var original=ds.Transform;
         ds.Transform=Matrix3x2.CreateRotation((float)(p.Angle*Math.PI/180))*Matrix3x2.CreateTranslation((float)p.Center.X,(float)p.Center.Y)*original;
         var rect=new Rect(-p.Width/2,-p.Height/2,p.Width,p.Height);
         // Contact shadow and sub-DIP exposed substrate stay outside source pixels.
-        ds.FillRectangle(new Rect(rect.X+.35,rect.Y+.8,rect.Width+.6,rect.Height+.85),Color.FromArgb(200,14,14,14));
-        ds.DrawRectangle(new Rect(rect.X-1,rect.Y-1,rect.Width+2,rect.Height+2),Color.FromArgb(35,0,0,0),1.5f);
+        contactSurface?.Draw(ds,rect,filmId);
         if(photo!=null)ds.DrawImage(photo.View(sample,session.Brightness,tables!,session.BrightnessSettled),rect,new Rect(0,0,photo.Decoded.Width,photo.Decoded.Height),1,CanvasImageInterpolation.HighQualityCubic);
         else
         {
@@ -413,27 +447,35 @@ sealed class TableRenderer : IDisposable
     }
     public Guid? Hit(PointD point)
     {
+        RefreshRasterFootprints();
         foreach(var id in session.Document.TableIds.Reverse())
         {
-            if(session.Document.Slides.Find(s=>s.Id==id) is {} slide&&Geometry.Place(session.Document,slide).Contains(point))return id;
-            if(session.Document.Albums.Find(a=>a.Id==id) is {} album&&Geometry.Place(session.Document,album).Contains(point))return id;
+            if(slidesById.TryGetValue(id,out var slide)&&IndexedPlacement(slide).Contains(point))return id;
+            if(albumsById.TryGetValue(id,out var album)&&Geometry.Place(session.Document,album).Contains(point))return id;
         }
         return null;
     }
     public void SelectMarquee(RectD rect)
     {
+        RefreshRasterFootprints();
         session.Selection.Clear();
-        foreach(var s in session.Document.Slides)if(Geometry.Place(session.Document,s).Intersects(rect))session.Selection.Add(s.Id);
+        foreach(var s in session.Document.Slides)if(IndexedPlacement(s).Intersects(rect))session.Selection.Add(s.Id);
         foreach(var a in session.Document.Albums.Where(a=>a.Position!=null))if(Geometry.Place(session.Document,a).Intersects(rect))session.Selection.Add(a.Id);
         session.ShowSelection=true;session.Notify(false);
     }
     static Rect ToRect(RectD r)=>new(r.X,r.Y,r.Width,r.Height);
     Color Panel(LightSample s)
     {
-        double t=s.Transmission,minimum=LightResponse.PanelWhite(0,0),white=minimum+(LightResponse.PanelWhite(session.Brightness,s.Flare)-minimum)*t;
-        var neutral=t*Math.Clamp(session.Brightness,0,1);return Color.FromArgb(255,(byte)(255*white),(byte)(255*white*(.85/.89+(1-.85/.89)*neutral)),(byte)(255*white*(.75/.89+(1-.75/.89)*neutral)));
+        var off=LightResponse.UnlitPanel;var white=LightResponse.PanelWhite(session.Brightness,s.Flare);var amount=s.Transmission*Math.Clamp(session.Brightness,0,1);
+        return Color.FromArgb(255,(byte)(255*(off.R+(white-off.R)*amount)),(byte)(255*(off.G+(white-off.G)*amount)),(byte)(255*(off.B+(white-off.B)*amount)));
     }
-    void DrawLens(CanvasControl _,CanvasDrawEventArgs args)
+    void DrawLens(CanvasControl surface,CanvasDrawEventArgs args)
+    {
+        if(disposed)return;
+        try{DrawLensCore(surface,args);DrawSucceeded(surface,lensRetry);}
+        catch(Exception error){RetryDraw(surface,lensRetry,error);}
+    }
+    void DrawLensCore(CanvasControl _,CanvasDrawEventArgs args)
     {
         if(disposed)return;
         RefreshRasterFootprints();
@@ -479,16 +521,21 @@ sealed class TableRenderer : IDisposable
         }
         var scale=dpi/96;
         lensShader!.Source1=lensTarget;lensShader.Properties["center"]=new Vector2(half*scale,half*scale);
-        lensShader.Properties["radius"]=radius*scale;lensShader.Properties["strength"]=(float)(1-Geometry.Quintic(progress));
-        lensShader.MaxSamplerOffset=(int)Math.Ceiling(radius*scale*.007)+1;
+        lensShader.Properties["radius"]=radius*scale;lensShader.Properties["strength"]=(float)(1-.25*Geometry.Quintic(progress));
+        lensShader.MaxSamplerOffset=(int)Math.Ceiling(radius*scale*.033)+1;
         if(pose.Surround>0)ds.FillRectangle(new Rect(0,0,viewport.Width,viewport.Height),Color.FromArgb((byte)(255*pose.Surround),0,0,0));
         using var circle=CanvasGeometry.CreateCircle(ds,(float)center.X,(float)center.Y,radius);
         using(ds.CreateLayer(1,circle))ds.DrawImage(lensShader,new Rect(center.X-radius,center.Y-radius,radius*2,radius*2),new Rect(half-radius,half-radius,radius*2,radius*2));
-        var intensity=1-Geometry.Quintic(progress);
-        ds.DrawCircle((float)center.X,(float)center.Y,radius-1.25f,Color.FromArgb((byte)(230*intensity),30,30,30),2.5f);
-        ds.DrawCircle((float)center.X-1,(float)center.Y-1,radius-2,Color.FromArgb((byte)(90*intensity),255,255,255),1);
-        // Thin grazing highlights stay at the glass lip; central sampling is untouched.
-        for(int i=0;i<5;i++)ds.DrawCircle((float)center.X,(float)center.Y,radius*(.978f+i*.004f),Color.FromArgb((byte)((8+i*3)*intensity),255,255,255),.5f);
+        var intensity=.45+.55*(1-Geometry.Quintic(progress));
+        ds.DrawCircle((float)center.X,(float)center.Y,radius-1,Color.FromArgb((byte)(120*intensity),220,237,233),1.2f);
+        ds.DrawCircle((float)center.X,(float)center.Y,radius-2.2f,Color.FromArgb((byte)(90*intensity),255,255,255),.8f);
+        ds.DrawCircle((float)center.X,(float)center.Y,radius*.96f,Color.FromArgb((byte)(19*intensity),0,0,0),1);
+        // A narrow, translucent grazing reflection stays outside the clear centre.
+        for(int i=0;i<18;i++)
+        {
+            var angle=(210+i*2)*Math.PI/180;var next=(212+i*2)*Math.PI/180;var r=radius*.986;
+            ds.DrawLine(new Vector2((float)(center.X+Math.Cos(angle)*r),(float)(center.Y+Math.Sin(angle)*r)),new Vector2((float)(center.X+Math.Cos(next)*r),(float)(center.Y+Math.Sin(next)*r)),Color.FromArgb((byte)(70*intensity),255,255,255),1.2f);
+        }
         TrimGpuBudget();
     }
     void TrimGpuBudget()
@@ -511,5 +558,5 @@ sealed class TableRenderer : IDisposable
         using(var ds=target.CreateDrawingSession()){ds.Clear(Colors.Transparent);RenderLens(ds,size,pose,center,new(1,0,.5),progress);}
         return target;
     }
-    public void Dispose(){if(disposed)return;disposed=true;canvas.CreateResources-=CreateResources;canvas.Draw-=Draw;lensCanvas.Draw-=DrawLens;epoch.Dispose();ClearDeviceResources();loadingFormat.Dispose();bestAvailable.Clear();}
+    public void Dispose(){if(disposed)return;disposed=true;session.Changed-=BeginDisplayInput;canvas.SizeChanged-=InputSizeChanged;lensCanvas.SizeChanged-=InputSizeChanged;foreach(var timer in drawRetryTimers.Values)timer.Stop();drawRetryTimers.Clear();canvas.CreateResources-=CreateResources;canvas.Draw-=Draw;lensCanvas.Draw-=DrawLens;epoch.Dispose();ClearDeviceResources();loadingFormat.Dispose();bestAvailable.Clear();}
 }

@@ -26,6 +26,7 @@ sealed partial class MainWindow
     void Zoom(double factor,PointD? at=null){session.Document.Viewport.Zoom(session.Document.Viewport.Scale*factor,at??new(session.Width/2,session.Height/2));session.Notify();}
     void SetupInput()
     {
+        board.AddHandler(UIElement.PointerPressedEvent,new PointerEventHandler((_,_)=>tray.SelectedItems.Clear()),true);
         board.PointerPressed+=(_,e)=>
         {
             if(session.Busy||dialogOpen||albumOpen||session.Loupe)return;
@@ -105,7 +106,7 @@ sealed partial class MainWindow
             var f=new MenuFlyout();
             if(id!=null)
             {
-                MenuItem(f,"移出台面",()=>session.RemoveSelection());MenuItem(f,"摆正",()=>session.TransformSelection(straighten:true));
+                MenuItem(f,"收回底栏",()=>session.RemoveSelection());MenuItem(f,"摆正",()=>session.TransformSelection(straighten:true));
                 MenuItem(f,"逆时针旋转 15°",()=>session.TransformSelection(rotation:-15));MenuItem(f,"顺时针旋转 15°",()=>session.TransformSelection(rotation:15));
                 MenuItem(f,"缩小胶片",()=>session.TransformSelection(1/1.12));MenuItem(f,"放大胶片",()=>session.TransformSelection(1.12));
                 if(session.Document.Albums.Any(a=>a.Id==id))MenuItem(f,"编辑相册页",async()=>await ShowAlbums(id));
@@ -184,8 +185,8 @@ sealed partial class MainWindow
             case VirtualKey.Tab:if(!session.Loupe)return;if(tabHeld){e.Handled=true;return;}tabHeld=true;session.Power=LoupePowers.Next(session.Power);break;
             case VirtualKey.Space:if(!session.Loupe)return;spaceHeld=true;if(renderer.PointerInside||session.CloseViewing)session.CloseViewing=true;break;
             case VirtualKey.Z:if(!shift)return;session.Fit();break;
-            case VirtualKey.Delete:if(FocusIsInTray())RemoveLibrarySelection();else session.RemoveSelection();break;
-            case VirtualKey.Escape:session.CloseViewing=false;session.Selection.Clear();CancelGesture();break;
+            case VirtualKey.Delete:if(collectionPicker.FocusState!=FocusState.Unfocused)return;if(FocusIsInTray()&&tray.SelectedItems.OfType<TrayItem>().Any(i=>i.AlbumId==null))RemoveLibrarySelection();else session.RemoveSelection();break;
+            case VirtualKey.Escape:tray.SelectedItems.Clear();session.CloseViewing=false;session.Selection.Clear();CancelGesture();break;
             default:return;
         }
         e.Handled=true;session.Notify(false);

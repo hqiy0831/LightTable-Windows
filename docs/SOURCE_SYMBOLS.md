@@ -107,89 +107,98 @@
 
 ## Sources/LightTableApp/ContentView.swift
 - L6: `private enum TableStyle {`
-- L13: `struct ContentView: View {`
-- L66: `.onPreferenceChange(WorkbenchFrameKey.self) { canvasFrame = $0 }`
-- L73: `.onPreferenceChange(SlideshowTraySnapshotKey.self) { slideshowTray = $0 }`
-- L74: `.onPreferenceChange(LoupeSceneKey.self) { scene in`
-- L101: `.onPreferenceChange(FeatureGuideBounds.self) { guideBounds = $0 }`
-- L143: `.onChange(of: model.loupeEnabled) { _, enabled in if !enabled { loupe.cancel() } }`
-- L144: `.onChange(of: model.slideshowMode) { _, active in`
-- L157: `.onReceive(NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)) { _ in returnToSleeve() }`
-- L165: `.onChange(of: model.albumEditorPresented) { _, opened in`
-- L169: `Button("好") { model.message = nil }`
-- L205: `Button("整理全局", action: model.fitToWindow).buttonStyle(.plain).font(.system(size: 11)).padding(.horizontal, 5)`
-- L229: `}.buttonStyle(.plain).keyboardShortcut("l", modifiers: .command)`
-- L245: `private func tool(_ symbol: String, _ help: String, active: Bool = false, action: @escaping () -> Void) -> some View {`
-- L246: `Button(action: action) {`
-- L259: `Button(action: model.chooseFolder) {`
-- L264: `Button(action: model.choosePhotos) { Image(systemName: "plus").frame(width: 24, height: 28) }`
-- L266: `Button(action: model.placeAllPhotos) {`
-- L299: `Button("放到灯板中央") { model.placeAtViewCenter(photo.url) }`
-- L300: `Button("在 Finder 中显示") { NSWorkspace.shared.activateFileViewerSelecting([photo.url]) }`
-- L313: `.onDrop(of: PhotoDrag.acceptedTypes, isTargeted: nil) { model.accept($0, at: nil, board: nil) }`
-- L321: `private func startSlideshow() {`
-- L331: `@MainActor private func prepareSlideshow(_ run: UUID) async {`
-- L374: `private func targetSlide(for photo: Photo) -> Slide {`
-- L378: `private func pullFromSleeve(_ photo: Photo, _ image: CGImage, _ sleeve: CGRect, _ value: DragGesture.Value) {`
-- L402: `private func releaseFromSleeve(_ value: DragGesture.Value) {`
-- L428: `private func returnToSleeve() {`
-- L440: `private func releaseFlightCursor() {`
-- L445: `private struct TrayPhoto: View {`
-- L472: `.onEnded(onRelease))`
-- L477: `.onChange(of: pulling) { _, active in if !active { onTrackingEnded() } }`
-- L478: `.onChange(of: model.thumbnails[photo.url] != nil) { _, available in`
-- L497: `struct TableCanvas: View {`
-- L594: `Button(action: model.removeSelected) { Label("移出台面", systemImage: "trash") }`
-- L611: `.onPreferenceChange(SlidePresentationKey.self) { livePlacements = $0 }`
-- L612: `.onChange(of: draggingID) { _, id in if id != nil { loupe.cancel() } }`
-- L613: `.onChange(of: isPanning) { _, active in if !active { endPan() } }`
-- L614: `.onChange(of: isCanvasZooming) { _, active in if !active { endCanvasZoom() } }`
-- L638: `.onDrop(of: PhotoDrag.acceptedTypes + [AlbumDrag.contentType], isTargeted: $targeted) { providers, point in`
-- L642: `.onChange(of: size, initial: true) { _, value in model.boardSize = value }`
-- L665: `private func sceneItems(viewport: CGRect?, offset: CGPoint) -> [(url: URL?, photo: LoupeScenePhoto)] {`
-- L668: `func append(_ photo: LoupeScenePhoto, url: URL? = nil) {`
-- L682: `func surface(_ front: Bool) {`
-- L705: `private func endPan() {`
-- L711: `private func endCanvasZoom() {`
-- L717: `struct LampPanel: View {`
-- L757: `private struct SlideView: View {`
-- L881: `.onChange(of: isDragging) { _, active in`
-- L895: `Button(selected && model.selectedIDs.count > 1 ? "移出所选 \(model.selectedIDs.count) 项" : "移出台面") {`
-- L898: `Button("摆正") { model.update(slide.id) { $0.angle = 0 } }`
-- L900: `Button("逆时针旋转 15°") { model.update(slide.id) { $0.angle -= 15 } }`
-- L901: `Button("顺时针旋转 15°") { model.update(slide.id) { $0.angle += 15 } }`
-- L902: `Button("缩小胶片") { model.update(slide.id) { $0.width /= 1.12 } }`
-- L903: `Button("放大胶片") { model.update(slide.id) { $0.width *= 1.12 } }`
-- L937: `private func setDragCursor(active: Bool) {`
-- L943: `private func commit(_ change: (inout Slide) -> Void) {`
-- L956: `private func image(_ preview: PhotoPreview, size: CGSize) -> some View {`
-- L962: `struct TransmittedPhoto: View {`
-- L1005: `private func layer(_ image: CGImage) -> some View {`
-- L1011: `struct OpticalLoupe: View {`
-- L1062: `private struct SlideshowTrayPhotoAnchor {`
-- L1067: `private struct SlideshowTrayAnchors {`
-- L1071: `func resolved(in proxy: GeometryProxy) -> SlideshowTraySnapshot {`
-- L1081: `private struct SlideshowTrayAnchorsKey: PreferenceKey {`
-- L1083: `static func reduce(value: inout SlideshowTrayAnchors, nextValue: () -> SlideshowTrayAnchors) {`
-- L1090: `private struct SlideshowTrayPhotoSnapshot: Equatable {`
-- L1095: `static func == (lhs: Self, rhs: Self) -> Bool {`
-- L1100: `private struct SlideshowTraySnapshot: Equatable {`
-- L1105: `private struct SlideshowTraySnapshotKey: PreferenceKey {`
-- L1107: `static func reduce(value: inout SlideshowTraySnapshot, nextValue: () -> SlideshowTraySnapshot) { value = nextValue() }`
+- L15: `struct ContentView: View {`
+- L70: `.onPreferenceChange(WorkbenchFrameKey.self) { canvasFrame = $0 }`
+- L77: `.onPreferenceChange(SlideshowTraySnapshotKey.self) { slideshowTray = $0 }`
+- L78: `.onPreferenceChange(LoupeSceneKey.self) { scene in`
+- L105: `.onPreferenceChange(FeatureGuideBounds.self) { guideBounds = $0 }`
+- L148: `.onChange(of: model.loupeEnabled) { _, enabled in if !enabled { loupe.cancel() } }`
+- L149: `.onChange(of: model.activeTrayID) { _, _ in`
+- L154: `.onChange(of: model.slideshowMode) { _, active in`
+- L167: `.onReceive(NotificationCenter.default.publisher(for: NSWindow.didResignKeyNotification)) { _ in returnToSleeve() }`
+- L175: `.onChange(of: model.albumEditorPresented) { _, opened in`
+- L179: `Button("好") { model.message = nil }`
+- L216: `Button("整理全局", action: model.fitToWindow).buttonStyle(.plain).font(.system(size: 11)).padding(.horizontal, 5)`
+- L240: `}.buttonStyle(.plain).keyboardShortcut("l", modifiers: .command)`
+- L256: `private func tool(_ symbol: String, _ help: String, active: Bool = false, action: @escaping () -> Void) -> some View {`
+- L257: `Button(action: action) {`
+- L272: `Button(action: model.chooseFolder) {`
+- L283: `Button(action: model.placeAllPhotos) {`
+- L317: `Button("放到灯板中央") { model.placeAtViewCenter(photo.url) }`
+- L318: `Button(role: .destructive) {`
+- L323: `Button("在 Finder 中显示") { NSWorkspace.shared.activateFileViewerSelecting([photo.url]) }`
+- L336: `.onDrop(of: PhotoDrag.acceptedTypes, isTargeted: nil) { model.accept($0, at: nil, board: nil) }`
+- L354: `Button(role: .destructive) {`
+- L373: `.onPreferenceChange(TrayTabsWidthKey.self) { width in`
+- L378: `.onChange(of: model.activeTrayID) { _, id in proxy.scrollTo(id, anchor: .trailing) }`
+- L379: `.onChange(of: trayTabsWidth) { _, _ in proxy.scrollTo(model.activeTrayID, anchor: .trailing) }`
+- L391: `private func startSlideshow() {`
+- L401: `@MainActor private func prepareSlideshow(_ run: UUID) async {`
+- L449: `private func targetSlide(for photo: Photo) -> Slide {`
+- L453: `private func pullFromSleeve(_ photo: Photo, _ image: CGImage, _ sleeve: CGRect, _ value: DragGesture.Value) {`
+- L477: `private func releaseFromSleeve(_ value: DragGesture.Value) {`
+- L503: `private func returnToSleeve() {`
+- L515: `private func releaseFlightCursor() {`
+- L520: `private struct TrayPhoto: View {`
+- L557: `.onEnded(onRelease)`
+- L567: `.onChange(of: pulling) { _, active in`
+- L571: `.onChange(of: model.thumbnails[photo.url] != nil) { _, available in`
+- L594: `struct TableCanvas: View {`
+- L695: `Button(action: model.removeSelected) { Label("收回底栏", systemImage: "arrow.down.to.line") }`
+- L712: `.onPreferenceChange(SlidePresentationKey.self) { livePlacements = $0 }`
+- L713: `.onChange(of: draggingID) { _, id in if id != nil { loupe.cancel() } }`
+- L714: `.onChange(of: isPanning) { _, active in if !active { endPan() } }`
+- L715: `.onChange(of: isCanvasZooming) { _, active in if !active { endCanvasZoom() } }`
+- L739: `.onDrop(of: PhotoDrag.acceptedTypes + [AlbumDrag.contentType], isTargeted: $targeted) { providers, point in`
+- L743: `.onChange(of: size, initial: true) { _, value in model.boardSize = value }`
+- L766: `private func sceneItems(viewport: CGRect?, offset: CGPoint,`
+- L774: `func append(_ photo: LoupeScenePhoto, url: URL? = nil) {`
+- L788: `func surface(_ front: Bool) {`
+- L811: `private func endPan() {`
+- L817: `private func endCanvasZoom() {`
+- L823: `struct LampPanel: View {`
+- L863: `private struct SlideView: View {`
+- L988: `.onChange(of: isDragging) { _, active in`
+- L1002: `Button(selected && model.selectedIDs.count > 1 ? "收回所选 \(model.selectedIDs.count) 项到底栏" : "收回底栏") {`
+- L1005: `Button("摆正") { model.update(slide.id) { $0.angle = 0 } }`
+- L1007: `Button("逆时针旋转 15°") { model.update(slide.id) { $0.angle -= 15 } }`
+- L1008: `Button("顺时针旋转 15°") { model.update(slide.id) { $0.angle += 15 } }`
+- L1009: `Button("缩小胶片") { model.update(slide.id) { $0.width /= 1.12 } }`
+- L1010: `Button("放大胶片") { model.update(slide.id) { $0.width *= 1.12 } }`
+- L1044: `private func setDragCursor(active: Bool) {`
+- L1050: `private func commit(_ change: (inout Slide) -> Void) {`
+- L1063: `private func image(_ preview: PhotoPreview, size: CGSize) -> some View {`
+- L1069: `struct TransmittedPhoto: View {`
+- L1112: `private func layer(_ image: CGImage) -> some View {`
+- L1118: `struct OpticalLoupe: View {`
+- L1169: `private struct TrayTabsWidthKey: PreferenceKey {`
+- L1171: `static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {`
+- L1176: `private struct SlideshowTrayPhotoAnchor {`
+- L1181: `private struct SlideshowTrayAnchors {`
+- L1185: `func resolved(in proxy: GeometryProxy) -> SlideshowTraySnapshot {`
+- L1195: `private struct SlideshowTrayAnchorsKey: PreferenceKey {`
+- L1197: `static func reduce(value: inout SlideshowTrayAnchors, nextValue: () -> SlideshowTrayAnchors) {`
+- L1204: `private struct SlideshowTrayPhotoSnapshot: Equatable {`
+- L1209: `static func == (lhs: Self, rhs: Self) -> Bool {`
+- L1214: `private struct SlideshowTraySnapshot: Equatable {`
+- L1219: `private struct SlideshowTraySnapshotKey: PreferenceKey {`
+- L1221: `static func reduce(value: inout SlideshowTraySnapshot, nextValue: () -> SlideshowTraySnapshot) { value = nextValue() }`
 
 ## Sources/LightTableApp/FeatureGuideState.swift
-- L6: `final class FeatureGuideState {`
-- L11: `enum Phase: Equatable {`
-- L32: `func isWelcome(in window: UUID) -> Bool { owner == window && phase == .welcome }`
-- L33: `func step(in window: UUID) -> Int? {`
-- L38: `func presentAutomatically(in window: UUID, ready: Bool) {`
-- L44: `func replay(in window: UUID) {`
-- L51: `func didPresent(in window: UUID) {`
-- L58: `func beginTour(in window: UUID) {`
-- L63: `func advance(in window: UUID) {`
-- L68: `func previous(in window: UUID) {`
-- L73: `func dismissWelcome(in window: UUID) {`
-- L78: `func finish(in window: UUID) {`
+- L4: `enum FeatureGuideTarget: Hashable {`
+- L7: `static func releaseTour(step: Int, loupeEnabled: Bool) -> Self {`
+- L25: `final class FeatureGuideState {`
+- L33: `enum Phase: Equatable {`
+- L57: `func isWelcome(in window: UUID) -> Bool { owner == window && phase == .welcome }`
+- L58: `func step(in window: UUID) -> Int? {`
+- L63: `func presentAutomatically(in window: UUID, ready: Bool) {`
+- L69: `func replay(in window: UUID) {`
+- L76: `func didPresent(in window: UUID) {`
+- L86: `func beginTour(in window: UUID) {`
+- L91: `func advance(in window: UUID) {`
+- L96: `func previous(in window: UUID) {`
+- L101: `func dismissWelcome(in window: UUID) {`
+- L106: `func finish(in window: UUID) {`
 
 ## Sources/LightTableApp/FeatureGuideViews.swift
 - L4: `struct FeatureGuideCommand {`
@@ -197,38 +206,41 @@
 - L16: `struct FeatureGuideCommands: Commands {`
 - L20: `Button("本次更新…") { guide?.show() }`
 - L26: `struct FeatureGuideWelcome: View {`
-- L53: `Button("开始观片", action: close).buttonStyle(FeatureGuideButtonStyle())`
-- L54: `Button("看看怎么用", action: tour).buttonStyle(FeatureGuideButtonStyle(primary: true))`
-- L55: `.keyboardShortcut(.defaultAction)`
-- L65: `Button(action: close) { Image(systemName: "xmark").font(.system(size: 11)).frame(width: 26, height: 26) }`
-- L69: `.onExitCommand(perform: close)`
-- L72: `private func feature(_ icon: String, title: String, text: String, note: String? = nil) -> some View {`
-- L85: `struct FeatureGuideButtonStyle: ButtonStyle {`
-- L87: `func makeBody(configuration: Configuration) -> some View {`
-- L96: `enum FeatureGuideTarget: Hashable { case tools, magnification, removal, overview }`
-- L97: `struct FeatureGuideAnchors: PreferenceKey {`
-- L99: `static func reduce(value: inout [FeatureGuideTarget: Anchor<CGRect>], nextValue: () -> [FeatureGuideTarget: Anchor<CGRect>]) {`
-- L104: `func featureGuideTarget(_ target: FeatureGuideTarget) -> some View {`
-- L108: `struct FeatureGuideBounds: PreferenceKey {`
-- L110: `static func reduce(value: inout CGRect, nextValue: () -> CGRect) { value = nextValue() }`
-- L113: `struct FeatureGuideTour: View {`
-- L162: `Button("跳过", action: close).buttonStyle(.plain).accessibilityLabel("跳过新功能指引")`
-- L168: `Button("上一步", action: previous).buttonStyle(.plain).font(.system(size: 12))`
-- L171: `Button(step == 2 ? "开始观片" : "下一步", action: next)`
-- L181: `.onChange(of: card.size.height, initial: true) { _, height in cardHeight = height }`
-- L190: `struct FeatureGuideWindow: NSViewRepresentable {`
-- L192: `func makeNSView(context: Context) -> ObserverView { ObserverView() }`
-- L193: `func updateNSView(_ view: ObserverView, context: Context) { view.onKey = onKey }`
-- L194: `static func dismantleNSView(_ view: ObserverView, coordinator: ()) { view.stop() }`
-- L195: `final class ObserverView: NSView {`
-- L198: `override func hitTest(_ point: NSPoint) -> NSView? { nil }`
-- L199: `override func viewDidMoveToWindow() {`
-- L207: `private func report() {`
-- L213: `func stop() { observers.forEach(NotificationCenter.default.removeObserver); observers = [] }`
+- L50: `Button("开始观片", action: close).buttonStyle(FeatureGuideButtonStyle(primary: true))`
+- L51: `.keyboardShortcut(.defaultAction)`
+- L61: `Button(action: close) { Image(systemName: "xmark").font(.system(size: 11)).frame(width: 26, height: 26) }`
+- L65: `.onExitCommand(perform: close)`
+- L68: `private func feature(_ icon: String, title: String, text: String, note: String? = nil) -> some View {`
+- L81: `struct FeatureGuideButtonStyle: ButtonStyle {`
+- L83: `func makeBody(configuration: Configuration) -> some View {`
+- L92: `struct FeatureGuideAnchors: PreferenceKey {`
+- L94: `static func reduce(value: inout [FeatureGuideTarget: Anchor<CGRect>], nextValue: () -> [FeatureGuideTarget: Anchor<CGRect>]) {`
+- L99: `func featureGuideTarget(_ target: FeatureGuideTarget) -> some View {`
+- L103: `struct FeatureGuideBounds: PreferenceKey {`
+- L105: `static func reduce(value: inout CGRect, nextValue: () -> CGRect) { value = nextValue() }`
+- L108: `struct FeatureGuideTour: View {`
+- L169: `Button("跳过", action: close).buttonStyle(.plain).accessibilityLabel("跳过新功能指引")`
+- L175: `Button("上一步", action: previous).buttonStyle(.plain).font(.system(size: 12))`
+- L178: `Button(step + 1 == FeatureGuideState.tourStepCount ? "开始观片" : "下一步", action: next)`
+- L188: `.onChange(of: card.size.height, initial: true) { _, height in cardHeight = height }`
+- L198: `struct FeatureGuideWindow: NSViewRepresentable {`
+- L200: `func makeNSView(context: Context) -> ObserverView { ObserverView() }`
+- L201: `func updateNSView(_ view: ObserverView, context: Context) { view.onKey = onKey }`
+- L202: `static func dismantleNSView(_ view: ObserverView, coordinator: ()) { view.stop() }`
+- L203: `final class ObserverView: NSView {`
+- L206: `override func hitTest(_ point: NSPoint) -> NSView? { nil }`
+- L207: `override func viewDidMoveToWindow() {`
+- L215: `private func report() {`
+- L221: `func stop() { observers.forEach(NotificationCenter.default.removeObserver); observers = [] }`
 
 ## Sources/LightTableApp/FilmContactSurface.swift
-- L7: `enum FilmContactTexture {`
-- L59: `struct FilmContactSurface: View, Equatable {`
+- L5: `enum FilmContactVariant: Int, CaseIterable {`
+- L6: `case settled, leftCurl, rightCurl`
+- L9: `static func forFilm(_ id: UUID) -> Self {`
+- L19: `enum FilmContactTexture {`
+- L26: `static func image(for variant: FilmContactVariant) -> CGImage? { images[variant.rawValue] }`
+- L28: `private static func makeImage(_ variant: FilmContactVariant) -> CGImage? {`
+- L92: `struct FilmContactSurface: View, Equatable {`
 
 ## Sources/LightTableApp/FilmSleeve.swift
 - L4: `struct FilmSleeve: View {`
@@ -238,16 +250,17 @@
 ## Sources/LightTableApp/LightTableApp.swift
 - L4: `struct LightTableApp: App {`
 - L15: `.onReceive(NotificationCenter.default.publisher(for: NSApplication.willTerminateNotification)) { _ in model.flushSave() }`
-- L24: `Button("检查更新…", action: updater.checkForUpdates)`
-- L33: `Button("选择照片文件夹…", action: model.chooseFolder).keyboardShortcut("o")`
-- L35: `Button("添加照片…", action: model.choosePhotos).keyboardShortcut("o", modifiers: [.command, .shift])`
-- L38: `CommandMenu("观片") {`
-- L39: `Button(model.isLit ? "关灯" : "开灯") { model.isLit.toggle() }.keyboardShortcut("l", modifiers: .command)`
-- L41: `Button("普通指针") { model.loupeEnabled = false }.keyboardShortcut("a", modifiers: [])`
-- L43: `Button("放大镜") { model.loupeEnabled = true }.keyboardShortcut("v", modifiers: [])`
-- L45: `Button("整理全局", action: model.fitToWindow).keyboardShortcut("z", modifiers: .shift)`
-- L47: `Button(model.selectedIDs.count > 1 ? "移出所选 \(model.selectedIDs.count) 项" : "移出台面", action: model.removeSelected)`
-- L48: `.keyboardShortcut(.delete, modifiers: [])`
+- L27: `Button("检查更新…", action: updater.checkForUpdates)`
+- L36: `Button("从文件夹导入…", action: model.chooseFolder).keyboardShortcut("o")`
+- L38: `Button("新建底栏") { model.newTray() }`
+- L40: `Button("添加照片…", action: model.choosePhotos).keyboardShortcut("o", modifiers: [.command, .shift])`
+- L43: `CommandMenu("观片") {`
+- L44: `Button(model.isLit ? "关灯" : "开灯") { model.isLit.toggle() }.keyboardShortcut("l", modifiers: .command)`
+- L46: `Button("普通指针") { model.loupeEnabled = false }.keyboardShortcut("a", modifiers: [])`
+- L48: `Button("放大镜") { model.loupeEnabled = true }.keyboardShortcut("v", modifiers: [])`
+- L50: `Button("整理全局", action: model.fitToWindow).keyboardShortcut("z", modifiers: .shift)`
+- L52: `Button(model.selectedTrayPhoto != nil ? "从底栏删除照片" : (model.selectedIDs.count > 1 ? "收回所选 \(model.selectedIDs.count) 项到底栏" : "收回底栏"), action: model.deleteSelection)`
+- L53: `.keyboardShortcut(.delete, modifiers: [])`
 
 ## Sources/LightTableApp/LoupeExperience.swift
 - L5: `enum LoupeCloseMagnification: CaseIterable {`
@@ -267,32 +280,35 @@
 - L85: `struct LoupeSceneKey: PreferenceKey {`
 - L87: `static func reduce(value: inout LoupeSceneInput?, nextValue: () -> LoupeSceneInput?) {`
 - L93: `@MainActor @Observable final class LoupeExperience {`
-- L110: `func cycleMagnification() {`
-- L115: `func press() -> Bool {`
-- L125: `func release(reduceMotion: Bool) {`
-- L138: `func cancel() {`
-- L144: `private func finishReturn() {`
-- L150: `struct LoupeOverlay: View {`
-- L171: `Color.clear.onChange(of: proxy.size, initial: true) { _, size in experience.viewingSize = size }`
-- L180: `struct LoupeDepth {`
-- L204: `func rearCenter(origin: CGPoint, target: CGPoint) -> CGPoint {`
-- L213: `struct LoupeSampling {`
-- L241: `func input(scene: LoupeSceneInput, displayScale: CGFloat) -> LoupeDisplayInput {`
-- L246: `private struct LoupeSampledImage: View {`
-- L256: `.onChange(of: input, initial: true) { _, value in`
-- L263: `struct LoupeApproach: View, Animatable {`
-- L309: `struct LoupeGlassPose: Equatable {`
-- L316: `func axis(_ position: CGFloat, _ length: CGFloat) -> CGFloat {`
-- L329: `struct LoupeGlassSurface: View {`
-- L377: `struct LoupeKeyboard: NSViewRepresentable {`
-- L384: `func makeNSView(context: Context) -> MonitorView { MonitorView() }`
-- L385: `func updateNSView(_ view: MonitorView, context: Context) {`
-- L391: `static func dismantleNSView(_ view: MonitorView, coordinator: ()) { view.stop() }`
-- L393: `final class MonitorView: NSView {`
-- L404: `override func viewDidMoveToWindow() {`
-- L416: `func handle(_ event: NSEvent) -> NSEvent? {`
-- L438: `func reset() { held = false; tabHeld = false; cancelled?() }`
-- L439: `func stop() {`
+- L116: `func cycleMagnification() {`
+- L121: `func press() -> Bool {`
+- L131: `func release(reduceMotion: Bool) {`
+- L144: `func cancel() {`
+- L151: `private func finishReturn() {`
+- L156: `private func updateCursorVisibility() {`
+- L162: `private func setCursorHidden(_ hidden: Bool) {`
+- L169: `struct LoupeOverlay: View {`
+- L190: `Color.clear.onChange(of: proxy.size, initial: true) { _, size in experience.viewingSize = size }`
+- L199: `struct LoupeDepth {`
+- L223: `func rearCenter(origin: CGPoint, target: CGPoint) -> CGPoint {`
+- L232: `struct LoupeSampling {`
+- L262: `func input(scene: LoupeSceneInput, displayScale: CGFloat) -> LoupeDisplayInput {`
+- L268: `private struct LoupeSampledImage: View {`
+- L278: `.onChange(of: input, initial: true) { _, value in`
+- L285: `struct LoupeApproach: View, Animatable {`
+- L321: `struct LoupeGlassPose: Equatable {`
+- L328: `func axis(_ position: CGFloat, _ length: CGFloat) -> CGFloat {`
+- L343: `struct LoupeGlassSurface: View {`
+- L391: `struct LoupeKeyboard: NSViewRepresentable {`
+- L399: `func makeNSView(context: Context) -> MonitorView { MonitorView() }`
+- L400: `func updateNSView(_ view: MonitorView, context: Context) {`
+- L407: `static func dismantleNSView(_ view: MonitorView, coordinator: ()) { view.stop() }`
+- L409: `final class MonitorView: NSView {`
+- L425: `override func viewDidMoveToWindow() {`
+- L448: `func handle(_ event: NSEvent) -> NSEvent? {`
+- L470: `func reset() { held = false; tabHeld = false; cancelled?() }`
+- L471: `private func updateAvailability() { availabilityChanged?(enabled && windowActive) }`
+- L472: `func stop() {`
 
 ## Sources/LightTableApp/LoupeMagnificationControl.swift
 - L4: `struct LoupeMagnificationControl: View {`
@@ -313,30 +329,43 @@
 - L33: `struct LoupeScenePhoto: Equatable {`
 - L43: `static func == (lhs: Self, rhs: Self) -> Bool {`
 - L62: `final class LoupeRenderer {`
-- L84: `static func sourceViewport(point: CGPoint, diameter: CGFloat, magnification: CGFloat) -> CGRect {`
-- L90: `func render(preview: PhotoPreview, point: CGPoint, imageSize: CGSize,`
-- L100: `func render(photos: [LoupeScenePhoto], point: CGPoint, panelBounds: CGRect? = nil,`
-- L115: `func composite(photos: [LoupeScenePhoto], point: CGPoint, panelBounds: CGRect? = nil,`
+- L86: `static func sourceViewport(point: CGPoint, diameter: CGFloat, magnification: CGFloat) -> CGRect {`
+- L92: `func render(preview: PhotoPreview, point: CGPoint, imageSize: CGSize,`
+- L102: `func render(photos: [LoupeScenePhoto], point: CGPoint, panelBounds: CGRect? = nil,`
+- L117: `func composite(photos: [LoupeScenePhoto], point: CGPoint, panelBounds: CGRect? = nil,`
 
 ## Sources/LightTableApp/OpticalDisplay.swift
-- L7: `struct OpticalDisplay: NSViewRepresentable {`
-- L14: `func makeNSView(context: Context) -> OpticalMetalView { OpticalMetalView() }`
-- L15: `func updateNSView(_ view: OpticalMetalView, context: Context) {`
-- L21: `final class OpticalMetalView: MTKView {`
-- L43: `private struct CacheParams: Equatable {`
-- L65: `override func hitTest(_ point: NSPoint) -> NSView? { nil }`
-- L82: `private func invalidateCache() {`
-- L89: `func set(preview: PhotoPreview?, image: CGImage?, transmission: Double,`
-- L108: `override func viewDidMoveToWindow() {`
-- L113: `override func viewDidChangeBackingProperties() {`
-- L119: `override func draw(_ dirtyRect: NSRect) { enqueue() }`
-- L121: `private func enqueue() {`
-- L129: `private static func drawPending() {`
-- L147: `private func encode(into buffer: MTLCommandBuffer, renderer: CIContext) -> CAMetalDrawable? {`
-- L157: `func encode(into texture: MTLTexture, commandBuffer buffer: MTLCommandBuffer, renderer: CIContext) -> Bool {`
-- L200: `private func makeCacheTexture(width: Int, height: Int) -> MTLTexture? {`
-- L208: `private func fitted(_ image: CIImage, to size: CGSize) -> CIImage? {`
-- L217: `func composedInput() -> CIImage? {`
+- L8: `struct OpticalDisplay: NSViewRepresentable {`
+- L15: `func makeNSView(context: Context) -> OpticalMetalView { OpticalMetalView() }`
+- L16: `func updateNSView(_ view: OpticalMetalView, context: Context) {`
+- L24: `struct OpticalRetryBudget {`
+- L28: `mutating func beginNewInput() {`
+- L33: `mutating func nextDelay() -> TimeInterval? {`
+- L41: `mutating func succeeded() {`
+- L46: `final class OpticalMetalView: MTKView {`
+- L81: `private struct CacheParams: Equatable {`
+- L103: `override func hitTest(_ point: NSPoint) -> NSView? { nil }`
+- L120: `private func invalidateCache() {`
+- L127: `private func beginNewInput() {`
+- L132: `private func cancelRetry() {`
+- L139: `func noteDrawFailure(_ reason: String) {`
+- L159: `func noteDrawSuccess() {`
+- L164: `private func retryFired(token: Int, revision: Int) {`
+- L172: `func set(preview: PhotoPreview?, image: CGImage?, transmission: Double,`
+- L191: `override func viewDidMoveToWindow() {`
+- L197: `override func viewDidChangeBackingProperties() {`
+- L204: `override func draw(_ dirtyRect: NSRect) { enqueue() }`
+- L206: `private func enqueue() {`
+- L214: `private struct EncodedSurface {`
+- L220: `private enum LiveEncode {`
+- L231: `private static func drawPending() {`
+- L243: `static func drawVisible(_ views: [OpticalMetalView], renderer: CIContext,`
+- L285: `private func prepareDraw() -> Bool {`
+- L292: `private func encode(into buffer: MTLCommandBuffer, renderer: CIContext) -> LiveEncode {`
+- L303: `func encode(into texture: MTLTexture, commandBuffer buffer: MTLCommandBuffer, renderer: CIContext) -> Bool {`
+- L346: `private func makeCacheTexture(width: Int, height: Int) -> MTLTexture? {`
+- L354: `private func fitted(_ image: CIImage, to size: CGSize) -> CIImage? {`
+- L363: `func composedInput() -> CIImage? {`
 
 ## Sources/LightTableApp/PhotoDrag.swift
 - L6: `enum PhotoDrag {`
@@ -506,55 +535,67 @@
 - L79: `.onChange(of: model.startupAttempt) { _, _ in`
 
 ## Sources/LightTableApp/TableModel.swift
-- L8: `final class TableModel {`
-- L61: `enum StartupPhase { case preparing, finishing, needsAttention, ready }`
-- L67: `struct SurfaceRequest: Hashable { let preview: TablePreviewRequest; let attempt: Int }`
-- L133: `func beginLightPreparation(_ id: UUID) { preparingLightSurfaces.insert(id) }`
-- L135: `func finishLightPreparation(_ id: UUID) {`
-- L146: `func prepareStartup() async {`
-- L168: `func retryStartup() async {`
-- L180: `func continueStartup() {`
-- L186: `private func finishStartupIfReady() {`
-- L191: `func cacheThumbnail(_ image: CGImage, for url: URL) {`
-- L198: `func preparePreview(_ url: URL) async -> PhotoPreview? {`
-- L217: `func tablePreviewMaxPixel(for url: URL, displayScale: CGFloat) -> Int {`
-- L225: `func prepareTablePreview(_ url: URL, maxPixel: Int) async -> PhotoPreview? {`
-- L257: `func chooseFolder() {`
-- L265: `func choosePhotos() {`
-- L272: `func importURLs(_ urls: [URL], replace: Bool = false) async {`
-- L288: `func place(_ url: URL, x: Double, y: Double) {`
-- L298: `func setSelection(_ ids: Set<UUID>) {`
-- L304: `func select(_ id: UUID, extending: Bool = false, showIndicator: Bool = true) {`
-- L319: `func update(_ id: UUID, change: (inout Slide) -> Void) { layout.update(id, change); save() }`
-- L320: `func removeSelected() {`
-- L332: `func select(in rect: CGRect) {`
-- L345: `private static func intersects(_ rect: CGRect, placement p: SlidePlacement) -> Bool {`
-- L357: `func clear() {`
-- L364: `func enterSlideshow() {`
-- L371: `func exitSlideshow() {`
-- L377: `func nextSlide() {`
-- L382: `func previousSlide() {`
-- L398: `func panBy(_ delta: CGSize) {`
-- L404: `func zoomCanvas(by factor: Double, around point: CGPoint? = nil) {`
-- L413: `func screenPlacement(_ slide: Slide, aspect: Double) -> SlidePlacement {`
-- L418: `func normalizedWorldPoint(_ point: CGPoint) -> CGPoint {`
-- L423: `func placeAtViewCenter(_ url: URL) {`
-- L428: `func fitToWindow() {`
-- L441: `func placeAllPhotos() {`
-- L474: `func layerIndex(_ id: UUID) -> Double { Double(tableIDs.firstIndex(of: id) ?? 0) }`
-- L475: `private func synchronizeOrder() { tableOrder = tableIDs }`
-- L480: `func updateAlbum(_ id: UUID, _ change: (inout AlbumPage) -> Void) {`
-- L484: `func deleteAlbum(_ id: UUID) {`
-- L490: `func placeAlbum(_ id: UUID, at point: CGPoint? = nil) {`
-- L497: `func albumFrame(_ page: AlbumPage) -> CGRect {`
-- L504: `private func fitAlbumsAndSlides() {`
-- L542: `func accept(_ providers: [NSItemProvider], at point: CGPoint?, board: CGRect?) -> Bool {`
-- L552: `func acceptDrop(_ providers: [NSItemProvider], at point: CGPoint?, board: CGRect?) async -> Bool {`
-- L594: `private struct Saved: Codable {`
-- L606: `private static func remapping(_ saved: Saved, aliases: [URL: URL]) throws -> Saved {`
-- L625: `func save() {`
-- L635: `func flushSave() {`
-- L641: `private func persist(to storageURL: URL) {`
+- L6: `struct PhotoTray: Identifiable, Codable, Equatable {`
+- L12: `struct TrayPhotoSelection: Equatable {`
+- L19: `final class TableModel {`
+- L88: `enum StartupPhase { case preparing, finishing, needsAttention, ready }`
+- L94: `struct SurfaceRequest: Hashable { let preview: TablePreviewRequest; let attempt: Int }`
+- L173: `func beginLightPreparation(_ id: UUID) { preparingLightSurfaces.insert(id) }`
+- L175: `func finishLightPreparation(_ id: UUID) {`
+- L186: `func prepareStartup() async {`
+- L208: `func retryStartup() async {`
+- L220: `func continueStartup() {`
+- L226: `private func finishStartupIfReady() {`
+- L231: `func cacheThumbnail(_ image: CGImage, for url: URL) {`
+- L238: `func preparePreview(_ url: URL) async -> PhotoPreview? {`
+- L257: `func tablePreviewMaxPixel(for url: URL, displayScale: CGFloat) -> Int {`
+- L265: `func prepareTablePreview(_ url: URL, maxPixel: Int) async -> PhotoPreview? {`
+- L298: `func newTray() -> UUID {`
+- L309: `func selectTray(_ id: UUID) {`
+- L317: `func selectTrayPhoto(_ url: URL, in trayID: UUID) {`
+- L327: `func deleteSelection() {`
+- L334: `func deleteTray(_ id: UUID) {`
+- L353: `func deletePhoto(_ url: URL, fromTray trayID: UUID) {`
+- L368: `private static func uniqueURLs(_ urls: [URL]) -> [URL] {`
+- L373: `func chooseFolder() {`
+- L382: `func choosePhotos() {`
+- L390: `func importURLs(_ urls: [URL], into trayID: UUID? = nil) async {`
+- L407: `func place(_ url: URL, x: Double, y: Double) {`
+- L417: `func setSelection(_ ids: Set<UUID>) {`
+- L424: `func select(_ id: UUID, extending: Bool = false, showIndicator: Bool = true) {`
+- L440: `func update(_ id: UUID, change: (inout Slide) -> Void) { layout.update(id, change); save() }`
+- L441: `func removeSelected() {`
+- L455: `private func trimReturnedPhotoPreviews() {`
+- L470: `func select(in rect: CGRect) {`
+- L483: `private static func intersects(_ rect: CGRect, placement p: SlidePlacement) -> Bool {`
+- L495: `func clear() {`
+- L503: `func enterSlideshow() {`
+- L510: `func exitSlideshow() {`
+- L516: `func nextSlide() {`
+- L521: `func previousSlide() {`
+- L537: `func panBy(_ delta: CGSize) {`
+- L543: `func zoomCanvas(by factor: Double, around point: CGPoint? = nil) {`
+- L552: `func screenPlacement(_ slide: Slide, aspect: Double) -> SlidePlacement {`
+- L557: `func normalizedWorldPoint(_ point: CGPoint) -> CGPoint {`
+- L562: `func placeAtViewCenter(_ url: URL) {`
+- L567: `func fitToWindow() {`
+- L580: `func placeAllPhotos() {`
+- L614: `func layerIndex(_ id: UUID) -> Double { Double(tableIDs.firstIndex(of: id) ?? 0) }`
+- L615: `private func synchronizeOrder() { tableOrder = tableIDs }`
+- L620: `func updateAlbum(_ id: UUID, _ change: (inout AlbumPage) -> Void) {`
+- L624: `func deleteAlbum(_ id: UUID) {`
+- L630: `func placeAlbum(_ id: UUID, at point: CGPoint? = nil) {`
+- L637: `func albumFrame(_ page: AlbumPage) -> CGRect {`
+- L644: `private func fitAlbumsAndSlides() {`
+- L682: `func accept(_ providers: [NSItemProvider], at point: CGPoint?, board: CGRect?) -> Bool {`
+- L693: `func acceptDrop(_ providers: [NSItemProvider], at point: CGPoint?, board: CGRect?, into trayID: UUID? = nil) async -> Bool {`
+- L740: `private struct Saved: Codable {`
+- L754: `private static func remapping(_ saved: Saved, aliases: [URL: URL]) throws -> Saved {`
+- L779: `func save() {`
+- L789: `func flushSave() {`
+- L795: `private func persist(to storageURL: URL) {`
+
+## Sources/LightTableApp/TrayAvailability.swift
 
 ## Sources/LightTableApp/UpdateConfiguration.swift
 - L4: `enum UpdateConfiguration: Equatable {`
@@ -575,13 +616,13 @@
 ## Sources/LightTableCore/LightResponse.swift
 - L5: `public struct LightResponseSample: Equatable, Sendable {`
 - L17: `public enum LightResponse {`
-- L24: `public static func panelWhite(brightness: Double = 1, flare: Double = 0) -> Double {`
-- L32: `public static func photoLevel(brightness: Double) -> Double {`
-- L37: `public static func photoBrightnessMix(brightness: Double) -> Double {`
-- L42: `public static func photoGlowMix(flare: Double, brightness: Double) -> Double {`
-- L48: `public static func photoExposureStops(flare: Double, brightness: Double) -> Double {`
-- L54: `public static func sample(elapsed: TimeInterval, isLit: Bool,`
-- L77: `private static func smoothstep(_ value: Double) -> Double {`
+- L26: `public static func panelWhite(brightness: Double = 1, flare: Double = 0) -> Double {`
+- L34: `public static func photoLevel(brightness: Double) -> Double {`
+- L39: `public static func photoBrightnessMix(brightness: Double) -> Double {`
+- L44: `public static func photoGlowMix(flare: Double, brightness: Double) -> Double {`
+- L50: `public static func photoExposureStops(flare: Double, brightness: Double) -> Double {`
+- L56: `public static func sample(elapsed: TimeInterval, isLit: Bool,`
+- L79: `private static func smoothstep(_ value: Double) -> Double {`
 
 ## Sources/LightTableCore/StartupPresentationProgress.swift
 - L4: `public enum StartupPresentationProgress {`
@@ -634,21 +675,24 @@
 - L45: `check(mixed.pockets.first { $0.id == b }?.url == nil && mixed.pockets.contains { $0.id == b }, "clearing a photograph preserves its bag slot")`
 - L53: `check(true, "all photo aspect ratios fit without cropping")`
 - L56: `check(largeRect.width > smallRect.width * 1.5, "120 film has a larger fixed footprint")`
-- L77: `check(accepted && abs(frame.midX - drop.x) < 1e-8 && abs(frame.midY + 64 - drop.y) < 1e-8, "whole-page drop preserves pointer position under camera transforms")`
-- L79: `check(model.albums.count == 1 && model.layout.slides.isEmpty && model.onTableAlbums.count == 1, "repeated page drop does not duplicate or scatter its films")`
-- L82: `check(model.albums[0].pockets == pockets, "moving a whole page leaves its internal positions unchanged")`
-- L86: `check(model.tableIDs.last == id, "page can be placed above loose films")`
-- L88: `check(model.tableIDs.last == slideID, "loose film can be placed above a page")`
-- L91: `check(model.albums[0].pockets == pockets && model.layout.slides.count == 1 &&`
-- L95: `check(restored.albums == model.albums && restored.layout == model.layout && restored.tableIDs == model.tableIDs,`
-- L97: `check(restored.photos.contains { $0.url == photo }, "page-only photo references remain available in the library")`
-- L103: `check(legacyModel.albums.isEmpty && legacyModel.layout == model.layout, "old layouts without album fields remain readable")`
-- L105: `check(model.albums.count == 1 && model.onTableAlbums.isEmpty && model.albums[0].pockets == pockets,`
-- L108: `check(model.albums.count == 1 && model.onTableAlbums.isEmpty && model.layout.slides.isEmpty,`
-- L110: `check(try Data(contentsOf: photo) == bytes, "album operations never rewrite source files")`
-- L113: `check(AlbumSurface.image(mixed, front: true) === front, "membrane images are reused while moving the magnifier")`
-- L119: `check(output.width == 520 && output.height == 520, "transparent album surfaces render in the high-resolution lens")`
-- L120: `check(LoupeScenePhoto(preview: nil, center: center, imageSize: CGSize(width: 100, height: 80)).bounds ==`
+- L72: `check(ordering.tableIDs == [placedAlbum, secondFilm, firstFilm],`
+- L74: `check(ordering.layerIndex(placedAlbum) == 0 && ordering.layerIndex(secondFilm) == 1`
+- L77: `check(ordering.tableIDs == [placedAlbum, firstFilm],`
+- L92: `check(accepted && abs(frame.midX - drop.x) < 1e-8 && abs(frame.midY + 64 - drop.y) < 1e-8, "whole-page drop preserves pointer position under camera transforms")`
+- L94: `check(model.albums.count == 1 && model.layout.slides.isEmpty && model.onTableAlbums.count == 1, "repeated page drop does not duplicate or scatter its films")`
+- L97: `check(model.albums[0].pockets == pockets, "moving a whole page leaves its internal positions unchanged")`
+- L101: `check(model.tableIDs.last == id, "page can be placed above loose films")`
+- L103: `check(model.tableIDs.last == slideID, "loose film can be placed above a page")`
+- L106: `check(model.albums[0].pockets == pockets && model.layout.slides.count == 1 &&`
+- L110: `check(restored.albums == model.albums && restored.layout == model.layout && restored.tableIDs == model.tableIDs,`
+- L112: `check(restored.allPhotos.contains { $0.url == photo }, "page-only photo references remain available in the shared album library")`
+- L118: `check(legacyModel.albums.isEmpty && legacyModel.layout == model.layout, "old layouts without album fields remain readable")`
+- L120: `check(model.albums.count == 1 && model.onTableAlbums.isEmpty && model.albums[0].pockets == pockets,`
+- L123: `check(model.albums.count == 1 && model.onTableAlbums.isEmpty && model.layout.slides.isEmpty,`
+- L125: `check(try Data(contentsOf: photo) == bytes, "album operations never rewrite source files")`
+- L128: `check(AlbumSurface.image(mixed, front: true) === front, "membrane images are reused while moving the magnifier")`
+- L134: `check(output.width == 520 && output.height == 520, "transparent album surfaces render in the high-resolution lens")`
+- L135: `check(LoupeScenePhoto(preview: nil, center: center, imageSize: CGSize(width: 100, height: 80)).bounds ==`
 
 ## Tests/CloseupChecks.swift
 - L5: `private final class KeyWindow: NSWindow {`
@@ -659,143 +703,159 @@
 - L27: `func finish(_ image: CGImage) {`
 - L35: `@MainActor static func main() async throws {`
 - L38: `func check(_ condition: Bool, _ message: String) {`
-- L42: `check((0..<100).allSatisfy { _ in FilmContactTexture.image === contact },`
-- L44: `check(contact.width == 96 && contact.height == 96 && contact.bytesPerRow * contact.height == 36 * 1024,`
-- L57: `check(clearPhoto, "film contact decoration never covers or crops photo pixels")`
-- L58: `check(clearOuterEdge && visibleSide, "thin side is visible and contact shadow fades before texture boundary")`
-- L63: `check(LoupeGeometry.magnification == 1.5, "finding lens uses 1.5x")`
-- L64: `check(LoupeGeometry.rasterDiameter(in: CGSize(width: 2200, height: 1100), closeViewing: false) == 260,`
-- L68: `check(LoupeGeometry.rasterDiameter(in: window, closeViewing: true) == diameter,`
-- L72: `check(abs(close.width - original.width) < 1e-8 && abs(close.minX - original.minX) < 1e-8 &&`
-- L79: `check(beginning.scale == 1 && beginning.apertureScale == 1 && beginning.surround == 0,`
-- L81: `check(middle.scale > middle.apertureScale && middle.scale / middle.apertureScale < 1.1,`
-- L84: `check(early.scale > 1 && early.apertureScale > 1,`
-- L87: `check(late.scale < ending.scale && late.apertureScale < ending.apertureScale,`
-- L89: `check(abs(ending.scale - 3) < 1e-8 && abs(ending.apertureScale - 3) < 1e-8 && ending.surround == 1,`
-- L102: `check(continuousAdvance, "101 samples advance film and aperture without overshoot or image recoil")`
-- L103: `check(covered, "film always covers the aperture with no uncovered ring")`
-- L115: `func center(_ p: CGFloat) -> CGPoint {`
-- L143: `check(smoothEdges, "side and corner avoidance has continuous velocity throughout approach and return")`
-- L144: `check(forwardEdges, "side and corner approach keeps its endpoints and never recoils")`
-- L145: `check(alignedEdges, "film and aperture share the optical axis while avoiding window edges")`
-- L146: `check(smoothScales, "shared film and circle timeline has no velocity breaks")`
-- L149: `check(flat.scale == 1 && flat.apertureScale == 1, "small windows never invent an extra magnification at progress \(p)")`
-- L156: `check(ordinary.diameter == 260 && ordinary.magnification == 1.5 && ordinary.contentScale == 1,`
-- L159: `check(abs(end.magnification - 8) < 1e-8 && end.diameter == closeDiameter && end.contentScale == 1,`
-- L162: `check(abs(returning.magnification * 260 / returning.diameter - 1.5) < 1e-8,`
-- L183: `check(continuous, "8x approach and reversed return stay continuous and never overshoot at \(Int(window.width))pt")`
-- L184: `check(containsField, "scene selection covers every intermediate field, including windows above native 8x, at \(Int(window.width))pt")`
-- L185: `check(unchangedOriginal, "original mode retains the existing fixed sampling and layer animation at \(Int(window.width))pt")`
-- L192: `check(originalField == eightField, "changing focal target retains both endpoint scenes at \(Int(window.width))pt")`
-- L212: `check(focalScale, "focal transition follows continuous proportional magnification in both directions at \(Int(window.width))pt")`
-- L213: `check(boundedRaster, "focal switching keeps the aperture and drawable size fixed at \(Int(window.width))pt")`
-- L214: `check(fieldCoverage, "scene culling covers switching during approach and return at \(Int(window.width))pt")`
-- L215: `check(coveredClip, "focal switching never shrinks the source below the lens clip at \(Int(window.width))pt")`
-- L221: `check(approach.progress == 0.7 && approach.magnificationBlend == 0.38 && approach.scene.point == point,`
-- L224: `check(approach.magnificationBlend == 0.35 && approach.progress == 0.7,`
-- L227: `check(invalidBlend.magnification.isFinite && invalidBlend.contentScale.isFinite, "invalid focal ratio falls back to the original finite sampling")`
-- L233: `check(abs(enlarged.width / baseline.width - 1.8) < 1e-8 && slide.width == 0.3,`
-- L235: `check(rotated.angle == 37 && abs(rotated.width - enlarged.width) < 1e-8,`
-- L254: `check(eightRequest.magnification == eightInput.magnification && eightRequest.diameter == eightInput.diameter,`
-- L256: `check(abs(quickEight.diameter / quickEight.magnification! - eightRequest.diameter / eightRequest.magnification!) < 1e-8,`
-- L260: `check(glassRequest.quick.refractionScale == 0.4, "quick fallback retains glass refraction strength")`
-- L267: `check(near.blueComponent > 0.7 && far.redComponent > 0.7,`
-- L269: `func photo(_ placement: SlidePlacement) -> LoupeScenePhoto {`
-- L274: `func render(_ p: SlidePlacement, diameter: CGFloat = 260) -> CGImage {`
-- L279: `func pixel(_ image: CGImage) -> NSColor {`
-- L283: `check(before.redComponent > 0.7 && before.blueComponent > 0.7 && during.redComponent < 0.2 && during.blueComponent > 0.7,`
-- L286: `check(close.width == 810 && abs(pixel(close).blueComponent - during.blueComponent) < 0.01,`
-- L291: `func rasterRequest(_ x: CGFloat) -> LoupeRasterRequest {`
-- L295: `func waitForCalls(_ count: Int) async {`
-- L304: `check(raster.image == nil, "request returns before background rendering finishes")`
-- L309: `check(initialCalls.count == 2 && initialCalls[0].diameter == 260 && initialCalls[1].scene.point.x == 100,`
-- L316: `check(raster.image === close, "latest view replaces quick frame at final resolution")`
-- L320: `check(idleCalls == 2, "unchanged scene and animation progress do not trigger another render")`
-- L326: `check(raster.image == nil, "cancelled in-flight render cannot repopulate a dismissed lens")`
-- L333: `check(actualRaster.image?.width == 810, "production worker delivers final-resolution image asynchronously")`
-- L346: `check(ordinaryCalls.count == 1 && ordinaryCalls[0].diameter == 260 && ordinaryCalls[0].displayScale == 2,`
-- L355: `check(ordinaryCount == 1 && ordinaryRaster.image === image,`
-- L367: `check(received[slide.id] == rotated, "SwiftUI geometry preference publishes live pinch and rotation")`
-- L370: `check(state.closeMagnification == .original, "original close magnification remains the default")`
-- L375: `check(!state.press(), "space without a visible lens does not start a close view")`
-- L377: `check(state.press() && state.isClose && state.cursorHidden, "space down enters and hides cursor")`
-- L380: `check(state.sourcePoint == movedPoint, "held-space view follows pointer movement instead of locking the source")`
-- L382: `check(state.sourcePoint == movedPoint, "leaving the canvas retains the latest viewed point")`
-- L385: `check(!state.isClose && state.anchor == movedPoint, "release returns at the latest viewed point")`
-- L388: `check(state.sourcePoint == returnPoint, "pointer remains responsive while the close view returns")`
-- L390: `check(state.press() && state.anchor == returnPoint, "repress reverses return without jumping to another source point")`
-- L392: `check(state.isClose && state.anchor == returnPoint, "cancelled return cannot interrupt a new close view")`
-- L394: `check(state.anchor == nil && !state.cursorHidden && !state.isClose, "reduced motion exits immediately and restores cursor")`
-- L396: `check(state.anchor != nil && state.cursorHidden, "return retains its high-resolution scene until the motion finishes")`
-- L398: `check(state.anchor == nil && !state.cursorHidden, "normal return completes and restores the pointer after the new duration")`
-- L400: `check(state.anchor == nil && !state.cursorHidden && !state.isClose, "cancellation balances cursor and clears close state")`
-- L401: `check(state.closeMagnification == .eight, "pointer mode and cancellation retain the selected close magnification")`
-- L406: `check(tracking.sourcePoint == tracking.pointer, "ordinary lens tracks the pointer directly")`
-- L409: `check(tracking.sourcePoint == tracking.pointer, "approaching lens retains ordinary movement speed")`
-- L412: `check(tracking.sourcePoint == tracking.pointer, "fully approached lens keeps full movement on both axes")`
-- L415: `check(tracking.sourcePoint == tracking.pointer, "held space and direction reversal preserve direct tracking")`
-- L418: `check(tracking.sourcePoint == outside, "hover exit retains the last inspected point")`
-- L420: `check(tracking.sourcePoint == tracking.pointer, "hover re-entry resumes at the real pointer without a stored offset")`
-- L423: `check(tracking.sourcePoint == tracking.pointer, "return retains the same movement speed without offset recovery")`
-- L426: `check(tracking.sourcePoint == tracking.pointer, "repress during return preserves unified movement speed")`
-- L429: `check(tracking.sourcePoint == tracking.pointer && !tracking.cursorHidden,`
-- L442: `func sampleOptic(_ scale: CGFloat, x: CGFloat, y: CGFloat) -> NSColor {`
-- L453: `check(still.blueComponent > 0.7 && approaching.redComponent > 0.7,`
-- L455: `check(sampleOptic(2, x: 5, y: 5).alphaComponent < 0.01,`
-- L472: `func comparisonPixel(_ image: CGImage, x: Int, y: Int) -> NSColor {`
-- L484: `func tablePixel(_ textured: Bool, transmission: Double = 1) -> NSColor {`
-- L494: `check(tableOriginal.blueComponent > 0.7 && tableTexture.redComponent > 0.7,`
-- L502: `check(abs(a.redComponent - b.redComponent) < 0.02 && abs(a.greenComponent - b.greenComponent) < 0.02 && abs(a.blueComponent - b.blueComponent) < 0.02,`
-- L506: `check(abs(darkOriginal.redComponent - darkTexture.redComponent) < 0.01 &&`
-- L509: `func comparisonScene(_ textured: Bool) -> LoupeSceneInput {`
-- L514: `check(comparisonScene(false) != comparisonScene(true) && comparisonScene(true) == comparisonScene(true),`
-- L519: `check(leftGlass.angle < rightGlass.angle && abs(leftGlass.angle) < 22 && abs(rightGlass.angle) < 22,`
-- L523: `check(reducedA == reducedB, "reduced motion holds glass reflections still")`
-- L525: `check(closeGlass.intensity == 0 && leftGlass.intensity == 1,`
-- L529: `check(invalidGlass.angle.isFinite && invalidGlass.intensity.isFinite,`
-- L531: `func glassBitmap(_ pose: LoupeGlassPose) -> CGImage {`
-- L564: `check(centreAlpha < 0.01, "glass surface leaves the central photograph fully clear")`
-- L565: `check(edgeAlpha > 0.03 && edgeAlpha < 0.30 && reflectionChange > 0.005,`
-- L567: `check(closeEdgeAlpha < 0.01,`
-- L569: `check(darkBevel > 0.02 && darkBevel < 0.16 && brightLip > 0.03 && brightLip < 0.30,`
-- L575: `check(adjusted.x < 420 && adjusted.y < 320,`
-- L581: `check(center.x >= radius && center.x + radius <= 840 && center.y >= radius && center.y + radius <= 640,`
-- L584: `check(LoupeGeometry.closeCenter(from: CGPoint(x: 400, y: 320), in: windowSize) == CGPoint(x: 400, y: 320),`
-- L598: `func key(_ type: NSEvent.EventType, repeat repeated: Bool = false,`
-- L604: `check(monitor.handle(key(.keyDown)) == nil && monitor.handle(key(.keyDown, repeat: true)) == nil && presses == 1,`
-- L606: `check(monitor.handle(key(.keyUp, modifiers: .shift)) == nil && releases == 1,`
-- L608: `check(monitor.handle(key(.keyDown, modifiers: .command)) != nil && presses == 1,`
-- L613: `check(monitor.handle(key(.keyDown)) != nil && presses == 1, "text input retains its space key")`
-- L615: `check(monitor.handle(key(.keyDown, number: 0)) != nil && presses == 1, "other-window keys do not trigger this lens")`
-- L618: `check(cancellations > 0 && monitor.handle(key(.keyUp)) != nil,`
-- L621: `check(monitor.handle(key(.keyDown)) != nil && presses == 2, "pointer mode leaves space unhandled")`
-- L626: `check(monitor.handle(key(.keyDown, code: 48)) != nil && cycles == 0,`
-- L629: `check(monitor.handle(key(.keyDown, code: 48)) == nil && cycles == 1 && state.closeMagnification == .eight,`
-- L631: `check(monitor.handle(key(.keyDown, repeat: true, code: 48)) == nil && cycles == 1,`
-- L633: `check(monitor.handle(key(.keyUp, modifiers: .shift, code: 48)) == nil,`
-- L635: `check(monitor.handle(key(.keyDown, code: 48)) == nil && cycles == 2 && state.closeMagnification == .original,`
-- L643: `check(monitor.handle(key(.keyDown, code: 48)) == nil && state.closeMagnification == .eight &&`
-- L647: `check(monitor.handle(key(.keyUp)) == nil && !state.isClose && !state.cursorHidden,`
-- L650: `check(monitor.handle(key(.keyDown, modifiers: modifiers, code: 48)) != nil && cycles == 3,`
-- L654: `check(monitor.handle(key(.keyDown, code: 48)) != nil && cycles == 3,`
-- L657: `check(monitor.handle(key(.keyDown, number: 0, code: 48)) != nil && cycles == 3,`
-- L659: `check(monitor.handle(key(.keyDown, repeat: true, code: 48)) != nil && cycles == 3,`
-- L663: `check(monitor.handle(key(.keyUp, code: 48)) != nil &&`
-- L668: `check(monitor.handle(key(.keyUp, code: 48)) != nil &&`
-- L672: `check(cancellations > 1, "view teardown cancels input state and removes monitor")`
-- L684: `func mouse(_ type: NSEvent.EventType, _ point: CGPoint, modifiers: NSEvent.ModifierFlags = .shift, number: Int? = nil) -> NSEvent {`
-- L689: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), modifiers: [])) != nil,`
-- L691: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), modifiers: .command)) != nil,`
-- L693: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 35))) != nil,`
-- L695: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), number: 0)) != nil,`
-- L698: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 300, y: 260))) != nil && selectionStarts == 0,`
-- L701: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 300, y: 260))) == nil && selectionStarts == 1,`
-- L703: `check(selectionMonitor.handle(mouse(.leftMouseDragged, CGPoint(x: 100, y: 90), modifiers: [])) == nil &&`
-- L706: `check(selectionMonitor.handle(mouse(.leftMouseUp, CGPoint(x: 600, y: 0), modifiers: [])) == nil && selectionEnds == 1 &&`
-- L710: `check(selectionMonitor.handle(key(.keyDown, code: 53)) == nil && selectionCancels == 1,`
-- L712: `check(selectionMonitor.handle(mouse(.leftMouseUp, CGPoint(x: 150, y: 170))) == nil && selectionEnds == 1,`
-- L716: `check(selectionCancels == 2, "focus loss cancels selection and balances the crosshair cursor")`
-- L718: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 120, y: 150))) != nil,`
+- L42: `check(contactImages.reduce(0) { $0 + $1.bytesPerRow * $1.height } == 108 * 1024,`
+- L46: `check((0..<100).allSatisfy { _ in FilmContactTexture.image(for: variant) === contact },`
+- L48: `check(contact.width == 96 && contact.height == 96, "contact variants keep the small fixed raster size")`
+- L65: `check(clearPhoto, "every contact variant leaves all photograph pixels transparent and uncropped")`
+- L66: `check(clearOuterEdge && visibleSide, "thin sides remain visible and shadows fade before the texture boundary")`
+- L67: `check(premultiplied, "edge blending has valid premultiplied color without bright fringes")`
+- L69: `check(contactPixels[0] != contactPixels[1] && contactPixels[0] != contactPixels[2] && contactPixels[1] != contactPixels[2],`
+- L84: `check(leftLocalized && rightLocalized, "curl differences stay inside fixed corner caps rather than stretching along the photograph")`
+- L87: `check(Set(shapes.map(\.rawValue)).count == 3, "saved placements distribute across all three contact shapes")`
+- L88: `check(zip(contactIDs, shapes).allSatisfy { FilmContactVariant.forFilm(UUID(uuidString: $0.0.uuidString)!) == $0.1 },`
+- L94: `check(LoupeGeometry.magnification == 1.5, "finding lens uses 1.5x")`
+- L95: `check(LoupeGeometry.rasterDiameter(in: CGSize(width: 2200, height: 1100), closeViewing: false) == 260,`
+- L99: `check(LoupeGeometry.rasterDiameter(in: window, closeViewing: true) == diameter,`
+- L103: `check(abs(close.width - original.width) < 1e-8 && abs(close.minX - original.minX) < 1e-8 &&`
+- L110: `check(beginning.scale == 1 && beginning.apertureScale == 1 && beginning.surround == 0,`
+- L112: `check(middle.scale > middle.apertureScale && middle.scale / middle.apertureScale < 1.1,`
+- L115: `check(early.scale > 1 && early.apertureScale > 1,`
+- L118: `check(late.scale < ending.scale && late.apertureScale < ending.apertureScale,`
+- L120: `check(abs(ending.scale - 3) < 1e-8 && abs(ending.apertureScale - 3) < 1e-8 && ending.surround == 1,`
+- L133: `check(continuousAdvance, "101 samples advance film and aperture without overshoot or image recoil")`
+- L134: `check(covered, "film always covers the aperture with no uncovered ring")`
+- L146: `func center(_ p: CGFloat) -> CGPoint {`
+- L174: `check(smoothEdges, "side and corner avoidance has continuous velocity throughout approach and return")`
+- L175: `check(forwardEdges, "side and corner approach keeps its endpoints and never recoils")`
+- L176: `check(alignedEdges, "film and aperture share the optical axis while avoiding window edges")`
+- L177: `check(smoothScales, "shared film and circle timeline has no velocity breaks")`
+- L180: `check(flat.scale == 1 && flat.apertureScale == 1, "small windows never invent an extra magnification at progress \(p)")`
+- L187: `check(ordinary.diameter == 260 && ordinary.magnification == 1.5 && ordinary.contentScale == 1,`
+- L190: `check(abs(end.magnification - 8) < 1e-8 && end.diameter == closeDiameter && end.contentScale == 1,`
+- L193: `check(abs(returning.magnification * 260 / returning.diameter - 1.5) < 1e-8,`
+- L214: `check(continuous, "8x approach and reversed return stay continuous and never overshoot at \(Int(window.width))pt")`
+- L215: `check(containsField, "scene selection covers every intermediate field, including windows above native 8x, at \(Int(window.width))pt")`
+- L216: `check(unchangedOriginal, "original mode retains the existing fixed sampling and layer animation at \(Int(window.width))pt")`
+- L223: `check(originalField == eightField, "changing focal target retains both endpoint scenes at \(Int(window.width))pt")`
+- L243: `check(focalScale, "focal transition follows continuous proportional magnification in both directions at \(Int(window.width))pt")`
+- L244: `check(boundedRaster, "focal switching keeps the aperture and drawable size fixed at \(Int(window.width))pt")`
+- L245: `check(fieldCoverage, "scene culling covers switching during approach and return at \(Int(window.width))pt")`
+- L246: `check(coveredClip, "focal switching never shrinks the source below the lens clip at \(Int(window.width))pt")`
+- L259: `check(smooth && abs(previousStrength - 0.75) < 1e-8,`
+- L265: `check(approach.progress == 0.7 && approach.magnificationBlend == 0.38 && approach.scene.point == point,`
+- L268: `check(approach.magnificationBlend == 0.35 && approach.progress == 0.7,`
+- L271: `check(invalidBlend.magnification.isFinite && invalidBlend.contentScale.isFinite, "invalid focal ratio falls back to the original finite sampling")`
+- L277: `check(abs(enlarged.width / baseline.width - 1.8) < 1e-8 && slide.width == 0.3,`
+- L279: `check(rotated.angle == 37 && abs(rotated.width - enlarged.width) < 1e-8,`
+- L298: `check(eightRequest.magnification == eightInput.magnification && eightRequest.diameter == eightInput.diameter,`
+- L300: `check(abs(quickEight.diameter / quickEight.magnification! - eightRequest.diameter / eightRequest.magnification!) < 1e-8,`
+- L304: `check(glassRequest.quick.refractionScale == 0.4, "quick fallback retains glass refraction strength")`
+- L311: `check(near.blueComponent > 0.7 && far.redComponent > 0.7,`
+- L313: `func photo(_ placement: SlidePlacement) -> LoupeScenePhoto {`
+- L318: `func render(_ p: SlidePlacement, diameter: CGFloat = 260) -> CGImage {`
+- L323: `func pixel(_ image: CGImage) -> NSColor {`
+- L327: `check(before.redComponent > 0.7 && before.blueComponent > 0.7 && during.redComponent < 0.2 && during.blueComponent > 0.7,`
+- L330: `check(close.width == 810 && abs(pixel(close).blueComponent - during.blueComponent) < 0.01,`
+- L335: `func rasterRequest(_ x: CGFloat) -> LoupeRasterRequest {`
+- L339: `func waitForCalls(_ count: Int) async {`
+- L348: `check(raster.image == nil, "request returns before background rendering finishes")`
+- L353: `check(initialCalls.count == 2 && initialCalls[0].diameter == 260 && initialCalls[1].scene.point.x == 100,`
+- L360: `check(raster.image === close, "latest view replaces quick frame at final resolution")`
+- L364: `check(idleCalls == 2, "unchanged scene and animation progress do not trigger another render")`
+- L370: `check(raster.image == nil, "cancelled in-flight render cannot repopulate a dismissed lens")`
+- L377: `check(actualRaster.image?.width == 810, "production worker delivers final-resolution image asynchronously")`
+- L390: `check(ordinaryCalls.count == 1 && ordinaryCalls[0].diameter == 260 && ordinaryCalls[0].displayScale == 2,`
+- L399: `check(ordinaryCount == 1 && ordinaryRaster.image === image,`
+- L411: `check(received[slide.id] == rotated, "SwiftUI geometry preference publishes live pinch and rotation")`
+- L414: `check(state.closeMagnification == .original, "original close magnification remains the default")`
+- L419: `check(!state.press(), "space without a visible lens does not start a close view")`
+- L421: `check(!state.cursorHidden, "inactive lens does not hide the system pointer")`
+- L423: `check(state.cursorHidden && !state.isClose, "ordinary visible lens hides the pointer before space is pressed")`
+- L425: `check(!state.cursorHidden, "leaving the ordinary lens restores the pointer")`
+- L427: `check(state.cursorHidden, "re-entering the ordinary lens hides the pointer")`
+- L431: `check(!state.cursorHidden, "late scene and hover updates cannot hide the pointer in an inactive window or tool")`
+- L434: `check(!state.cursorHidden, "a disappearing lens restores the pointer during a drag")`
+- L436: `check(state.press() && state.isClose && state.cursorHidden, "space down enters and hides cursor")`
+- L439: `check(state.sourcePoint == movedPoint, "held-space view follows pointer movement instead of locking the source")`
+- L441: `check(state.sourcePoint == movedPoint && !state.cursorHidden, "leaving the canvas retains the viewed point and restores the cursor")`
+- L444: `check(!state.isClose && state.anchor == movedPoint, "release returns at the latest viewed point")`
+- L447: `check(state.sourcePoint == returnPoint, "pointer remains responsive while the close view returns")`
+- L449: `check(state.press() && state.anchor == returnPoint, "repress reverses return without jumping to another source point")`
+- L451: `check(state.isClose && state.anchor == returnPoint, "cancelled return cannot interrupt a new close view")`
+- L453: `check(state.anchor == nil && state.cursorHidden && !state.isClose, "reduced motion returns immediately to the ordinary lens with its cursor still hidden")`
+- L455: `check(state.anchor != nil && state.cursorHidden, "return retains its high-resolution scene until the motion finishes")`
+- L457: `check(state.anchor == nil && state.cursorHidden, "normal return keeps the pointer hidden under the ordinary lens")`
+- L459: `check(state.anchor == nil && !state.cursorHidden && !state.isClose, "cancellation balances cursor and clears close state")`
+- L460: `check(state.closeMagnification == .eight, "pointer mode and cancellation retain the selected close magnification")`
+- L466: `check(tracking.sourcePoint == tracking.pointer, "ordinary lens tracks the pointer directly")`
+- L469: `check(tracking.sourcePoint == tracking.pointer, "approaching lens retains ordinary movement speed")`
+- L472: `check(tracking.sourcePoint == tracking.pointer, "fully approached lens keeps full movement on both axes")`
+- L475: `check(tracking.sourcePoint == tracking.pointer, "held space and direction reversal preserve direct tracking")`
+- L478: `check(tracking.sourcePoint == outside, "hover exit retains the last inspected point")`
+- L480: `check(tracking.sourcePoint == tracking.pointer, "hover re-entry resumes at the real pointer without a stored offset")`
+- L483: `check(tracking.sourcePoint == tracking.pointer, "return retains the same movement speed without offset recovery")`
+- L486: `check(tracking.sourcePoint == tracking.pointer, "repress during return preserves unified movement speed")`
+- L489: `check(tracking.sourcePoint == tracking.pointer && tracking.cursorHidden,`
+- L502: `func sampleOptic(_ scale: CGFloat, x: CGFloat, y: CGFloat) -> NSColor {`
+- L513: `check(still.blueComponent > 0.7 && approaching.redComponent > 0.7,`
+- L515: `check(sampleOptic(2, x: 5, y: 5).alphaComponent < 0.01,`
+- L532: `func comparisonPixel(_ image: CGImage, x: Int, y: Int) -> NSColor {`
+- L544: `func tablePixel(_ textured: Bool, transmission: Double = 1) -> NSColor {`
+- L554: `check(tableOriginal.blueComponent > 0.7 && tableTexture.redComponent > 0.7,`
+- L562: `check(abs(a.redComponent - b.redComponent) < 0.02 && abs(a.greenComponent - b.greenComponent) < 0.02 && abs(a.blueComponent - b.blueComponent) < 0.02,`
+- L566: `check(abs(darkOriginal.redComponent - darkTexture.redComponent) < 0.01 &&`
+- L569: `func comparisonScene(_ textured: Bool) -> LoupeSceneInput {`
+- L574: `check(comparisonScene(false) != comparisonScene(true) && comparisonScene(true) == comparisonScene(true),`
+- L579: `check(leftGlass.angle < rightGlass.angle && abs(leftGlass.angle) < 22 && abs(rightGlass.angle) < 22,`
+- L583: `check(reducedA == reducedB, "reduced motion holds glass reflections still")`
+- L585: `check(abs(closeGlass.intensity - 0.45) < 1e-8 && leftGlass.intensity == 1 && closeGlass.rimIntensity == 0,`
+- L589: `check(invalidGlass.angle.isFinite && invalidGlass.intensity.isFinite,`
+- L591: `func glassBitmap(_ pose: LoupeGlassPose) -> CGImage {`
+- L624: `check(centreAlpha < 0.01, "glass surface leaves the central photograph fully clear")`
+- L625: `check(edgeAlpha > 0.30 && edgeAlpha < 0.65 && reflectionChange > 0.005,`
+- L627: `check(closeEdgeAlpha > 0.015 && closeEdgeAlpha < edgeAlpha * 0.65,`
+- L629: `check(darkBevel > 0.02 && darkBevel < 0.16 && brightLip > 0.30 && brightLip < 0.65,`
+- L635: `check(adjusted.x < 420 && adjusted.y < 320,`
+- L641: `check(center.x >= radius && center.x + radius <= 840 && center.y >= radius && center.y + radius <= 640,`
+- L644: `check(LoupeGeometry.closeCenter(from: CGPoint(x: 400, y: 320), in: windowSize) == CGPoint(x: 400, y: 320),`
+- L659: `func key(_ type: NSEvent.EventType, repeat repeated: Bool = false,`
+- L665: `check(monitor.handle(key(.keyDown)) == nil && monitor.handle(key(.keyDown, repeat: true)) == nil && presses == 1,`
+- L667: `check(monitor.handle(key(.keyUp, modifiers: .shift)) == nil && releases == 1,`
+- L669: `check(monitor.handle(key(.keyDown, modifiers: .command)) != nil && presses == 1,`
+- L674: `check(monitor.handle(key(.keyDown)) != nil && presses == 1, "text input retains its space key")`
+- L676: `check(monitor.handle(key(.keyDown, number: 0)) != nil && presses == 1, "other-window keys do not trigger this lens")`
+- L679: `check(cancellations > 0 && monitor.handle(key(.keyUp)) != nil,`
+- L682: `check(monitor.handle(key(.keyDown)) != nil && presses == 2, "pointer mode leaves space unhandled")`
+- L687: `check(monitor.handle(key(.keyDown, code: 48)) != nil && cycles == 0,`
+- L690: `check(monitor.handle(key(.keyDown, code: 48)) == nil && cycles == 1 && state.closeMagnification == .eight,`
+- L692: `check(monitor.handle(key(.keyDown, repeat: true, code: 48)) == nil && cycles == 1,`
+- L694: `check(monitor.handle(key(.keyUp, modifiers: .shift, code: 48)) == nil,`
+- L696: `check(monitor.handle(key(.keyDown, code: 48)) == nil && cycles == 2 && state.closeMagnification == .original,`
+- L700: `check(state.cursorHidden, "the active window restores ordinary lens cursor hiding")`
+- L706: `check(monitor.handle(key(.keyDown, code: 48)) == nil && state.closeMagnification == .eight &&`
+- L710: `check(monitor.handle(key(.keyUp)) == nil && !state.isClose && state.cursorHidden,`
+- L713: `check(monitor.handle(key(.keyDown, modifiers: modifiers, code: 48)) != nil && cycles == 3,`
+- L717: `check(monitor.handle(key(.keyDown, code: 48)) != nil && cycles == 3,`
+- L720: `check(monitor.handle(key(.keyDown, number: 0, code: 48)) != nil && cycles == 3,`
+- L722: `check(monitor.handle(key(.keyDown, repeat: true, code: 48)) != nil && cycles == 3,`
+- L726: `check(monitor.handle(key(.keyUp, code: 48)) != nil &&`
+- L729: `check(!state.cursorHidden && !state.cursorEnabled, "window focus loss releases the cursor even with an ordinary lens")`
+- L731: `check(state.cursorHidden, "window focus return hides the cursor only for an available lens")`
+- L734: `check(monitor.handle(key(.keyUp, code: 48)) != nil &&`
+- L738: `check(cancellations > 1, "view teardown cancels input state and removes monitor")`
+- L750: `func mouse(_ type: NSEvent.EventType, _ point: CGPoint, modifiers: NSEvent.ModifierFlags = .shift, number: Int? = nil) -> NSEvent {`
+- L755: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), modifiers: [])) != nil,`
+- L757: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), modifiers: .command)) != nil,`
+- L759: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 35))) != nil,`
+- L761: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 100, y: 100), number: 0)) != nil,`
+- L764: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 300, y: 260))) != nil && selectionStarts == 0,`
+- L767: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 300, y: 260))) == nil && selectionStarts == 1,`
+- L769: `check(selectionMonitor.handle(mouse(.leftMouseDragged, CGPoint(x: 100, y: 90), modifiers: [])) == nil &&`
+- L772: `check(selectionMonitor.handle(mouse(.leftMouseUp, CGPoint(x: 600, y: 0), modifiers: [])) == nil && selectionEnds == 1 &&`
+- L776: `check(selectionMonitor.handle(key(.keyDown, code: 53)) == nil && selectionCancels == 1,`
+- L778: `check(selectionMonitor.handle(mouse(.leftMouseUp, CGPoint(x: 150, y: 170))) == nil && selectionEnds == 1,`
+- L782: `check(selectionCancels == 2, "focus loss cancels selection and balances the crosshair cursor")`
+- L784: `check(selectionMonitor.handle(mouse(.leftMouseDown, CGPoint(x: 120, y: 150))) != nil,`
 
 ## Tests/DropChecks.swift
 - L7: `struct DropChecks {`
@@ -908,28 +968,34 @@
 ## Tests/FeatureGuideChecks.swift
 - L4: `@MainActor static func main() {`
 - L9: `func expect(_ value: Bool, _ label: String) { precondition(value, label); count += 1 }`
-- L13: `expect(state.available && !state.hasBeenPresented, "matching release starts unseen")`
-- L15: `expect(state.phase == .idle, "busy/nonkey windows defer")`
-- L17: `expect(state.isWelcome(in: a), "ready window claims card")`
-- L18: `expect(!state.hasBeenPresented, "claim is not presentation")`
-- L20: `expect(state.owner == a, "second window cannot duplicate")`
-- L22: `expect(!state.hasBeenPresented, "wrong window cannot acknowledge")`
-- L25: `expect(state.isWelcome(in: b), "closed unseen window does not lose card")`
-- L27: `expect(defaults.stringArray(forKey: FeatureGuideState.seenKey) == ["0.1.71", "0.1.72"], "presentation persists once and keeps older records")`
-- L29: `expect(state.step(in: b) == 0, "sheet dismissal preserves tour")`
-- L31: `expect(state.step(in: b) == 0, "other window cannot advance")`
-- L33: `expect(state.step(in: b) == 0, "back stops at first step")`
-- L35: `expect(state.step(in: b) == 1, "removal step")`
-- L37: `expect(state.step(in: b) == 2, "zoom step")`
-- L39: `expect(state.step(in: b) == 1, "back navigation")`
-- L41: `expect(state.phase == .idle && state.owner == nil, "completion releases window")`
-- L44: `expect(restarted.phase == .idle, "restart does not repeat")`
-- L46: `expect(restarted.isWelcome(in: a), "help replays seen version")`
+- L17: `expect(state.available && !state.hasBeenPresented, "matching release starts unseen")`
+- L19: `expect(state.phase == .idle, "busy windows defer notes")`
+- L21: `expect(state.isWelcome(in: a), "ready window claims notes")`
+- L22: `expect(!state.hasBeenPresented, "claim is not presentation")`
+- L24: `expect(state.owner == a, "second window cannot duplicate")`
+- L26: `expect(!state.hasBeenPresented, "wrong window cannot acknowledge")`
+- L29: `expect(state.isWelcome(in: b), "closed unseen window does not lose notes")`
+- L31: `expect(defaults.stringArray(forKey: FeatureGuideState.seenKey) == oldVersions + ["0.1.75"], "presentation persists once and keeps older versions")`
+- L32: `expect(defaults.stringArray(forKey: FeatureGuideState.seenRevisionKey) == oldRevisions + [revision], "presentation preserves older content records")`
+- L33: `expect(FeatureGuideState.tourStepCount == 0, "this adjustment release contains notes without an operation tour")`
+- L35: `expect(state.isWelcome(in: b) && state.step(in: b) == nil, "notes-only release cannot start a tour")`
+- L37: `expect(state.isWelcome(in: b), "tour navigation cannot change notes-only state")`
+- L39: `expect(state.isWelcome(in: b), "other window cannot dismiss notes")`
+- L41: `expect(state.phase == .idle && state.owner == nil, "start viewing closes notes")`
+- L44: `expect(restarted.phase == .idle, "restart does not repeat notes")`
+- L46: `expect(restarted.isWelcome(in: a), "help replays seen notes")`
 - L48: `expect(restarted.owner == a, "help does not steal other window")`
-- L50: `expect(restarted.phase == .idle, "close dismisses card")`
-- L52: `expect(restarted.phase == .idle && restarted.hasBeenPresented, "skip does not reset seen record")`
+- L50: `expect(restarted.phase == .idle, "close dismisses notes")`
+- L52: `expect(!previousRelease.available, "old version cannot display current release notes")`
 - L55: `expect(!unknown.available && unknown.phase == .idle, "unauthored future version stays quiet")`
-- L56: `expect(!unknown.hasBeenPresented, "seen versions isolated")`
+- L56: `expect(!unknown.hasBeenPresented, "seen versions remain isolated")`
+- L62: `expect(!upgraded.hasBeenPresented, "earlier test builds do not suppress the release notes")`
+- L64: `expect(upgraded.isWelcome(in: a), "existing test users receive the new notes")`
+- L66: `expect(!upgraded.hasBeenPresented, "unrendered notes are not acknowledged")`
+- L68: `expect(upgraded.hasBeenPresented, "rendered notes are acknowledged")`
+- L69: `expect(defaults.stringArray(forKey: FeatureGuideState.seenKey) == oldVersions + ["0.1.75"], "upgrading keeps version history without duplicates")`
+- L70: `expect(defaults.stringArray(forKey: FeatureGuideState.seenRevisionKey) == oldRevisions + [revision], "upgrading preserves previous content records")`
+- L74: `expect(upgradedRestart.phase == .idle, "notes do not repeat after restart")`
 
 ## Tests/LightChecks.swift
 - L8: `struct LightChecks {`
@@ -1030,16 +1096,17 @@
 - L20: `func render(_ point: CGPoint, refracts: Bool) -> CGImage {`
 - L25: `func pixels(_ image: CGImage) -> [UInt8] {`
 - L54: `func fadedGlass(_ strength: CGFloat) -> [UInt8] {`
-- L88: `func rampPixels(_ refracts: Bool) -> [UInt8] {`
-- L107: `func scaledRamp(_ refracts: Bool) -> CGImage {`
-- L125: `func solid(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> PhotoPreview {`
-- L134: `func scene(_ photos: [LoupeScenePhoto], point: CGPoint = CGPoint(x: 150, y: 150), panel: CGRect? = nil) -> [UInt8] {`
-- L138: `func rgb(_ bytes: [UInt8], _ x: Int, _ y: Int) -> [Int] {`
-- L142: `func isRed(_ value: [Int]) -> Bool { value[0] > 150 && value[1] < 70 && value[2] < 70 }`
-- L143: `func isBlue(_ value: [Int]) -> Bool { value[2] > 150 && value[0] < 70 && value[1] < 70 }`
-- L181: `func detailRender(width: CGFloat, magnification: CGFloat, scale: CGFloat,`
-- L191: `func assertSameDetail(_ small: CGImage, _ large: CGImage) {`
-- L225: `func illuminated(_ flare: Double, _ brightness: Double) -> [UInt8] {`
+- L75: `func rampPixels(_ refracts: Bool) -> [UInt8] {`
+- L108: `func scaledRamp(_ refracts: Bool) -> CGImage {`
+- L129: `func solid(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> PhotoPreview {`
+- L143: `func cropRender(_ viewport: CGRect?) -> CGImage {`
+- L166: `func scene(_ photos: [LoupeScenePhoto], point: CGPoint = CGPoint(x: 150, y: 150), panel: CGRect? = nil) -> [UInt8] {`
+- L170: `func rgb(_ bytes: [UInt8], _ x: Int, _ y: Int) -> [Int] {`
+- L174: `func isRed(_ value: [Int]) -> Bool { value[0] > 150 && value[1] < 70 && value[2] < 70 }`
+- L175: `func isBlue(_ value: [Int]) -> Bool { value[2] > 150 && value[0] < 70 && value[1] < 70 }`
+- L213: `func detailRender(width: CGFloat, magnification: CGFloat, scale: CGFloat,`
+- L223: `func assertSameDetail(_ small: CGImage, _ large: CGImage) {`
+- L257: `func illuminated(_ flare: Double, _ brightness: Double) -> [UInt8] {`
 
 ## Tests/OpticsChecks.swift
 - L7: `@MainActor static func main() async throws {`
@@ -1050,64 +1117,95 @@
 - L33: `check(PhotoOptics.fusedOpticalKernel != nil, "SDR lamp and ignition kernel compiles")`
 - L34: `check(PhotoOptics.ignitionKernel != nil, "ignition exposure kernel compiles")`
 - L35: `func exposed(_ source: CGImage, time: Double, brightness: Double = 1) -> CIImage {`
-- L43: `check(peakMiddle > 0.26 && peakMiddle < 0.29, "ignition has a visible, bounded exposure peak")`
-- L44: `check(pixel(exposed(brightScene, time: 0.16))[0] > 0.88 && pixel(exposed(brightScene, time: 0.16))[0] < 0.96, "ignition retains moderately bright scene detail")`
-- L45: `check(abs(pixel(exposed(middle, time: 0.28))[0] - peakMiddle) < 0.001, "overexposure holds before recovery")`
-- L49: `check(value <= lastExposure + 0.001 && value >= 0.179, "recovery is monotonic without undershoot at step \(step)")`
-- L52: `check(abs(lastExposure - 0.18) < 0.002, "recovery restores the original steady exposure exactly")`
-- L53: `check(abs(pixel(exposed(middle, time: 1.10))[0] - 0.18) < 0.002, "exposure is fully restored at 1.10 seconds")`
-- L54: `check(pixel(exposed(image(0), time: 0.16))[0] < 0.001 &&`
-- L56: `check(pixel(exposed(middle, time: 0.16, brightness: 0.1))[0] < peakMiddle, "dim lamp also limits ignition exposure")`
-- L60: `check(value > lastHighlight && value <= 1.002 && value + 0.002 >= Float(tone),`
-- L67: `check(abs(ignitionBase[1] / ignitionBase[0] - ignitionPeak[1] / ignitionPeak[0]) < 0.003 &&`
-- L76: `check(zip(pixel(separate), pixel(fused)).allSatisfy { abs($0 - $1) < 0.003 },`
-- L82: `check(abs(pixel(lit(source))[0] - Float(value)) < 0.002,`
-- L85: `check(PhotoOptics.lampKernel != nil, "linear transmission kernel compiles")`
-- L86: `func powered(_ source: CGImage, _ brightness: Double) -> [Float] {`
-- L92: `check(abs(high - low * 1.6) < 0.002, "linear power scales 1.6x at tone \(tone)")`
-- L102: `check(true, "brightness slider remains monotonic within ordinary white")`
-- L109: `check(true, "high lamp preserves highlight steps without EDR")`
-- L112: `check(abs(lampNormal[1] / lampNormal[0] - lampStrong[1] / lampStrong[0]) < 0.003 &&`
-- L119: `check(abs(pixel(CIImage(cgImage: strongLens), x: 16, y: 16)[0] - powered(middle, 1.6)[0]) < 0.005,`
-- L123: `check(zip(sdr, raw).allSatisfy { abs($0 - $1) < 0.002 }, "SDR preserves the complete source color")`
-- L125: `check(zip(sdr, original).allSatisfy { abs($0 - $1) < 0.002 }, "original and transmitted default tones agree")`
-- L126: `check(pixel(lit(warm, t: 0))[0] < 0.02, "unlit film remains dark")`
-- L133: `check(lens.bitsPerComponent == 8 && !lens.bitmapInfo.contains(.floatComponents), "lens exports ordinary 8-bit P3")`
-- L134: `check(abs(pixel(CIImage(cgImage:lens),x:16,y:16)[0]-pixel(lit(source))[0])<0.005,`
-- L142: `check(abs(pixel(CIImage(cgImage: ignitionLens), x: 16, y: 16)[0] - pixel(tableIgnition)[0]) < 0.005,`
-- L154: `check(abs(value - pixel(tablePanel)[0]) < 0.002 && value <= previousPanel + 0.002,`
-- L159: `check(LightResponse.photoExposureStops(flare: 0, brightness: 1) == 0 &&`
-- L164: `check(view.colorPixelFormat == .bgra8Unorm && view.isPaused && view.enableSetNeedsDisplay,`
-- L166: `check((view.layer as? CAMetalLayer)?.presentsWithTransaction == true,`
-- L170: `check((view.layer as? CAMetalLayer)?.wantsExtendedDynamicRangeContent == false,`
-- L176: `func renderSurface(_ surface: OpticalMetalView) async throws -> [UInt8] {`
-- L198: `func liveInput(_ x: CGFloat, diameter: CGFloat, width: CGFloat = 64, brightness: Double = 1) -> LoupeDisplayInput {`
-- L204: `func setLive(_ input: LoupeDisplayInput) {`
-- L213: `check(x < 32 ? value[0] > value[2] * 5 : value[2] > value[0] * 5,`
-- L215: `check(!view.autoResizeDrawable && view.drawableSize == live.pixelSize && composed.extent.size == live.pixelSize,`
-- L221: `check(view.loupe?.scene.point.x == 48 && pixel(latest, x: diameter, y: diameter)[2] > 0.5,`
-- L227: `check(before[0] > 0.7 && after[0] < 0.1 && after[2] > 0.5,`
-- L233: `check(Int(liveBytes[centre + 2]) > Int(liveBytes[centre]) * 5,`
-- L236: `check(view.loupe == nil && view.autoResizeDrawable, "leaving live lens restores normal photograph drawable sizing")`
-- L260: `check(graph.extent.size == CGSize(width: 150 * scale, height: 120 * scale) &&`
-- L272: `check(samePixels, "viewport crop preserves both axes and original source pixels at \(scale)x")`
-- L277: `check(zip(clear, bent).allSatisfy { abs($0 - $1) < 0.002 },`
-- L287: `check(expectedChannel == gpuChannel && gpuChannels[gpuChannel] > 80,`
-- L290: `func markerFrame(_ transmission: Double, _ flare: Double, brightness: Double = 1) async throws -> [UInt8] {`
-- L294: `func correctOrientation(_ bytes: [UInt8]) -> Bool {`
-- L295: `func rgb(_ x: Int, _ y: Int) -> (Int, Int, Int) {`
-- L305: `check(correctOrientation(off), "unlit production frame has correct orientation and visible content")`
-- L306: `check(markerView.cachedStableTexture == nil, "unlit first draw does not also compute a lit cache")`
-- L308: `check(correctOrientation(peak), "ignition peak has correct orientation and visible content")`
-- L309: `check(markerView.cachedStableTexture == nil, "animation does not build or read a stable texture")`
-- L311: `check(correctOrientation(steady), "first stable production frame has correct orientation")`
-- L312: `check(markerView.cachedStableTexture != nil, "GPU completion publishes the successfully copied stable frame")`
-- L315: `check(cached == steady && markerView.cachedStableTexture === cachedTexture,`
-- L320: `check(correctOrientation(secondOff) && correctOrientation(secondPeak) && secondSteady == steady,`
-- L322: `check(peak[centre + 2] > steady[centre + 2], "production SDR frame retains ignition overexposure")`
-- L324: `check(brighter != steady && correctOrientation(brighter), "brightness invalidates the cache without flipping the photograph")`
-- L330: `check(staleView.encode(into: staleTexture, commandBuffer: staleBuffer, renderer: renderer), "replacement regression encodes initial cache")`
-- L336: `check(staleView.cachedStableTexture == nil, "stale GPU completion cannot overwrite a replacement photograph")`
+- L43: `check(peakMiddle > 0.31 && peakMiddle < 0.32, "trial ignition raises midtones by 0.8 stops within SDR")`
+- L44: `check(pixel(exposed(brightScene, time: LightResponse.peakTime))[0] > 0.94 && pixel(exposed(brightScene, time: LightResponse.peakTime))[0] < 0.96,`
+- L46: `check(abs(pixel(exposed(middle, time: 0.28))[0] - peakMiddle) < 0.001, "overexposure holds briefly before recovery")`
+- L50: `check(value <= lastExposure + 0.001 && value >= 0.179, "recovery is monotonic without undershoot at step \(step)")`
+- L53: `check(abs(lastExposure - 0.18) < 0.002, "recovery restores the original steady exposure exactly")`
+- L54: `check(abs(pixel(exposed(middle, time: 1.10))[0] - 0.18) < 0.002, "photo exposure restores exactly at 1.10 seconds")`
+- L55: `check(pixel(exposed(image(0), time: LightResponse.peakTime))[0] < 0.001 &&`
+- L57: `check(pixel(exposed(middle, time: LightResponse.peakTime, brightness: 0.1))[0] < peakMiddle, "dim lamp also limits ignition exposure")`
+- L61: `check(value > lastHighlight && value <= 1.002 && value + 0.002 >= Float(tone),`
+- L68: `check(abs(ignitionBase[1] / ignitionBase[0] - ignitionPeak[1] / ignitionPeak[0]) < 0.003 &&`
+- L77: `check(zip(pixel(separate), pixel(fused)).allSatisfy { abs($0 - $1) < 0.003 },`
+- L83: `check(abs(pixel(lit(source))[0] - Float(value)) < 0.002,`
+- L86: `check(PhotoOptics.lampKernel != nil, "linear transmission kernel compiles")`
+- L87: `func powered(_ source: CGImage, _ brightness: Double) -> [Float] {`
+- L93: `check(abs(high - low * 1.6) < 0.002, "linear power scales 1.6x at tone \(tone)")`
+- L103: `check(true, "brightness slider remains monotonic within ordinary white")`
+- L110: `check(true, "high lamp preserves highlight steps without EDR")`
+- L113: `check(abs(lampNormal[1] / lampNormal[0] - lampStrong[1] / lampStrong[0]) < 0.003 &&`
+- L120: `check(abs(pixel(CIImage(cgImage: strongLens), x: 16, y: 16)[0] - powered(middle, 1.6)[0]) < 0.005,`
+- L124: `check(zip(sdr, raw).allSatisfy { abs($0 - $1) < 0.002 }, "SDR preserves the complete source color")`
+- L126: `check(zip(sdr, original).allSatisfy { abs($0 - $1) < 0.002 }, "original and transmitted default tones agree")`
+- L127: `check(pixel(lit(warm, t: 0))[0] < 0.02, "unlit film remains dark")`
+- L134: `check(lens.bitsPerComponent == 8 && !lens.bitmapInfo.contains(.floatComponents), "lens exports ordinary 8-bit P3")`
+- L135: `check(abs(pixel(CIImage(cgImage:lens),x:16,y:16)[0]-pixel(lit(source))[0])<0.005,`
+- L143: `check(abs(pixel(CIImage(cgImage: ignitionLens), x: 16, y: 16)[0] - pixel(tableIgnition)[0]) < 0.005,`
+- L155: `check(abs(value - pixel(tablePanel)[0]) < 0.002 && value <= previousPanel + 0.002,`
+- L160: `check(LightResponse.photoExposureStops(flare: 0, brightness: 1) == 0 &&`
+- L165: `check(view.colorPixelFormat == .bgra8Unorm && view.isPaused && view.enableSetNeedsDisplay,`
+- L167: `check((view.layer as? CAMetalLayer)?.presentsWithTransaction == true,`
+- L171: `check((view.layer as? CAMetalLayer)?.wantsExtendedDynamicRangeContent == false,`
+- L177: `func renderSurface(_ surface: OpticalMetalView) async throws -> [UInt8] {`
+- L199: `func liveInput(_ x: CGFloat, diameter: CGFloat, width: CGFloat = 64, brightness: Double = 1) -> LoupeDisplayInput {`
+- L205: `func setLive(_ input: LoupeDisplayInput) {`
+- L214: `check(x < 32 ? value[0] > value[2] * 5 : value[2] > value[0] * 5,`
+- L216: `check(!view.autoResizeDrawable && view.drawableSize == live.pixelSize && composed.extent.size == live.pixelSize,`
+- L222: `check(view.loupe?.scene.point.x == 48 && pixel(latest, x: diameter, y: diameter)[2] > 0.5,`
+- L228: `check(before[0] > 0.7 && after[0] < 0.1 && after[2] > 0.5,`
+- L234: `check(Int(liveBytes[centre + 2]) > Int(liveBytes[centre]) * 5,`
+- L237: `check(view.loupe == nil && view.autoResizeDrawable, "leaving live lens restores normal photograph drawable sizing")`
+- L261: `check(graph.extent.size == CGSize(width: 150 * scale, height: 120 * scale) &&`
+- L273: `check(samePixels, "viewport crop preserves both axes and original source pixels at \(scale)x")`
+- L278: `check(zip(clear, bent).allSatisfy { abs($0 - $1) < 0.002 },`
+- L288: `check(expectedChannel == gpuChannel && gpuChannels[gpuChannel] > 80,`
+- L291: `func markerFrame(_ transmission: Double, _ flare: Double, brightness: Double = 1) async throws -> [UInt8] {`
+- L295: `func correctOrientation(_ bytes: [UInt8]) -> Bool {`
+- L296: `func rgb(_ x: Int, _ y: Int) -> (Int, Int, Int) {`
+- L306: `check(correctOrientation(off), "unlit production frame has correct orientation and visible content")`
+- L307: `check(markerView.cachedStableTexture == nil, "unlit first draw does not also compute a lit cache")`
+- L309: `check(correctOrientation(peak), "ignition peak has correct orientation and visible content")`
+- L310: `check(markerView.cachedStableTexture == nil, "animation does not build or read a stable texture")`
+- L312: `check(correctOrientation(steady), "first stable production frame has correct orientation")`
+- L313: `check(markerView.cachedStableTexture != nil, "GPU completion publishes the successfully copied stable frame")`
+- L316: `check(cached == steady && markerView.cachedStableTexture === cachedTexture,`
+- L321: `check(correctOrientation(secondOff) && correctOrientation(secondPeak) && secondSteady == steady,`
+- L323: `check(peak[centre + 2] > steady[centre + 2], "production SDR frame retains ignition overexposure")`
+- L325: `check(brighter != steady && correctOrientation(brighter), "brightness invalidates the cache without flipping the photograph")`
+- L331: `check(staleView.encode(into: staleTexture, commandBuffer: staleBuffer, renderer: renderer), "replacement regression encodes initial cache")`
+- L337: `check(staleView.cachedStableTexture == nil, "stale GPU completion cannot overwrite a replacement photograph")`
+- L340: `func renderSized(_ surface: OpticalMetalView, _ width: Int, _ height: Int) async throws -> [UInt8] {`
+- L366: `check(first == expected && reused == expected && resizedView.cachedStableTexture?.width == width`
+- L375: `check(retry.nextDelay() == 1.0 / 60.0, "first retry is deferred")`
+- L376: `check(retry.nextDelay() == 0.05, "second retry backs off")`
+- L377: `check(retry.nextDelay() == 0.15, "third retry backs off")`
+- L378: `check(retry.nextDelay() == nil, "retry budget is finite")`
+- L379: `check(retry.nextDelay() == nil, "exhausted budget stays exhausted")`
+- L381: `check(retry.revision != previousRevision && retry.attempts == 0,`
+- L385: `check(retry.attempts == 0, "successful work clears failure count")`
+- L394: `check(queued.count == 1 && queued[0].delay == 1.0 / 60.0 && retryView.pendingRetry != nil,`
+- L397: `check(queued.count == 1 && retryView.retry.attempts == 1,`
+- L401: `check(retryView.retry.revision != firstRevision && retryView.pendingRetry == nil && retryView.retry.attempts == 0,`
+- L406: `check(currentToken != nil && retryView.pendingRetry == currentToken,`
+- L409: `check(retryView.pendingRetry == nil && queued.isEmpty,`
+- L412: `check(queued.count == 1 && queued[0].delay == 0.05, "next failure of the same input backs off")`
+- L415: `check(queued.count == 1 && queued[0].delay == 0.15, "third failure of the same input backs off")`
+- L418: `check(queued.isEmpty && retryView.pendingRetry == nil, "production retries stop at the budget")`
+- L421: `check(queued.isEmpty, "unchanged SwiftUI updates do not rearm an exhausted budget")`
+- L424: `check(queued.count == 1, "changed input can retry again after exhaustion")`
+- L427: `check(retryView.pendingRetry == nil && retryView.retry.attempts == 0, "GPU success clears failure state")`
+- L429: `check(retryView.pendingRetry == nil && queued.isEmpty, "success invalidates an already queued retry")`
+- L435: `check(retryView.retry.revision != detachRevision && retryView.pendingRetry == nil && queued.isEmpty,`
+- L440: `func drawWithoutBuffer(_ views: [OpticalMetalView]) {`
+- L452: `check(queued.count == 1 && queued[0].delay == 1.0 / 60.0,`
+- L457: `check(queued.count == 1 && queued[0].delay == delay && sizeRetryView.retry.revision == sizeRevision,`
+- L462: `check(queued.isEmpty && sizeRetryView.retry.attempts == 3 && sizeRetryView.pendingRetry == nil,`
+- L466: `check(queued.count == 1 && queued[0].delay == 1.0 / 60.0 &&`
+- L475: `check(queued.count == 1 && newSizeToken != nil && sizeRetryView.pendingRetry == newSizeToken,`
+- L478: `check(queued.count == 1 && sizeRetryView.pendingRetry == newSizeToken &&`
+- L497: `check(bufferRequests == requestsBeforeIdle && queued.isEmpty &&`
+- L502: `check(bufferRequests == requestsBeforeIdle + 1 && queued.count == 1 && queued[0].delay == 0.05 &&`
 
 ## Tests/SleeveChecks.swift
 - L5: `struct SleeveChecks {`
@@ -1251,6 +1349,128 @@
 - L322: `static func writePNG(to url: URL, width: Int, height: Int) throws {`
 - L342: `static func meanLuminance(_ image: CGImage) throws -> Double {`
 
+## Tests/TrayChecks.swift
+- L5: `private final class DeferredFile: @unchecked Sendable {`
+- L16: `func finish(_ url: URL) {`
+- L23: `struct Legacy: Codable { var urls: [URL]; var layout: TableLayout; var label: String }`
+- L24: `@MainActor static func main() async throws {`
+- L30: `func check(_ value: Bool, _ message: String) { precondition(value, message); count += 1; print("PASS \(message)") }`
+- L32: `func photo(_ path: String) throws -> URL {`
+- L43: `check(model.photos.map(\.url) == [a] && model.sourceLabel == "first", "first folder labels its tray")`
+- L48: `check(model.photos.map(\.url) == [a, b], "another folder appends recursively without replacing existing photos")`
+- L50: `check(model.photos.map(\.url) == [a, b] && model.sourceLabel == "first", "repeat import deduplicates and preserves the tray label")`
+- L52: `check(model.photos.map(\.url) == [a, b] && model.message != nil && !model.isImporting, "empty or missing imports preserve the tray and finish loading")`
+- L54: `check(model.trays.count == 2 && second != first && model.activeTrayID == second && model.photos.isEmpty, "plus creates and selects an empty independent tray")`
+- L55: `check(model.layout == layout && model.selectedIDs == selection && model.isLit && model.lightStartedAt == clock`
+- L58: `check(model.photos.map(\.url) == [c] && model.trays[0].urls == [a, b], "import goes only to the selected tray")`
+- L60: `check(model.photos.map(\.url) == [a, b], "switching back restores the original tray")`
+- L62: `check(model.activeTrayID == first, "unknown tray identity cannot change the selection")`
+- L64: `check(model.photos.map(\.url) == [a, b] && model.trays[1].urls == [c, a], "an import keeps its original destination after selection changes")`
+- L65: `check(Set(model.allPhotos.map(\.url)) == Set([a, b, c]) && model.allPhotos.count == 3, "shared album library deduplicates photos across trays")`
+- L68: `check(Set(model.slideshowOrder) == Set([a, c]) && model.slideshowOrder.count == 2, "slideshow uses only the selected tray")`
+- L72: `check(restored.trays == model.trays && restored.activeTrayID == second && restored.photos.map(\.url) == [c, a], "all trays, order, names and active selection survive restart")`
+- L73: `check(restored.layout == layout && restored.pan == model.pan && restored.zoom == model.zoom, "tray persistence preserves table geometry and camera")`
+- L75: `check(Set(saved.urls) == Set([a, b, c]), "legacy-compatible URL list retains every tray photo")`
+- L78: `check(emptyRestored.activeTrayID == empty && emptyRestored.photos.isEmpty && emptyRestored.trays.count == 3, "empty selected trays stay empty after restart")`
+- L80: `check(!emptyRestored.slideshowMode, "an empty selected tray cannot play photos from other trays")`
+- L84: `check(migrated.trays.count == 1 && migrated.sourceLabel == "旧图库" && migrated.photos.map(\.url) == [a], "legacy libraries migrate to one deduplicated tray")`
+- L85: `check(migrated.layout == layout, "legacy migration preserves the existing arrangement")`
+- L87: `check(TableModel(storageURL: oldStorage).trays == migrated.trays, "legacy migration is stable across subsequent launches")`
+- L99: `check(accepted && model.trays[0].urls == [a, b, c] && model.trays[1].urls == [c, a], "switching during asynchronous drop decoding cannot redirect the import")`
+- L103: `check(internalDrop && model.layout.slides.contains { $0.url == b } && model.photos.isEmpty, "a shared-library internal drag places without adding to another tray")`
+- L105: `check(model.photos.isEmpty, "placing an already known photo does not pollute the current tray")`
+- L107: `check(Set(model.layout.slides.map(\.url)) == Set([a, c]) && model.trays[0].urls == [a, b, c], "one-click layout uses the active tray while keeping every tray intact")`
+- L113: `check(deletion.trays.count == 1 && deletion.photos.map(\.url) == [a, b] && !deletion.canDeleteSelection,`
+- L119: `check(deletion.selectedTrayPhoto == nil && deletion.selectedIDs.isEmpty && !deletion.canDeleteSelection`
+- L123: `check(deletion.selectedTrayPhoto?.trayID == deletionFirst && deletion.selectedTrayPhoto?.url == b`
+- L127: `check(deletion.selectedTrayPhoto == nil && deletion.selectedID == placedID,`
+- L131: `check(deletion.selectedTrayPhoto == nil, "marquee selection cancels the tray photo deletion target")`
+- L134: `check(deletion.selectedTrayPhoto == nil && !deletion.canDeleteSelection,`
+- L138: `check(deletion.selectedTrayPhoto?.url == b, "an unknown tray cannot change the photo deletion target")`
+- L140: `check(deletion.selectedTrayPhoto == nil && !deletion.canDeleteSelection,`
+- L144: `check(deletion.selectedTrayPhoto == nil && deletion.activeTrayID == deletionSecond,`
+- L149: `check(TableModel(storageURL: root.appendingPathComponent("deletion.json")).selectedTrayPhoto == nil,`
+- L153: `check(deletion.selectedTrayPhoto == nil && !deletion.canDeleteSelection,`
+- L169: `check(deletion.trays.count == 2 && deletion.layout.slides.count == 2 && !deletion.canDeleteSelection,`
+- L172: `check(deletion.trays.map(\.id) == [deletionSecond] && deletion.activeTrayID == deletionSecond,`
+- L174: `check(deletion.layout.slides.map(\.id) == [survivingSlide]`
+- L177: `check(deletion.photos.map(\.url) == [a, c],`
+- L179: `check(deletion.albums == albumsBeforeDeletion && deletion.onTableAlbums.map(\.id) == [album],`
+- L181: `check(deletion.selectedIDs.isEmpty && deletion.selectedTrayPhoto == nil && !deletion.canDeleteSelection,`
+- L183: `check(deletion.isLit && deletion.lightStartedAt == deletionLightClock`
+- L187: `check(deletion.trays.map(\.id) == [deletionSecond] && deletion.layout.slides.map(\.id) == [survivingSlide],`
+- L191: `check(afterDeletion.trays == deletion.trays && afterDeletion.layout == deletion.layout`
+- L196: `check(deletion.layout.slides.isEmpty && deletion.photos.map(\.url) == [a, c]`
+- L201: `check(Set(deletion.trays.map(\.name)).count == deletion.trays.count,`
+- L205: `check(deletion.activeTrayID == deletionFourth && deletion.trays.map(\.id) == [deletionSecond, deletionFourth],`
+- L209: `check(deletion.activeTrayID == deletionSecond && deletion.trays.count == 1,`
+- L214: `check(deletion.activeTrayID == deletionSecond && deletion.trays.count == 1,`
+- L218: `check(deletion.trays.count == 1 && deletion.selectedTrayPhoto?.url == a,`
+- L222: `check(deletion.trays.count == 1 && replacementTray != deletionSecond && deletion.photos.isEmpty,`
+- L224: `check(deletion.albums == albumsBeforeDeletion, "deleting the last tray still preserves albums")`
+- L227: `check(emptyAfterDeletion.activeTrayID == replacementTray && emptyAfterDeletion.photos.isEmpty,`
+- L231: `check(deletion.photos.map(\.url) == [a, b] && deletion.layout.slides.map(\.url) == [b],`
+- L249: `check(!acceptedAfterDeletion && pendingDeletion.trays.count == 1`
+- L253: `check(pendingDeletion.photos.isEmpty && pendingDeletion.activeTrayID != deletedDestination && !pendingDeletion.isImporting,`
+- L276: `check(keyboard.selectedTrayPhoto?.url == a && keyboard.selectedIDs.isEmpty,`
+- L281: `check(keyboard.selectedTrayPhoto?.trayID == keyboardFirst && keyboard.selectedTrayPhoto?.url == a,`
+- L284: `check(keyboard.trays.first { $0.id == keyboardFirst }?.urls == [b]`
+- L288: `check(keyboard.trays.first { $0.id == keyboardSecond }?.urls == [a, c]`
+- L291: `check(keyboard.selectedTrayPhoto == nil && keyboard.selectedIDs.isEmpty && !keyboard.canDeleteSelection,`
+- L294: `check(keyboard.photos.map(\.url) == [b] && keyboard.layout.slides.map(\.id) == [keyboardBSlide]`
+- L299: `check(keyboardRestored.trays == keyboard.trays && keyboardRestored.layout == keyboard.layout`
+- L304: `check(keyboard.layout.slides.isEmpty && keyboard.photos.map(\.url) == [b],`
+- L308: `check(keyboard.photos.isEmpty && keyboard.activeTrayID == keyboardFirst && keyboard.trays.count == 2,`
+- L313: `check(keyboard.selectedTrayPhoto?.url == a,`
+- L316: `check(keyboard.selectedTrayPhoto == nil && !keyboard.canDeleteSelection && keyboard.activeTrayID == keyboardFirst,`
+- L337: `check(singlePhoto.trays.first { $0.id == singlePhotoFirstTray }?.urls == [b]`
+- L340: `check(!singlePhoto.tableOrder.contains(aSlideID) && singlePhoto.selectedIDs == [bSlideID],`
+- L342: `check(singlePhoto.trays.first { $0.id == singlePhotoSecondTray }?.urls == [a, c]`
+- L345: `check(singlePhoto.allPhotos.contains { $0.url == a },`
+- L348: `check(singlePhoto.layout.slides.isEmpty`
+- L354: `check(singlePhotoRestored.activeTrayID == singlePhotoFirstTray`
+- L365: `check(singlePhoto.layout == singlePhotoLayout && singlePhoto.trays == singlePhotoTrays`
+- L372: `check(singlePhoto.activeTrayID == singlePhotoSecondTray`
+- L377: `check(singlePhoto.selectedIDs.isEmpty && singlePhoto.selectedTrayPhoto == nil`
+- L381: `check(singlePhoto.trays.count == 2,`
+- L386: `check(singlePhoto.photos.map(\.url) == [a] && singlePhoto.layout == remainingLayout`
+- L390: `check(try Data(contentsOf: url) == image, "single-photo deletion leaves original unchanged: \(url.lastPathComponent)")`
+- L392: `for url in [a, b, c] { check(try Data(contentsOf: url) == image, "original file remains unchanged: \(url.lastPathComponent)") }`
+
+## Tests/TrayReturnChecks.swift
+- L5: `@MainActor static func main() async throws {`
+- L12: `func check(_ condition: Bool, _ label: String) {`
+- L15: `func photo(_ name: String) throws -> URL {`
+- L26: `check(model.trayPhotos.map(\.url) == originalOrder, "imported photos initially remain in the tray")`
+- L29: `check(model.trayPhotos.map(\.url) == originalOrder.filter { $0 != b }, "placed photo disappears and remaining order stays stable")`
+- L30: `check(model.photos.map(\.url) == originalOrder, "placing preserves source membership and order")`
+- L32: `check(model.layout.slides.count == 1 && model.selectedID == bID, "repeated placement creates no duplicate")`
+- L34: `check(model.trayPhotos.map(\.url) == originalOrder.filter { $0 != b }, "moving and rotating do not return a placed photo")`
+- L38: `check(model.trayPhotos.map(\.url) == originalOrder && model.layout.slides.isEmpty, "Delete returns the film to its original ordered position")`
+- L39: `check(model.thumbnails[b] === thumb, "returned film reuses its cached thumbnail")`
+- L41: `check(model.trayPhotos.map(\.url) == originalOrder, "repeated Delete with no selection cannot duplicate photos")`
+- L51: `check(model.activeTrayID == secondTray && model.trayPhotos.map(\.url) == [d], "mixed return keeps the active tray and never moves another tray's photo into it")`
+- L53: `check(model.trayPhotos.map(\.url) == originalOrder, "mixed return restores each photo to its original tray")`
+- L58: `check(restored.activeTrayID == secondTray && restored.trayPhotos.map(\.url) == [d], "restart restores current tray selection")`
+- L60: `check(restored.trayPhotos.map(\.url) == originalOrder.filter { $0 != b }, "restart hides already-placed films in their original tray")`
+- L64: `check(restored.selectedIDs.isEmpty && !restored.canDeleteSelection,`
+- L68: `check(restored.trayPhotos.map(\.url) == [d], "Delete after restart and tray switch does not redirect the returned film")`
+- L70: `check(restored.trayPhotos.map(\.url) == originalOrder, "returned film's original order survives restart")`
+- L73: `check(afterReturn.trayPhotos.map(\.url) == originalOrder && afterReturn.layout.slides.isEmpty,`
+- L79: `check(model.trayPhotos.isEmpty && Set(model.layout.slides.map(\.url)) == Set(originalOrder), "place all empties visible tray without losing library photos")`
+- L81: `check(model.slideshowMode && Set(model.slideshowOrder) == Set(originalOrder), "empty visible tray still permits the current tray's complete slideshow")`
+- L84: `check(model.trayPhotos.map(\.url) == originalOrder, "clear table returns every photo to its original tray")`
+- L89: `check(model.layout == cancelledLayout && model.trayPhotos == cancelledPhotos, "invalid drop keeps photo in tray without changing table")`
+- L91: `check(!model.trayPhotos.contains { $0.url == a }, "native internal drop also removes the visible tray entry")`
+- L93: `check(model.trayPhotos.map(\.url) == originalOrder, "native drop and return maintain original order")`
+- L95: `check(model.trayPhotos.map(\.url) == originalOrder, "reimporting returned photos does not duplicate them")`
+- L98: `check(!model.trayPhotos.contains { $0.url == b }, "reimporting a placed photo keeps it off the tray")`
+- L103: `check(model.albums.first { $0.id == album }?.pockets.contains { $0.url == c } == true,`
+- L114: `check(cached.preparedPreviews.count == 14 && cached.preparedTablePreviews.count == 14, "on-table photos retain prepared previews")`
+- L117: `check(cached.preparedPreviews.count <= 12 && cached.preparedTablePreviews.count <= 12,`
+- L119: `check(cached.trayPhotos.count == 14 && cached.photos.count == 14, "cache trimming retains every returned photo")`
+- L121: `check(try Data(contentsOf: url) == data, "original unchanged: \(url.lastPathComponent)")`
+
 ## Tests/UpdateChecks.swift
 - L5: `@MainActor static func main() throws {`
 - L7: `func check(_ value: Bool, _ description: String) {`
@@ -1290,6 +1510,16 @@
 
 ## docs/releases/v0.1.72.md
 
+## docs/releases/v0.1.73.md
+
+## docs/releases/v0.1.74.md
+
+## docs/releases/v0.1.75.md
+
+## docs/本次更新操作指引-v0.1.73.md
+
+## docs/本次更新操作指引-v0.1.74.md
+
 ## scripts/build-app.sh
 
 ## scripts/check-albums.sh
@@ -1309,6 +1539,10 @@
 ## scripts/check-sleeves.sh
 
 ## scripts/check-slideshow.sh
+
+## scripts/check-tray-return.sh
+
+## scripts/check-trays.sh
 
 ## scripts/check-update-bundle.py
 

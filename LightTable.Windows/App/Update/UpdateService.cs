@@ -12,7 +12,7 @@ sealed class UpdateService(DocumentStore storage)
     static HttpClient CreateClient()
     {
         var client=new HttpClient(new HttpClientHandler{AutomaticDecompression=DecompressionMethods.All}){Timeout=TimeSpan.FromSeconds(30)};
-        client.DefaultRequestHeaders.UserAgent.ParseAdd("LightTable-Windows/0.1.72.1");return client;
+        client.DefaultRequestHeaders.UserAgent.ParseAdd($"LightTable-Windows/{BuildInfo.Version}");return client;
     }
     public async Task<WindowsRelease?> CheckAsync(bool manual,bool periodic=false)
     {
@@ -21,14 +21,14 @@ sealed class UpdateService(DocumentStore storage)
         {
             if(!manual&&!periodic&&launchChecked)return null;
             if(!manual&&!periodic)launchChecked=true;
-            var json=await http.GetStringAsync("https://api.github.com/repos/fuyuan9972-svg/LightTable/releases?per_page=100");
-            return ReleasePolicy.Find(json,new Version(0,1,72,1));
+            var json=await http.GetStringAsync("https://api.github.com/repos/hqiy0831/LightTable-Windows/releases?per_page=100");
+            return ReleasePolicy.Find(json,Version.Parse(BuildInfo.Version),includePreviews:true);
         }
         finally{checkLock.Release();}
     }
     public async Task<string> DownloadAsync(WindowsRelease release,IProgress<double>? progress=null)
     {
-        if(!ReleasePolicy.Allowed(release.Installer)||release.Version<=new Version(0,1,72,1))throw new InvalidDataException("更新地址或版本无效");
+        if(!ReleasePolicy.Allowed(release.Installer)||release.Version<=Version.Parse(BuildInfo.Version))throw new InvalidDataException("更新地址或版本无效");
         var file=Path.Combine(storage.Root,"updates",$"LightTable-{release.Version}-Windows-Setup-x64.exe");var temp=file+".partial";
         try
         {

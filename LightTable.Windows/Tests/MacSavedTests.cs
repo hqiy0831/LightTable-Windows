@@ -7,6 +7,12 @@ namespace LightTable.Tests;
 
 public sealed class MacSavedTests : IDisposable
 {
+    [Fact] public void UpstreamSeventyFiveTraysMigrateIntoIndependentWindowsWorkspaces()
+    {
+        var a=FileAt("a.jpg",[1,2]);var b=FileAt("b.jpg",[3,4]);var first=Guid.NewGuid();var second=Guid.NewGuid();
+        var bytes=JsonSerializer.SerializeToUtf8Bytes(new{urls=Array.Empty<string>(),label="第二栏",trays=new[]{new{id=first,name="第一栏",urls=new[]{Url("/Mac/a.jpg")}},new{id=second,name="第二栏",urls=new[]{Url("/Mac/b.jpg")}}},activeTrayID=second,layout=new{slides=new[]{Slide(Guid.NewGuid(),"/Mac/a.jpg"),Slide(Guid.NewGuid(),"/Mac/b.jpg")}}});
+        var result=MacSavedImporter.Import(bytes,[new("/Mac",root)]);Assert.Empty(result.MissingPaths);Assert.Equal(2,result.Document.Collections.Count);Assert.Equal(b,result.Document.Slides.Single().Path);result.Document.SwitchCollection(first);Assert.Equal(a,result.Document.Slides.Single().Path);Assert.Equal(a,result.Document.ActivePhotos.Single().Path);
+    }
     readonly string root=Path.Combine(Path.GetTempPath(),"LightTableMigration",Guid.NewGuid().ToString("N"));
     public MacSavedTests()=>Directory.CreateDirectory(root);
     public void Dispose()=>Directory.Delete(root,true);

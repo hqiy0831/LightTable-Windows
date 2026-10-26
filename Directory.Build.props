@@ -5,7 +5,7 @@
     <LangVersion>latest</LangVersion>
     <Deterministic>true</Deterministic>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <Version>0.1.72.6</Version>
+    <Version>0.1.75.1</Version>
     <Authors></Authors>
     <Copyright>Copyright (c) 2026 fuyuan9972-svg</Copyright>
   </PropertyGroup>

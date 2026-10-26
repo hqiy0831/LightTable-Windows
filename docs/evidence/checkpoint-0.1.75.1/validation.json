@@ -1,0 +1,52 @@
+{
+  "Version": "0.1.75.1",
+  "Upstream": "827ca13d947e4472675bbe409837c0188a9385d9",
+  "OriginalAuthor": "抖音 @怕蛇LightTable",
+  "Core": {
+    "Passed": 109,
+    "Failed": 0
+  },
+  "Portable": {
+    "Passed": true,
+    "Checks": 30,
+    "ExitCode": 0,
+    "ArchiveSha256": "d1040e410f83e4dae8c6946dfdf1d12eb44e4e0be9134ac57f6718bc6f6e6af1"
+  },
+  "InstallerSandbox": {
+    "InstallerSha256": "3C2800B26A92654F3B2FDE0D2FBBCDD30FDFD8E1B373E2F4E483BE3B24A67D78",
+    "Passed": true,
+    "Rounds": [
+      {
+        "ExitCode": 0,
+        "Uninstalled": true,
+        "ExistingProductionUnchanged": true,
+        "LayoutPreserved": true,
+        "Checks": 30,
+        "Installed": true,
+        "Round": 1
+      },
+      {
+        "ExitCode": 0,
+        "Uninstalled": true,
+        "ExistingProductionUnchanged": true,
+        "LayoutPreserved": true,
+        "Checks": 30,
+        "Installed": true,
+        "Round": 2
+      }
+    ],
+    "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app",
+    "ProductionStateSha256": "81203257569bf3089e4cc7b64bbdb8e552fb2e4bd468545c38829e96c01304e3"
+  },
+  "BinarySha256": {
+    "LightTable.exe": "d1787bcc1590cda0a66650a5279e87f2bceabde8e59651dc258a6f1b0c54f7e0",
+    "LightTable.dll": "d343c9d666407a7693da9c06ca6975c94751dd67aba3bb51b737a6f5619890ce",
+    "LightTable.Core.dll": "d9c1f74c1f7e10101517ab1744a2f9d3e2e91d4bd5c0ac549286ca3a55d8b99e",
+    "LightTable.pri": "e00bf740022937bdba9a91337f469224aa378e322ca2f08beab576c0065f39f7",
+    "Resources/LoupeEdge.bin": "447f5bb28228aa530ecf78d23cbaaf55a6f1d851817d4e7bd68654701e70fbf0",
+    "Resources/FusedOptical.bin": "9467b92aeabc031f28fda32895d926e887f8cd57fa0ee93f24d9215e8b2ecc2f",
+    "Resources/FusedLamp.bin": "6f223938733fde2483578b838f6d820b4a6402fea52787198492c50abd4b9ca3"
+  },
+  "AllFinalBenchmarkAppDllHashesMatch": true,
+  "Scope": "Current development host. Separate installer AppId; not clean Windows or production upgrade acceptance. sRGB BGRA8; full port, P3/FP16 and 60FPS not achieved."
+}

@@ -1,5 +1,7 @@
 # 许可与素材说明
 
+原作者及出处：抖音 **@怕蛇LightTable**；原项目 [fuyuan9972-svg/LightTable](https://github.com/fuyuan9972-svg/LightTable)。本仓库为 Windows 移植版。下列版权署名及许可条款保持原样。
+
 LightTable 原项目代码：Copyright (c) 2026 fuyuan9972-svg，MIT，完整 LICENSE 随附。上游完整说明保存在 `upstream/THIRD_PARTY_NOTICES.md`，应用包含 `UPSTREAM_THIRD_PARTY_NOTICES.md`。
 
 Windows 使用 .NET 10、Microsoft.WindowsAppSDK 2.5.1、Microsoft.Graphics.Win2D 1.4.0 及其依赖，各组件的版权与许可适用相应 NuGet 包中的声明；Microsoft 运行时随 self-contained 构建打包。构建脚本提取17个应用/构建包的 nuspec、license/notice 文件及运行时许可到 licenses/。Win2D 1.4.0 的 nuspec EULA URL 当前重定向至无关网页，因此保留原链接、上游源码 MIT LICENSE 和明确的来源说明，不能把无关页面伪称为 EULA；二进制包许可的精确核对仍是发行审计未闭合项。Sparkle 不参与 Windows 运行或打包。

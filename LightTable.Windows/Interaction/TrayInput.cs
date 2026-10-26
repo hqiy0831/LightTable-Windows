@@ -35,7 +35,7 @@ sealed partial class MainWindow
             pullingItem=item;pullStart=Pt(point.Position);pullOrigin=new(origin.X,origin.Y,image.ActualWidth,image.ActualHeight);pullPointer=pullStart;
             session.CloseViewing=false;
         }),true);
-        tray.AddHandler(UIElement.PointerMovedEvent,new PointerEventHandler((_,e)=>
+        root.AddHandler(UIElement.PointerMovedEvent,new PointerEventHandler((_,e)=>
         {
             if(pullingItem==null||pullStart is not {} start||finishingFlight)return;
             var point=e.GetCurrentPoint(root);if(!point.Properties.IsLeftButtonPressed)return;
@@ -44,7 +44,7 @@ sealed partial class MainWindow
             {
                 var d=pointer-start;if(Math.Sqrt(d.X*d.X+d.Y*d.Y)<6)return;
                 if(e.Pointer.PointerDeviceType==Microsoft.UI.Input.PointerDeviceType.Touch&&Math.Abs(d.X)>Math.Abs(d.Y)){pullingItem=null;pullStart=pullPointer=null;return;}
-                tray.CapturePointer(e.Pointer);
+                tray.CapturePointer(e.Pointer);tray.SelectedItems.Clear();
                 renderer.Flight=new(){Path=pullingItem.Path,AlbumId=pullingItem.AlbumId,Origin=pullOrigin,Start=start,Frame=pullOrigin};
                 _=pullingItem.AlbumId==null?renderer.PrepareFlight(pullingItem.Path):Task.CompletedTask;
             }
@@ -57,7 +57,7 @@ sealed partial class MainWindow
             flight.Angle=angle*flight.Expansion+(session.ReduceMotion?0:Math.Clamp(distance.X/40,-3,3)*(1-flight.Expansion));
             lensOverlay.Invalidate();board.Invalidate();e.Handled=true;
         }),true);
-        tray.AddHandler(UIElement.PointerReleasedEvent,new PointerEventHandler(async(_,e)=>
+        root.AddHandler(UIElement.PointerReleasedEvent,new PointerEventHandler(async(_,e)=>
         {
             if(pullingItem==null)return;
             var item=pullingItem;var pointer=Pt(e.GetCurrentPoint(root).Position);pullingItem=null;pullStart=null;pullPointer=null;tray.ReleasePointerCaptures();
