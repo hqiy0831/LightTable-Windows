@@ -37,6 +37,9 @@ public sealed class OpticalLayerCache
     readonly long budget;
     readonly int entryLimit;
     int cleanupStarted;
+    long trackedBytes;
+    int trackedEntries,writesSinceScan;
+    bool inventoryReady;
     public string DirectoryPath {get;}
     public long DiskHits,BuildCount,CorruptReads,WriteFailures,TempFilesRemoved;
     public OpticalLayerCache(DocumentStore storage,string recipe=CurrentRecipe,long budget=DiskBudget,int entryLimit=EntryLimit)
@@ -116,7 +119,12 @@ public sealed class OpticalLayerCache
                 }
                 output.Flush(true);
             }
-            lock(diskGate){File.Move(temp,path,true);Trim(path);}
+            lock(diskGate)
+            {
+                if(!inventoryReady||writesSinceScan>=64)ScanInventory();
+                var old=File.Exists(path)?new FileInfo(path).Length:0;var added=!File.Exists(path);
+                var bytes=new FileInfo(temp).Length;File.Move(temp,path,true);trackedBytes+=bytes-old;if(added)trackedEntries++;writesSinceScan++;Trim(path);
+            }
         }
         catch(Exception ex)when(ex is IOException or UnauthorizedAccessException)
         {Interlocked.Increment(ref WriteFailures);Log($"光学缓存写入失败，继续使用已生成图像: {ex.Message}");}
@@ -127,8 +135,8 @@ public sealed class OpticalLayerCache
     }
     void Trim(string keeping)
     {
+        if(trackedBytes<=budget&&trackedEntries<=entryLimit)return;
         var files=new DirectoryInfo(DirectoryPath).EnumerateFiles("*.ltoc").ToList();var total=files.Sum(f=>f.Length);var count=files.Count;
-        if(total<=budget&&count<=entryLimit)return;
         foreach(var file in files.OrderBy(f=>f.LastWriteTimeUtc))
         {
             if(total<=budget&&count<=entryLimit)break;
@@ -136,6 +144,11 @@ public sealed class OpticalLayerCache
             try{var length=file.Length;file.Delete();total-=length;count--;}
             catch(Exception ex)when(ex is IOException or UnauthorizedAccessException){Log($"光学缓存淘汰稍后重试: {ex.Message}");}
         }
+        trackedBytes=total;trackedEntries=count;
+    }
+    void ScanInventory()
+    {
+        var files=new DirectoryInfo(DirectoryPath).EnumerateFiles("*.ltoc").ToArray();trackedBytes=files.Sum(f=>f.Length);trackedEntries=files.Length;writesSinceScan=0;inventoryReady=true;
     }
     void RemoveStaleTemps()
     {

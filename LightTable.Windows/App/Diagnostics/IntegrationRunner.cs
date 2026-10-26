@@ -46,6 +46,7 @@ sealed partial class MainWindow
                 Require(duplicate.AcceptedPaths.SequenceEqual(new[]{originals[0]}),"重复内容拖放没有解析为原图库引用");
                 return $"{originals.Length} 张 JPEG，重复路径与相同内容副本均跳过";
             });
+            await Check("Import-metadata-only-and-cross-column-reuse",()=>CheckMetadataImport(originals));
             await Check("WIC-common-codecs-roundtrip",async()=>
             {
                 var expected=new byte[16*12*4];for(int y=0;y<12;y++)for(int x=0;x<16;x++){var p=(y*16+x)*4;expected[p]=(byte)(x*15);expected[p+1]=(byte)(y*20);expected[p+2]=137;expected[p+3]=255;}
@@ -123,6 +124,7 @@ sealed partial class MainWindow
                 await midway.SaveAsync(Path.Combine(session.Storage.Root,"logs","loupe-midway.png"),CanvasBitmapFileFormat.Png);
                 return "原版0.90/0.97径向lip HLSL实际运行，普通镜透明边界、1×与8×中心有效；4张GPU快照已保存。未替代Space按键验收。";
             });
+            await Check("GPU-ordinary-and-close-actual-1-2-4-8-sampling",()=>CheckActualLoupeSampling());
             await Check("GPU-projector-optics-cache-and-composite",async()=>
             {
                 var before=JsonSerializer.Serialize(session.Document,DocumentStore.JsonOptions);

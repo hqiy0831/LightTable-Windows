@@ -37,7 +37,7 @@ sealed partial class MainWindow
         void InvalidatePreview(){if(!previewClosed){previewTimer.Stop();previewTimer.Start();}}
         var note=new TextBlock{Text="点空白处添加袋格；选袋格后，点右侧照片装入。拖动袋格换位。",FontSize=11,TextWrapping=TextWrapping.Wrap};Grid.SetRow(note,2);middle.Children.Add(note);
         var right=new Grid();right.RowDefinitions.Add(new(){Height=GridLength.Auto});right.RowDefinitions.Add(new(){Height=new(1,GridUnitType.Star)});Grid.SetColumn(right,2);panel.Children.Add(right);
-        var buttons=new StackPanel{Spacing=7};right.Children.Add(buttons);var photos=new ListView{ItemsSource=session.Document.Photos,DisplayMemberPath="Name",SelectionMode=ListViewSelectionMode.Single,CanDragItems=true};Grid.SetRow(photos,1);right.Children.Add(photos);
+        var buttons=new StackPanel{Spacing=7};right.Children.Add(buttons);var photos=new ListView{ItemsSource=session.Document.ActivePhotos,DisplayMemberPath="Name",SelectionMode=ListViewSelectionMode.Single,CanDragItems=true};Grid.SetRow(photos,1);right.Children.Add(photos);
         var dialog=new ContentDialog{Title="胶片袋相册",Content=panel,CloseButtonText="完成",XamlRoot=root.XamlRoot,MaxWidth=Math.Max(320,root.ActualWidth-32),MaxHeight=Math.Max(280,root.ActualHeight-32)};
         dialog.Resources["ContentDialogMaxWidth"]=dialog.MaxWidth;dialog.Resources["ContentDialogMaxHeight"]=dialog.MaxHeight;
         FilmFormat Format()=>format.SelectedIndex==0?FilmFormat.Film135:FilmFormat.Film120;

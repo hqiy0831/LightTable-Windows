@@ -29,7 +29,7 @@ sealed partial class MainWindow : Window
     readonly TableRenderer renderer;
     readonly SolidColorBrush panelBrush=new(global::Windows.UI.Color.FromArgb(255,227,217,191));
     readonly ObservableCollection<TrayItem> trayItems=[];
-    readonly ListView tray=new(){SelectionMode=ListViewSelectionMode.Single,CanDragItems=true,CanReorderItems=false,AllowDrop=true,Height=110,Background=new SolidColorBrush(Colors.Transparent),BorderThickness=new(0)};
+    readonly ListView tray=new(){SelectionMode=ListViewSelectionMode.Extended,CanDragItems=true,CanReorderItems=false,AllowDrop=true,Height=132,Background=new SolidColorBrush(Colors.Transparent),BorderThickness=new(0)};
     readonly TextBlock count=new(){FontSize=11,Foreground=new SolidColorBrush(Color(170))};
     readonly TextBlock status=new(){FontSize=11,Foreground=new SolidColorBrush(Color(170)),TextTrimming=TextTrimming.CharacterEllipsis};
     readonly Button light=new();
@@ -67,12 +67,23 @@ sealed partial class MainWindow : Window
         Grid.SetRow(boardHost,1);root.Children.Add(boardHost);boardHost.Children.Add(Toolbar());Grid.SetRow(board,1);boardHost.Children.Add(board);
         AutomationProperties.SetName(board,"灯箱工作区");
         var bottom=new StackPanel{Spacing=8,Margin=new(16),Padding=new(14),Background=new SolidColorBrush(Color(17)),CornerRadius=new(16),RequestedTheme=ElementTheme.Dark};
+        bottom.Children.Add(BuildCollectionBar());
         var actions=new Grid();actions.ColumnDefinitions.Add(new(){Width=GridLength.Auto});actions.ColumnDefinitions.Add(new(){Width=new(1,GridUnitType.Star)});actions.ColumnDefinitions.Add(new(){Width=GridLength.Auto});
         var imports=new StackPanel{Orientation=Orientation.Horizontal,Spacing=10};
         imports.Children.Add(Btn("选择文件夹",async()=>await ChooseFolder(),"Ctrl+O"));imports.Children.Add(Btn("添加照片",async()=>await ChoosePhotos(),"Ctrl+Shift+O"));imports.Children.Add(Btn("一键平铺",()=>session.Fit(true),"清除散片摆放，重新排列图库照片"));imports.Children.Add(count);actions.Children.Add(imports);
         Grid.SetColumn(status,1);status.Margin=new(16,8,12,0);actions.Children.Add(status);
         var album=Btn("相册",async()=>await ShowAlbums());Grid.SetColumn(album,2);actions.Children.Add(album);bottom.Children.Add(actions);
         tray.ItemsSource=trayItems;
+        ScrollViewer.SetHorizontalScrollMode(tray,ScrollMode.Enabled);ScrollViewer.SetHorizontalScrollBarVisibility(tray,ScrollBarVisibility.Visible);
+        ScrollViewer.SetVerticalScrollMode(tray,ScrollMode.Disabled);ScrollViewer.SetVerticalScrollBarVisibility(tray,ScrollBarVisibility.Disabled);
+        AutomationProperties.SetName(tray,"当前栏目照片，可横向滚动");
+        tray.Loaded+=(_,_)=>InitializeTrayScrolling();
+        tray.SelectionChanged+=(_,_)=>removeLibrary.IsEnabled=tray.SelectedItems.OfType<TrayItem>().Any(i=>i.AlbumId==null)&&!session.Busy;
+        tray.AddHandler(UIElement.PointerWheelChangedEvent,new PointerEventHandler((_,e)=>
+        {
+            if(trayScroller==null)return;var delta=e.GetCurrentPoint(tray).Properties.MouseWheelDelta;
+            trayScroller.ChangeView(Math.Clamp(trayScroller.HorizontalOffset-delta*2,0,trayScroller.ScrollableWidth),null,null,true);e.Handled=true;
+        }),true);
         tray.ItemsPanel=(ItemsPanelTemplate)XamlReader.Load("<ItemsPanelTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'><ItemsStackPanel Orientation='Horizontal'/></ItemsPanelTemplate>");
         tray.ItemTemplate=(DataTemplate)XamlReader.Load("""
             <DataTemplate xmlns='http://schemas.microsoft.com/winfx/2006/xaml/presentation'>
@@ -87,13 +98,13 @@ sealed partial class MainWindow : Window
               </StackPanel>
             </DataTemplate>
             """);
-        tray.ContainerContentChanging+=(sender,e)=>{if(!e.InRecycleQueue&&e.Item is TrayItem item)_=LoadThumbnail(item);};
+        tray.ContainerContentChanging+=(sender,e)=>{if(e.Item is not TrayItem item)return;item.Realized=!e.InRecycleQueue;if(e.InRecycleQueue)item.Thumbnail=null;else _=LoadThumbnail(item);};
         tray.DoubleTapped+=async(_,_)=>{if(tray.SelectedItem is TrayItem item){if(item.AlbumId!=null)await ShowAlbums(item.AlbumId);else PlaceTray(item);}};
         tray.DragItemsStarting+=(_,e)=>{if(e.Items.FirstOrDefault() is TrayItem item){e.Data.Properties["LightTable.Path"]=item.Path;e.Data.Properties["LightTable.Album"]=item.AlbumId?.ToString()??"";e.Data.RequestedOperation=DataPackageOperation.Copy;}};
-        tray.RightTapped+=(_,e)=>{var item=(e.OriginalSource as FrameworkElement)?.DataContext as TrayItem;if(item==null)return;var flyout=new MenuFlyout();MenuItem(flyout,"放到灯板中央",()=>PlaceTray(item));if(item.AlbumId==null)MenuItem(flyout,"在文件资源管理器中显示",()=>Reveal(item.Path));else MenuItem(flyout,"编辑相册页",async()=>await ShowAlbums(item.AlbumId));flyout.ShowAt(tray,e.GetPosition(tray));};
+        tray.RightTapped+=(_,e)=>{var item=(e.OriginalSource as FrameworkElement)?.DataContext as TrayItem;if(item==null)return;var flyout=new MenuFlyout();MenuItem(flyout,"放到灯板中央",()=>PlaceTray(item));if(item.AlbumId==null){MenuItem(flyout,"从当前栏目移除（保留源文件）",()=>RemoveLibrarySelection(item));MenuItem(flyout,"在文件资源管理器中显示",()=>Reveal(item.Path));}else MenuItem(flyout,"编辑相册页",async()=>await ShowAlbums(item.AlbumId));flyout.ShowAt(tray,e.GetPosition(tray));};
         tray.DragOver+=(_,e)=>{if(e.DataView.Contains(StandardDataFormats.StorageItems))e.AcceptedOperation=DataPackageOperation.Copy;};
         tray.Drop+=async(_,e)=>{if(e.DataView.Contains(StandardDataFormats.StorageItems)){var items=await e.DataView.GetStorageItemsAsync();await Import(items.Select(i=>i.Path));}};
-        bottom.Children.Add(tray);Grid.SetRow(bottom,2);root.Children.Add(bottom);
+        bottom.Children.Add(tray);bottom.Children.Add(BuildTrayNavigation());Grid.SetRow(bottom,2);root.Children.Add(bottom);
         var prepare=new StackPanel{Width=390,Spacing=22,VerticalAlignment=VerticalAlignment.Center,HorizontalAlignment=HorizontalAlignment.Center};prepare.Children.Add(startupText);prepare.Children.Add(startupProgress);prepare.Children.Add(startupActions);startup.Child=prepare;
         Grid.SetRowSpan(lensOverlay,3);root.Children.Add(lensOverlay);
         Grid.SetRowSpan(collectionOverlay,3);root.Children.Add(collectionOverlay);
@@ -150,12 +161,15 @@ sealed partial class MainWindow : Window
         if(closed)return;
         light.Content=session.IsLit?"关灯":"开灯";magnification.Visibility=session.Loupe?Visibility.Visible:Visibility.Collapsed;loupeButton.FontWeight=session.Loupe?Microsoft.UI.Text.FontWeights.SemiBold:Microsoft.UI.Text.FontWeights.Normal;
         magnification.SetValue(session.Power,!session.ReduceMotion);
-        count.Text=$"{session.Document.Photos.Count} 张";panelBrush.Color=renderer.PanelColor;board.Invalidate();
-        if(photoCount!=session.Document.Photos.Count||albumCount!=session.Document.Albums.Count)
+        var active=session.Document.EnsureCollection();count.Text=$"{active.Paths.Count} 张";collectionPicker.IsEnabled=!session.Busy;panelBrush.Color=renderer.PanelColor;board.Invalidate();
+        if(libraryRevision!=session.LibraryRevision||photoCount!=session.Document.Photos.Count||albumCount!=session.Document.Albums.Count)
         {
-            photoCount=session.Document.Photos.Count;albumCount=session.Document.Albums.Count;trayItems.Clear();
+            libraryRevision=session.LibraryRevision;photoCount=session.Document.Photos.Count;albumCount=session.Document.Albums.Count;
+            updatingCollections=true;collectionPicker.ItemsSource=null;collectionPicker.ItemsSource=session.Document.Collections;collectionPicker.SelectedItem=active;updatingCollections=false;
+            foreach(var old in trayItems){old.Realized=false;old.Thumbnail=null;}trayItems.Clear();
             foreach(var a in session.Document.Albums)trayItems.Add(new TrayItem(a.Name,"",a.Id));
-            foreach(var p in session.Document.Photos)trayItems.Add(new TrayItem(p.Name,p.Path));
+            foreach(var p in session.Document.ActivePhotos)trayItems.Add(new TrayItem(p.Name,p.Path));
+            DispatcherQueue.TryEnqueue(()=>{trayScroller?.ChangeView(trayOffsets.GetValueOrDefault(active.Id),null,null,true);UpdateTrayRange();});
         }
         var placedSlides=session.Document.Slides.Select(s=>s.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var placedAlbums=session.Document.Albums.Where(a=>a.Position!=null).Select(a=>a.Id).ToHashSet();
@@ -165,7 +179,7 @@ sealed partial class MainWindow : Window
     void RefreshAlbumThumbnails(){if(closed)return;foreach(var item in trayItems.Where(i=>i.AlbumId!=null))if(tray.ContainerFromItem(item)!=null)_=LoadThumbnail(item);}
     async Task LoadThumbnail(TrayItem item)
     {
-        if(item.Loading||closed)return;
+        if(item.Loading||closed||!item.Realized)return;
         AlbumPage? album=item.AlbumId is {} id?session.Document.Albums.Find(a=>a.Id==id):null;var hash=new HashCode();
         if(album!=null){hash.Add(renderer.ResourcesRevision);foreach(var p in album.Pockets){hash.Add(p.Column);hash.Add(p.Row);hash.Add(p.Format);hash.Add(p.Path);hash.Add(p.Path==null?0:session.Document.Aspect(p.Path));}}
         var revision=hash.ToHashCode();if(item.Thumbnail!=null&&(album==null||item.ThumbnailRevision==revision))return;item.Loading=true;
@@ -181,6 +195,7 @@ sealed partial class MainWindow : Window
                 pixels=target.GetPixelBytes();item.ThumbnailRevision=revision;
             }
             else{var decoded=await session.Images.GetAsync(item.Path,220);width=decoded.Width;height=decoded.Height;pixels=decoded.Pixels;}
+            if(!item.Realized||closed)return;
             var bitmap=new WriteableBitmap(width,height);using(var stream=bitmap.PixelBuffer.AsStream())await stream.WriteAsync(pixels);bitmap.Invalidate();
             if(album!=null&&deviceGeneration!=renderer.DeviceGeneration)retryAfterRecovery=true;else item.Thumbnail=bitmap;
         }
@@ -192,7 +207,7 @@ sealed partial class MainWindow : Window
     {
         status.Text="正在读取照片…";
         await session.ImportAsync(paths,replace,new Progress<(int Done,int Total)>(p=>{if(session.Busy)status.Text=$"正在读取照片 {p.Done} / {p.Total}";}));
-        status.Text=session.Document.SourceLabel;Refresh();
+        status.Text=session.Document.EnsureCollection().SourceLabel;Refresh();
     }
     async Task ChoosePhotos()
     {
@@ -233,6 +248,7 @@ sealed class TrayItem(string name,string path,Guid? albumId=null) : INotifyPrope
     public Visibility SleeveVisibility=>AlbumId==null?Visibility.Visible:Visibility.Collapsed;
     public int ThumbnailRevision {get;set;}
     public bool Loading {get;set;}
+    public bool Realized {get;set;}
     ImageSource? thumbnail;
     public ImageSource? Thumbnail{get=>thumbnail;set{thumbnail=value;PropertyChanged?.Invoke(this,new(nameof(Thumbnail)));}}
     string mark="";

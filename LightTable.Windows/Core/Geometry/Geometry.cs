@@ -32,7 +32,7 @@ public static class Geometry
     public static void Fit(TableDocument doc,double width,double height,bool replace=false)
     {
         if(width<=0||height<=0)return;
-        if(replace){doc.Slides.Clear();foreach(var p in doc.Photos)doc.Slides.Add(new Slide{Path=p.Path});}
+        if(replace){doc.Slides.Clear();foreach(var p in doc.ActivePhotos)doc.Slides.Add(new Slide{Path=p.Path});}
         doc.WorldWidth=width;doc.WorldHeight=height;doc.FitScale=1;doc.Viewport=new();
         var ids=doc.TableIds.ToList();if(ids.Count==0)return;
         var bounds=ids.Select(id=>doc.Slides.Find(s=>s.Id==id) is {} slide ? FilmBounds(slide,doc,width,height) : AlbumBounds(doc.Albums.Find(a=>a.Id==id)!)).ToArray();

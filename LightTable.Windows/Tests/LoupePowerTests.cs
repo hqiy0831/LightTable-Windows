@@ -24,7 +24,8 @@ public sealed class LoupePowerTests
             var coordinate=i/100d;var actual=LoupePowers.ScaleAt(coordinate);
             Assert.Equal(actual,LoupePose.Sample(new(1180,550),1,actual).Magnification,8);
             Assert.Equal(actual,LoupePose.Sample(new(2200,1100),1,actual).Magnification,8);
-            Assert.Equal(1.5,LoupePose.Sample(new(1180,550),0,actual).Magnification,8);
+            Assert.Equal(actual,LoupePose.Sample(new(1180,550),0,actual).Magnification,8);
+            Assert.Equal(actual,LoupePose.Sample(new(1180,550),.45,actual).Magnification,8);
         }
         Assert.Equal(2,LoupePowers.ScaleAt(1));Assert.Equal(4,LoupePowers.ScaleAt(2));Assert.Equal(8,LoupePowers.ScaleAt(3));
     }

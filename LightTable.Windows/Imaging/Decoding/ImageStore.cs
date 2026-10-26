@@ -27,7 +27,7 @@ public sealed class ImageStore
     long used;
     public const long MemoryBudget=160L*1024*1024,DiskBudget=750L*1024*1024;
     public long MemoryBytes {get{lock(gate)return used;}}
-    public long MemoryHits,DiskHits,DecodeCount;
+    public long MemoryHits,DiskHits,DecodeCount,MetadataReads;
     public OpticalLayerCache OpticalCache {get;}
     public ImageStore(DocumentStore storage){this.storage=storage;OpticalCache=new(storage);}
     public Task<double> ReadAspectAsync(string path)=>Task.Run(async()=>
@@ -36,7 +36,8 @@ public sealed class ImageStore
         try
         {
             using var file=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete);using var random=file.AsRandomAccessStream();var decoder=await BitmapDecoder.CreateAsync(random);
-            if(decoder.OrientedPixelWidth==0||decoder.OrientedPixelHeight==0)throw new InvalidDataException("照片尺寸无效");
+            Interlocked.Increment(ref MetadataReads);
+            if(decoder.OrientedPixelWidth==0||decoder.OrientedPixelHeight==0||(ulong)decoder.PixelWidth*decoder.PixelHeight>800_000_000)throw new InvalidDataException("照片尺寸无效");
             return (double)decoder.OrientedPixelWidth/decoder.OrientedPixelHeight;
         }
         finally{thumbnails.Release();}
@@ -90,11 +91,15 @@ public sealed class ImageStore
                 {
                     using(var output=File.Create(temp))using(var z=new BrotliStream(output,CompressionLevel.Fastest))using(var writer=new BinaryWriter(z))
                     {writer.Write(result.Width);writer.Write(result.Height);writer.Write(pixels.Length);writer.Write(pixels);}
-                    File.Move(temp,file,true);
+                    lock(diskGate)
+                    {
+                        var usage=Usage(dir);var previous=File.Exists(file)?new FileInfo(file).Length:0;var added=!File.Exists(file);
+                        var bytes=new FileInfo(temp).Length;File.Move(temp,file,true);usage.Bytes+=bytes-previous;if(added)usage.Entries++;usage.Writes++;
+                        TrimDisk(dir,bucket<=256?100L*1024*1024:DiskBudget);
+                    }
                 }
                 catch(IOException ex){storage.Log($"缓存写入失败: {ex.Message}");}
                 finally{if(File.Exists(temp))File.Delete(temp);}
-                TrimDisk(dir,bucket<=256?100L*1024*1024:DiskBudget);
             }
             lock(gate)
             {
@@ -106,13 +111,21 @@ public sealed class ImageStore
         finally{lane.Release();}
     }
     static readonly object diskGate=new();
-    static void TrimDisk(string dir,long budget)
+    sealed class DiskUsage{public long Bytes;public int Entries,Writes;}
+    readonly Dictionary<string,DiskUsage> diskUsage=[];
+    DiskUsage Usage(string dir)
     {
-        lock(diskGate)
+        if(!diskUsage.TryGetValue(dir,out var usage)||usage.Writes>=64)
         {
-            var files=new DirectoryInfo(dir).EnumerateFiles("*.br").ToList();var total=files.Sum(f=>f.Length);
-            if(total<=budget)return;
-            foreach(var f in files.OrderBy(f=>f.LastWriteTimeUtc)){if(total<=budget)break;try{total-=f.Length;f.Delete();}catch(IOException){}}
+            var files=new DirectoryInfo(dir).EnumerateFiles("*.br").ToArray();usage=new(){Bytes=files.Sum(f=>f.Length),Entries=files.Length};diskUsage[dir]=usage;
         }
+        return usage;
+    }
+    void TrimDisk(string dir,long budget)
+    {
+        var usage=Usage(dir);if(usage.Bytes<=budget)return;
+        var files=new DirectoryInfo(dir).EnumerateFiles("*.br").ToList();var total=files.Sum(f=>f.Length);
+        foreach(var f in files.OrderBy(f=>f.LastWriteTimeUtc)){if(total<=budget)break;try{var length=f.Length;f.Delete();total-=length;}catch(IOException){}}
+        usage.Bytes=total;usage.Writes=0;
     }
 }

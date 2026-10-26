@@ -224,13 +224,17 @@ sealed class TableRenderer : IDisposable
     {
         await DeviceReady;
         RefreshRasterFootprints();
+        var requests=new List<Task>();
         foreach(var slide in session.Document.Slides)
         {
             var p=IndexedPlacement(slide);if(!p.Intersects(new RectD(0,0,canvas.ActualWidth,canvas.ActualHeight)))continue;
             var bucket=Geometry.PreviewBucket(p.Width,p.Height,canvas.Dpi/96d);var raster=RasterLimit(slide.Path,bucket,false);
-            await EnsureAsync(slide.Path,bucket,raster);
+            requests.Add(EnsureAsync(slide.Path,bucket,raster));
+            if(requests.Count>=4){await Task.WhenAll(requests);requests.Clear();}
         }
+        await Task.WhenAll(requests);
     }
+
     public CanvasRenderTarget RenderSnapshot(bool lit,double flare,bool useCommandCache=false)
     {
         if(tables==null)throw new InvalidOperationException("GPU设备资源未就绪");

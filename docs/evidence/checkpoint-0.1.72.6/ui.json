@@ -1,0 +1,16 @@
+{
+  "Version": "0.1.72.6",
+  "Date": "2026-10-26 America/New_York",
+  "Environment": "Development host, isolated TestResults/checkpoint-0.1.72.6/ui; public NASA photos only",
+  "Observed": [
+    "Real next-page clicks changed the visible range from 1-8 to 7-14, then 12-17 of 17; last photo visible",
+    "Real mouse-wheel input changed the range from 1-8 to 11-17",
+    "New column was empty with 0 photos",
+    "System file picker imported PIA00122.jpg and PIA00123.jpg only into column 2",
+    "Selected first photo and clicked remove-from-column; second column then had 1 photo",
+    "Switching back to column 1 restored its 17 photos",
+    "Persisted layout had schema 2, both columns, 17 and 1 memberships, and the expected active column"
+  ],
+  "OriginalPIA00122Sha256BeforeAndAfter": "550de87f646cdfc11411c77a7fabf6ffd7142700be32fbd11a400888afe5335a",
+  "Limitations": "Not a full physical touch, multi-monitor, all input or long-term acceptance test. One scroll activation failed; a fresh binding/observation recovered. PickerHost coordinate actions were rejected; observed filename SetValue and Open keyboard accelerator completed the selection. Immediate AX snapshots sometimes lagged the rendered image; persisted state was checked separately."
+}

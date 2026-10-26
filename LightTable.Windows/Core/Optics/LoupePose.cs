@@ -9,9 +9,10 @@ public readonly record struct LoupePose(double Diameter,double Magnification,dou
         var p=Math.Clamp(Geometry.Finite(progress,0),0,1);
         var target=Math.Clamp(Geometry.Finite(closeMagnification,1),1,8);
         var finalAperture=LoupeGeometry.CloseDiameter(size)/LoupeGeometry.Diameter;
-        var finalFilm=target/LoupeGeometry.Magnification;
-        var aperture=Geometry.Quintic(p);var film=aperture+.22*aperture*(1-aperture);
-        return new(LoupeGeometry.Diameter*(1+(finalAperture-1)*aperture),LoupeGeometry.Magnification*(1+(finalFilm-1)*film),Geometry.Quintic((p-.12)/.78),aperture);
+        var aperture=Geometry.Quintic(p);
+        // The selected scale applies to the ordinary lens as well as Space.
+        // Space changes aperture/position, never silently replaces the power with 1.5x.
+        return new(LoupeGeometry.Diameter*(1+(finalAperture-1)*aperture),target,Geometry.Quintic((p-.12)/.78),aperture);
     }
     public static double EdgeInset(double normalizedRadius,double radius,double strength)=>radius*(.0045*Geometry.Smooth((normalizedRadius-.90)/.10)+.0015*Geometry.Smooth((normalizedRadius-.97)/.03))*Math.Clamp(strength,0,1);
 }

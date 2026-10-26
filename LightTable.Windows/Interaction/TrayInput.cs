@@ -33,7 +33,7 @@ sealed partial class MainWindow
             var container=tray.ContainerFromItem(item) as FrameworkElement;if(container==null)return;
             var image=FindTrayImage(container);if(image==null||image.ActualWidth<2||image.ActualHeight<2)return;var origin=image.TransformToVisual(root).TransformPoint(new(0,0));
             pullingItem=item;pullStart=Pt(point.Position);pullOrigin=new(origin.X,origin.Y,image.ActualWidth,image.ActualHeight);pullPointer=pullStart;
-            tray.CapturePointer(e.Pointer);session.CloseViewing=false;
+            session.CloseViewing=false;
         }),true);
         tray.AddHandler(UIElement.PointerMovedEvent,new PointerEventHandler((_,e)=>
         {
@@ -42,7 +42,9 @@ sealed partial class MainWindow
             var pointer=Pt(point.Position);pullPointer=pointer;
             if(renderer.Flight==null)
             {
-                var d=pointer-start;if(Math.Sqrt(d.X*d.X+d.Y*d.Y)<3)return;
+                var d=pointer-start;if(Math.Sqrt(d.X*d.X+d.Y*d.Y)<6)return;
+                if(e.Pointer.PointerDeviceType==Microsoft.UI.Input.PointerDeviceType.Touch&&Math.Abs(d.X)>Math.Abs(d.Y)){pullingItem=null;pullStart=pullPointer=null;return;}
+                tray.CapturePointer(e.Pointer);
                 renderer.Flight=new(){Path=pullingItem.Path,AlbumId=pullingItem.AlbumId,Origin=pullOrigin,Start=start,Frame=pullOrigin};
                 _=pullingItem.AlbumId==null?renderer.PrepareFlight(pullingItem.Path):Task.CompletedTask;
             }

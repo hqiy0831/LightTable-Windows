@@ -22,6 +22,8 @@ public sealed class Photo
     public string Path { get; set; } = "";
     public double Aspect { get; set; } = 1.5;
     public string? ContentHash { get; set; }
+    public long SourceLength { get; set; }
+    public long SourceWriteTicks { get; set; }
     [JsonIgnore] public string Name => System.IO.Path.GetFileNameWithoutExtension(Path);
 }
 public sealed class Slide
@@ -108,11 +110,20 @@ public sealed class Viewport
         OffsetX=anchor.X-w.X*Scale;OffsetY=anchor.Y-w.Y*Scale;
     }
 }
-public sealed class TableDocument
+public sealed class PhotoCollection
 {
-    public const int CurrentSchema = 1;
+    public Guid Id { get; set; } = Guid.NewGuid();
+    public string Name { get; set; } = "栏目一";
+    public List<string> Paths { get; set; } = [];
+    public string SourceLabel { get; set; } = "你的照片";
+}
+public sealed partial class TableDocument
+{
+    public const int CurrentSchema = 2;
     public int SchemaVersion { get; set; } = CurrentSchema;
     public List<Photo> Photos { get; set; } = [];
+    public List<PhotoCollection> Collections { get; set; } = [];
+    public Guid ActiveCollectionId { get; set; }
     public List<Slide> Slides { get; set; } = [];
     public List<AlbumPage> Albums { get; set; } = [];
     public List<Guid> TableOrder { get; set; } = [];
@@ -167,7 +178,7 @@ public sealed class TableDocument
         }
         TableOrder??=[];TableOrder=TableIds.ToList();
         foreach(var path in PlacedPaths) if(!Photos.Any(p=>StringComparer.OrdinalIgnoreCase.Equals(p.Path,path)))Photos.Add(new Photo{Path=path});
-        SchemaVersion=CurrentSchema;
+        NormalizeCollections();SchemaVersion=CurrentSchema;
     }
     public static bool IsLocal(string? path) => !string.IsNullOrWhiteSpace(path) && System.IO.Path.IsPathFullyQualified(path) && !path.Contains("://",StringComparison.Ordinal);
 }

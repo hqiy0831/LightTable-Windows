@@ -21,7 +21,7 @@ try{
   if($LASTEXITCODE -ne 0){throw 'Publish failed'}
   if(!(Test-Path -LiteralPath (Join-Path $out 'LightTable.pri'))){throw 'Published application PRI missing'}
   & (Join-Path $projectRoot 'LightTable.Windows/Scripts/Write-BuildManifest.ps1') -Output $out
-  Copy-Item -LiteralPath (Join-Path $projectRoot 'README-Windows.md'),(Join-Path $projectRoot 'LICENSE'),(Join-Path $projectRoot 'THIRD_PARTY_NOTICES.md') -Destination $out
+  Copy-Item -LiteralPath (Join-Path $projectRoot 'README.md'),(Join-Path $projectRoot 'README-Windows.md'),(Join-Path $projectRoot 'LICENSE'),(Join-Path $projectRoot 'THIRD_PARTY_NOTICES.md') -Destination $out
   Copy-Item -LiteralPath (Join-Path $projectRoot 'docs') -Destination $out -Recurse -Force
   & (Join-Path $projectRoot 'LightTable.Windows/Scripts/Export-Licenses.ps1') -Output $out
   $zip=Join-Path $dist 'LightTable-Windows-Portable-x64.zip'

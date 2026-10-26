@@ -34,7 +34,7 @@ sealed class SlideshowWindow : Window
     readonly HashSet<VirtualKey> held=[];
     public SlideshowWindow(TableSession session,PointInt32 parentPosition,Action done)
     {
-        this.session=session;sound=new(session.Storage.Root,session.Storage.Log);order=session.Document.Photos.Select(p=>p.Path).ToList();Random.Shared.Shuffle(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(order));
+        this.session=session;sound=new(session.Storage.Root,session.Storage.Log);order=session.Document.ActivePhotos.Select(p=>p.Path).ToList();Random.Shared.Shuffle(System.Runtime.InteropServices.CollectionsMarshal.AsSpan(order));
         Title="观片台 · 机械幻灯机";
         var grid=new Grid{Background=new Microsoft.UI.Xaml.Media.SolidColorBrush(Colors.Black)};grid.Children.Add(canvas);
         var back=new Button{Content="返回观片台",Margin=new(20),CornerRadius=new(19),Height=38,Padding=new(17,0,17,0),HorizontalAlignment=HorizontalAlignment.Left,VerticalAlignment=VerticalAlignment.Top};back.Click+=(_,_)=>Close();grid.Children.Add(back);grid.Children.Add(hint);grid.Children.Add(recovery);grid.Children.Add(loading);Content=grid;

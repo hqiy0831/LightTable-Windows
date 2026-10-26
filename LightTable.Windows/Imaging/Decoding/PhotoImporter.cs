@@ -7,7 +7,7 @@ public sealed record ImportResult(List<Photo> Photos,List<string> Errors,int Dup
 public sealed class PhotoImporter(ImageStore images)
 {
     static readonly HashSet<string> extensions=new(StringComparer.OrdinalIgnoreCase){".jpg",".jpeg",".png",".tif",".tiff",".bmp",".gif",".heic",".heif",".webp",".avif",".dng",".cr2",".cr3",".nef",".arw",".rw2",".orf",".raf"};
-    public async Task<ImportResult> ImportAsync(IEnumerable<string> inputs,IEnumerable<Photo> existing,IProgress<(int Done,int Total)>? progress=null,CancellationToken cancellation=default)
+    public async Task<ImportResult> ImportAsync(IEnumerable<string> inputs,IEnumerable<Photo> existing,IProgress<(int Done,int Total)>? progress=null,CancellationToken cancellation=default,IReadOnlyList<Photo>? catalog=null)
     {
         var errors=new List<string>();var paths=new HashSet<string>(StringComparer.OrdinalIgnoreCase);var directories=new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         void Scan(string path)
@@ -32,24 +32,43 @@ public sealed class PhotoImporter(ImageStore images)
             }
             catch(Exception ex) when(ex is IOException or UnauthorizedAccessException or ArgumentException){errors.Add($"{path}：{ex.Message}");}
         }
-        await Task.Run(()=>{foreach(var p in inputs)Scan(p);},cancellation);
+        await Task.Run(()=>{foreach(var p in inputs)Scan(p);},cancellation).ConfigureAwait(false);
         var previous=existing.ToArray();var knownPaths=previous.Select(p=>p.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);
         var hashes=previous.Where(p=>p.ContentHash!=null).GroupBy(p=>p.ContentHash!).ToDictionary(g=>g.Key,g=>g.First().Path,StringComparer.Ordinal);
-        var photos=new List<Photo>();var accepted=new List<string>();int duplicates=0,done=0;
-        foreach(var path in paths.Order(NaturalPathComparer.Instance))
+        var metadata=(catalog??previous).DistinctBy(p=>p.Path,StringComparer.OrdinalIgnoreCase).ToDictionary(p=>p.Path,StringComparer.OrdinalIgnoreCase);
+        var ordered=paths.Order(NaturalPathComparer.Instance).ToArray();var decoded=new Photo?[ordered.Length];var failures=new string?[ordered.Length];int done=0;
+        // Bounded I/O workers overlap sequential hashing and WIC metadata reads.
+        // No full pixel decode is required before the first visible thumbnails.
+        await Parallel.ForEachAsync(Enumerable.Range(0,ordered.Length),new ParallelOptions{MaxDegreeOfParallelism=2,CancellationToken=cancellation},async(i,token)=>
         {
-            cancellation.ThrowIfCancellationRequested();
+            var path=ordered[i];
             try
             {
-                if(knownPaths.Contains(path)){duplicates++;accepted.Add(path);continue;}
-                using var source=new FileStream(path,FileMode.Open,FileAccess.Read,FileShare.ReadWrite|FileShare.Delete,65536,true);
-                var hash=Convert.ToHexString(await SHA256.HashDataAsync(source,cancellation));
-                if(hashes.TryGetValue(hash,out var original)){duplicates++;accepted.Add(original);continue;}
-                var decoded=await images.GetAsync(path,220);
-                photos.Add(new Photo{Path=path,Aspect=decoded.Aspect,ContentHash=hash});knownPaths.Add(path);hashes[hash]=path;accepted.Add(path);
+                if(knownPaths.Contains(path))return;
+                var info=new FileInfo(path);var length=info.Length;var ticks=info.LastWriteTimeUtc.Ticks;
+                if(metadata.TryGetValue(path,out var cached)&&cached.ContentHash!=null&&cached.SourceLength==length&&cached.SourceWriteTicks==ticks)
+                    decoded[i]=new Photo{Path=path,Aspect=cached.Aspect,ContentHash=cached.ContentHash,SourceLength=length,SourceWriteTicks=ticks};
+                else
+                {
+                    using var source=new FileStream(path,new FileStreamOptions{Mode=FileMode.Open,Access=FileAccess.Read,Share=FileShare.ReadWrite|FileShare.Delete,BufferSize=131072,Options=FileOptions.Asynchronous|FileOptions.SequentialScan});
+                    var hash=Convert.ToHexString(await SHA256.HashDataAsync(source,token).ConfigureAwait(false));
+                    var aspect=await images.ReadAspectAsync(path).ConfigureAwait(false);
+                    info.Refresh();if(info.Length!=length||info.LastWriteTimeUtc.Ticks!=ticks)throw new IOException("读取期间照片已变化，请重新添加");
+                    decoded[i]=new Photo{Path=path,Aspect=aspect,ContentHash=hash,SourceLength=length,SourceWriteTicks=ticks};
+                }
             }
-            catch(Exception ex) when(ex is not OperationCanceledException){errors.Add($"{Path.GetFileName(path)}：{ex.Message}");}
-            finally{progress?.Report((++done,paths.Count));}
+            catch(Exception ex)when(ex is not OperationCanceledException){failures[i]=$"{Path.GetFileName(path)}：{ex.Message}";}
+            finally{progress?.Report((Interlocked.Increment(ref done),ordered.Length));}
+        }).ConfigureAwait(false);
+        var photos=new List<Photo>();var accepted=new List<string>();int duplicates=0;
+        // Merge in natural order so parallel completion cannot change dedup winners.
+        for(int i=0;i<ordered.Length;i++)
+        {
+            if(failures[i] is {} failure){errors.Add(failure);continue;}
+            var path=ordered[i];if(knownPaths.Contains(path)){duplicates++;accepted.Add(path);continue;}
+            if(decoded[i] is not {} photo)continue;
+            if(hashes.TryGetValue(photo.ContentHash!,out var original)){duplicates++;accepted.Add(original);continue;}
+            photos.Add(photo);knownPaths.Add(path);hashes[photo.ContentHash!]=path;accepted.Add(path);
         }
         return new(photos,errors,duplicates,accepted.Distinct(StringComparer.OrdinalIgnoreCase).ToArray());
     }

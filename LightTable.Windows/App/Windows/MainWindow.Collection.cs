@@ -29,7 +29,7 @@ sealed partial class MainWindow
     void StartSlideshow()=>_=StartSlideshowAsync();
     async Task StartSlideshowAsync()
     {
-        if(session.Document.Photos.Count==0){await ShowMessage("还没有照片","先导入照片，再开启幻灯机。");return;}
+        if(session.Document.ActivePhotos.Count==0){await ShowMessage("还没有照片","先导入照片，再开启幻灯机。");return;}
         if(slideshow!=null||collectionCancellation!=null||renderer.Flight!=null||dialogOpen||albumOpen)return;
         session.CloseViewing=false;session.Flush();collectionCancellation=new();var cancellation=collectionCancellation.Token;
         var hidden=new List<FrameworkElement>();

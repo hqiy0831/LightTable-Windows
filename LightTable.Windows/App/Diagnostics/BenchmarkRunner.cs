@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using System.Runtime.InteropServices;
 using LightTable.Core;
 using Microsoft.UI.Xaml;
 
@@ -7,13 +8,16 @@ namespace LightTable.Windows;
 
 sealed partial class MainWindow
 {
+    [StructLayout(LayoutKind.Sequential)] struct ProcessIo
+    {public ulong ReadOperations,WriteOperations,OtherOperations,ReadBytes,WriteBytes,OtherBytes;}
+    [DllImport("kernel32.dll")]static extern bool GetProcessIoCounters(IntPtr process,out ProcessIo counters);
     async Task RunBenchmark(string photoRoot,int count)
     {
         var process=Process.GetCurrentProcess();var samples=new List<object>();var timings=new Dictionary<string,double>();
         var timer=DispatcherQueue.CreateTimer();timer.Interval=TimeSpan.FromMilliseconds(250);
         timer.Tick+=(_,_)=>
         {
-            process.Refresh();samples.Add(new{Seconds=Rendering.TableRenderer.Seconds,WorkingSet=process.WorkingSet64,PrivateBytes=process.PrivateMemorySize64,CpuMilliseconds=process.TotalProcessorTime.TotalMilliseconds,CpuCache=session.Images.MemoryBytes,GpuTextureEstimate=renderer.GpuBytes});
+            process.Refresh();GetProcessIoCounters(process.Handle,out var io);samples.Add(new{Seconds=Rendering.TableRenderer.Seconds,WorkingSet=process.WorkingSet64,PrivateBytes=process.PrivateMemorySize64,CpuMilliseconds=process.TotalProcessorTime.TotalMilliseconds,CpuCache=session.Images.MemoryBytes,GpuTextureEstimate=renderer.GpuBytes,Io=new{io.ReadBytes,io.WriteBytes,io.ReadOperations,io.WriteOperations}});
             // Preserve the last observed phase even if an external watchdog
             // terminates a slow run before the final report can be written.
             if(samples.Count%8==0)File.WriteAllText(Path.Combine(session.Storage.Root,"logs","benchmark-progress.json"),JsonSerializer.Serialize(new{Phase=renderer.PerformancePhase,Imported=session.Document.Photos.Count,Draws=renderer.FrameTimes.Count,session.Images.DecodeCount,OpticalBuilds=session.Images.OpticalCache.BuildCount,OpticalHits=session.Images.OpticalCache.DiskHits,Memory=process.PrivateMemorySize64,Timings=timings},DocumentStore.JsonOptions));

@@ -1,0 +1,50 @@
+[
+  {
+    "Count": 10,
+    "ImportMs": 92.4447,
+    "GpuPrepareMs": 257.5652,
+    "PanMs": 3641.2822,
+    "CpuDrawP95": 1.7836999977589585,
+    "PeakMiB": 183.05859375,
+    "CpuMs": 1437.5,
+    "IoReadMiB": 0.8831987380981445,
+    "IoWriteMiB": 9.854503631591797,
+    "Pass": true
+  },
+  {
+    "Count": 100,
+    "ImportMs": 164.4463,
+    "GpuPrepareMs": 1678.4652,
+    "PanMs": 3542.8372,
+    "CpuDrawP95": 22.357800000463612,
+    "PeakMiB": 257.14453125,
+    "CpuMs": 2984.375,
+    "IoReadMiB": 8.904826164245605,
+    "IoWriteMiB": 32.69206428527832,
+    "Pass": true
+  },
+  {
+    "Count": 500,
+    "ImportMs": 506.4117,
+    "GpuPrepareMs": 11497.6352,
+    "PanMs": 3479.4634,
+    "CpuDrawP95": 61.64569999964442,
+    "PeakMiB": 507.75,
+    "CpuMs": 11843.75,
+    "IoReadMiB": 59.12680625915527,
+    "IoWriteMiB": 179.26548194885254,
+    "Pass": true
+  },
+  {
+    "Count": 1000,
+    "ImportMs": 887.6414,
+    "GpuPrepareMs": 21589.6216,
+    "PanMs": 3624.4372,
+    "CpuDrawP95": 105.30449999350822,
+    "PeakMiB": 696.41015625,
+    "CpuMs": 23218.75,
+    "IoReadMiB": 114.29503631591797,
+    "IoWriteMiB": 355.3031196594238,
+    "Pass": true
+  }
+]

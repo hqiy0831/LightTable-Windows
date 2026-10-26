@@ -15,7 +15,7 @@ sealed partial class MainWindow
         var bar=new MenuBar{RequestedTheme=ElementTheme.Dark,Background=new SolidColorBrush(Color(6))};
         MenuBarItem Menu(string title){var m=new MenuBarItem{Title=title};bar.Items.Add(m);return m;}
         void Item(MenuBarItem menu,string title,Action action){var item=new MenuFlyoutItem{Text=title};item.Click+=(_,_)=>{if(startup.Visibility!=Visibility.Visible&&!session.Busy&&collectionCancellation==null)action();};menu.Items.Add(item);}
-        var file=Menu("文件");Item(file,"选择照片文件夹…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());
+        var file=Menu("文件");Item(file,"选择照片文件夹…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());Item(file,"重试照片读取",()=>{renderer.RetryFailures();board.Invalidate();_=WarmRestoredVisible();});
         Item(file,"打开数据目录",()=>System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(session.Storage.Root){UseShellExecute=true}));
         Item(file,"导入 Mac 版布局…",async()=>await ImportMacLayout());
         var view=Menu("观片");Item(view,"开灯 / 关灯     Ctrl+L",()=>session.ToggleLight(Rendering.TableRenderer.Seconds));Item(view,"普通指针     A",()=>{session.Loupe=false;session.CloseViewing=false;session.Notify(false);});Item(view,"放大镜     V",()=>{session.Loupe=true;session.Notify(false);});
@@ -29,27 +29,15 @@ sealed partial class MainWindow
     }
     async Task PrepareStartup(bool afterStartup=true)
     {
-        var paths=session.Document.PlacedPaths.ToList();
-        if(paths.Count>0)
-        {
-            startup.Visibility=Visibility.Visible;startupActions.Children.Clear();var failures=new List<string>();int done=0;
-            startupText.Text="恢复照片摆放";startupProgress.Value=0;
-            foreach(var path in paths)
-            {
-                if(closed)return;
-                try{await renderer.PrepareAsync(path,2200);}
-                catch(Exception ex){failures.Add(path);session.Storage.Log($"启动准备失败 {path}: {ex}");}
-                done++;startupText.Text=$"准备高清照片 · {done} / {paths.Count}";startupProgress.Value=(double)done/paths.Count;
-            }
-            if(failures.Count>0)
-            {
-                startupText.Text=$"{failures.Count} 张照片无法读取\n"+string.Join("\n",failures.Take(3).Select(System.IO.Path.GetFileName));
-                startupActions.Children.Add(Btn("重新读取",async()=>{renderer.RetryFailures();await PrepareStartup(afterStartup);}));
-                startupActions.Children.Add(Btn("先查看可用照片",async()=>{startup.Visibility=Visibility.Collapsed;if(afterStartup)await AfterStartup();}));return;
-            }
-            startup.Visibility=Visibility.Collapsed;
-        }
+        // Restore the layout immediately. Only visible, screen-sized resources
+        // are warmed; the independent lens lane requests HD on demand.
+        board.Invalidate();_=WarmRestoredVisible();
         if(afterStartup)await AfterStartup();
+    }
+    async Task WarmRestoredVisible()
+    {
+        try{await renderer.PrepareVisibleTable();if(!closed)status.Text="台面预览已就绪 · 高清按需载入";}
+        catch(Exception ex){session.Storage.Log($"恢复可见照片失败 {ex}");if(!closed)status.Text="部分照片无法读取 · 文件菜单可重试";}
     }
     async Task AfterStartup()
     {
@@ -65,12 +53,12 @@ sealed partial class MainWindow
         dialogOpen=true;session.CloseViewing=false;
         try
         {
-            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="无边框胶片、薄侧沿与接触阴影。\n\n从底栏拖片到台面，自由摆放；开灯后，透射光短暂过曝，再自然回落。\n\n重启时准备高清照片，按 Shift+Z 整理全局。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
+            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="无边框胶片、薄侧沿与接触阴影。\n\n从底栏拖片到台面，自由摆放；开灯后，透射光短暂过曝，再自然回落。\n\n重启时先恢复台面，高清照片按需载入，按 Shift+Z 整理全局。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
             options.GuideVersion=BuildInfo.Version;WriteOptions(options);
             var result=await dialog.ShowAsync();
             if(result==ContentDialogResult.Secondary)
             {
-                var steps=new[]{("拖动胶片","选择文件夹或添加照片。拖动底栏胶片到灯箱，拖动散片移动；在胶片上右键旋转和缩放。"),("整理全局","Shift+Z 恢复散片默认尺寸并整理台面；一键平铺则将图库全部照片重新放上台面。Ctrl 点选和 Shift 框选后可批量移出。"),("凑近观察","V 切换放大镜，按住空格凑近。Tab、点击或拖动倍率控件可切换1×、2×、4×、8×。松开空格回到 1.5× 小镜。高清预览最长边 2200px。")};
+                var steps=new[]{("拖动胶片","选择文件夹或添加照片。拖动底栏胶片到灯箱，拖动散片移动；在胶片上右键旋转和缩放。"),("整理全局","Shift+Z 恢复散片默认尺寸并整理台面；一键平铺则将图库全部照片重新放上台面。Ctrl 点选和 Shift 框选后可批量移出。"),("凑近观察","V 切换放大镜，按住空格凑近。Tab、点击或拖动倍率控件可切换1×、2×、4×、8×。松开空格回到小镜，保留所选倍率。高清预览最长边 2200px。")};
                 for(int i=0;i<steps.Length;i++)
                 {
                     var step=new ContentDialog{XamlRoot=root.XamlRoot,Title=steps[i].Item1,Content=new TextBlock{Text=steps[i].Item2,TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText=i==2?"开始观片":"下一步",SecondaryButtonText=i>0?"上一步":"",CloseButtonText="跳过"};

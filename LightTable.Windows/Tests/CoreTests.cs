@@ -118,7 +118,7 @@ public sealed class PersistenceTests
     }
     [Fact] public void SchemaZeroWithoutAlbumFieldsMigrates()
     {
-        var d=JsonSerializer.Deserialize<TableDocument>("{\"SchemaVersion\":0,\"Photos\":[],\"Slides\":[]}")!;d.Sanitize();Assert.Equal(1,d.SchemaVersion);Assert.Empty(d.Albums);
+        var d=JsonSerializer.Deserialize<TableDocument>("{\"SchemaVersion\":0,\"Photos\":[],\"Slides\":[]}")!;d.Sanitize();Assert.Equal(TableDocument.CurrentSchema,d.SchemaVersion);Assert.Empty(d.Albums);
     }
 }
 public sealed class UpdateTests
@@ -143,13 +143,13 @@ public sealed class LoupePoseTests
         foreach(var power in Enum.GetValues<LoupePower>())
         {
             double target=LoupePowers.Scale(power);var start=LoupePose.Sample(size,0,target);var end=LoupePose.Sample(size,1,target);
-            Assert.Equal(260,start.Diameter);Assert.Equal(1.5,start.Magnification);Assert.Equal(0,start.Travel);
+            Assert.Equal(260,start.Diameter);Assert.Equal(target,start.Magnification);Assert.Equal(0,start.Travel);
             Assert.Equal(LoupeGeometry.CloseDiameter(size),end.Diameter,8);Assert.Equal(target,end.Magnification,8);
             double diameter=0;
             for(int i=0;i<=100;i++)
             {
                 var p=LoupePose.Sample(size,i/100d,target);Assert.True(p.Diameter>=diameter);
-                Assert.InRange(p.Magnification,Math.Min(1.5,target)-1e-10,Math.Max(1.5,target)+1e-10);diameter=p.Diameter;
+                Assert.Equal(target,p.Magnification,8);diameter=p.Diameter;
             }
         }
     }

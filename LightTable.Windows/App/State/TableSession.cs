@@ -28,6 +28,8 @@ sealed class TableSession
     public double Width {get;set;}=1180;
     public double Height {get;set;}=550;
     public bool Busy {get;set;}
+    public long LibraryRevision {get;private set;}
+    public void LibraryChanged(){LibraryRevision++;Notify();}
     public bool ReduceMotion {get;set;}
     public string? StartupWarning {get;}
     public event Action? Changed;
@@ -45,7 +47,7 @@ sealed class TableSession
     public void Flush(){saveTimer.Stop();try{Storage.Save(Document);}catch(Exception ex){Storage.Log($"保存失败 {ex}");Tell($"布局保存失败：{ex.Message}");}}
     public string ImportMacDocument(TableDocument document,byte[] sourceBytes)
     {
-        saveTimer.Stop();Storage.Save(Document);var archive=Storage.Import(document,sourceBytes);Document=document;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);return archive;
+        saveTimer.Stop();Storage.Save(Document);var archive=Storage.Import(document,sourceBytes);Document=document;LibraryRevision++;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);return archive;
     }
     public void ToggleLight(double seconds){Lamp.Toggle();Notify(false);}
     public void Select(Guid id,bool extend=false,bool indicator=true)
@@ -76,10 +78,12 @@ sealed class TableSession
         if(Busy)return null;Busy=true;Notify(false);
         try
         {
-            var input=paths.ToList();var result=await new PhotoImporter(Images).ImportAsync(input,replace?[]:Document.Photos,progress);
+            var collection=Document.EnsureCollection();var input=paths.ToList();var result=await new PhotoImporter(Images).ImportAsync(input,replace?[]:Document.ActivePhotos,progress,catalog:Document.Photos);
             if(result.Photos.Count>0)
             {
-                if(replace){Document.Photos=result.Photos;Document.SourceLabel=System.IO.Path.GetFileName(input[0]);}else Document.Photos.AddRange(result.Photos);
+                Document.SetCollectionPhotos(collection,result.Photos,replace);
+                if(replace){collection.SourceLabel=System.IO.Path.GetFileName(input[0]);Document.SourceLabel=collection.SourceLabel;}
+                LibraryRevision++;
                 Notify();
             }
             var text=$"导入 {result.Photos.Count} 张"+(result.Duplicates>0?$"，跳过 {result.Duplicates} 张重复照片":"");

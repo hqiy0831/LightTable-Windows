@@ -184,7 +184,7 @@ sealed partial class MainWindow
             case VirtualKey.Tab:if(!session.Loupe)return;if(tabHeld){e.Handled=true;return;}tabHeld=true;session.Power=LoupePowers.Next(session.Power);break;
             case VirtualKey.Space:if(!session.Loupe)return;spaceHeld=true;if(renderer.PointerInside||session.CloseViewing)session.CloseViewing=true;break;
             case VirtualKey.Z:if(!shift)return;session.Fit();break;
-            case VirtualKey.Delete:session.RemoveSelection();break;
+            case VirtualKey.Delete:if(FocusIsInTray())RemoveLibrarySelection();else session.RemoveSelection();break;
             case VirtualKey.Escape:session.CloseViewing=false;session.Selection.Clear();CancelGesture();break;
             default:return;
         }
