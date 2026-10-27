@@ -10,7 +10,7 @@ public sealed class UpstreamTrayTests
     [Fact] public void TakingAndReturningFilmsPreservesOriginalTrayOrder()
     {
         var a=P("1.jpg");var b=P("2.jpg");var c=P("3.jpg");var doc=new TableDocument{Photos=[a,b,c]};doc.EnsureCollection();
-        var slide=doc.Place(b.Path,new(200,100));Assert.Equal(new[]{a.Path,c.Path},doc.AvailablePhotos.Select(p=>p.Path));doc.Remove([slide.Id]);Assert.Equal(new[]{a.Path,b.Path,c.Path},doc.AvailablePhotos.Select(p=>p.Path));
+        var slide=doc.Place(b.Path,new(200,100));Assert.Equal(new[]{a.Path,b.Path,c.Path},doc.ActivePhotos.Select(p=>p.Path));doc.Remove([slide.Id]);Assert.Equal(new[]{a.Path,b.Path,c.Path},doc.ActivePhotos.Select(p=>p.Path));
     }
     [Fact] public void PhotoDeletionRemovesOnlyItsCurrentLooseFilmAndKeepsAlbumReferences()
     {

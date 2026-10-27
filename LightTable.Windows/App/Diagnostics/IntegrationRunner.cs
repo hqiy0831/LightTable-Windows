@@ -201,43 +201,16 @@ sealed partial class MainWindow
                 }
                 return $"两路真实MediaPlayer已MediaOpened，AutoPlay关闭，.20音量，首次cue播放时钟到{position:F4}s；48kHz立体声PCM .38s。未声称原录音音色或扬声器主观同步一致。";
             });
-            await Check("GPU-album-perforations-reuse-and-catalog-pose",async()=>
+            await Check("Persistent-tray-100-photos-60-placed",async()=>await CheckPersistentPhotoTray(originals));
+            await Check("Photo-layout-order-and-recovery",async()=>
             {
-                var page=new AlbumPage{Name="膜层检查",Angle=37};page.Fill(FilmFormat.Film135);page.Pockets[0].Path=originals[0];
-                using var membrane=new AlbumMembranes(board.Device);var back=membrane.Get(page,false);var front=membrane.Get(page,true);
-                Require(ReferenceEquals(back,membrane.Get(page,false))&&ReferenceEquals(front,membrane.Get(page,true)),"膜层未复用");
-                using var transparent=new CanvasRenderTarget(board.Device,620,690,96);
-                using(var ds=transparent.CreateDrawingSession()){ds.Clear(Colors.Transparent);ds.DrawImage(back);ds.DrawImage(front);}
-                for(int row=0;row<9;row++)Require(transparent.GetPixelColors(15,59+row*72,3,3).All(p=>p.A==0),"装订孔未透明镂空");Require(transparent.GetPixelColors(100,20,1,1)[0].A>0,"膜基底丢失");
-                using var catalogA=new CanvasRenderTarget(board.Device,620,690,96);using var catalogB=new CanvasRenderTarget(board.Device,620,690,96);
-                using(var ds=catalogA.CreateDrawingSession()){ds.Clear(Colors.Transparent);renderer.AlbumPreview(ds,page,620,690);}page.Angle=0;
-                using(var ds=catalogB.CreateDrawingSession()){ds.Clear(Colors.Transparent);renderer.AlbumPreview(ds,page,620,690);}
-                Require(catalogA.GetPixelBytes().SequenceEqual(catalogB.GetPixelBytes()),"相册目录预览继承了台面旋转");
-                await transparent.SaveAsync(Path.Combine(session.Storage.Root,"logs","album-membrane.png"),CanvasBitmapFileFormat.Png);
-                await catalogA.SaveAsync(Path.Combine(session.Storage.Root,"logs","album-catalog.png"),CanvasBitmapFileFormat.Png);
-                for(int i=0;i<40;i++){var variant=new AlbumPage();variant.Add(FilmFormat.Film135,i%13,i/13);membrane.Get(variant,i%2==0);}Require(membrane.Count<=32,"膜层缓存超过32项");
-                return "实际GPU9个装订孔中心全透明，膜基底有alpha；同袋格前后层对象复用、32项上限；目录预览不受台面37°旋转影响。";
-            });
-            await Check("Albums-order-and-layout-recovery",async()=>
-            {
-                var page=new AlbumPage{Name="集成测试页"};page.Fill(FilmFormat.Film135);page.Pockets[0].Path=originals[0];session.Document.Albums.Add(page);session.PlaceAlbum(page);
-                var trayItem=trayItems.First(p=>p.AlbumId==page.Id);await LoadThumbnail(trayItem);for(int attempt=0;trayItem.Thumbnail==null&&attempt<10;attempt++)await Task.Delay(32);
-                Require(trayItem.Thumbnail is Microsoft.UI.Xaml.Media.Imaging.WriteableBitmap {PixelWidth:138,PixelHeight:132},"相册底栏没有真实GPU缩略图");
-                await Task.Delay(32);if(tray.ContainerFromItem(trayItem) is FrameworkElement container&&FindTrayImage(container) is {} image)
-                {
-                    // The resizable tray scales the 69x66 album frame. XAML
-                    // still rounds its final edges to physical pixels.
-                    var tolerance=1/root.XamlRoot.RasterizationScale+.0001;
-                    Require(Math.Abs(image.Width-trayItem.ImageWidth)<.01&&Math.Abs(image.Height-trayItem.ImageHeight)<.01&&Math.Abs(image.ActualWidth-image.Width)<=tolerance&&Math.Abs(image.ActualHeight-image.Height)<=tolerance,$"相册底栏图像布局尺寸错误：actual={image.ActualWidth}×{image.ActualHeight}, requested={image.Width}×{image.Height}, dpi={root.XamlRoot.RasterizationScale}");
-                    session.Storage.Log($"相册缩略图布局 actual={image.ActualWidth}×{image.ActualHeight}, dpi={root.XamlRoot.RasterizationScale}, tolerance={tolerance}");
-                }
                 var slide=session.Document.Slides[0];session.Select(slide.Id);session.TransformSelection(1.12,15);session.Document.Viewport.Zoom(1.7,new(400,250));session.Flush();
                 var expected=JsonSerializer.Serialize(session.Document,DocumentStore.JsonOptions);
                 var restored=new DocumentStore(session.Storage.Root).Load(out var warning);Require(warning==null,"布局恢复警告");
-                Require(JsonSerializer.Serialize(restored,DocumentStore.JsonOptions)==expected,"完整布局、相册和相机往返不一致");
-                var prior=File.ReadAllText(session.Storage.DocumentPath);session.Document.Remove([slide.Id,page.Id]);session.Notify();session.Flush();
-                Require(session.Document.Photos.Count==originals.Length&&page.Pockets[0].Path==originals[0]&&page.Position==null,"移出丢失相册或图库内容");
-                return "相册20格、照片旋转/比例、相机、混合层级保存与新Store恢复逐字节JSON一致；移出保留内容";
+                Require(JsonSerializer.Serialize(restored,DocumentStore.JsonOptions)==expected,"照片布局和相机往返不一致");
+                session.RemoveSelection();session.Flush();
+                Require(session.Document.Photos.Count==originals.Length&&session.Document.Albums.Count==0,"移出台面丢失图库内容或残留相册");
+                return "照片旋转/比例、相机、层级保存与新Store恢复JSON一致；移出台面保留栏目全部照片";
             });
             await Check("Mac-Saved-native-metadata-and-atomic-import",async()=>
             {
@@ -249,10 +222,10 @@ sealed partial class MainWindow
                 foreach(var photo in converted.Document.Photos){photo.Aspect=await session.Images.ReadAspectAsync(photo.Path);var decoded=await session.Images.GetAsync(photo.Path,2200);Require(Math.Abs(photo.Aspect-decoded.Aspect)<.01,"迁移照片真实尺寸未恢复");}
                 var old=JsonSerializer.SerializeToUtf8Bytes(session.Document,DocumentStore.JsonOptions);var archive=session.ImportMacDocument(converted.Document,bytes);renderer.DocumentChanged();
                 Require(File.ReadAllBytes(Path.Combine(archive,"macOS-layout-v1.json")).SequenceEqual(bytes),"Mac导入备份字节不一致");Require(File.ReadAllBytes(Path.Combine(archive,"windows-before-import.json")).SequenceEqual(old),"Windows导入前布局备份字节不一致");
-                var restored=new DocumentStore(session.Storage.Root).Load(out var warning);Require(warning==null&&restored.Slides[0].Id==slideId&&restored.Slides[0].Angle==19&&restored.TableIds.SequenceEqual(new[]{pageId,slideId}),"迁移身份、位置或混合层级丢失");
+                var restored=new DocumentStore(session.Storage.Root).Load(out var warning);Require(warning==null&&restored.Slides[0].Id==slideId&&restored.Slides[0].Angle==19&&restored.TableIds.SequenceEqual(new[]{slideId})&&restored.Albums.Count==0&&restored.ActivePhotos.Any(p=>p.Path==originals[1]),"迁移身份、位置或混合层级丢失");
                 Require(JsonSerializer.Serialize(restored,DocumentStore.JsonOptions)==JsonSerializer.Serialize(session.Document,DocumentStore.JsonOptions),"导入后重新读取不一致");
                 foreach(var path in session.Document.PlacedPaths)await renderer.PrepareAsync(path,2200);using var snapshot=renderer.RenderSnapshot(true,0);await snapshot.SaveAsync(Path.Combine(session.Storage.Root,"logs","mac-migrated.png"),CanvasBitmapFileFormat.Png);
-                return "Swift Saved结构通过实际WIC方向尺寸读取、Session替换、原子保存、新Store恢复与GPU渲染；Mac原字节/Windows当前布局备份一致。文件夹映射弹窗尚未输入验收。";
+                return "Swift Saved结构通过实际WIC方向尺寸读取、Session替换、原子保存、新Store恢复与GPU渲染；Mac原字节/Windows当前布局备份一致。旧相册不再显示，照片引用归入栏目；文件夹映射弹窗尚未输入验收。";
             });
             await Check("GPU-zero-baseline-and-selective-two-second-ignition",CheckIgnitionAndZeroBaseline);
             await Check("GPU-sRGB-chromatic-highlight-luminance",CheckSrgbHighlightPrimaries);

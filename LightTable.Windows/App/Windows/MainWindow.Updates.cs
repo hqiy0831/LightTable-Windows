@@ -13,7 +13,7 @@ sealed partial class MainWindow
         {
             var release=await new UpdateService(session.Storage).CheckAsync(manual,periodic);
             if(release==null){if(manual)await ShowMessage("检查更新","没有适用于 Windows x64 的更新。macOS 安装包不会用于此应用。");return;}
-            if(dialogOpen||albumOpen||closed)return;dialogOpen=true;
+            if(dialogOpen||closed)return;dialogOpen=true;
             ContentDialogResult result;
             try
             {

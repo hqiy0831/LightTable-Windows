@@ -7,7 +7,6 @@ sealed class TrayFlight
 {
     public Guid Id {get;}=Guid.NewGuid();
     public string Path {get;init;}="";
-    public Guid? AlbumId {get;init;}
     public RectD Origin {get;init;}
     public PointD Start {get;init;}
     public RectD Frame {get;set;}

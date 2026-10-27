@@ -41,9 +41,9 @@ sealed partial class MainWindow : Window
     readonly ProgressBar startupProgress=new(){Minimum=0,Maximum=1,Height=4};
     readonly TextBlock startupText=new(){FontSize=15,Foreground=new SolidColorBrush(Colors.White),Text="唤醒观片台"};
     readonly StackPanel startupActions=new(){Orientation=Orientation.Horizontal,Spacing=10};
-    bool dialogOpen,closed,ready,albumOpen,windowActive=true;
+    bool dialogOpen,closed,ready,windowActive=true;
     readonly bool traceViewingInput;
-    int photoCount=-1,albumCount=-1,trayPlacementHash;
+    int photoCount=-1;
     SlideshowWindow? slideshow;
     public MainWindow()
     {
@@ -75,7 +75,7 @@ sealed partial class MainWindow : Window
         ScrollViewer.SetVerticalScrollMode(tray,ScrollMode.Disabled);ScrollViewer.SetVerticalScrollBarVisibility(tray,ScrollBarVisibility.Disabled);
         AutomationProperties.SetName(tray,"当前栏目照片，可横向滚动");
         tray.Loaded+=(_,_)=>InitializeTrayScrolling();
-        tray.SelectionChanged+=(_,_)=>{removeLibrary.IsEnabled=tray.SelectedItems.OfType<TrayItem>().Any(i=>i.AlbumId==null)&&!session.Busy;if(tray.SelectedItems.Count>0){session.Selection.Clear();session.ShowSelection=false;board.Invalidate();}};
+        tray.SelectionChanged+=(_,_)=>{removeLibrary.IsEnabled=tray.SelectedItems.OfType<TrayItem>().Any()&&!session.Busy;if(tray.SelectedItems.Count>0){session.Selection.Clear();session.ShowSelection=false;board.Invalidate();}};
         tray.AddHandler(UIElement.PointerWheelChangedEvent,new PointerEventHandler((_,e)=>
         {
             if(trayScroller==null)return;var delta=e.GetCurrentPoint(tray).Properties.MouseWheelDelta;
@@ -97,9 +97,9 @@ sealed partial class MainWindow : Window
             </DataTemplate>
             """);
         tray.ContainerContentChanging+=(sender,e)=>{if(e.Item is not TrayItem item)return;item.Realized=!e.InRecycleQueue;if(e.InRecycleQueue)item.Thumbnail=null;else _=LoadThumbnail(item);};
-        tray.DoubleTapped+=async(_,_)=>{if(tray.SelectedItem is TrayItem item){if(item.AlbumId!=null)await ShowAlbums(item.AlbumId);else PlaceTray(item);}};
-        tray.DragItemsStarting+=(_,e)=>{if(e.Items.FirstOrDefault() is TrayItem item){e.Data.Properties["LightTable.Path"]=item.Path;e.Data.Properties["LightTable.Album"]=item.AlbumId?.ToString()??"";e.Data.RequestedOperation=DataPackageOperation.Copy;}};
-        tray.RightTapped+=(_,e)=>{var item=(e.OriginalSource as FrameworkElement)?.DataContext as TrayItem;if(item==null)return;var flyout=new MenuFlyout();MenuItem(flyout,"放到灯板中央",()=>PlaceTray(item));if(item.AlbumId==null){MenuItem(flyout,"从当前栏目移除（保留源文件）",()=>RemoveLibrarySelection(item));MenuItem(flyout,"在文件资源管理器中显示",()=>Reveal(item.Path));}else MenuItem(flyout,"编辑相册页",async()=>await ShowAlbums(item.AlbumId));flyout.ShowAt(tray,e.GetPosition(tray));};
+        tray.DoubleTapped+=(_,_)=>{if(tray.SelectedItem is TrayItem item)PlaceTray(item);};
+        tray.DragItemsStarting+=(_,e)=>{if(e.Items.FirstOrDefault() is TrayItem item){e.Data.Properties["LightTable.Path"]=item.Path;e.Data.RequestedOperation=DataPackageOperation.Copy;}};
+        tray.RightTapped+=(_,e)=>{var element=e.OriginalSource as DependencyObject;TrayItem? item=null;while(element!=null){if(element is FrameworkElement view&&view.DataContext is TrayItem found){item=found;break;}element=VisualTreeHelper.GetParent(element);}if(item==null)return;var flyout=new MenuFlyout();MenuItem(flyout,"放到灯板中央",()=>PlaceTray(item));MenuItem(flyout,"从当前栏目移除（保留源文件）",()=>RemoveLibrarySelection(item));MenuItem(flyout,"在文件资源管理器中显示",()=>Reveal(item.Path));flyout.ShowAt(tray,e.GetPosition(tray));};
         tray.DragOver+=(_,e)=>{if(e.DataView.Contains(StandardDataFormats.StorageItems))e.AcceptedOperation=DataPackageOperation.Copy;};
         tray.Drop+=async(_,e)=>{if(e.DataView.Contains(StandardDataFormats.StorageItems)){var items=await e.DataView.GetStorageItemsAsync();await Import(items.Select(i=>i.Path));}};
         Grid.SetRow(tray,1);bottom.Children.Add(tray);Grid.SetRow(trayEmptyHint,1);bottom.Children.Add(trayEmptyHint);Grid.SetRow(bottom,3);root.Children.Add(bottom);SetupPanelSizing();
@@ -108,11 +108,10 @@ sealed partial class MainWindow : Window
         Grid.SetRowSpan(collectionOverlay,4);root.Children.Add(collectionOverlay);
         Grid.SetRowSpan(startup,4);root.Children.Add(startup);
         session.Changed+=Refresh;
-        renderer.ResourceReady+=RefreshAlbumThumbnails;
         session.Notice+=text=>{if(closed)return;status.Text=text.Split('\n')[0];_=ShowMessage("观片台",text);};
         board.SizeChanged+=(_,_)=>{session.Width=Math.Max(1,board.ActualWidth);session.Height=Math.Max(1,board.ActualHeight);var at=board.TransformToVisual(root).TransformPoint(new(0,0));renderer.BoardOrigin=new(at.X,at.Y);board.Invalidate();};
         SetupInput();SetupTrayInput();
-        animationTimer=DispatcherQueue.CreateTimer();animationTimer.Interval=TimeSpan.FromMilliseconds(16);animationTimer.Tick+=(_,_)=>{if(closed)return;root.HideLoupeCursor(windowActive&&session.Loupe&&renderer.PointerInside&&!dialogOpen&&!albumOpen&&startup.Visibility!=Visibility.Visible);TickFlight(.016);TickTableDrag(.016);var changed=renderer.TickAnimations(TableRenderer.Seconds);magnification.Advance(TableRenderer.Seconds,session.ReduceMotion);if(changed||renderer.IsAnimating){panelBrush.Color=renderer.PanelColor;board.Invalidate();lensOverlay.Invalidate();}};animationTimer.Start();
+        animationTimer=DispatcherQueue.CreateTimer();animationTimer.Interval=TimeSpan.FromMilliseconds(16);animationTimer.Tick+=(_,_)=>{if(closed)return;root.HideLoupeCursor(windowActive&&session.Loupe&&renderer.PointerInside&&!dialogOpen&&startup.Visibility!=Visibility.Visible);TickFlight(.016);TickTableDrag(.016);var changed=renderer.TickAnimations(TableRenderer.Seconds);magnification.Advance(TableRenderer.Seconds,session.ReduceMotion);if(changed||renderer.IsAnimating){panelBrush.Color=renderer.PanelColor;board.Invalidate();lensOverlay.Invalidate();}};animationTimer.Start();
         Activated+=(_,e)=>{windowActive=e.WindowActivationState!=WindowActivationState.Deactivated;if(!windowActive){session.CloseViewing=false;tabHeld=spaceHeld=false;CancelGesture();CancelTrayFlight();}};
         Closed+=(_,_)=>{closed=true;collectionCancellation?.Cancel();animationTimer.Stop();periodicUpdateTimer?.Stop();session.Flush();renderer.Dispose();collectionRenderer.Dispose();board.RemoveFromVisualTree();lensOverlay.RemoveFromVisualTree();collectionOverlay.RemoveFromVisualTree();slideshow?.Close();};
         root.Loaded+=async(_,_)=>
@@ -159,51 +158,33 @@ sealed partial class MainWindow : Window
         if(closed)return;
         light.Content=session.IsLit?"关灯":"开灯";magnification.Visibility=session.Loupe?Visibility.Visible:Visibility.Collapsed;loupeButton.FontWeight=session.Loupe?Microsoft.UI.Text.FontWeights.SemiBold:Microsoft.UI.Text.FontWeights.Normal;
         magnification.SetValue(session.Power,!session.ReduceMotion);
-        var active=session.Document.EnsureCollection();count.Text=$"待取 {session.Document.AvailablePhotos.Count}/{active.Paths.Count}";collectionPicker.IsEnabled=!session.Busy;status.Visibility=session.Busy?Visibility.Visible:Visibility.Collapsed;panelBrush.Color=renderer.PanelColor;board.Invalidate();
-        var placementHash=new HashCode();foreach(var slide in session.Document.Slides)placementHash.Add(slide.Path,StringComparer.OrdinalIgnoreCase);var placedRevision=placementHash.ToHashCode();
-        if(libraryRevision!=session.LibraryRevision||photoCount!=session.Document.Photos.Count||albumCount!=session.Document.Albums.Count||trayPlacementHash!=placedRevision)
+        var active=session.Document.EnsureCollection();count.Text=$"{active.Paths.Count} 张 · 已上台 {session.Document.Slides.Count}";collectionPicker.IsEnabled=!session.Busy;status.Visibility=session.Busy?Visibility.Visible:Visibility.Collapsed;panelBrush.Color=renderer.PanelColor;board.Invalidate();
+        if(libraryRevision!=session.LibraryRevision||photoCount!=session.Document.Photos.Count)
         {
-            trayPlacementHash=placedRevision;libraryRevision=session.LibraryRevision;photoCount=session.Document.Photos.Count;albumCount=session.Document.Albums.Count;
+            libraryRevision=session.LibraryRevision;photoCount=session.Document.Photos.Count;
             updatingCollections=true;collectionPicker.ItemsSource=null;collectionPicker.ItemsSource=session.Document.Collections;collectionPicker.SelectedItem=active;updatingCollections=false;
             foreach(var old in trayItems){old.Realized=false;old.Thumbnail=null;}trayItems.Clear();
-            foreach(var a in session.Document.Albums)trayItems.Add(new TrayItem(a.Name,"",a.Id){ThumbnailScale=PanelSizing.ThumbnailScale(tray.ActualHeight)});
-            foreach(var p in session.Document.AvailablePhotos)trayItems.Add(new TrayItem(p.Name,p.Path){ThumbnailScale=PanelSizing.ThumbnailScale(tray.ActualHeight)});
+            foreach(var p in session.Document.ActivePhotos)trayItems.Add(new TrayItem(p.Name,p.Path){ThumbnailScale=PanelSizing.ThumbnailScale(tray.ActualHeight)});
             DispatcherQueue.TryEnqueue(()=>{trayScroller?.ChangeView(trayOffsets.GetValueOrDefault(active.Id),null,null,true);UpdateTrayRange();});
         }
         var placedSlides=session.Document.Slides.Select(s=>s.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);
         trayEmptyHint.Visibility=trayItems.Count==0?Visibility.Visible:Visibility.Collapsed;
-        trayEmptyHint.Text=active.Paths.Count==0&&!session.Document.TableIds.Any()?"此栏目为空 · 添加照片或从文件夹导入":"照片已上台 · 选中台面照片后按 Delete 收回底栏";
-        var placedAlbums=session.Document.Albums.Where(a=>a.Position!=null).Select(a=>a.Id).ToHashSet();
-        foreach(var item in trayItems)item.Mark=item.AlbumId is {} id ? placedAlbums.Contains(id)?"已上台":"相册页" : placedSlides.Contains(item.Path)?"已上台":"";
-        RefreshAlbumThumbnails();
+        trayEmptyHint.Text="此栏目为空 · 添加照片或从文件夹导入";
+        foreach(var item in trayItems)item.Mark=placedSlides.Contains(item.Path)?"已上台":"";
     }
-    void RefreshAlbumThumbnails(){if(closed)return;foreach(var item in trayItems.Where(i=>i.AlbumId!=null))if(tray.ContainerFromItem(item)!=null)_=LoadThumbnail(item);}
     async Task LoadThumbnail(TrayItem item)
     {
-        if(item.Loading||closed||!item.Realized)return;
-        AlbumPage? album=item.AlbumId is {} id?session.Document.Albums.Find(a=>a.Id==id):null;var hash=new HashCode();
-        if(album!=null){hash.Add(renderer.ResourcesRevision);foreach(var p in album.Pockets){hash.Add(p.Column);hash.Add(p.Row);hash.Add(p.Format);hash.Add(p.Path);hash.Add(p.Path==null?0:session.Document.Aspect(p.Path));}}
-        var revision=hash.ToHashCode();if(item.Thumbnail!=null&&(album==null||item.ThumbnailRevision==revision))return;item.Loading=true;
-        bool retryAfterRecovery=false;long deviceGeneration=renderer.DeviceGeneration;
+        if(item.Loading||closed||!item.Realized||item.Thumbnail!=null)return;item.Loading=true;
         try
         {
-            byte[] pixels;int width,height;
-            if(album!=null)
-            {
-                await renderer.DeviceReady;if(closed)return;deviceGeneration=renderer.DeviceGeneration;width=138;height=132;
-                using var target=new Microsoft.Graphics.Canvas.CanvasRenderTarget(board.Device,width,height,96);
-                using(var ds=target.CreateDrawingSession()){ds.Clear(Color(51));renderer.AlbumPreview(ds,album,width,height);}
-                pixels=target.GetPixelBytes();item.ThumbnailRevision=revision;
-            }
-            else{var decoded=await session.Images.GetAsync(item.Path,220);width=decoded.Width;height=decoded.Height;pixels=decoded.Pixels;}
+            var decoded=await session.Images.GetAsync(item.Path,220);
             if(!item.Realized||closed)return;
-            var bitmap=new WriteableBitmap(width,height);using(var stream=bitmap.PixelBuffer.AsStream())await stream.WriteAsync(pixels);bitmap.Invalidate();
-            if(album!=null&&deviceGeneration!=renderer.DeviceGeneration)retryAfterRecovery=true;else item.Thumbnail=bitmap;
+            var bitmap=new WriteableBitmap(decoded.Width,decoded.Height);using(var stream=bitmap.PixelBuffer.AsStream())await stream.WriteAsync(decoded.Pixels);bitmap.Invalidate();item.Thumbnail=bitmap;
         }
-        catch(Exception ex){if(album!=null&&(deviceGeneration!=renderer.DeviceGeneration||renderer.HandleDeviceError(ex)))retryAfterRecovery=true;else item.Mark="无法读取";}
-        finally{item.Loading=false;if(retryAfterRecovery&&!closed)_=LoadThumbnail(item);}
+        catch{item.Mark="无法读取";}
+        finally{item.Loading=false;}
     }
-    void PlaceTray(TrayItem item){if(item.AlbumId is {} id&&session.Document.Albums.Find(a=>a.Id==id) is {} page)session.PlaceAlbum(page);else session.Place(item.Path,new(session.Width/2,session.Height/2));}
+    void PlaceTray(TrayItem item)=>session.Place(item.Path,new(session.Width/2,session.Height/2));
     async Task Import(IEnumerable<string> paths,bool replace=false)
     {
         status.Text="正在读取照片…";
@@ -236,11 +217,10 @@ sealed partial class MainWindow : Window
     static void Reveal(string path){if(File.Exists(path))Process.Start(new ProcessStartInfo("explorer.exe",$"/select,\"{path}\""){UseShellExecute=true});}
 }
 
-sealed class TrayItem(string name,string path,Guid? albumId=null) : INotifyPropertyChanged
+sealed class TrayItem(string name,string path) : INotifyPropertyChanged
 {
     public string Name {get;}=name;
     public string Path {get;}=path;
-    public Guid? AlbumId {get;}=albumId;
     double thumbnailScale=1;
     public double ThumbnailScale
     {
@@ -248,13 +228,12 @@ sealed class TrayItem(string name,string path,Guid? albumId=null) : INotifyPrope
         set{if(Math.Abs(value-thumbnailScale)<.005)return;thumbnailScale=value;foreach(var name in new[]{nameof(TileWidth),nameof(FrameWidth),nameof(FrameHeight),nameof(ImageWidth),nameof(ImageHeight),nameof(ImageMargin)})PropertyChanged?.Invoke(this,new(name));}
     }
     public double TileWidth=>104*thumbnailScale;
-    public double FrameWidth=>(AlbumId==null?104:69)*thumbnailScale;
-    public double FrameHeight=>(AlbumId==null?70:66)*thumbnailScale;
-    public double ImageWidth=>(AlbumId==null?90:69)*thumbnailScale;
-    public double ImageHeight=>(AlbumId==null?56:66)*thumbnailScale;
-    public Thickness ImageMargin=>AlbumId==null?new(7*thumbnailScale,9*thumbnailScale,7*thumbnailScale,5*thumbnailScale):new(0);
-    public Visibility SleeveVisibility=>AlbumId==null?Visibility.Visible:Visibility.Collapsed;
-    public int ThumbnailRevision {get;set;}
+    public double FrameWidth=>104*thumbnailScale;
+    public double FrameHeight=>70*thumbnailScale;
+    public double ImageWidth=>90*thumbnailScale;
+    public double ImageHeight=>56*thumbnailScale;
+    public Thickness ImageMargin=>new(7*thumbnailScale,9*thumbnailScale,7*thumbnailScale,5*thumbnailScale);
+    public Visibility SleeveVisibility=>Visibility.Visible;
     public bool Loading {get;set;}
     public bool Realized {get;set;}
     ImageSource? thumbnail;

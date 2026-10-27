@@ -130,7 +130,7 @@ public sealed class CollectionTable
 }
 public sealed partial class TableDocument : IJsonOnSerializing
 {
-    public const int CurrentSchema = 3;
+    public const int CurrentSchema = 4;
     public int SchemaVersion { get; set; } = CurrentSchema;
     public List<Photo> Photos { get; set; } = [];
     void IJsonOnSerializing.OnSerializing()=>SaveActiveCollection();

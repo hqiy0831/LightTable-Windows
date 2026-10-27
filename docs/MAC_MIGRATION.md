@@ -1,3 +1,5 @@
+> 当前 Windows 0.1.75.2：按用户明确要求移除相册功能、底栏全部照片常驻并标记已上台。旧相册照片迁入原栏目且先独立备份；schema 4，旧版请勿回写。最新范围及验收见 [0.1.75.2 检查点](CHECKPOINT_0.1.75.2.zh-CN.md)，下文保留历史。
+
 # Mac 布局迁移
 
 读取基线 v0.1.72 的 `TableModel.Saved` JSON：Mac 默认位置为 `~/Library/Application Support/OurLightTable/layout-v1.json`。导入不需要修改 Mac 文件。

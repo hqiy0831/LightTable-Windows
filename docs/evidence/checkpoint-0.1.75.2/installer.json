@@ -1,0 +1,26 @@
+{
+  "Passed": true,
+  "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app",
+  "Rounds": [
+    {
+      "Checks": 30,
+      "Installed": true,
+      "LayoutPreserved": true,
+      "Round": 1,
+      "Uninstalled": true,
+      "ExistingProductionUnchanged": true,
+      "ExitCode": 0
+    },
+    {
+      "Checks": 30,
+      "Installed": true,
+      "LayoutPreserved": true,
+      "Round": 2,
+      "Uninstalled": true,
+      "ExistingProductionUnchanged": true,
+      "ExitCode": 0
+    }
+  ],
+  "InstallerSha256": "19BD39B538554F0C8D3A9BE6A3ECBBF439D5A8648A5A6D3261CD0C944CEAF454",
+  "ProductionStateSha256": "5e19de2b7a45cb2cf68008850831a90520293bfc6f9fe8a4829630da7338c75c"
+}

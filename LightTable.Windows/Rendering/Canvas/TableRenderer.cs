@@ -51,13 +51,10 @@ sealed class TableRenderer : IDisposable
     readonly Dictionary<string,double> rasterFootprints=new(StringComparer.OrdinalIgnoreCase);
     readonly Dictionary<string,double> aspectIndex=new(StringComparer.OrdinalIgnoreCase);
     readonly Dictionary<Guid,Slide> slidesById=[];
-    readonly Dictionary<Guid,AlbumPage> albumsById=[];
-    readonly HashSet<string> albumPaths=new(StringComparer.OrdinalIgnoreCase);
     readonly Dictionary<string,(string Key,OpticalPhoto Photo)> bestAvailable=new(StringComparer.OrdinalIgnoreCase);
     long indexedRevision=-1;
     readonly CanvasTextFormat loadingFormat=new(){FontSize=11,HorizontalAlignment=CanvasHorizontalAlignment.Center,VerticalAlignment=CanvasVerticalAlignment.Center};
     OpticalTables? tables;
-    AlbumMembranes? membranes;
     FilmContactSurface? contactSurface;
     public long ResourcesRevision=>resourcesRevision;
     public long CachedResourcesRevision=>sceneCacheResourcesRevision;
@@ -137,7 +134,7 @@ sealed class TableRenderer : IDisposable
         if(args.Reason==CanvasCreateResourcesReason.DpiChanged&&ReferenceEquals(resourceDevice,sender.Device)&&tables!=null)
         {lensTarget?.Dispose();lensTarget=null;ClearSceneCache();lastScale=-1;canvas.Invalidate();lensCanvas.Invalidate();return;}
         epoch.Begin();ClearDeviceResources();resourceDevice=sender.Device;resourceDevice.DeviceLost+=DeviceLost;
-        tables=new(resourceDevice);membranes=new(resourceDevice);contactSurface=new(resourceDevice);
+        tables=new(resourceDevice);contactSurface=new(resourceDevice);
         lensShader=new PixelShaderEffect(File.ReadAllBytes(System.IO.Path.Combine(AppContext.BaseDirectory,"Resources","LoupeEdge.bin"))){Source1Mapping=SamplerCoordinateMapping.Offset,Source1Interpolation=CanvasImageInterpolation.Linear};
         epoch.Complete(generation);ResourceReady?.Invoke();canvas.Invalidate();lensCanvas.Invalidate();
     }
@@ -146,7 +143,7 @@ sealed class TableRenderer : IDisposable
     void ClearDeviceResources()
     {
         if(resourceDevice!=null)resourceDevice.DeviceLost-=DeviceLost;resourceDevice=null;resourcesRevision++;
-        ClearSceneCache();foreach(var entry in gpu.Values)entry.Photo.Dispose();gpu.Clear();pending.Clear();failed.Clear();tables?.Dispose();tables=null;membranes?.Dispose();membranes=null;contactSurface?.Dispose();contactSurface=null;lensTarget?.Dispose();lensTarget=null;lensShader?.Dispose();lensShader=null;
+        ClearSceneCache();foreach(var entry in gpu.Values)entry.Photo.Dispose();gpu.Clear();pending.Clear();failed.Clear();tables?.Dispose();tables=null;contactSurface?.Dispose();contactSurface=null;lensTarget?.Dispose();lensTarget=null;lensShader?.Dispose();lensShader=null;
     }
     async Task WaitForDevice()
     {
@@ -184,14 +181,13 @@ sealed class TableRenderer : IDisposable
     }
     void RefreshRasterFootprints()
     {
-        rasterFootprints.Clear();aspectIndex.Clear();albumPaths.Clear();slidesById.Clear();albumsById.Clear();foreach(var slide in session.Document.Slides)slidesById.TryAdd(slide.Id,slide);foreach(var album in session.Document.Albums)albumsById.TryAdd(album.Id,album);var dpi=canvas.Dpi/96d;
+        rasterFootprints.Clear();aspectIndex.Clear();slidesById.Clear();foreach(var slide in session.Document.Slides)slidesById.TryAdd(slide.Id,slide);var dpi=canvas.Dpi/96d;
         foreach(var photo in session.Document.Photos)aspectIndex.TryAdd(photo.Path,photo.Aspect);
         foreach(var slide in session.Document.Slides)
         {
             var p=IndexedPlacement(slide);var size=Math.Max(p.Width,p.Height)*dpi;
             if(size>rasterFootprints.GetValueOrDefault(slide.Path))rasterFootprints[slide.Path]=size;
         }
-        foreach(var album in session.Document.Albums)foreach(var pocket in album.Pockets)if(pocket.Path is {} path)albumPaths.Add(path);
     }
     Placement IndexedPlacement(Slide slide)=>Geometry.Place(session.Document,slide,aspectIndex.GetValueOrDefault(slide.Path,1.5));
     int RasterLimit(string path,int bucket,bool hd)
@@ -199,7 +195,6 @@ sealed class TableRenderer : IDisposable
         if(!hd&&bucket>256)return bucket;
         var longest=Math.Max(64,rasterFootprints.GetValueOrDefault(path)*(hd?currentLoupeMagnification:1));
         if(Flight?.Path==path)longest=Math.Max(longest,Math.Max(Flight.Frame.Width,Flight.Frame.Height)*(canvas.Dpi/96d));
-        if(albumPaths.Contains(path))return bucket;
         return new[]{64,128,256,384,512,768,1024,1536,2200}.FirstOrDefault(n=>n>=longest,2200);
     }
     Task Load(string path,int bucket,string key,long token,int raster=2200)
@@ -273,13 +268,6 @@ sealed class TableRenderer : IDisposable
         using(var ds=result.CreateDrawingSession()){ds.Clear(Panel(sample));if(useCommandCache)DrawTable(ds,sample);else Scene(ds,sample,false);}
         return result;
     }
-    public void AlbumPreview(CanvasDrawingSession ds,AlbumPage album,double width,double height)
-    {
-        if(resourceDevice==null||!ReferenceEquals(resourceDevice,ds.Device))return;
-        RefreshRasterFootprints();
-        var scale=Math.Min(width/620,height/690);
-        DrawAlbum(ds,album,LightResponse.Sample(10,true),false,new Placement(new(width/2,height/2),620*scale,690*scale,0),true);
-    }
     void Draw(CanvasControl sender,CanvasDrawEventArgs args)
     {
         if(disposed)return;
@@ -312,8 +300,7 @@ sealed class TableRenderer : IDisposable
     void TryIgniteVisibleFilms(double now)
     {
         if(!session.Lamp.Pending)return;var view=new RectD(0,0,canvas.ActualWidth,canvas.ActualHeight);
-        var visible=session.Document.Slides.Where(s=>IndexedPlacement(s).Intersects(view)).Select(s=>s.Path).Concat(
-            session.Document.Albums.Where(a=>a.Position!=null&&Geometry.Place(session.Document,a).Intersects(view)).SelectMany(a=>a.Pockets).Select(p=>p.Path).OfType<string>()).Distinct(StringComparer.OrdinalIgnoreCase);
+        var visible=session.Document.Slides.Where(s=>IndexedPlacement(s).Intersects(view)).Select(s=>s.Path).Distinct(StringComparer.OrdinalIgnoreCase);
         var available=gpu.Values.Select(g=>g.Photo.Decoded.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);
         bool ready=visible.All(path=>available.Contains(path)||failed.Keys.Any(key=>key.StartsWith(path+"|",StringComparison.OrdinalIgnoreCase)));
         session.Lamp.TryIgnite(now,ready);
@@ -322,7 +309,6 @@ sealed class TableRenderer : IDisposable
     {
         var h=new HashCode();h.Add(sample.Transmission);h.Add(sample.Flare);h.Add(session.Brightness);h.Add(session.Document.FitScale);h.Add(session.Document.WorldWidth);h.Add(session.Document.WorldHeight);h.Add(Flight?.Id);h.Add(session.ShowSelection&&!session.Loupe);
         foreach(var s in session.Document.Slides){h.Add(s.Id);h.Add(s.Path);h.Add(s.X);h.Add(s.Y);h.Add(s.Angle);h.Add(s.Width);}
-        foreach(var a in session.Document.Albums){h.Add(a.Id);h.Add(a.Position);h.Add(a.Angle);h.Add(a.Scale);foreach(var p in a.Pockets){h.Add(p.Id);h.Add(p.Path);h.Add(p.Column);h.Add(p.Row);h.Add(p.Format);}}
         foreach(var id in session.Document.TableIds)h.Add(id);foreach(var id in session.Selection.Order())h.Add(id);return h.ToHashCode();
     }
     void DrawTable(CanvasDrawingSession ds,LightSample sample)
@@ -383,7 +369,7 @@ sealed class TableRenderer : IDisposable
     }
     void Scene(CanvasDrawingSession ds,LightSample sample,bool hd,bool all=false)
     {
-        var slides=slidesById;var albums=albumsById;
+        var slides=slidesById;
         foreach(var id in session.Document.TableIds)
         {
             if(slides.TryGetValue(id,out var slide))
@@ -396,7 +382,6 @@ sealed class TableRenderer : IDisposable
                 var photo=Get(slide.Path,bucket,hd);
                 DrawFilm(ds,photo,p,sample,!hd&&session.ShowSelection&&session.Selection.Contains(id)&&!session.Loupe,id);
             }
-            else if(albums.TryGetValue(id,out var album))DrawAlbum(ds,album,sample,hd);
         }
     }
     void DrawFilm(CanvasDrawingSession ds,OpticalPhoto? photo,Placement p,LightSample sample,bool selected,Guid filmId=default)
@@ -419,39 +404,12 @@ sealed class TableRenderer : IDisposable
         }
         ds.Transform=original;
     }
-    void DrawAlbum(CanvasDrawingSession ds,AlbumPage album,LightSample sample,bool hd,Placement? overridePlacement=null,bool catalog=false)
-    {
-        var p=overridePlacement??Geometry.Place(session.Document,album);var original=ds.Transform;
-        var scale=(float)(p.Width/AlbumPage.Width);
-        ds.Transform=Matrix3x2.CreateTranslation(-310,-345)*Matrix3x2.CreateScale(scale)*Matrix3x2.CreateRotation((float)(p.Angle*Math.PI/180))*Matrix3x2.CreateTranslation((float)p.Center.X,(float)p.Center.Y)*original;
-        if(membranes!=null)ds.DrawImage(membranes.Get(album,false));
-        foreach(var pocket in album.Pockets)
-        {
-            var r=pocket.Rect;
-            if(pocket.Path!=null)
-            {
-                var aspect=session.Document.Aspect(pocket.Path);var side=Math.Min(r.Width-18,r.Height-28);var w=Math.Min(side,side*aspect);var h=w/aspect;
-                var bucket=hd?2200:Geometry.PreviewBucket(w*scale,h*scale,canvas.Dpi/96d);
-                var photo=Get(pocket.Path,bucket,hd);
-                if(catalog)
-                {
-                    var rect=new Rect(r.Center.X-w/2,r.Center.Y-h/2,w,h);
-                    if(photo!=null)ds.DrawImage(photo.Source,rect,new Rect(0,0,photo.Decoded.Width,photo.Decoded.Height));else ds.FillRectangle(rect,Color.FromArgb(255,9,9,9));
-                }
-                else DrawFilm(ds,photo,new(r.Center,w,h,0),sample,false);
-            }
-        }
-        if(membranes!=null)ds.DrawImage(membranes.Get(album,true));
-        if(!catalog&&!hd&&session.ShowSelection&&session.Selection.Contains(album.Id)&&!session.Loupe)ds.DrawRectangle(new Rect(-3,-3,626,696),Color.FromArgb(255,49,100,158),2);
-        ds.Transform=original;
-    }
     public Guid? Hit(PointD point)
     {
         RefreshRasterFootprints();
         foreach(var id in session.Document.TableIds.Reverse())
         {
             if(slidesById.TryGetValue(id,out var slide)&&IndexedPlacement(slide).Contains(point))return id;
-            if(albumsById.TryGetValue(id,out var album)&&Geometry.Place(session.Document,album).Contains(point))return id;
         }
         return null;
     }
@@ -460,7 +418,6 @@ sealed class TableRenderer : IDisposable
         RefreshRasterFootprints();
         session.Selection.Clear();
         foreach(var s in session.Document.Slides)if(IndexedPlacement(s).Intersects(rect))session.Selection.Add(s.Id);
-        foreach(var a in session.Document.Albums.Where(a=>a.Position!=null))if(Geometry.Place(session.Document,a).Intersects(rect))session.Selection.Add(a.Id);
         session.ShowSelection=true;session.Notify(false);
     }
     static Rect ToRect(RectD r)=>new(r.X,r.Y,r.Width,r.Height);
@@ -484,9 +441,6 @@ sealed class TableRenderer : IDisposable
         if(Flight is {} flight&&tables!=null)
         {
             var ds=args.DrawingSession;var frame=flight.Frame;
-            if(flight.AlbumId is {} id&&session.Document.Albums.Find(a=>a.Id==id) is {} album)
-                DrawAlbum(ds,album,new(1,0,.5),false,new Placement(frame.Center,frame.Width,frame.Height,flight.Angle));
-            else
             {
                 var photo=Get(flight.Path,flight.Expansion>.5?512:220);var aspect=photo?.Decoded.Aspect??session.Document.Aspect(flight.Path);
                 var w=Math.Min(frame.Width,frame.Height*aspect);var flightLight=new LightSample(session.IsLit?1:1-flight.Expansion,0,.5);

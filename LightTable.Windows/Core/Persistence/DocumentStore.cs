@@ -55,6 +55,17 @@ public sealed class DocumentStore
         }
         finally{if(File.Exists(temp))File.Delete(temp);}
     }
+    public string? MigrateLegacyAlbums(TableDocument doc)
+    {
+        doc.SaveActiveCollection();
+        if(!doc.Collections.Any(c=>c.Table?.Albums.Count>0))return null;
+        var archive=Path.Combine(Root,"layouts","before-album-removal",DateTimeOffset.Now.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N")+".json");
+        Directory.CreateDirectory(Path.GetDirectoryName(archive)!);
+        // Durable independent backup must succeed before changing the layout.
+        var bytes=JsonSerializer.SerializeToUtf8Bytes(doc,JsonOptions);
+        using(var stream=new FileStream(archive,FileMode.CreateNew,FileAccess.Write,FileShare.None,4096,FileOptions.WriteThrough)){stream.Write(bytes);stream.Flush(true);}
+        doc.ConvertLegacyAlbumsToPhotos();Save(doc);return archive;
+    }
     public string Import(TableDocument document,ReadOnlySpan<byte> originalMacBytes)
     {
         var archive=Path.Combine(Root,"layouts","imports",DateTimeOffset.Now.ToString("yyyyMMdd-HHmmss")+"-"+Guid.NewGuid().ToString("N"));Directory.CreateDirectory(archive);

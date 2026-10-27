@@ -25,7 +25,7 @@ sealed partial class MainWindow
         tray.CanDragItems=false;
         tray.AddHandler(UIElement.PointerPressedEvent,new PointerEventHandler((_,e)=>
         {
-            if(session.Busy||dialogOpen||albumOpen||renderer.Flight!=null)return;
+            if(session.Busy||dialogOpen||renderer.Flight!=null)return;
             var point=e.GetCurrentPoint(root);if(!point.Properties.IsLeftButtonPressed)return;
             var element=e.OriginalSource as FrameworkElement;
             while(element!=null&&element.DataContext is not TrayItem)element=VisualTreeHelper.GetParent(element) as FrameworkElement;
@@ -45,15 +45,15 @@ sealed partial class MainWindow
                 var d=pointer-start;if(Math.Sqrt(d.X*d.X+d.Y*d.Y)<6)return;
                 if(e.Pointer.PointerDeviceType==Microsoft.UI.Input.PointerDeviceType.Touch&&Math.Abs(d.X)>Math.Abs(d.Y)){pullingItem=null;pullStart=pullPointer=null;return;}
                 tray.CapturePointer(e.Pointer);tray.SelectedItems.Clear();
-                renderer.Flight=new(){Path=pullingItem.Path,AlbumId=pullingItem.AlbumId,Origin=pullOrigin,Start=start,Frame=pullOrigin};
-                _=pullingItem.AlbumId==null?renderer.PrepareFlight(pullingItem.Path):Task.CompletedTask;
+                renderer.Flight=new(){Path=pullingItem.Path,Origin=pullOrigin,Start=start,Frame=pullOrigin};
+                _=renderer.PrepareFlight(pullingItem.Path);
             }
             var flight=renderer.Flight;
             var target=FlightTarget(pullingItem);
             flight.Expansion=SleeveMotion.Expansion(flight.Origin,pointer,start);
             flight.Frame=SleeveMotion.Frame(flight.Origin,pointer,start,new(target.Width,target.Height));
             var distance=pointer-start;flight.Lift=session.ReduceMotion?0:Geometry.Smooth(Math.Sqrt(distance.X*distance.X+distance.Y*distance.Y)/28);
-            var angle=pullingItem.AlbumId is {} id?session.Document.Albums.Find(a=>a.Id==id)?.Angle??0:session.Document.Slides.Find(s=>s.Path==pullingItem.Path)?.Angle??0;
+            var angle=session.Document.Slides.Find(s=>s.Path==pullingItem.Path)?.Angle??0;
             flight.Angle=angle*flight.Expansion+(session.ReduceMotion?0:Math.Clamp(distance.X/40,-3,3)*(1-flight.Expansion));
             lensOverlay.Invalidate();board.Invalidate();e.Handled=true;
         }),true);
@@ -73,8 +73,6 @@ sealed partial class MainWindow
     }
     Placement FlightTarget(TrayItem item)
     {
-        if(item.AlbumId is {} id&&session.Document.Albums.Find(a=>a.Id==id) is {} album)
-            return new(new(0,0),620*session.Document.Viewport.Scale*album.Scale,690*session.Document.Viewport.Scale*album.Scale,album.Angle);
         var s=session.Document.Slides.Find(s=>s.Path==item.Path)??new Slide{Path=item.Path};return Geometry.Place(session.Document,s);
     }
     async Task FinishFlight(TrayItem item,bool landing)
@@ -95,7 +93,7 @@ sealed partial class MainWindow
         if(!closed&&renderer.Flight?.Id==flight.Id)
         {
             renderer.Flight=null;
-            if(landing){if(item.AlbumId is {} id&&session.Document.Albums.Find(a=>a.Id==id) is {} album)session.PlaceAlbum(album,boardCenter);else session.Place(item.Path,boardCenter);}
+            if(landing)session.Place(item.Path,boardCenter);
             board.Invalidate();lensOverlay.Invalidate();
         }
         finishingFlight=false;

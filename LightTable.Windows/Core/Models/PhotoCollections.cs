@@ -16,9 +16,6 @@ public sealed partial class TableDocument
     {
         get{var index=Photos.ToDictionary(p=>p.Path,StringComparer.OrdinalIgnoreCase);return EnsureCollection().Paths.Where(index.ContainsKey).Select(p=>index[p]).ToArray();}
     }
-    [System.Text.Json.Serialization.JsonIgnore]
-    public IReadOnlyList<Photo> AvailablePhotos
-    {get{var placed=Slides.Select(s=>s.Path).ToHashSet(StringComparer.OrdinalIgnoreCase);return ActivePhotos.Where(p=>!placed.Contains(p.Path)).ToArray();}}
     public PhotoCollection AddCollection(string? name=null)
     {
         EnsureCollection();var collection=new PhotoCollection{Name=string.IsNullOrWhiteSpace(name)?$"栏目 {Collections.Count+1}":name.Trim(),Table=new()};

@@ -1,0 +1,56 @@
+{
+  "Version": "0.1.75.2",
+  "OriginalAuthor": "抖音 @怕蛇LightTable",
+  "Core": {
+    "Passed": 113,
+    "Failed": 0
+  },
+  "Portable": {
+    "Passed": true,
+    "Checks": 30,
+    "ExitCode": 0,
+    "ArchiveSha256": "2a89dba26ec693e05f41c4e3d9e7f343f99f6e74f61bedc0f3164837e6c47248"
+  },
+  "InstallerSandbox": {
+    "Passed": true,
+    "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app",
+    "Rounds": [
+      {
+        "Checks": 30,
+        "Installed": true,
+        "LayoutPreserved": true,
+        "Round": 1,
+        "Uninstalled": true,
+        "ExistingProductionUnchanged": true,
+        "ExitCode": 0
+      },
+      {
+        "Checks": 30,
+        "Installed": true,
+        "LayoutPreserved": true,
+        "Round": 2,
+        "Uninstalled": true,
+        "ExistingProductionUnchanged": true,
+        "ExitCode": 0
+      }
+    ],
+    "InstallerSha256": "19BD39B538554F0C8D3A9BE6A3ECBBF439D5A8648A5A6D3261CD0C944CEAF454",
+    "ProductionStateSha256": "5e19de2b7a45cb2cf68008850831a90520293bfc6f9fe8a4829630da7338c75c"
+  },
+  "BinarySha256": {
+    "LightTable.exe": "bf4504571a1b02fb5fcefbbb504876ac0426cef674a290c32c809599ea3770dc",
+    "LightTable.dll": "f494cb04e219d4926d568a7b687a1c18ebf4e57ebc5c1cf0c31e93f6ae007dcd",
+    "LightTable.Core.dll": "e951ac86718afdf088d58e6fb6b6c913bf8e0463e3a436828492f85996cc4a40",
+    "LightTable.pri": "e00bf740022937bdba9a91337f469224aa378e322ca2f08beab576c0065f39f7",
+    "Resources/LoupeEdge.bin": "447f5bb28228aa530ecf78d23cbaaf55a6f1d851817d4e7bd68654701e70fbf0",
+    "Resources/FusedOptical.bin": "9467b92aeabc031f28fda32895d926e887f8cd57fa0ee93f24d9215e8b2ecc2f",
+    "Resources/FusedLamp.bin": "6f223938733fde2483578b838f6d820b4a6402fea52787198492c50abd4b9ca3"
+  },
+  "PersistentTrayTest": {
+    "Name": "Persistent-tray-100-photos-60-placed",
+    "Passed": true,
+    "Evidence": "真实ListView模型100张，上台60张标记、40张保留；全部对象/顺序和滚动位置(11568.0)不变。移出台面后100张/59个标记；新Store恢复一致；无相册项目。",
+    "Milliseconds": 1387.376
+  },
+  "Scope": "Current development host; separate installer AppId, not production upgrade or clean Windows. No new 60FPS/P3/FP16 claims."
+}

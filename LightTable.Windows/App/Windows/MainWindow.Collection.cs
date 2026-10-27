@@ -19,7 +19,7 @@ sealed partial class MainWindow
         var origin=tray.TransformToVisual(root).TransformPoint(new(0,0));var viewport=new RectD(origin.X,origin.Y,tray.ActualWidth,tray.ActualHeight);var photos=new List<CollectionPhoto>();
         for(int i=0;i<trayItems.Count;i++)
         {
-            var item=trayItems[i];if(item.AlbumId!=null||item.Thumbnail==null||tray.ContainerFromIndex(i) is not FrameworkElement container)continue;
+            var item=trayItems[i];if(item.Thumbnail==null||tray.ContainerFromIndex(i) is not FrameworkElement container)continue;
             var image=FindTrayImage(container);if(image==null||image.ActualWidth<2||image.ActualHeight<2)continue;
             var point=image.TransformToVisual(root).TransformPoint(new(0,0));var frame=new RectD(point.X,point.Y,image.ActualWidth,image.ActualHeight);
             if(frame.Intersects(viewport))photos.Add(new(item.Path,frame));
@@ -30,7 +30,7 @@ sealed partial class MainWindow
     async Task StartSlideshowAsync()
     {
         if(session.Document.ActivePhotos.Count==0){await ShowMessage("还没有照片","先导入照片，再开启幻灯机。");return;}
-        if(slideshow!=null||collectionCancellation!=null||renderer.Flight!=null||dialogOpen||albumOpen)return;
+        if(slideshow!=null||collectionCancellation!=null||renderer.Flight!=null||dialogOpen)return;
         session.CloseViewing=false;session.Flush();collectionCancellation=new();var cancellation=collectionCancellation.Token;
         var hidden=new List<FrameworkElement>();
         try

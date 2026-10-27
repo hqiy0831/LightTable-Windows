@@ -1,11 +1,11 @@
 {
-  "Date": "2026-10-26T12:19:28.8837647-04:00",
-  "ArchiveSha256": "d1040e410f83e4dae8c6946dfdf1d12eb44e4e0be9134ac57f6718bc6f6e6af1",
+  "Date": "2026-10-26T20:06:25.8272325-04:00",
+  "ArchiveSha256": "2a89dba26ec693e05f41c4e3d9e7f343f99f6e74f61bedc0f3164837e6c47248",
   "ExitCode": 0,
   "Checks": 30,
   "Passed": true,
   "LocalRuntime": true,
   "ApplicationPri": true,
   "Environment": "Current development host, not clean Windows",
-  "Report": "C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\TestResults\\portable-20261026-121913-f5742a\\isolated-data\\logs\\integration.json"
+  "Report": "C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\TestResults\\portable-20261026-200606-20347e\\isolated-data\\logs\\integration.json"
 }

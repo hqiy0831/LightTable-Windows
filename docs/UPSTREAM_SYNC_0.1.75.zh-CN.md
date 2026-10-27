@@ -1,3 +1,5 @@
+> 当前 Windows 0.1.75.2：按用户明确要求移除相册功能、底栏全部照片常驻并标记已上台。旧相册照片迁入原栏目且先独立备份；schema 4，旧版请勿回写。最新范围及验收见 [0.1.75.2 检查点](CHECKPOINT_0.1.75.2.zh-CN.md)，下文保留历史。
+
 # 上游 v0.1.75 同步记录
 
 2026-10-26 检查原作者 [LightTable](https://github.com/fuyuan9972-svg/LightTable) 与 [v0.1.75](https://github.com/fuyuan9972-svg/LightTable/releases/tag/v0.1.75)。原基线 v0.1.72 `1a998cfce9096ac7b42e26aba67c922885fd43e2`，现为 v0.1.75 `827ca13d947e4472675bbe409837c0188a9385d9`；子模块更新到该提交，97 个上游文件重新审计，Swift 源码未修改。

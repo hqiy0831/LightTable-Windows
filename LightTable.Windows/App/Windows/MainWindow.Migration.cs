@@ -9,7 +9,7 @@ sealed partial class MainWindow
 {
     async Task ImportMacLayout()
     {
-        if(dialogOpen||albumOpen||session.Busy||root.XamlRoot==null)return;dialogOpen=true;session.CloseViewing=false;CancelGesture();
+        if(dialogOpen||session.Busy||root.XamlRoot==null)return;dialogOpen=true;session.CloseViewing=false;CancelGesture();
         string? error=null;bool imported=false;
         try
         {
@@ -54,13 +54,13 @@ sealed partial class MainWindow
                 }
                 catch(Exception ex){note.Text=ex.Message;continue;}
                 finally{session.Busy=false;}
-                var summary=$"照片 {result.Document.Photos.Count} 张 · 台面散片 {result.Document.Slides.Count} 张\n相册 {result.Document.Albums.Count} 页 · 已验证旧拖片别名 {result.LegacyAliases} 个\n\n"+
+                var summary=$"照片 {result.Document.Photos.Count} 张 · 台面散片 {result.Document.Slides.Count} 张\n旧相册 {result.Document.Albums.Count} 页（照片将加入对应栏目，不保留相册功能） · 已验证旧拖片别名 {result.LegacyAliases} 个\n\n"+
                     (result.MissingPaths.Count==0?"所有引用文件均已找到。":$"有 {result.MissingPaths.Count} 张照片尚未找到，导入时会保留它们的位置：\n"+string.Join("\n",result.MissingPaths.Take(6)))+
                     (unreadable>0?$"\n另有 {unreadable} 张文件存在但无法读取尺寸，将保留布局并在启动准备中提示。":"")+
                     "\n\n导入将替换当前图库和台面布局。当前布局和原 Mac JSON 会先存入数据目录 layouts/imports 的独立备份。";
                 var preview=new ContentDialog{XamlRoot=root.XamlRoot,Title="检查导入结果",Content=new ScrollViewer{Content=new TextBlock{Text=summary,TextWrapping=TextWrapping.Wrap,MaxWidth=550},MaxHeight=430},PrimaryButtonText="导入并替换布局",SecondaryButtonText="返回修改",CloseButtonText="取消"};
                 var choice=await preview.ShowAsync();if(choice==ContentDialogResult.Secondary)continue;if(choice!=ContentDialogResult.Primary)return;
-                photoCount=albumCount=-1;var archive=session.ImportMacDocument(result.Document,bytes);renderer.DocumentChanged();session.Storage.Log($"Mac布局导入备份：{archive}");imported=true;break;
+                photoCount=-1;var archive=session.ImportMacDocument(result.Document,bytes);renderer.DocumentChanged();session.Storage.Log($"Mac布局导入备份：{archive}");imported=true;break;
             }
         }
         catch(Exception ex){session.Storage.Log($"Mac布局导入失败 {ex}");error=ex.Message;}

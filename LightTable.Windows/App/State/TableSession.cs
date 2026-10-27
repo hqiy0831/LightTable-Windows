@@ -43,7 +43,7 @@ sealed class TableSession
     readonly DispatcherQueueTimer saveTimer;
     public TableSession(DispatcherQueue dispatcher,string? dataRoot=null)
     {
-        Storage=new(dataRoot);Document=Storage.Load(out var warning);StartupWarning=warning;Images=new(Storage);
+        Storage=new(dataRoot);Document=Storage.Load(out var warning);var archive=Storage.MigrateLegacyAlbums(Document);if(archive!=null)warning=(warning==null?"":warning+"\n")+"相册功能已移除，原相册照片已加入对应栏目。旧布局已独立备份至 layouts/before-album-removal。";StartupWarning=warning;Images=new(Storage);
         saveTimer=dispatcher.CreateTimer();saveTimer.Interval=TimeSpan.FromMilliseconds(300);saveTimer.IsRepeating=false;saveTimer.Tick+=(_,_)=>Flush();
         if(warning!=null)Storage.Log(warning);
         Storage.Log($"启动，schema={Document.SchemaVersion}，照片={Document.Photos.Count}，散片={Document.Slides.Count}");
@@ -53,7 +53,7 @@ sealed class TableSession
     public void Flush(){saveTimer.Stop();try{Storage.Save(Document);}catch(Exception ex){Storage.Log($"保存失败 {ex}");Tell($"布局保存失败：{ex.Message}");}}
     public string ImportMacDocument(TableDocument document,byte[] sourceBytes)
     {
-        saveTimer.Stop();Storage.Save(Document);var archive=Storage.Import(document,sourceBytes);Document=document;LibraryRevision++;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);return archive;
+        saveTimer.Stop();Storage.Save(Document);var archive=Storage.Import(document,sourceBytes);Storage.MigrateLegacyAlbums(document);Document=document;LibraryRevision++;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);return archive;
     }
     public void ToggleLight(double seconds){Lamp.Toggle();Notify(false);}
     public void Select(Guid id,bool extend=false,bool indicator=true)
@@ -63,20 +63,15 @@ sealed class TableSession
         ShowSelection=indicator;Document.BringToFront(id);Notify();
     }
     public void RemoveSelection(){Document.ReturnToCollection(Selection);Selection.Clear();ShowSelection=false;Notify();}
-    public void Clear(){Document.Slides.Clear();foreach(var a in Document.Albums)a.Position=null;Document.TableOrder.Clear();Selection.Clear();Document.Viewport=new();Document.FitScale=1;Notify();}
+    public void Clear(){Document.Slides.Clear();Document.TableOrder.Clear();Selection.Clear();Document.Viewport=new();Document.FitScale=1;Notify();}
     public void Fit(bool replace=false){Geometry.Fit(Document,Width,Height,replace);Selection.Clear();Notify();}
     public void Place(string path,PointD screen)
     {
         var slide=Document.Place(path,Document.Viewport.World(screen));Select(slide.Id,false,false);Notify();
     }
-    public void PlaceAlbum(AlbumPage page,PointD? screen=null)
-    {
-        page.Position=Document.Viewport.World(screen??new(Width/2,Height/2));Document.BringToFront(page.Id);Select(page.Id,false,false);Notify();
-    }
     public void TransformSelection(double size=1,double rotation=0,bool straighten=false)
     {
         foreach(var s in Document.Slides.Where(s=>Selection.Contains(s.Id))){s.Width*=size;s.Angle=straighten?0:s.Angle+rotation;s.Sanitize();}
-        foreach(var a in Document.Albums.Where(a=>Selection.Contains(a.Id))){a.Scale=Math.Clamp(a.Scale*size,.1,3);a.Angle=straighten?0:a.Angle+rotation;}
         Notify();
     }
     public async Task<ImportResult?> ImportAsync(IEnumerable<string> paths,bool replace=false,IProgress<(int Done,int Total)>? progress=null)

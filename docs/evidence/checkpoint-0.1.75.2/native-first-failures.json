@@ -1,0 +1,193 @@
+{
+  "Date": "2026-10-26T19:58:41.5034899-04:00",
+  "Scope": "\u751F\u4EA7\u7C7B\u96C6\u6210\u68C0\u67E5\uFF1B\u4E0D\u66FF\u4EE3\u8F93\u5165\u81EA\u52A8\u5316\u3001\u539F\u7248\u89C6\u89C9\u548C\u591A\u5C4F\u9A8C\u6536",
+  "AppReducedMotion": false,
+  "SystemAnimationsEnabled": false,
+  "Results": [
+    {
+      "Name": "WIC-JPEG-and-content-dedup",
+      "Passed": true,
+      "Evidence": "3 \u5F20 JPEG\uFF0C\u91CD\u590D\u8DEF\u5F84\u4E0E\u76F8\u540C\u5185\u5BB9\u526F\u672C\u5747\u8DF3\u8FC7",
+      "Milliseconds": 172.6463
+    },
+    {
+      "Name": "Import-metadata-only-and-cross-column-reuse",
+      "Passed": true,
+      "Evidence": "3 \u5F20\u5BFC\u5165\uFF0C\u50CF\u7D20\u89E3\u7801=0\uFF1B\u65B0\u680F\u76EE\u590D\u7528\u540E\u989D\u5916\u5143\u6570\u636E\u8BFB\u53D6=0\uFF0C\u7167\u7247\u987A\u5E8F\u76F8\u540C=True",
+      "Milliseconds": 16.3991
+    },
+    {
+      "Name": "WIC-common-codecs-roundtrip",
+      "Passed": true,
+      "Evidence": "PNG/BMP/TIFF \u9996\u5E2716\u00D712\u3001BGRA8\u4E0D\u900F\u660E\u50CF\u7D20\u9010\u5B57\u8282\u76F8\u540C",
+      "Milliseconds": 97.0124
+    },
+    {
+      "Name": "WIC-EXIF-eight-orientations-and-PNG-alpha",
+      "Passed": true,
+      "Evidence": "TIFF EXIF 1\u20138\u9010\u50CF\u7D20\u65CB\u8F6C/\u955C\u50CF\u4E0E\u65B9\u5411\u51E0\u4F55\u5168\u90E8\u901A\u8FC7\uFF1BPNG 0/128 alpha\u9884\u4E58\u901A\u9053\u5DEE\u22641/255\u3002ICC\u8272\u57DF\u5C1A\u9700\u4E13\u95E8fixture\u3002",
+      "Milliseconds": 297.621
+    },
+    {
+      "Name": "Recursive-natural-hidden-long-path-and-locked",
+      "Passed": true,
+      "Evidence": "\u9012\u5F52\u5B50\u76EE\u5F55/\u81EA\u7136\u7F16\u53F7\u6392\u5E8F\u6B63\u786E\uFF0C\u70B9\u9690\u85CF/Hidden\u5C5E\u6027/\u5DF2\u77E5Mac\u5305\u76EE\u5F55\u8DF3\u8FC7\uFF1B\u635F\u574F\u548C\u72EC\u5360\u6587\u4EF6\u54041\u9879\u9519\u8BEF\uFF1B\u5B9E\u9645WIC\u8BFB\u53D6316\u5B57\u7B26\u4E2D\u6587\u8DEF\u5F84\u3002\u672A\u904D\u5386\u76EE\u5F55reparse\u3002",
+      "Milliseconds": 20.4397
+    },
+    {
+      "Name": "Missing-corrupt-and-request-coalescing",
+      "Passed": true,
+      "Evidence": "\u7F3A\u5931/\u635F\u574F\u62D2\u7EDD\uFF1B20\u5E76\u53D1\u8BF7\u6C42\u4EA7\u751F 1 \u6B21\u89E3\u7801\uFF0C\u5171\u4EAB\u540C\u4E00\u7ED3\u679C",
+      "Milliseconds": 16.1894
+    },
+    {
+      "Name": "Disk-cache-corruption-regeneration",
+      "Passed": true,
+      "Evidence": "\u4EC5\u4FEE\u6539\u9694\u79BBcache\u6587\u4EF6\uFF1B\u635F\u574F\u540E\u91CD\u89E3\u7801\uFF0C\u4E0E\u539F\u9884\u89C8\u76F8\u540C\uFF1B\u65B0\u5B9E\u4F8B\u547D\u4E2D\u78C1\u76D8",
+      "Milliseconds": 34.117
+    },
+    {
+      "Name": "GPU-five-optical-layers-disk-cache",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9EGPU\u4E94\u5C42\u8DE8Store\u8BFB\u56DE\u9010\u5B57\u8282\u4E00\u81F4\uFF0C\u516D\u79CD\u4EAE\u5EA6/\u70B9\u706F\u72B6\u6001\u5DEE\u22641\uFF1B\u574F\u7F13\u5B58\u91CD\u5EFA\u3001\u6587\u4EF6\u5143\u6570\u636E\u5931\u6548\u901A\u8FC7\uFF1B\u70ED\u542F\u52A8\u4E0D\u89E3\u7801/\u4E0D\u91CD\u7B97\u3002{\u0022Layers\u0022:5,\u0022Width\u0022:384,\u0022Height\u0022:384,\u0022ColdMs\u0022:103.8261,\u0022HotMs\u0022:40.7542,\u0022ColdUiTimerTicks\u0022:3,\u0022HotSourceDecodes\u0022:0,\u0022HotSourceDiskHits\u0022:0,\u0022HotOpticalBuilds\u0022:0,\u0022HotDiskHits\u0022:1,\u0022SourcePreviewRemoved\u0022:true,\u0022LockedSourceHotHit\u0022:true,\u0022CorruptionRebuilt\u0022:true,\u0022MetadataInvalidates\u0022:true,\u0022Deltas\u0022:[{\u0022Lit\u0022:false,\u0022Brightness\u0022:1,\u0022Flare\u0022:0,\u0022MaxByteDelta\u0022:0},{\u0022Lit\u0022:true,\u0022Brightness\u0022:0,\u0022Flare\u0022:0,\u0022MaxByteDelta\u0022:0},{\u0022Lit\u0022:true,\u0022Brightness\u0022:1,\u0022Flare\u0022:0,\u0022MaxByteDelta\u0022:0},{\u0022Lit\u0022:true,\u0022Brightness\u0022:1,\u0022Flare\u0022:1,\u0022MaxByteDelta\u0022:0},{\u0022Lit\u0022:true,\u0022Brightness\u0022:1.6,\u0022Flare\u0022:0,\u0022MaxByteDelta\u0022:0},{\u0022Lit\u0022:true,\u0022Brightness\u0022:1.6,\u0022Flare\u0022:1,\u0022MaxByteDelta\u0022:0}]}",
+      "Milliseconds": 755.5661
+    },
+    {
+      "Name": "GPU-lighting-and-snapshots",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9EDirect2D\u9759\u6001\u5C42\uFF0C\u7247\u5185\u5E73\u5747\u6697\u6001=14.587\uFF0C\u4EAE\u6001=42.939\uFF1BGPU\u4F30\u7B97 46470752 bytes\u3002\u6B64\u8BFB\u56DE\u4E0D\u8BC1\u660E\u6574\u5957UI\u3002",
+      "Milliseconds": 798.9615
+    },
+    {
+      "Name": "GPU-command-cache-camera-equivalence",
+      "Passed": true,
+      "Evidence": "\u76F8\u673A\u951A\u70B9\u7F29\u653E\u002B\u5E73\u79FB\u540E\uFF0C\u547D\u4EE4\u5217\u8868\u590D\u7528\u548C\u76F4\u63A5GPU\u6E32\u67D3\u6BCF\u5B57\u8282\u5E73\u5747\u5DEE=0.00115/255",
+      "Milliseconds": 41.7731
+    },
+    {
+      "Name": "GPU-loupe-shader-and-close-views",
+      "Passed": true,
+      "Evidence": "\u539F\u72480.90/0.97\u5F84\u5411lip HLSL\u5B9E\u9645\u8FD0\u884C\uFF0C\u666E\u901A\u955C\u900F\u660E\u8FB9\u754C\u30011\u00D7\u4E0E8\u00D7\u4E2D\u5FC3\u6709\u6548\uFF1B4\u5F20GPU\u5FEB\u7167\u5DF2\u4FDD\u5B58\u3002\u672A\u66FF\u4EE3Space\u6309\u952E\u9A8C\u6536\u3002",
+      "Milliseconds": 294.1191
+    },
+    {
+      "Name": "GPU-ordinary-and-close-actual-1-2-4-8-sampling",
+      "Passed": true,
+      "Evidence": "\u5B9E\u9645GPU\u91C7\u6837\u4E0E\u53F0\u9762\u5BF9\u5E94\u5750\u6807\u50CF\u7D20\u5DEE\u22643/255\uFF0C\u666E\u901A/\u51D1\u8FD1\u51718\u5E27\uFF1A[{\u0022Close\u0022:0,\u0022Power\u0022:1,\u0022Actual\u0022:173,\u0022Expected\u0022:173,\u0022Error\u0022:0},{\u0022Close\u0022:0,\u0022Power\u0022:2,\u0022Actual\u0022:150,\u0022Expected\u0022:150,\u0022Error\u0022:0},{\u0022Close\u0022:0,\u0022Power\u0022:4,\u0022Actual\u0022:138,\u0022Expected\u0022:138,\u0022Error\u0022:0},{\u0022Close\u0022:0,\u0022Power\u0022:8,\u0022Actual\u0022:132,\u0022Expected\u0022:133,\u0022Error\u0022:1},{\u0022Close\u0022:1,\u0022Power\u0022:1,\u0022Actual\u0022:173,\u0022Expected\u0022:173,\u0022Error\u0022:0},{\u0022Close\u0022:1,\u0022Power\u0022:2,\u0022Actual\u0022:150,\u0022Expected\u0022:150,\u0022Error\u0022:0},{\u0022Close\u0022:1,\u0022Power\u0022:4,\u0022Actual\u0022:138,\u0022Expected\u0022:138,\u0022Error\u0022:0},{\u0022Close\u0022:1,\u0022Power\u0022:8,\u0022Actual\u0022:132,\u0022Expected\u0022:133,\u0022Error\u0022:1}]",
+      "Milliseconds": 440.3203
+    },
+    {
+      "Name": "Independent-workspaces-GPU-and-persistence",
+      "Passed": false,
+      "Evidence": "System.InvalidOperationException: \u4E0A\u53F0\u540E\u5E95\u680F\u7167\u7247\u6CA1\u6709\u4FDD\u7559\u6216\u7F3A\u5C11\u5DF2\u4E0A\u53F0\u6807\u8BB0\r\n   at LightTable.Windows.MainWindow.CheckIndependentWorkspace() in C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\Diagnostics\\LibraryChecks.cs:line 50\r\n   at LightTable.Windows.MainWindow.\u003C\u003Ec__DisplayClass9_0.\u003C\u003CRunIntegration\u003Eg__Check|0\u003Ed.MoveNext() in C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\Diagnostics\\IntegrationRunner.cs:line 25",
+      "Milliseconds": 56.2171
+    },
+    {
+      "Name": "Panel-resize-layout-and-settings",
+      "Passed": true,
+      "Evidence": "\u751F\u4EA7\u884C\u9AD8/\u771F\u5B9EXAML\u5E03\u5C40\uFF1A\u5E95\u680F 114.4\u2192234.4\uFF0C\u7167\u7247\u533A 386.4\u2192266.4\uFF1B\u8FB9\u754C\u4E0E\u8BBE\u7F6E\u5F80\u8FD4\u901A\u8FC7\u3002\u6B64\u9879\u4E0D\u5192\u5145\u7269\u7406\u62D6\u52A8\u3002",
+      "Milliseconds": 242.1831
+    },
+    {
+      "Name": "Bounded-live-canvas-draw-recovery",
+      "Passed": true,
+      "Evidence": "\u751F\u4EA7Canvas.Draw\u6CE8\u5165\uFF1A\u77AC\u65F6\u6545\u969C\u540E\u81EA\u52A8\u91CD\u7ED8\uFF1B\u6301\u7EED\u6545\u969C\u4EC53\u6B21\u5EF6\u540E\u91CD\u8BD5\uFF0C\u65B0\u8F93\u5165\u6062\u590D\u6B63\u5E38\u3002\u975E\u771F\u5B9E\u9A71\u52A8\u6545\u969C\u9A8C\u6536\u3002",
+      "Milliseconds": 1089.5114
+    },
+    {
+      "Name": "GPU-projector-optics-cache-and-composite",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9EGPU\u900F\u5149\u4E2D\u5FC3\u4E0Elit\u76F8\u5DEE\u22641/255\uFF0Csharp/soft\u89D2\u900F\u660E\uFF1B\u7126\u70B9\u53E0\u52A0\u4E0E\u72EC\u7ACB\u901A\u9053\u7B97\u5F0F\u5E73\u5747\u5DEE=0.85924/255\uFF0850%/\u7A33\u6001\u5747\u503C\u6BD4=0.91785\uFF09\uFF0C\u9ED1\u573A\u96F6RGB\uFF0C3\u9879LRU\u4FDD\u7559\u79DF\u7528\u56FE\uFF0C8\u5E76\u53D1\u5171\u4EAB",
+      "Milliseconds": 694.9602
+    },
+    {
+      "Name": "GPU-collection-perspective-and-layout-immutability",
+      "Passed": true,
+      "Evidence": "\u5B9E\u9645Transform3DEffect\u900F\u89C6\u3001\u8584\u7247\u65CB\u8F6C\u548C\u76D2\u524D/\u540E\u5206\u5C42\u5DF2\u7ED8\u5236\uFF1B\u5F00\u59CB\u900F\u660E\u3001\u4E2D\u9014\u6709\u56FE\u3001\u7ED3\u675F\u5168\u9ED1\uFF1B\u53F0\u9762JSON\u672A\u6539\u53D8\u3002\u672A\u66FF\u4EE3\u5165\u53E3\u70B9\u51FB\u6D4B\u8BD5\u3002",
+      "Milliseconds": 77.1181
+    },
+    {
+      "Name": "Native-audio-prepare-and-playback-clock",
+      "Passed": true,
+      "Evidence": "\u4E24\u8DEF\u771F\u5B9EMediaPlayer\u5DF2MediaOpened\uFF0CAutoPlay\u5173\u95ED\uFF0C.20\u97F3\u91CF\uFF0C\u9996\u6B21cue\u64AD\u653E\u65F6\u949F\u52300.0167s\uFF1B48kHz\u7ACB\u4F53\u58F0PCM .38s\u3002\u672A\u58F0\u79F0\u539F\u5F55\u97F3\u97F3\u8272\u6216\u626C\u58F0\u5668\u4E3B\u89C2\u540C\u6B65\u4E00\u81F4\u3002",
+      "Milliseconds": 774.8047
+    },
+    {
+      "Name": "Persistent-tray-100-photos-60-placed",
+      "Passed": false,
+      "Evidence": "System.InvalidOperationException: \u4E0A\u53F0\u5BFC\u81F4\u5E95\u680F\u6EDA\u52A8\u4F4D\u7F6E\u8DF3\u52A8\r\n   at LightTable.Windows.MainWindow.CheckPersistentPhotoTray(String[] originals) in C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\Diagnostics\\PhotoTrayChecks.cs:line 21\r\n   at LightTable.Windows.MainWindow.\u003C\u003Ec__DisplayClass9_1.\u003C\u003CRunIntegration\u003Eb__23\u003Ed.MoveNext() in C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\Diagnostics\\IntegrationRunner.cs:line 204\r\n--- End of stack trace from previous location ---\r\n   at LightTable.Windows.MainWindow.\u003C\u003Ec__DisplayClass9_0.\u003C\u003CRunIntegration\u003Eg__Check|0\u003Ed.MoveNext() in C:\\Users\\Administrator\\Desktop\\LightTable-Agent-Handoff-20261026-013500\\LightTable\\LightTable.Windows\\App\\Diagnostics\\IntegrationRunner.cs:line 25",
+      "Milliseconds": 364.2161
+    },
+    {
+      "Name": "Photo-layout-order-and-recovery",
+      "Passed": true,
+      "Evidence": "\u7167\u7247\u65CB\u8F6C/\u6BD4\u4F8B\u3001\u76F8\u673A\u3001\u5C42\u7EA7\u4FDD\u5B58\u4E0E\u65B0Store\u6062\u590DJSON\u4E00\u81F4\uFF1B\u79FB\u51FA\u53F0\u9762\u4FDD\u7559\u680F\u76EE\u5168\u90E8\u7167\u7247",
+      "Milliseconds": 24.6184
+    },
+    {
+      "Name": "Mac-Saved-native-metadata-and-atomic-import",
+      "Passed": true,
+      "Evidence": "Swift Saved\u7ED3\u6784\u901A\u8FC7\u5B9E\u9645WIC\u65B9\u5411\u5C3A\u5BF8\u8BFB\u53D6\u3001Session\u66FF\u6362\u3001\u539F\u5B50\u4FDD\u5B58\u3001\u65B0Store\u6062\u590D\u4E0EGPU\u6E32\u67D3\uFF1BMac\u539F\u5B57\u8282/Windows\u5F53\u524D\u5E03\u5C40\u5907\u4EFD\u4E00\u81F4\u3002\u65E7\u76F8\u518C\u4E0D\u518D\u663E\u793A\uFF0C\u7167\u7247\u5F15\u7528\u5F52\u5165\u680F\u76EE\uFF1B\u6587\u4EF6\u5939\u6620\u5C04\u5F39\u7A97\u5C1A\u672A\u8F93\u5165\u9A8C\u6536\u3002",
+      "Milliseconds": 187.6193
+    },
+    {
+      "Name": "GPU-zero-baseline-and-selective-two-second-ignition",
+      "Passed": true,
+      "Evidence": "\u5B9E\u9645GPU\uFF1A\u5173\u706F/\u5F00\u706F0%\u7167\u7247\u53CA\u6574\u53F0\u5DEE\u22641/255\uFF1B\u9AD8\u5149\u5148\u8FC7\u66DD\u518D2\u79D2\u56DE\u5230\u7CBE\u786E\u7A33\u6001\uFF0C\u6697\u90E8/\u4E2D\u95F4\u8C03\u5DEE\u22641/255\u3002[{\u0022Time\u0022:0.16,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:18,\u0022WhiteDelta\u0022:17},{\u0022Time\u0022:0.28,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:18,\u0022WhiteDelta\u0022:17},{\u0022Time\u0022:0.6,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:17,\u0022WhiteDelta\u0022:17},{\u0022Time\u0022:1.1,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:9,\u0022WhiteDelta\u0022:14},{\u0022Time\u0022:1.6,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:1,\u0022WhiteDelta\u0022:5},{\u0022Time\u0022:2,\u0022BlackDelta\u0022:0,\u0022ShadowDelta\u0022:0,\u0022MidtoneDelta\u0022:0,\u0022HighlightDelta\u0022:0,\u0022WhiteDelta\u0022:0}]",
+      "Milliseconds": 449.9084
+    },
+    {
+      "Name": "GPU-sRGB-chromatic-highlight-luminance",
+      "Passed": true,
+      "Evidence": "\u5B9E\u9645GPU\u5F69\u8272\u9AD8\u5149\u63D0\u53D6\u5339\u914D\u7EBF\u6027sRGB\u4EAE\u5EA6\uFF0832\u00B3 LUT\u63D2\u503C\u5DEE\u22642/255\uFF09\uFF0C\u4E0D\u7B49\u4E8EP3\u7AEF\u5230\u7AEF\u9A8C\u6536\u3002[{\u0022Input\u0022:[0,255,0],\u0022Actual\u0022:[0,75,0],\u0022Luminance\u0022:0.7152,\u0022MaxByteDelta\u0022:0.34943999999994446},{\u0022Input\u0022:[0,255,255],\u0022Actual\u0022:[0,160,160],\u0022Luminance\u0022:0.7874,\u0022MaxByteDelta\u0022:0.06860108154293698},{\u0022Input\u0022:[230,230,51],\u0022Actual\u0022:[90,90,20],\u0022Luminance\u0022:0.7365563931870323,\u0022MaxByteDelta\u0022:0.09426249594763192},{\u0022Input\u0022:[51,230,230],\u0022Actual\u0022:[1,6,6],\u0022Luminance\u0022:0.6301060715908832,\u0022MaxByteDelta\u0022:0.2756496144626892},{\u0022Input\u0022:[128,128,128],\u0022Actual\u0022:[0,0,0],\u0022Luminance\u0022:0.21586050011389923,\u0022MaxByteDelta\u0022:0},{\u0022Input\u0022:[255,255,255],\u0022Actual\u0022:[255,255,255],\u0022Luminance\u0022:1,\u0022MaxByteDelta\u0022:0}]",
+      "Milliseconds": 43.5603
+    },
+    {
+      "Name": "GPU-fused-lamp-reference-equivalence",
+      "Passed": true,
+      "Evidence": "\u5355\u6B21\u56DB\u8F93\u5165shader\u4E0E\u539F\u4E03\u8282\u70B9GPU\u56FE\u5BF9\u7167\uFF1A45\u72B6\u6001\u542B0/64/128/255alpha\uFF1B\u6700\u5927\u5DEE2/255\uFF0C\u5E73\u5747\u5DEE0.028059/255\u3002",
+      "Milliseconds": 331.1604
+    },
+    {
+      "Name": "GPU-progressive-command-cache-final-refresh",
+      "Passed": true,
+      "Evidence": "\u540E\u53F0\u8BF7\u6C42\u4E2D\u590D\u7528\u547D\u4EE4\u573A\u666F\uFF0C\u672B\u6B21\u4E0A\u4F20\u540E\u7ACB\u5373\u8BB0\u5F55\u65B0\u8D44\u6E90\u7248\u672C=90\uFF1Bbuilds=43,reuses=33\u3002",
+      "Milliseconds": 1021.9508
+    },
+    {
+      "Name": "GPU-scene-raster-lifetime-and-budget",
+      "Passed": true,
+      "Evidence": "16\u6B21\u5B9E\u9645GPU\u573A\u666F\u91CD\u5EFA\u59CB\u7EC8\u4EC51\u4E2A\u5B58\u6D3B\u76EE\u6807\uFF1B\u4E22\u5F03\u540E0\u4E2A\uFF1B\u7D2F\u8BA1builds=24,disposals=24\u3002\u4E0D\u66FF\u4EE3\u957F\u671F\u663E\u5B58\u9A71\u52A8\u6D4B\u91CF\u3002",
+      "Milliseconds": 16.5641
+    },
+    {
+      "Name": "Realtime-Space-focal-and-capsule-animation",
+      "Passed": true,
+      "Evidence": "\u5B9E\u9645DispatcherQueue\u8BA1\u65F6\u3001GPU\u8FDB\u5165/\u56DE\u7A0B\u4E2D\u9014\u5E27\u3001\u500D\u7387\u53CC\u5411\u4E2D\u95F4\u503C\u3001\u5355\u80F6\u56CA\u6ED1\u5757\u4F4D\u7F6E\u548CXAML\u622A\u56FE\u5747\u901A\u8FC7\u3002[{\u0022Stage\u0022:\u0022enter\u0022,\u0022Progress\u0022:0.1680255999963265},{\u0022Stage\u0022:\u0022focal\u0022,\u0022Progress\u0022:0.49550723751734316,\u0022Thumb\u0022:10.021721839904785},{\u0022Stage\u0022:\u0022power\u0022,\u0022Power\u0022:\u0022One\u0022,\u0022Scale\u0022:1,\u0022Thumb\u0022:0},{\u0022Stage\u0022:\u0022power\u0022,\u0022Power\u0022:\u0022Two\u0022,\u0022Scale\u0022:2,\u0022Thumb\u0022:48},{\u0022Stage\u0022:\u0022power\u0022,\u0022Power\u0022:\u0022Four\u0022,\u0022Scale\u0022:4,\u0022Thumb\u0022:96},{\u0022Stage\u0022:\u0022power\u0022,\u0022Power\u0022:\u0022Eight\u0022,\u0022Scale\u0022:8,\u0022Thumb\u0022:144},{\u0022Stage\u0022:\u0022exit\u0022,\u0022Progress\u0022:0.8374235294142958}]\u3002\u6B64\u9879\u8BBE\u7F6E\u751F\u4EA7\u72B6\u6001\uFF0C\u4E0D\u5192\u5145\u771F\u5B9E\u957F\u6309\u952E\u76D8\u8F93\u5165\u3002",
+      "Milliseconds": 2724.7935
+    },
+    {
+      "Name": "GPU-device-replacement-and-stale-upload",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9E\u63A7\u4EF6CustomDevice\u5148\u6362\u65B0\u786C\u4EF6\u8BBE\u5907\u3001\u518D\u6362WARP\uFF1B\u8FDF\u5230GPU\u4E0A\u4F20\u8DE8\u4EE3\u91CD\u8BD5\u6210\u529F\u3001\u53F0\u9762/\u6536\u7247\u91CD\u65B0\u7ED8\u5236\u3001\u5E7B\u706F\u6E90\u91CD\u5EFA\u4E14\u4E0D\u91CD\u64AD\u58F0\u97F3\u3001\u5E03\u5C40\u4E0D\u53D8\u3002[{\u0022Software\u0022:false,\u0022Before\u0022:1,\u0022After\u0022:2,\u0022Cards\u0022:3,\u0022Cues\u0022:1},{\u0022Software\u0022:true,\u0022Before\u0022:2,\u0022After\u0022:3,\u0022Cards\u0022:3,\u0022Cues\u0022:1}]\u3002\u8FD9\u662F\u5E94\u7528\u8BBE\u5907\u66FF\u6362\uFF0C\u672A\u7981\u7528\u663E\u5361\uFF0C\u4E0D\u80FD\u4EE3\u66FF\u771F\u5B9E\u9A71\u52A8\u79FB\u9664\u3002",
+      "Milliseconds": 718.8463
+    },
+    {
+      "Name": "GPU-control-DPI-recreation-and-hit-coordinates",
+      "Passed": true,
+      "Evidence": "\u771F\u5B9ECanvasControl.DpiScale=125/150/200%\u4E8B\u4EF6\u3001GPU\u955C\u7247\u4E2D\u5FC3\u3001DIP\u547D\u4E2D\u4E0E\u9759\u6001\u8D44\u6E90\u4FDD\u7559\u901A\u8FC7\uFF1A[{\u0022Scale\u0022:1.25,\u0022Dpi\u0022:150,\u0022Generation\u0022:3},{\u0022Scale\u0022:1.5,\u0022Dpi\u0022:180,\u0022Generation\u0022:3},{\u0022Scale\u0022:2,\u0022Dpi\u0022:240,\u0022Generation\u0022:3}]\u3002\u4E0D\u7B49\u4E8E\u7CFB\u7EDF\u663E\u793A\u7F29\u653E\u6216\u8DE8\u663E\u793A\u5668\u8F93\u5165\u9A8C\u6536\u3002",
+      "Milliseconds": 241.0062
+    },
+    {
+      "Name": "Original-photo-immutability",
+      "Passed": true,
+      "Evidence": "3 \u5F20\u539F\u59CBJPEG\u54C8\u5E0C\u4E0E\u64CD\u4F5C\u524D\u4E00\u81F4",
+      "Milliseconds": 1.8674
+    }
+  ],
+  "Passed": false,
+  "MemoryBytes": 57730160,
+  "MemoryHits": 37,
+  "DiskHits": 0,
+  "DecodeCount": 117
+}

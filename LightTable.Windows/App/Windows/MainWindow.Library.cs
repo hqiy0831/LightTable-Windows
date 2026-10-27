@@ -33,7 +33,7 @@ sealed partial class MainWindow
             ResetWorkspaceInteraction();session.SwitchCollection(collection.Id);renderer.DocumentChanged();status.Text=collection.SourceLabel;
         };
         bar.Children.Add(Btn("＋",()=>{if(session.Busy)return;if(trayScroller!=null)trayOffsets[session.Document.EnsureCollection().Id]=trayScroller.HorizontalOffset;ResetWorkspaceInteraction();session.NewCollection();renderer.DocumentChanged();status.Text="新栏目为空，请添加照片";},"新栏目与台面均为空白，单独添加照片"));
-        removeLibrary.Click+=(_,_)=>RemoveLibrarySelection();ToolTipService.SetToolTip(removeLibrary,"从当前栏目移除所选照片；同时移除当前台面散片；保留相册、其他栏目和源文件");AutomationProperties.SetName(removeLibrary,"从当前栏目移除所选照片，保留源文件");
+        removeLibrary.Click+=(_,_)=>RemoveLibrarySelection();ToolTipService.SetToolTip(removeLibrary,"从当前栏目移除所选照片；同时移除当前台面散片；保留其他栏目和源文件");AutomationProperties.SetName(removeLibrary,"从当前栏目移除所选照片，保留源文件");
         return bar;
     }
     void ResetWorkspaceInteraction()
@@ -48,7 +48,7 @@ sealed partial class MainWindow
         try
         {
             var target=session.Document.Collections.Find(c=>c.Id==(targetId??session.Document.ActiveCollectionId));if(target==null)return;
-            var result=await new ContentDialog{XamlRoot=root.XamlRoot,Title=$"删除栏目「{target.Name}」？",Content="删除该栏目及其台面和相册项目，不删除磁盘原图。其他栏目保持原样。",PrimaryButtonText="删除栏目",CloseButtonText="取消"}.ShowAsync();
+            var result=await new ContentDialog{XamlRoot=root.XamlRoot,Title=$"删除栏目「{target.Name}」？",Content="删除该栏目及其台面项目，不删除磁盘原图。其他栏目保持原样。",PrimaryButtonText="删除栏目",CloseButtonText="取消"}.ShowAsync();
             if(result==ContentDialogResult.Primary){ResetWorkspaceInteraction();session.DeleteCollection(target.Id);renderer.DocumentChanged();}
         }
         finally{dialogOpen=false;}
@@ -67,9 +67,9 @@ sealed partial class MainWindow
     void RemoveLibrarySelection(TrayItem? single=null)
     {
         if(session.Busy)return;CancelTrayFlight();
-        var paths=single!=null?[single.Path]:tray.SelectedItems.OfType<TrayItem>().Where(i=>i.AlbumId==null).Select(i=>i.Path).ToArray();
+        var paths=single!=null?[single.Path]:tray.SelectedItems.OfType<TrayItem>().Select(i=>i.Path).ToArray();
         var removed=session.Document.RemoveFromCollection(paths);if(removed==0)return;
-        session.LibraryChanged();status.Text=$"已从栏目删除 {removed} 张 · 原图与相册保留";
+        session.LibraryChanged();status.Text=$"已从栏目删除 {removed} 张 · 磁盘原图保留";
     }
     static T? FindVisual<T>(DependencyObject element)where T:DependencyObject
     {
