@@ -96,7 +96,7 @@ sealed partial class MainWindow : Window
               </StackPanel>
             </DataTemplate>
             """);
-        tray.ContainerContentChanging+=(sender,e)=>{if(e.Item is not TrayItem item)return;item.Realized=!e.InRecycleQueue;if(e.InRecycleQueue)item.Thumbnail=null;else _=LoadThumbnail(item);};
+        tray.ContainerContentChanging+=(sender,e)=>{if(e.Item is not TrayItem item)return;e.ItemContainer.MinWidth=0;e.ItemContainer.Width=item.TileWidth+12;item.Realized=!e.InRecycleQueue;if(e.InRecycleQueue)item.Thumbnail=null;else _=LoadThumbnail(item);};
         tray.DoubleTapped+=(_,_)=>{if(tray.SelectedItem is TrayItem item)PlaceTray(item);};
         tray.DragItemsStarting+=(_,e)=>{if(e.Items.FirstOrDefault() is TrayItem item){e.Data.Properties["LightTable.Path"]=item.Path;e.Data.RequestedOperation=DataPackageOperation.Copy;}};
         tray.RightTapped+=(_,e)=>{var element=e.OriginalSource as DependencyObject;TrayItem? item=null;while(element!=null){if(element is FrameworkElement view&&view.DataContext is TrayItem found){item=found;break;}element=VisualTreeHelper.GetParent(element);}if(item==null)return;var flyout=new MenuFlyout();MenuItem(flyout,"放到灯板中央",()=>PlaceTray(item));MenuItem(flyout,"从当前栏目移除（保留源文件）",()=>RemoveLibrarySelection(item));MenuItem(flyout,"在文件资源管理器中显示",()=>Reveal(item.Path));flyout.ShowAt(tray,e.GetPosition(tray));};
@@ -113,7 +113,7 @@ sealed partial class MainWindow : Window
         SetupInput();SetupTrayInput();
         animationTimer=DispatcherQueue.CreateTimer();animationTimer.Interval=TimeSpan.FromMilliseconds(16);animationTimer.Tick+=(_,_)=>{if(closed)return;root.HideLoupeCursor(windowActive&&session.Loupe&&renderer.PointerInside&&!dialogOpen&&startup.Visibility!=Visibility.Visible);TickFlight(.016);TickTableDrag(.016);var changed=renderer.TickAnimations(TableRenderer.Seconds);magnification.Advance(TableRenderer.Seconds,session.ReduceMotion);if(changed||renderer.IsAnimating){panelBrush.Color=renderer.PanelColor;board.Invalidate();lensOverlay.Invalidate();}};animationTimer.Start();
         Activated+=(_,e)=>{windowActive=e.WindowActivationState!=WindowActivationState.Deactivated;if(!windowActive){session.CloseViewing=false;tabHeld=spaceHeld=false;CancelGesture();CancelTrayFlight();}};
-        Closed+=(_,_)=>{closed=true;collectionCancellation?.Cancel();animationTimer.Stop();periodicUpdateTimer?.Stop();session.Flush();renderer.Dispose();collectionRenderer.Dispose();board.RemoveFromVisualTree();lensOverlay.RemoveFromVisualTree();collectionOverlay.RemoveFromVisualTree();slideshow?.Close();};
+        Closed+=(_,_)=>{closed=true;backupCancellation?.Cancel();collectionCancellation?.Cancel();animationTimer.Stop();periodicUpdateTimer?.Stop();session.Flush();renderer.Dispose();collectionRenderer.Dispose();board.RemoveFromVisualTree();lensOverlay.RemoveFromVisualTree();collectionOverlay.RemoveFromVisualTree();slideshow?.Close();};
         root.Loaded+=async(_,_)=>
         {
             if(ready)return;ready=true;

@@ -29,7 +29,7 @@ sealed partial class MainWindow
         tray.SizeChanged+=(_,_)=>
         {
             var scale=PanelSizing.ThumbnailScale(tray.ActualHeight);
-            foreach(var item in trayItems)item.ThumbnailScale=scale;
+            foreach(var item in trayItems){item.ThumbnailScale=scale;if(tray.ContainerFromItem(item) is FrameworkElement container)container.Width=item.TileWidth+12;}
         };
     }
     void ApplyTrayHeight(double height)
@@ -49,7 +49,7 @@ sealed partial class MainWindow
         var tools=new StackPanel{Orientation=Orientation.Horizontal,Spacing=5};
         tools.Children.Add(Btn("‹",()=>ScrollTray(-1),"上一屏照片"));tools.Children.Add(Btn("›",()=>ScrollTray(1),"下一屏照片"));
         removeLibrary.Content=new TextBlock{Text="\uE74D",FontFamily=new FontFamily("Segoe Fluent Icons"),FontSize=14};removeLibrary.MinWidth=32;removeLibrary.Padding=new(8,4,8,4);tools.Children.Add(removeLibrary);
-        var more=new Button{Content="⋯",CornerRadius=new(16),Padding=new(8,4,8,4)};var flyout=new MenuFlyout();MenuItem(flyout,"重命名当前栏目",async()=>await RenameCollection());MenuItem(flyout,"删除当前栏目",async()=>await DeleteCurrentColumn());MenuItem(flyout,"恢复默认面板大小",()=>{ApplyTrayHeight(PanelSizing.DefaultTrayHeight);SaveTrayHeight();});more.Flyout=flyout;ToolTipService.SetToolTip(more,"栏目与面板选项");tools.Children.Add(more);
+        var more=new Button{Content="⋯",CornerRadius=new(16),Padding=new(8,4,8,4)};var flyout=new MenuFlyout();MenuItem(flyout,"备份当前栏目…",async()=>await RunColumnBackup(false));MenuItem(flyout,"导入栏目备份…",async()=>await RunColumnBackup(true));MenuItem(flyout,"重命名当前栏目",async()=>await RenameCollection());MenuItem(flyout,"删除当前栏目",async()=>await DeleteCurrentColumn());MenuItem(flyout,"恢复默认面板大小",()=>{ApplyTrayHeight(PanelSizing.DefaultTrayHeight);SaveTrayHeight();});more.Flyout=flyout;ToolTipService.SetToolTip(more,"栏目与面板选项");tools.Children.Add(more);
         Grid.SetColumn(tools,2);header.Children.Add(tools);return header;
     }
 }

@@ -1,0 +1,20 @@
+{
+  "Passed": true,
+  "ExportedPhotos": 3,
+  "OriginalWorkspace": {
+    "Photos": 3,
+    "OnTable": 1
+  },
+  "RestoredWorkspace": {
+    "Photos": 3,
+    "OnTable": 0
+  },
+  "SourceBackupAndRestoredBytesMatch": true,
+  "RelativeManifest": true,
+  "PhotoSha256": [
+    "550de87f646cdfc11411c77a7fabf6ffd7142700be32fbd11a400888afe5335a",
+    "05d4486abcdff9c0369c3988e5c17cd8eb12a03f42ae94645fc4fd24ff6c3cd4",
+    "9de1d80afa29afdf9c3ebafd7f9aa47deb87f7e876bef1be97f797f0fa91427b"
+  ],
+  "CloudProviderUploadTested": false
+}

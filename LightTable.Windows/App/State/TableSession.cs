@@ -56,6 +56,15 @@ sealed class TableSession
         saveTimer.Stop();Storage.Save(Document);var archive=Storage.Import(document,sourceBytes);Storage.MigrateLegacyAlbums(document);Document=document;LibraryRevision++;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);return archive;
     }
     public void ToggleLight(double seconds){Lamp.Toggle();Notify(false);}
+    public void AddRestoredColumn(RestoredColumn backup)
+    {
+        // Commit a new document atomically before replacing the live session;
+        // a disk/save failure must leave every existing workspace untouched.
+        saveTimer.Stop();
+        var candidate=System.Text.Json.JsonSerializer.Deserialize<TableDocument>(System.Text.Json.JsonSerializer.Serialize(Document,DocumentStore.JsonOptions),DocumentStore.JsonOptions)??throw new InvalidDataException("无法准备栏目导入。");
+        var column=candidate.AddCollection(backup.Name);candidate.SetCollectionPhotos(column,backup.Photos,false);column.SourceLabel="栏目备份";candidate.SourceLabel=column.SourceLabel;
+        Storage.Save(candidate);Document=candidate;LibraryRevision++;Selection.Clear();ShowSelection=false;CloseViewing=false;Notify(false);
+    }
     public void Select(Guid id,bool extend=false,bool indicator=true)
     {
         if(!extend)Selection.Clear();

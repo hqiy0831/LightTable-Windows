@@ -15,7 +15,7 @@ sealed partial class MainWindow
         var bar=new MenuBar{RequestedTheme=ElementTheme.Dark,Background=new SolidColorBrush(Color(6))};
         MenuBarItem Menu(string title){var m=new MenuBarItem{Title=title};bar.Items.Add(m);return m;}
         void Item(MenuBarItem menu,string title,Action action){var item=new MenuFlyoutItem{Text=title};item.Click+=(_,_)=>{if(startup.Visibility!=Visibility.Visible&&!session.Busy&&collectionCancellation==null)action();};menu.Items.Add(item);}
-        var file=Menu("文件");Item(file,"从文件夹追加照片…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());Item(file,"重试照片读取",()=>{renderer.RetryFailures();board.Invalidate();_=WarmRestoredVisible();});
+        var file=Menu("文件");Item(file,"从文件夹追加照片…     Ctrl+O",async()=>await ChooseFolder());Item(file,"添加照片…     Ctrl+Shift+O",async()=>await ChoosePhotos());Item(file,"保存布局",()=>session.Flush());Item(file,"备份当前栏目…",async()=>await RunColumnBackup(false));Item(file,"导入栏目备份…",async()=>await RunColumnBackup(true));Item(file,"重试照片读取",()=>{renderer.RetryFailures();board.Invalidate();_=WarmRestoredVisible();});
         Item(file,"打开数据目录",()=>System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(session.Storage.Root){UseShellExecute=true}));
         Item(file,"导入 Mac 版布局…",async()=>await ImportMacLayout());
         var view=Menu("观片");Item(view,"开灯 / 关灯     Ctrl+L",()=>session.ToggleLight(Rendering.TableRenderer.Seconds));Item(view,"普通指针     A",()=>{session.Loupe=false;session.CloseViewing=false;session.Notify(false);});Item(view,"放大镜     V",()=>{session.Loupe=true;session.Notify(false);});
@@ -53,7 +53,7 @@ sealed partial class MainWindow
         dialogOpen=true;session.CloseViewing=false;
         try
         {
-            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="底栏始终保留全部照片；上台后显示“已上台”，原顺序和滚动位置保持。\n\n相册功能已移除，旧相册照片自动归入对应栏目，原布局独立备份。\n\n原图只读，普通/凑近四档倍率均实际生效。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
+            var dialog=new ContentDialog{XamlRoot=root.XamlRoot,Title="让照片回到光里",Content=new TextBlock{Text="新增栏目备份：底栏 ⋯ → 备份当前栏目 / 导入栏目备份。复制全部底栏照片，原文件不动；导入新建空台面的独立栏目。\n\n底栏始终保留全部照片，上台只加标记。\n\n相册功能已移除，旧相册照片自动归入对应栏目，原布局独立备份。\n\n原图只读，普通/凑近四档倍率均实际生效。",TextWrapping=TextWrapping.Wrap,MaxWidth=430},PrimaryButtonText="开始观片",SecondaryButtonText="看看怎么用",DefaultButton=ContentDialogButton.Primary};
             options.GuideVersion=BuildInfo.Version;WriteOptions(options);
             var result=await dialog.ShowAsync();
             if(result==ContentDialogResult.Secondary)

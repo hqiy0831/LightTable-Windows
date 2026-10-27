@@ -1,0 +1,62 @@
+{
+  "ColumnBackupTest": {
+    "Name": "Column-backup-roundtrip-and-atomic-session-commit",
+    "Passed": true,
+    "Evidence": "实际栏目备份/恢复3张JPEG：原字节、原名、顺序与WIC尺寸可读；新建空台面的完整底栏，保存恢复独立。生产布局锁定时导入失败且原栏目不变，成功导入后原栏目也不变。",
+    "Milliseconds": 94.1713
+  },
+  "Version": "0.1.75.3",
+  "OriginalAuthor": "抖音 @怕蛇LightTable",
+  "Core": {
+    "Passed": 130,
+    "Failed": 0
+  },
+  "Portable": {
+    "Passed": true,
+    "Checks": 31,
+    "ExitCode": 0,
+    "ArchiveSha256": "9c38720cd1831de75e4df2ea34804eb5ed174293cfbb2d237520cc3812902e03"
+  },
+  "InstallerSandbox": {
+    "Scope": "Same installer source/payload with separate AppId and shortcut; current host, not clean Windows; ordinary production installer not installed over existing user app",
+    "Passed": true,
+    "Rounds": [
+      {
+        "ExitCode": 0,
+        "LayoutPreserved": true,
+        "Checks": 31,
+        "Uninstalled": true,
+        "Installed": true,
+        "Round": 1,
+        "ExistingProductionUnchanged": true
+      },
+      {
+        "ExitCode": 0,
+        "LayoutPreserved": true,
+        "Checks": 31,
+        "Uninstalled": true,
+        "Installed": true,
+        "Round": 2,
+        "ExistingProductionUnchanged": true
+      }
+    ],
+    "InstallerSha256": "911C9EFA3613B2134759CAD8D5B67B198C4ABF007E998871111FF7362FC78659",
+    "ProductionStateSha256": "2d86ef17dc12c85a1ae8176794355184fb77413005a7828599c40a0982d94204"
+  },
+  "BinarySha256": {
+    "LightTable.exe": "fe7e3e01bab3d1935f6c5af3b665e6655819666818697463aca677e57bf7d085",
+    "LightTable.dll": "b86e795bc8f5a1b1eca8e1721470037afd3a4ae788719fc6c48059ca1abb0a48",
+    "LightTable.Core.dll": "225172b20abe086a3d2d5276f4da306e0b8ea8bb8205525411c740945d905e84",
+    "LightTable.pri": "e00bf740022937bdba9a91337f469224aa378e322ca2f08beab576c0065f39f7",
+    "Resources/LoupeEdge.bin": "447f5bb28228aa530ecf78d23cbaaf55a6f1d851817d4e7bd68654701e70fbf0",
+    "Resources/FusedOptical.bin": "9467b92aeabc031f28fda32895d926e887f8cd57fa0ee93f24d9215e8b2ecc2f",
+    "Resources/FusedLamp.bin": "6f223938733fde2483578b838f6d820b4a6402fea52787198492c50abd4b9ca3"
+  },
+  "PersistentTrayTest": {
+    "Name": "Persistent-tray-100-photos-60-placed",
+    "Passed": true,
+    "Evidence": "真实ListView模型100张，上台60张标记、40张保留；全部对象/顺序和滚动位置(10886.4)不变。移出台面后100张/59个标记；新Store恢复一致；无相册项目。",
+    "Milliseconds": 753.4754
+  },
+  "Scope": "Current development host; separate installer AppId, not production upgrade or clean Windows. No new 60FPS/P3/FP16 claims."
+}

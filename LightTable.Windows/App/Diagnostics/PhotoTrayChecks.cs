@@ -17,11 +17,15 @@ sealed partial class MainWindow
             var items=trayItems.ToArray();
             // Realization changes the virtualized extent; wait for a stable
             // end-of-list layout before measuring whether placement moves it.
-            for(int attempt=0;attempt<12;attempt++)
+            int stable=0;double lastEnd=-1,lastOffset=-1;
+            for(int attempt=0;attempt<24;attempt++)
             {
                 var end=trayScroller?.ScrollableWidth??0;trayScroller?.ChangeView(end,null,null,true);await Task.Delay(80);
-                if(end>0&&Math.Abs((trayScroller?.HorizontalOffset??0)-end)<1&&Math.Abs((trayScroller?.ScrollableWidth??0)-end)<1)break;
+                var afterEnd=trayScroller?.ScrollableWidth??0;var afterOffset=trayScroller?.HorizontalOffset??0;
+                if(end>0&&Math.Abs(afterOffset-end)<1&&Math.Abs(afterEnd-end)<1&&Math.Abs(afterEnd-lastEnd)<1&&Math.Abs(afterOffset-lastOffset)<1)stable++;else stable=0;
+                lastEnd=afterEnd;lastOffset=afterOffset;if(stable>=4)break;
             }
+            if(stable<4)throw new InvalidOperationException("虚拟底栏范围未稳定，无法测量上台后的滚动保持");
             var offset=trayScroller?.HorizontalOffset??0;if(offset<100)throw new InvalidOperationException("底栏没有实际滚动到后面的照片");
             foreach(var p in photos.Take(60))doc.Place(p.Path,new(.5,.5));session.Notify();await Task.Delay(80);
             if(trayItems.Count!=100||trayItems.Count(p=>p.Mark=="已上台")!=60||trayItems.Count(p=>p.Mark=="")!=40)throw new InvalidOperationException("100张/60张已上台/40张未上台数量错误");

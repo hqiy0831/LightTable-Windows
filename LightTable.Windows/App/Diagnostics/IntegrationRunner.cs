@@ -201,6 +201,7 @@ sealed partial class MainWindow
                 }
                 return $"两路真实MediaPlayer已MediaOpened，AutoPlay关闭，.20音量，首次cue播放时钟到{position:F4}s；48kHz立体声PCM .38s。未声称原录音音色或扬声器主观同步一致。";
             });
+            await Check("Column-backup-roundtrip-and-atomic-session-commit",CheckColumnBackup);
             await Check("Persistent-tray-100-photos-60-placed",async()=>await CheckPersistentPhotoTray(originals));
             await Check("Photo-layout-order-and-recovery",async()=>
             {
